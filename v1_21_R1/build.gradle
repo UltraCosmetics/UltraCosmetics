@@ -1,4 +1,6 @@
 dependencies {
+    // https://hub.spigotmc.org/stash/projects/SPIGOT/repos/spigot/browse
     implementation 'org.spigotmc:spigot:1.21-R0.1-SNAPSHOT:remapped-mojang'
+
     implementation project(':core')
 }

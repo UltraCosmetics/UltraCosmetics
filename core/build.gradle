@@ -1,13 +1,15 @@
 plugins {
+    // https://github.com/Goooler/shadow
     id 'io.github.goooler.shadow' version '8.1.8'
-    id("net.minecrell.plugin-yml.bukkit").version("0.6.0")
+    // https://github.com/Minecrell/plugin-yml
+    id 'net.minecrell.plugin-yml.bukkit' version '0.6.0'
 }
 
 bukkit {
     name = "UltraCosmetics"
     authors = ['datatags']
     main = 'be.isach.ultracosmetics.UltraCosmetics'
-    apiVersion = "1.17" // Earliest version to support Java 17
+    apiVersion = "1.17"
     softDepend = ['LibsDisguises', 'Vault', 'PlaceholderAPI', 'PlayerPoints', 'WorldGuard', 'Essentials', 'LuckPerms', 'DiscordSRV', 'ChestSort', 'Towny', 'PEconomy', 'PlayerAuctions', 'CoinsEngine', 'Treasury']
     commands {
         ultracosmetics {
@@ -37,42 +39,62 @@ bukkit {
 
 dependencies {
     // Depend on a jar in the 'core' folder: fileTree(dir: '.', include: ['*.jar'])
-    // ideally matches the dependency version of the latest NMS module
+    // Ideally matches the dependency version of the latest NMS module
+    // https://hub.spigotmc.org/stash/projects/SPIGOT/repos/spigot/browse
     compileOnly 'org.spigotmc:spigot-api:1.20.6-R0.1-SNAPSHOT'
+    // https://github.com/libraryaddict/LibsDisguises/
     compileOnly('LibsDisguises:LibsDisguises:10.0.44') {
         exclude group: 'org.spigotmc'
         exclude group: 'com.comphenix.protocol'
     }
+    // https://github.com/MilkBowl/VaultAPI
     compileOnly('net.milkbowl.vault:VaultAPI:1.7') {
         exclude group: 'org.bukkit'
     }
+    // https://github.com/PlaceholderAPI/PlaceholderAPI
     compileOnly 'me.clip:placeholderapi:2.11.6'
+    // https://github.com/Rosewood-Development/PlayerPoints
     compileOnly 'org.black_ixx:playerpoints:3.2.7'
+    // https://github.com/EngineHub/WorldGuard
     compileOnly 'com.sk89q.worldguard:worldguard-bukkit:7.0.9'
     compileOnly 'com.mojang:authlib:2.3.31'
-    // used by the update checker
+    // https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple
     compileOnly 'com.googlecode.json-simple:json-simple:1.1.1'
     library 'com.github.cryptomorin:XSeries:11.2.0'
     //api fileTree(dir: '.', include: ['XSeries-*.jar'])
+    // https://github.com/Bastian/bstats-metrics
     implementation 'org.bstats:bstats-bukkit:3.0.2'
+    // https://github.com/LuckPerms/LuckPerms
     compileOnly 'net.luckperms:api:5.4'
+    // https://github.com/ArcanePlugins/Treasury
     compileOnly "me.lokka30:treasury-api:2.0.2-SNAPSHOT"
+    // https://github.com/JEFF-Media-GbR/Spigot-ChestSortAPI
     compileOnly 'de.jeff_media:ChestSortAPI:13.0.0-SNAPSHOT'
+    // https://github.com/TownyAdvanced/Towny
     compileOnly 'com.palmergames.bukkit.towny:towny:0.100.3.2'
+    // https://github.com/brettwooldridge/HikariCP
     library 'com.zaxxer:HikariCP:5.1.0'
-    implementation 'net.wesjd:anvilgui:1.9.6-SNAPSHOT' // CodeMC repo
+    // https://github.com/WesJD/AnvilGUI
+    implementation 'net.wesjd:anvilgui:1.9.6-SNAPSHOT'
+    // https://github.com/datatags/MobChipLite
     implementation 'com.github.datatags.MobChipLite:mobchip-bukkit:1.10.4'
     implementation fileTree(dir: '.', include: ['mobchip-*.jar'])
+    // https://github.com/DiscordSRV/DiscordSRV
     compileOnly 'com.discordsrv:discordsrv:1.28.0-SNAPSHOT'
+    // https://github.com/SoKnight/PEconomy
     compileOnly 'me.soknight:peconomy:2.7.4-pre1'
+    // https://github.com/KyoriPowered/adventure
     library "net.kyori:adventure-text-minimessage:4.17.0"
     library "net.kyori:adventure-platform-bukkit:4.3.3"
     library "net.kyori:adventure-text-serializer-plain:4.17.0"
     library "net.kyori:adventure-api:4.17.0"
+    //https://www.spigotmc.org/resources/%E2%AD%90-player-auctions-%E2%AD%90-%E2%9E%A2-let-your-players-sell-items-1-7-1-20-4.83073/
     compileOnly "com.olziedev:playerauctions-api:1.28.1"
+
     compileOnly files('libs/CoinsEngine-2.1.1.jar')
     compileOnly files('libs/NexEngine.jar')
-    compileOnly(project(":legacy-events")) // Shaded by root project
+    // Shaded by root project
+    compileOnly(project(":legacy-events"))
 }
 
 shadowJar {

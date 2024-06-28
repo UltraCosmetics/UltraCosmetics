@@ -1,5 +1,6 @@
 name: CodeQL
 
+
 on:
   push:
     branches: [ "master" ]
@@ -8,26 +9,32 @@ on:
   schedule:
     - cron: '0 23 * * 0'
 
+
 jobs:
   analyze:
+
     runs-on: ubuntu-latest
+
     permissions:
       actions: read
       contents: read
       security-events: write
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4.1.7
+      # https://github.com/actions/checkout
+      - name: Checkout repository
+        uses: actions/checkout@v4.1.7
 
-    - name: Initialize CodeQL
-      uses: github/codeql-action/init@v3.25.10
-      with:
-        languages: 'java'
+      # https://github.com/github/codeql-action
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3.25.10
+        with:
+          languages: 'java'
 
-    - run: |
-       echo "Run, Build Application using script"
-       ./gradlew --no-daemon -S core:testClasses
+      - run: |
+         echo "Run, Build Application using script"
+         ./gradlew --no-daemon -S core:testClasses
 
-    - name: Perform CodeQL Analysis
-      uses: github/codeql-action/analyze@v3.25.10
+      # https://github.com/github/codeql-action
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3.25.10

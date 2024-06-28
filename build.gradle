@@ -86,74 +86,33 @@ subprojects { subproj ->
         mavenCentral()
 
         // AnvilGUI, Treasury
-        maven {
-            url = 'https://repo.codemc.io/repository/maven-snapshots/'
-        }
-
+        maven { url = 'https://repo.codemc.io/repository/maven-snapshots/' }
         // Lib's Disguises
-        maven {
-            url = 'https://repo.md-5.net/content/groups/public/'
-        }
-
+        maven { url = 'https://repo.md-5.net/content/groups/public/' }
         // WorldEdit
-        maven {
-            url = 'https://repo.aikar.co/nexus/content/groups/aikar'
-        }
-
+        maven { url = 'https://repo.aikar.co/nexus/content/groups/aikar' }
         // BungeeCord
-        maven {
-            url = 'https://oss.sonatype.org/content/repositories/snapshots'
-        }
-
+        maven { url = 'https://oss.sonatype.org/content/repositories/snapshots' }
         // PlaceholderAPI
-        maven {
-            url = 'https://repo.extendedclip.com/content/repositories/placeholderapi/'
-        }
-
+        maven { url = 'https://repo.extendedclip.com/content/repositories/placeholderapi/' }
         // PlayerPoints
-        maven {
-            url = 'https://repo.rosewooddev.io/repository/public/'
-        }
-
+        maven { url = 'https://repo.rosewooddev.io/repository/public/' }
         // SpigotMC
-        maven {
-            url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
-        }
-
+        maven { url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' }
         // WorldGuard
-        maven {
-            url = 'https://maven.enginehub.org/repo/'
-        }
-
+        maven { url = 'https://maven.enginehub.org/repo/' }
         // DiscordSRV
-        maven {
-            url = 'https://nexus.scarsz.me/content/groups/public/'
-        }
-
+        maven { url = 'https://nexus.scarsz.me/content/groups/public/' }
         // ChestSort
-        maven {
-            url = 'https://hub.jeff-media.com/nexus/repository/jeff-media-public/'
-        }
-
+        maven { url = 'https://hub.jeff-media.com/nexus/repository/jeff-media-public/' }
         // Towny
-        maven {
-            url = 'https://repo.glaremasters.me/repository/towny/'
-        }
-
+        maven { url = 'https://repo.glaremasters.me/repository/towny/' }
         // PlayerAuctions
-        maven {
-            url = 'https://repo.olziedev.com/'
-        }
-
+        maven { url = 'https://repo.olziedev.com/' }
         // Vault, PEconomy, MobChipLite
-        maven {
-            url = 'https://jitpack.io'
-        }
-
+        maven { url = 'https://jitpack.io' }
         // Mojang Authlib
-        maven {
-            url = 'https://libraries.minecraft.net'
-        }
+        maven { url = 'https://libraries.minecraft.net' }
     }
     def version = 17
     if (subproj.hasProperty("javaVersion")) {

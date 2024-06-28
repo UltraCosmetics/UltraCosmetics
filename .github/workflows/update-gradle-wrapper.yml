@@ -1,8 +1,10 @@
 name: Update Gradle Wrapper
 
+
 on:
   schedule:
     - cron: "0 23 * * 0"
+
 
 jobs:
   update-gradle-wrapper:

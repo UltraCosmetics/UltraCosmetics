@@ -1,5 +1,5 @@
 dependencies {
-    // Needed for org.spigotmc.event.entity.EntityDismountEvent,
-    // renamed to org.bukkit.event.entity.EntityDismountEvent in 1.20.6
+    // Needed for org.spigotmc.event.entity.EntityDismountEvent, renamed to org.bukkit.event.entity.EntityDismountEvent in 1.20.6.
+    // https://hub.spigotmc.org/stash/projects/SPIGOT/repos/spigot/browse
     compileOnly 'org.spigotmc:spigot-api:1.20.3-R0.1-SNAPSHOT'
 }
