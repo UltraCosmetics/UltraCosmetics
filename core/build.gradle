@@ -58,7 +58,7 @@ dependencies {
     compileOnly 'net.luckperms:api:5.4'
     compileOnly "me.lokka30:treasury-api:2.0.2-SNAPSHOT"
     compileOnly 'de.jeff_media:ChestSortAPI:13.0.0-SNAPSHOT'
-    compileOnly 'com.palmergames.bukkit.towny:towny:0.100.3.2'
+    compileOnly 'com.palmergames.bukkit.towny:towny:0.100.3.3'
     library 'com.zaxxer:HikariCP:5.1.0'
     implementation 'net.wesjd:anvilgui:1.9.6-SNAPSHOT' // CodeMC repo
     implementation 'com.github.datatags.MobChipLite:mobchip-bukkit:1.10.4'
