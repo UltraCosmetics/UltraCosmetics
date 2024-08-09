@@ -1859,4 +1859,4 @@ Must-Remove:
   Mounts: <prefix> <bold><red>Vous devez effacer l'emplacement de la barre d'action <slot> pour équiper cette monture !
 Use-Rename-Pet-Command: <prefix> <red>Utiliser <yellow>/uc rename</yellow> pour renommer
 Commands-Disabled-During-Chest: <prefix> <bold><red>Vous ne pouvez pas utiliser de commandes lorsque vous ouvrez un coffre !
-No-Buy-Key-Permission: <prefix> <red><bold>You don't have permission to buy treasure keys!
+No-Buy-Key-Permission: <prefix><red><bold>Tu n'as pas la permission d'acheter des clés !

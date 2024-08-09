@@ -1861,5 +1861,5 @@ Must-Remove:
   Gadgets: <prefix> <bold><red>Du musst Slot <slot> in der Schnellzugriffsleiste leeren, um ein Gadget auszurüsten!
   Mounts: <prefix> <bold><red>Du musst Slot <slot> in der Schnellzugriffsleiste leeren, um dieses Reittier auszurüsten!
 Use-Rename-Pet-Command: <prefix> <red>Benutze <yellow>/uc rename</yellow> um den Namen zu ändern
-Commands-Disabled-During-Chest: <prefix> <bold><red>You can't use commands while opening a chest!
-No-Buy-Key-Permission: <prefix> <red><bold>You don't have permission to buy treasure keys!
+Commands-Disabled-During-Chest: <prefix> <bold><red>Du kannst beim Öffnen einer Truhe keine Befehle verwenden!
+No-Buy-Key-Permission: <prefix> <red><bold>Du hast keine Berechtigung Schatzschlüssel zu kaufen!

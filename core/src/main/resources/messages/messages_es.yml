@@ -1858,5 +1858,5 @@ Must-Remove:
   Gadgets: <prefix> <bold><red>Tienes que limpiar el slot <slot> de tu inventario para equipar el gadget!
   Mounts: <prefix> <bold><red>Tienes que limpiar el slot <slot> de tu inventario para equipar esa montura!
 Use-Rename-Pet-Command: <prefix> <red>Usa <yellow>/uc rename</yellow> para renombrar
-Commands-Disabled-During-Chest: <prefix> <bold><red>You can't use commands while opening a chest!
-No-Buy-Key-Permission: <prefix> <red><bold>You don't have permission to buy treasure keys!
+Commands-Disabled-During-Chest: <prefix> <bold><red>¡No puedes usar comandos mientras abres un cofre!
+No-Buy-Key-Permission: <prefix> <red><bold>¡No tienes permiso para comprar llaves del tesoro!
