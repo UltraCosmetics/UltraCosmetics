@@ -56,7 +56,7 @@ dependencies {
     implementation 'net.kyori:adventure-platform-bukkit:4.3.4'
     implementation 'net.kyori:adventure-text-serializer-plain:4.17.0'
     implementation 'net.kyori:adventure-api:4.17.0'
-    //https://www.spigotmc.org/resources/%E2%AD%90-player-auctions-%E2%AD%90-%E2%9E%A2-let-your-players-sell-items-1-7-1-20-4.83073/
+    // https://discord.gg/olzie-development-568501722066976790
     compileOnly 'com.olziedev:playerauctions-api:1.30.0-pre2'
 
     compileOnly files('libs/CoinsEngine-2.1.1.jar')
