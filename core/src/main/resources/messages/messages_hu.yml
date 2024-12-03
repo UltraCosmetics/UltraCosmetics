@@ -887,7 +887,9 @@ Pets:
   Armadillo:
     menu-name: <bold><gold>Armadillo
     entity-displayname: <bold><playername>'s Armadillo
-    Description: "Don't scare me,\nor I'll roll up into a ball!"
+    Description: |-
+      Don't scare me,
+      or I'll roll up into a ball!
 Morphs:
   Blaze:
     name: <bold><gold>Őrláng
