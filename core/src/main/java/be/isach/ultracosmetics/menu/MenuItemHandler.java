@@ -7,7 +7,6 @@ import be.isach.ultracosmetics.player.UltraPlayerManager;
 import be.isach.ultracosmetics.util.InventoryViewHelper;
 import be.isach.ultracosmetics.util.ItemFactory;
 import be.isach.ultracosmetics.util.UnmovableItemProvider;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.inventory.InventoryType;
@@ -83,7 +82,7 @@ public class MenuItemHandler implements UnmovableItemProvider {
     public void handleClick(Player player) {
         if (menuOnClick) {
             // if it's not delayed by one tick, the client holds the item in cursor slot until they open their inventory again
-            Bukkit.getScheduler().runTaskLater(ultraCosmetics, () -> ultraCosmetics.getMenus().openMainMenu(pm.getUltraPlayer(player)), 1);
+            ultraCosmetics.getScheduler().runAtEntityLater(player, () -> ultraCosmetics.getMenus().openMainMenu(pm.getUltraPlayer(player)), 1);
         }
     }
 }

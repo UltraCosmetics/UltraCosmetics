@@ -9,12 +9,11 @@ import be.isach.ultracosmetics.util.MathUtils;
 import com.cryptomorin.xseries.particles.ParticleDisplay;
 import com.cryptomorin.xseries.particles.Particles;
 import com.cryptomorin.xseries.particles.XParticle;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 
-import java.awt.Color;
+import java.awt.*;
 
 /**
  * Represents an instance of a Christmas Tree gadget summoned by a player.
@@ -42,7 +41,7 @@ public class GadgetChristmasTree extends Gadget implements Updatable {
     public void onRightClick() {
         lastLocation = lastClickedBlock.getLocation().add(0.5d, 1.05d, 0.5d);
         active = true;
-        Bukkit.getScheduler().runTaskLaterAsynchronously(getUltraCosmetics(), () -> active = false, 200);
+        getUltraCosmetics().getScheduler().runLaterAsync(() -> active = false, 200);
     }
 
     @Override

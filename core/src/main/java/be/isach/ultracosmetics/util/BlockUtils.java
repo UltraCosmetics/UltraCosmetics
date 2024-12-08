@@ -16,13 +16,8 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.FallingBlock;
 import org.bukkit.entity.Player;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
-import java.util.Optional;
-import java.util.Set;
 
 /**
  * Created by sacha on 03/08/15.
@@ -143,7 +138,7 @@ public class BlockUtils {
      * @param tickDelay The delay after which the blocks are restored.
      */
     public static void setToRestoreIgnoring(final Map<Block, XMaterial> blocks, final int tickDelay) {
-        Bukkit.getScheduler().runTaskAsynchronously(UltraCosmeticsData.get().getPlugin(), () -> {
+        UltraCosmeticsData.get().getPlugin().getScheduler().runAsync((task) -> {
             blocks.keySet().removeIf(BlockViewUpdater::isUpdating);
             if (blocks.isEmpty()) return;
             World world = blocks.keySet().iterator().next().getWorld();
@@ -153,7 +148,7 @@ public class BlockUtils {
                     player.sendBlockChange(entry.getKey().getLocation(), data);
                 }
             }
-            new BlockViewUpdater(blocks.keySet()).runTaskLaterAsynchronously(UltraCosmeticsData.get().getPlugin(), tickDelay);
+            new BlockViewUpdater(blocks.keySet(), tickDelay).schedule();
         });
     }
 

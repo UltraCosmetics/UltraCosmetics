@@ -12,7 +12,6 @@ import be.isach.ultracosmetics.util.PortalLoc;
 import com.cryptomorin.xseries.XSound;
 import com.cryptomorin.xseries.particles.ParticleDisplay;
 import com.cryptomorin.xseries.particles.Particles;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
@@ -128,7 +127,7 @@ public class GadgetPortalGun extends Gadget implements PlayerAffectingCosmetic, 
         loc.setPitch(getPitch(destFace));
         teleport(player, loc, destFace.getDirection().multiply(0.3));
 
-        Bukkit.getScheduler().runTaskLater(getUltraCosmetics(), () -> playersOnCooldown.remove(player.getUniqueId()), 20);
+        getUltraCosmetics().getScheduler().runAtEntityLater(getPlayer(), () -> playersOnCooldown.remove(player.getUniqueId()), 20);
         return true;
     }
 
@@ -196,8 +195,8 @@ public class GadgetPortalGun extends Gadget implements PlayerAffectingCosmetic, 
     }
 
     private void teleport(final Entity entity, final Location location, final Vector velocity) {
-        Bukkit.getScheduler().runTask(getUltraCosmetics(), () -> {
-            entity.teleport(location);
+        getUltraCosmetics().getScheduler().runNextTick((task) -> {
+            getUltraCosmetics().getScheduler().teleportAsync(entity, location);
             entity.setVelocity(velocity);
             if (entity instanceof Player) {
                 teleportSound.soundPlayer().forPlayers((Player) entity).play();

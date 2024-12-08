@@ -14,7 +14,6 @@ import com.cryptomorin.xseries.XMaterial;
 import com.cryptomorin.xseries.XTag;
 import com.cryptomorin.xseries.particles.ParticleDisplay;
 import com.cryptomorin.xseries.particles.XParticle;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.entity.ArmorStand;
@@ -25,7 +24,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.util.Vector;
 
-import java.awt.Color;
+import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -59,7 +58,7 @@ public class GadgetDiscoBall extends Gadget implements PlayerAffectingCosmetic, 
         armorStand.setPersistent(false);
         armorStand.getEquipment().setHelmet(ItemFactory.create(XMaterial.LIGHT_BLUE_STAINED_GLASS, " "));
         running = true;
-        Bukkit.getScheduler().runTaskLater(getUltraCosmetics(), this::clean, 400);
+        getUltraCosmetics().getScheduler().runAtEntityLater(getPlayer(), this::clean, 400);
     }
 
     @Override

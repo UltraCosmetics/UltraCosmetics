@@ -63,7 +63,7 @@ public class MorphEnderman extends MorphNoFall {
         Location loc = b.getLocation();
         loc.setPitch(player.getLocation().getPitch());
         loc.setYaw(player.getLocation().getYaw());
-        player.teleport(loc);
+        getUltraCosmetics().getScheduler().teleportAsync(player, loc);
         spawnFireworks(loc);
     }
 
@@ -77,7 +77,7 @@ public class MorphEnderman extends MorphNoFall {
         v.normalize().multiply(16);
         Location loc = player.getLocation().add(v);
         if (!BlockUtils.isAir(loc.getBlock().getType())) {
-            player.teleport(loc);
+            getUltraCosmetics().getScheduler().teleportAsync(player, loc);
             spawnFireworks(loc.add(0.5, 0, 0.5));
             return true;
         }

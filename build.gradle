@@ -12,7 +12,7 @@ allprojects {
     idea.module.downloadSources = true
 
     group = 'be.isach.UltraCosmetics'
-    version = '3.9-RELEASE'
+    version = '3.10-RELEASE'
 
     tasks.withType(JavaCompile) {
         options.encoding = 'UTF-8'
@@ -109,7 +109,7 @@ subprojects { subproj ->
         maven { url = 'https://repo.glaremasters.me/repository/towny/' }
         // PlayerAuctions
         maven { url = 'https://repo.olziedev.com/' }
-        // Vault, PEconomy, MobChipLite
+        // Vault, PEconomy, MobChipLite, FoliaLib
         maven { url = 'https://jitpack.io' }
         // Mojang Authlib
         maven { url = 'https://libraries.minecraft.net' }

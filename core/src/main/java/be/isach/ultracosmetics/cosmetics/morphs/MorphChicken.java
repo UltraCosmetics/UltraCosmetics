@@ -12,7 +12,6 @@ import com.cryptomorin.xseries.particles.ParticleDisplay;
 import com.cryptomorin.xseries.particles.XParticle;
 import me.gamercoder215.mobchip.EntityBrain;
 import me.gamercoder215.mobchip.bukkit.BukkitBrain;
-import org.bukkit.Bukkit;
 import org.bukkit.Particle;
 import org.bukkit.entity.Chicken;
 import org.bukkit.entity.EntityType;
@@ -56,7 +55,7 @@ public class MorphChicken extends Morph implements Updatable {
             items.add(ItemFactory.createUnpickableItemVariance(XMaterial.EGG, getPlayer().getLocation(), RANDOM, 0.5));
             eggSound.play();
         }
-        Bukkit.getScheduler().runTaskLater(getUltraCosmetics(), () -> {
+        getUltraCosmetics().getScheduler().runAtEntityLater(getPlayer(), () -> {
             chickens.clear();
             for (Item i : items) {
                 i.getWorld().spawnParticle(BLOCK_PARTICLE, i.getLocation(), 0, 0, 0, 0, 0, XMaterial.WHITE_TERRACOTTA.parseMaterial().createBlockData());
@@ -73,7 +72,7 @@ public class MorphChicken extends Morph implements Updatable {
                 i.remove();
                 chickens.add(chicken);
             }
-            Bukkit.getScheduler().runTaskLater(getUltraCosmetics(), this::onClear, 200);
+            getUltraCosmetics().getScheduler().runAtEntityLater(getPlayer(), this::onClear, 200);
         }, 50);
     }
 

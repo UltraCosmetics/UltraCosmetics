@@ -1,5 +1,6 @@
 package be.isach.ultracosmetics.v1_20_R4;
 
+import be.isach.ultracosmetics.UltraCosmetics;
 import be.isach.ultracosmetics.UltraCosmeticsData;
 import be.isach.ultracosmetics.util.MathUtils;
 import be.isach.ultracosmetics.version.IEntityUtil;
@@ -77,7 +78,7 @@ public class EntityUtil implements IEntityUtil {
             sendPacket(loopPlayer, dataPacket);
             sendPacket(loopPlayer, equipmentPacket);
         }
-        Bukkit.getScheduler().runTaskLater(UltraCosmeticsData.get().getPlugin(), () -> {
+        UltraCosmeticsData.get().getPlugin().getScheduler().runLater(() -> {
             for (Player pl : player.getWorld().getPlayers()) {
                 sendPacket(pl, new ClientboundRemoveEntitiesPacket(as.getId()));
             }
@@ -88,7 +89,7 @@ public class EntityUtil implements IEntityUtil {
                 .forEachOrdered(ent -> {
                     MathUtils.applyVelocity(ent, new Vector(0, 1, 0).add(v));
                     cooldownJump.add(ent);
-                    Bukkit.getScheduler().runTaskLater(UltraCosmeticsData.get().getPlugin(),
+                    UltraCosmeticsData.get().getPlugin().getScheduler().runAtEntityLater(player,
                             () -> cooldownJump.remove(ent), 20);
                 });
     }

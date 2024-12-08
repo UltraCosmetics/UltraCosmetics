@@ -1,5 +1,6 @@
 package be.isach.ultracosmetics.util;
 
+import be.isach.ultracosmetics.UltraCosmeticsData;
 import me.gamercoder215.mobchip.EntityBrain;
 import me.gamercoder215.mobchip.ai.goal.CustomPathfinder;
 import me.gamercoder215.mobchip.bukkit.BukkitBrain;
@@ -54,7 +55,7 @@ public class PetPathfinder extends CustomPathfinder {
             return;
         }
         if (entity.getLocation().distanceSquared(loc) > 10 * 10) {
-            entity.teleport(loc);
+            UltraCosmeticsData.get().getPlugin().getScheduler().teleportAsync(entity, loc);
             brain.getController().moveTo(loc, speed);
             return;
         }

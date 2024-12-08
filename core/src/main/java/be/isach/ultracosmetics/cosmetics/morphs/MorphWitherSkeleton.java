@@ -8,7 +8,6 @@ import be.isach.ultracosmetics.util.ItemFactory;
 import be.isach.ultracosmetics.util.MathUtils;
 import com.cryptomorin.xseries.XMaterial;
 import com.cryptomorin.xseries.XSound;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -45,7 +44,7 @@ public class MorphWitherSkeleton extends Morph implements PlayerAffectingCosmeti
             Location itemLoc = player.getLocation().add(Math.random() * 5.0D - 2.5D, Math.random() * 3.0D, Math.random() * 5.0D - 2.5D);
             items.add(ItemFactory.spawnUnpickableItem(XMaterial.BONE.parseItem(), itemLoc, MathUtils.getRandomVector()));
         }
-        Bukkit.getScheduler().runTaskLater(getUltraCosmetics(), () -> {
+        getUltraCosmetics().getScheduler().runAtEntityLater(player, () -> {
             for (Entity bone : items) {
                 bone.remove();
             }

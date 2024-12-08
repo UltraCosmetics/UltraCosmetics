@@ -68,7 +68,7 @@ public class MountSnake extends Mount {
                 Location tp = before.getLocation().add(traj(before, tailEnt).multiply(1.4D));
                 tp.setPitch(tailEnt.getLocation().getPitch());
                 tp.setYaw(tailEnt.getLocation().getYaw());
-                tailEnt.teleport(tp);
+                getUltraCosmetics().getScheduler().teleportAsync(tailEnt, tp);
             }
 
             BukkitBrain.getBrain(tailEnt).getController().moveTo(loc);

@@ -1,25 +1,12 @@
 package be.isach.ultracosmetics;
 
 import be.isach.ultracosmetics.command.CommandManager;
-import be.isach.ultracosmetics.config.AutoCommentConfiguration;
-import be.isach.ultracosmetics.config.CustomConfiguration;
-import be.isach.ultracosmetics.config.FunctionalConfigLoader;
-import be.isach.ultracosmetics.config.ManualCommentConfiguration;
-import be.isach.ultracosmetics.config.MessageManager;
-import be.isach.ultracosmetics.config.SettingsManager;
+import be.isach.ultracosmetics.config.*;
 import be.isach.ultracosmetics.cosmetics.Category;
 import be.isach.ultracosmetics.cosmetics.type.CosmeticType;
 import be.isach.ultracosmetics.economy.EconomyHandler;
-import be.isach.ultracosmetics.hook.ChestSortHook;
-import be.isach.ultracosmetics.hook.DiscordSRVHook;
-import be.isach.ultracosmetics.hook.PlaceholderHook;
-import be.isach.ultracosmetics.hook.PlayerAuctionsHook;
-import be.isach.ultracosmetics.hook.TownyHook;
-import be.isach.ultracosmetics.listeners.EntityDismountListener;
-import be.isach.ultracosmetics.listeners.MainListener;
-import be.isach.ultracosmetics.listeners.PlayerListener;
-import be.isach.ultracosmetics.listeners.PriorityListener;
-import be.isach.ultracosmetics.listeners.UnmovableItemListener;
+import be.isach.ultracosmetics.hook.*;
+import be.isach.ultracosmetics.listeners.*;
 import be.isach.ultracosmetics.menu.CosmeticsInventoryHolder;
 import be.isach.ultracosmetics.menu.Menus;
 import be.isach.ultracosmetics.menu.menus.CustomMainMenu;
@@ -30,17 +17,13 @@ import be.isach.ultracosmetics.run.FallDamageManager;
 import be.isach.ultracosmetics.run.InvalidWorldChecker;
 import be.isach.ultracosmetics.run.VanishChecker;
 import be.isach.ultracosmetics.treasurechests.TreasureChestManager;
-import be.isach.ultracosmetics.util.EntitySpawningManager;
-import be.isach.ultracosmetics.util.InventoryViewHelper;
-import be.isach.ultracosmetics.util.PermissionPrinter;
-import be.isach.ultracosmetics.util.PlayerUtils;
-import be.isach.ultracosmetics.util.Problem;
-import be.isach.ultracosmetics.util.SmartLogger;
+import be.isach.ultracosmetics.util.*;
 import be.isach.ultracosmetics.util.SmartLogger.LogLevel;
-import be.isach.ultracosmetics.util.UpdateManager;
 import be.isach.ultracosmetics.version.ServerVersion;
 import be.isach.ultracosmetics.worldguard.WorldGuardManager;
 import com.cryptomorin.xseries.XMaterial;
+import com.tcoded.folialib.FoliaLib;
+import com.tcoded.folialib.impl.PlatformScheduler;
 import me.libraryaddict.disguise.DisguiseConfig;
 import net.kyori.adventure.text.minimessage.MiniMessage;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
@@ -57,20 +40,10 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.Reader;
+import java.io.*;
 import java.net.URL;
 import java.nio.file.Files;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.function.Supplier;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -84,6 +57,11 @@ import java.util.zip.ZipInputStream;
  * @since 08-03-2015
  */
 public class UltraCosmetics extends JavaPlugin {
+    /**
+     * Instance of FoliaLib which allows plugin to work on Folia or Spigot/Paper.
+     */
+    private FoliaLib foliaLib;
+
     /**
      * Manages sub commands.
      */
@@ -157,6 +135,10 @@ public class UltraCosmetics extends JavaPlugin {
     private final List<String> supportedLanguages = new ArrayList<>();
 
     private final List<UCAddon> addons = new ArrayList<>();
+
+    public UltraCosmetics() {
+        foliaLib = new FoliaLib(this);
+    }
 
     /**
      * Called when plugin is loaded. Used for registering WorldGuard flags as recommended in API documentation.
@@ -240,7 +222,7 @@ public class UltraCosmetics extends JavaPlugin {
         // (We can't start it before the config loader because we need config settings.)
         if (SettingsManager.getConfig().getBoolean("Check-For-Updates")) {
             getSmartLogger().write("Checking for update...");
-            updateChecker.runTaskAsynchronously(this);
+            updateChecker.schedule();
         }
 
         // if early loading failed...
@@ -368,13 +350,13 @@ public class UltraCosmetics extends JavaPlugin {
         playerManager.initPlayers();
 
         // Start the Fall Damage and Invalid World Check Runnables.
-        new FallDamageManager().runTaskTimerAsynchronously(this, 0, 1);
+        new FallDamageManager().schedule();
         // No need to worry about the invalid world checker if all worlds are allowed
         if (!config.getStringList("Enabled-Worlds").contains("*")) {
-            new InvalidWorldChecker(this).runTaskTimer(this, 0, 5);
+            new InvalidWorldChecker(this).schedule();
         }
         if (config.getBoolean("Prevent-Cosmetics-In-Vanish")) {
-            new VanishChecker(this).runTaskTimerAsynchronously(this, 100, 100);
+            new VanishChecker(this).schedule();
         }
 
         if (getServer().getPluginManager().isPluginEnabled("DiscordSRV")
@@ -420,7 +402,7 @@ public class UltraCosmetics extends JavaPlugin {
     public void shutdown() {
         // Prepare for re-enable
         HandlerList.unregisterAll(this);
-        Bukkit.getScheduler().cancelTasks(this);
+        getScheduler().cancelAllTasks();
 
         // when the plugin is disabled from onEnable, skip cleanup
         if (!enableFinished) return;
@@ -679,6 +661,15 @@ public class UltraCosmetics extends JavaPlugin {
         if (customMenu.isEnabled()) {
             menus.setMainMenu(customMenu);
         }
+    }
+
+    /**
+     * Get a platform-agnostic scheduler.
+     *
+     * @return the scheduler.
+     */
+    public PlatformScheduler getScheduler() {
+        return foliaLib.getScheduler();
     }
 
     /**

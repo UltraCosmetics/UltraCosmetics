@@ -3,12 +3,12 @@ package be.isach.ultracosmetics.treasurechests;
 import be.isach.ultracosmetics.UltraCosmetics;
 import be.isach.ultracosmetics.UltraCosmeticsData;
 import be.isach.ultracosmetics.player.UltraPlayerManager;
+import be.isach.ultracosmetics.task.UltraTask;
 import com.cryptomorin.xseries.XMaterial;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
-import org.bukkit.scheduler.BukkitRunnable;
 
-public class PlaceBlocksRunnable extends BukkitRunnable {
+public class PlaceBlocksRunnable extends UltraTask {
     private final TreasureChest chest;
     private final TreasureChestDesign design;
     private final boolean large;
@@ -32,11 +32,16 @@ public class PlaceBlocksRunnable extends BukkitRunnable {
         }
         if (i <= 0) {
             particleRunnable = new ChestParticleRunnable(chest);
-            particleRunnable.runTaskTimer(uc, 0L, 50L);
+            particleRunnable.schedule();
             cancel();
             return;
         }
         doChestStages(player);
+    }
+
+    @Override
+    public void schedule() {
+        task = getScheduler().runAtLocationTimer(this.chest.getCenter(), this::run, 0L, 12L);
     }
 
     private void doChestStages(Player player) {

@@ -9,7 +9,6 @@ import be.isach.ultracosmetics.util.ItemFactory;
 import com.cryptomorin.xseries.XMaterial;
 import com.cryptomorin.xseries.particles.ParticleDisplay;
 import com.cryptomorin.xseries.particles.XParticle;
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.entity.ArmorStand;
@@ -60,7 +59,7 @@ public class GadgetGhostParty extends Gadget implements Updatable {
             bat.addPassenger(ghost);
         }, getUltraCosmetics());
 
-        Bukkit.getScheduler().runTaskLater(getUltraCosmetics(), this::killBats, 160);
+        getUltraCosmetics().getScheduler().runAtEntityLater(getPlayer(), this::killBats, 160);
     }
 
     @EventHandler

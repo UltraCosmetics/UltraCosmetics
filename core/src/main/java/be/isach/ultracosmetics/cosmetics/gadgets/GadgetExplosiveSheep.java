@@ -8,6 +8,7 @@ import be.isach.ultracosmetics.util.MathUtils;
 import com.cryptomorin.xseries.XSound;
 import com.cryptomorin.xseries.particles.ParticleDisplay;
 import com.cryptomorin.xseries.particles.XParticle;
+import com.tcoded.folialib.wrapper.task.WrappedTask;
 import me.gamercoder215.mobchip.EntityBrain;
 import me.gamercoder215.mobchip.ai.goal.PathfinderPanic;
 import me.gamercoder215.mobchip.bukkit.BukkitBrain;
@@ -19,7 +20,6 @@ import org.bukkit.entity.Sheep;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.player.PlayerShearEntityEvent;
-import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
 import java.util.HashSet;
@@ -36,7 +36,7 @@ public class GadgetExplosiveSheep extends Gadget {
     // I know 'sheeps' isn't the plural form of 'sheep' but it's funny
     // and it distinguishes it from the local variables named 'sheep' (singular)
     private final Set<Sheep> sheeps = new HashSet<>();
-    private BukkitRunnable sheepRemovalRunnable = null;
+    private WrappedTask sheepRemovalRunnable = null;
     private final XSound.SoundPlayer tickSound = XSound.BLOCK_NOTE_BLOCK_HAT.record().withVolume(1.4f).withPitch(1.5f).soundPlayer();
     private final XSound.SoundPlayer explodeSound = XSound.ENTITY_GENERIC_EXPLODE.record().withVolume(1.4f).withPitch(1.5f).soundPlayer();
     private final ParticleDisplay emitter = ParticleDisplay.of(XParticle.EXPLOSION_EMITTER);
@@ -82,28 +82,28 @@ public class GadgetExplosiveSheep extends Gadget {
             sheep.remove();
         }
         if (sheepRemovalRunnable != null) {
-            sheepRemovalRunnable.run();
             // No try-catch because this gadget doesn't run on legacy versions anyway.
             sheepRemovalRunnable.cancel();
         }
     }
 
-    private class SheepColorRunnable extends BukkitRunnable {
+    private class SheepColorRunnable {
         private final Sheep s;
         private boolean red;
         private double time;
+
+        private final WrappedTask task;
 
         private SheepColorRunnable(Sheep s, double time, boolean red) {
             this.s = s;
             this.red = red;
             this.time = time;
-            this.runTaskLater(getUltraCosmetics(), (int) time);
+            task = getUltraCosmetics().getScheduler().runAtEntityLater(s, this::run, (int) time);
         }
 
-        @Override
         public void run() {
             if (getOwner() == null || getPlayer() == null || !s.isValid()) {
-                cancel();
+                task.cancel();
                 return;
             }
             s.setColor(red ? DyeColor.RED : DyeColor.WHITE);
@@ -135,16 +135,13 @@ public class GadgetExplosiveSheep extends Gadget {
                 sheep.damage(1, player);
                 brain.getGoalAI().put(new PathfinderPanic(sheep, 2), 0);
             }, getUltraCosmetics());
-            sheepRemovalRunnable = new BukkitRunnable() {
-                @Override
-                public void run() {
-                    for (Sheep sheep : sheeps.getEntities()) {
-                        lava.spawn(sheep.getLocation());
-                    }
-                    sheeps.removeEntities();
+
+            sheepRemovalRunnable = getUltraCosmetics().getScheduler().runAtEntityLater(player, () -> {
+                for (Sheep sheep : sheeps.getEntities()) {
+                    lava.spawn(sheep.getLocation());
                 }
-            };
-            sheepRemovalRunnable.runTaskLater(getUltraCosmetics(), 110);
+                sheeps.removeEntities();
+            }, 110);
         }
     }
 }

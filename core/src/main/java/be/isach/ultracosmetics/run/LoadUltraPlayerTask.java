@@ -1,12 +1,12 @@
 package be.isach.ultracosmetics.run;
 
 import be.isach.ultracosmetics.player.UltraPlayerManager;
+import be.isach.ultracosmetics.task.UltraTask;
 import org.bukkit.Bukkit;
-import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.UUID;
 
-public class LoadUltraPlayerTask extends BukkitRunnable {
+public class LoadUltraPlayerTask extends UltraTask {
     private final UUID uuid;
     private final UltraPlayerManager ultraPlayerManager;
 
@@ -21,5 +21,9 @@ public class LoadUltraPlayerTask extends BukkitRunnable {
             return;
         }
         ultraPlayerManager.createUltraPlayer(uuid);
+    }
+
+    @Override public void schedule() {
+        task = getScheduler().runLater(this::run, 2);
     }
 }
