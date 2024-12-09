@@ -891,8 +891,10 @@ Pets:
   Unequip: <prefix> <blue>Tu as fait disparaître <petname>
   Armadillo:
     menu-name: <bold><gold>Armadillo
-    entity-displayname: <bold><playername>'s Armadillo
-    Description: "Don't scare me,\nor I'll roll up into a ball!"
+    entity-displayname: <bold>Armadillo de <playername>
+    Description: |-
+      Ne m'effrayez pas,
+      ou je vais rouler dans une balle !
 Morphs:
   Blaze:
     name: <bold><gold>Blaze
