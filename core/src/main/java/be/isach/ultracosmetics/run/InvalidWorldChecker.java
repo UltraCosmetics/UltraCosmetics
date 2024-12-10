@@ -4,8 +4,8 @@ import be.isach.ultracosmetics.UltraCosmetics;
 import be.isach.ultracosmetics.config.MessageManager;
 import be.isach.ultracosmetics.config.SettingsManager;
 import be.isach.ultracosmetics.player.UltraPlayer;
+import be.isach.ultracosmetics.task.UltraTask;
 import org.bukkit.entity.Player;
-import org.bukkit.scheduler.BukkitRunnable;
 
 /**
  * Project: UltraCosmetics
@@ -14,7 +14,7 @@ import org.bukkit.scheduler.BukkitRunnable;
  * Created on: 21th June, 2016
  * at 14:03
  */
-public class InvalidWorldChecker extends BukkitRunnable {
+public class InvalidWorldChecker extends UltraTask {
 
     private UltraCosmetics ultraCosmetics;
 
@@ -38,5 +38,10 @@ public class InvalidWorldChecker extends BukkitRunnable {
                 });
             }
         }
+    }
+
+    @Override
+    public void schedule() {
+        task = getScheduler().runTimer(this::run, 0, 5);
     }
 }

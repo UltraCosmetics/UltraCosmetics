@@ -52,7 +52,7 @@ public abstract class ParticleEffect extends Cosmetic<ParticleEffectType> implem
 
     @Override
     protected void scheduleTask() {
-        runTaskTimerAsynchronously(getUltraCosmetics(), 0, getType().getRepeatDelay());
+        task = getUltraCosmetics().getScheduler().runTimerAsync(this::run, 0, getType().getRepeatDelay());
     }
 
     protected boolean locEquals(Location a, Location b) {
@@ -65,7 +65,7 @@ public abstract class ParticleEffect extends Cosmetic<ParticleEffectType> implem
     public void run() {
         Player player = getPlayer();
         if (player == null || getOwner().getCurrentParticleEffect() != this) {
-            cancel();
+            task.cancel();
             return;
         }
 

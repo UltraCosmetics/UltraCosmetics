@@ -3,25 +3,21 @@ package be.isach.ultracosmetics.util;
 import be.isach.ultracosmetics.UltraCosmetics;
 import be.isach.ultracosmetics.UltraCosmeticsData;
 import be.isach.ultracosmetics.config.SettingsManager;
+import be.isach.ultracosmetics.task.UltraTask;
 import com.cryptomorin.xseries.XEntityType;
 import com.cryptomorin.xseries.XMaterial;
-import org.bukkit.Bukkit;
-import org.bukkit.Color;
-import org.bukkit.FireworkEffect;
-import org.bukkit.Location;
-import org.bukkit.Material;
+import org.bukkit.*;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Firework;
 import org.bukkit.inventory.meta.FireworkMeta;
 import org.bukkit.metadata.FixedMetadataValue;
-import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.HashSet;
 import java.util.Set;
 import java.util.function.Consumer;
 
-public class EntitySpawner<T extends Entity> extends BukkitRunnable {
+public class EntitySpawner<T extends Entity> extends UltraTask {
     private static final Material FIREWORK = XMaterial.FIREWORK_ROCKET.parseMaterial();
     private static final EntityType FIREWORK_ENTITY = XEntityType.FIREWORK_ROCKET.get();
     private final int limit = SettingsManager.getConfig().getInt("Max-Entity-Spawns-Per-Tick");
@@ -43,7 +39,7 @@ public class EntitySpawner<T extends Entity> extends BukkitRunnable {
             run();
             return;
         }
-        this.runTaskTimer(ultraCosmetics, 0, 1);
+        this.schedule();
         scheduled = true;
     }
 
@@ -80,6 +76,11 @@ public class EntitySpawner<T extends Entity> extends BukkitRunnable {
 
             remaining--;
         }
+    }
+
+    @Override
+    public void schedule() {
+        task = this.getScheduler().runAtLocationTimer(loc, this::run, 1, 1);
     }
 
     public Set<T> getEntities() {
@@ -133,7 +134,7 @@ public class EntitySpawner<T extends Entity> extends BukkitRunnable {
             f.setMetadata("uc_firework", new FixedMetadataValue(UltraCosmeticsData.get().getPlugin(), true));
             fireworks.add(f);
         }
-        Bukkit.getScheduler().runTaskLater(UltraCosmeticsData.get().getPlugin(), () -> {
+        UltraCosmeticsData.get().getPlugin().getScheduler().runAtLocationLater(location, () -> {
             for (Firework f : fireworks) {
                 f.detonate();
             }

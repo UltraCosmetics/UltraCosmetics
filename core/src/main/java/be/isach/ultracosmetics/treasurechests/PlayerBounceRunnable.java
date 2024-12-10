@@ -3,14 +3,14 @@ package be.isach.ultracosmetics.treasurechests;
 import be.isach.ultracosmetics.UltraCosmeticsData;
 import be.isach.ultracosmetics.player.UltraPlayer;
 import be.isach.ultracosmetics.player.UltraPlayerManager;
+import be.isach.ultracosmetics.task.UltraTask;
 import be.isach.ultracosmetics.util.MathUtils;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
-import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
-public class PlayerBounceRunnable extends BukkitRunnable {
+public class PlayerBounceRunnable extends UltraTask {
     private final TreasureChest chest;
     private final Location center;
     private final int searchDistance;
@@ -33,7 +33,7 @@ public class PlayerBounceRunnable extends BukkitRunnable {
             return;
         }
         if (player.getWorld() != center.getWorld() || player.getLocation().distanceSquared(center) > 2.25) {
-            player.teleport(center);
+            getScheduler().teleportAsync(player, center);
         }
         for (Entity ent : player.getNearbyEntities(searchDistance, searchDistance, searchDistance)) {
             if (!TreasureChestManager.shouldPush(ultraPlayer, ent)) continue;
@@ -42,6 +42,11 @@ public class PlayerBounceRunnable extends BukkitRunnable {
             Vector v = ent.getLocation().toVector().subtract(player.getLocation().toVector()).multiply(0.5).setY(1);
             MathUtils.applyVelocity(ent, v.add(MathUtils.getRandomCircleVector().multiply(0.2)));
         }
+    }
+
+    @Override
+    public void schedule() {
+        task = getScheduler().runAtEntityTimer(ultraPlayer.getBukkitPlayer(), this::run, 0L, 1L);
     }
 
 }

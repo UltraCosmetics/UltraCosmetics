@@ -46,7 +46,7 @@ public class MorphElderGuardian extends Morph implements Updatable {
                 && event.getPlayer() == getPlayer()) {
             shootLaser();
             cooldown = true;
-            Bukkit.getScheduler().runTaskLaterAsynchronously(getUltraCosmetics(), () -> cooldown = false, 80);
+            getUltraCosmetics().getScheduler().runLaterAsync(() -> cooldown = false, 80);
         }
     }
 
@@ -72,7 +72,7 @@ public class MorphElderGuardian extends Morph implements Updatable {
 
         customGuardian.target(armorStand);
 
-        Bukkit.getScheduler().runTaskLater(getUltraCosmetics(), () -> {
+        getUltraCosmetics().getScheduler().runAtLocationLater(FROM, () -> {
             FireworkEffect.Builder builder = FireworkEffect.builder();
             FireworkEffect effect = builder.flicker(false).trail(false).with(FireworkEffect.Type.BALL_LARGE)
                     .withColor(Color.TEAL).withFade(Color.TEAL).build();
@@ -115,12 +115,12 @@ public class MorphElderGuardian extends Morph implements Updatable {
     @Override
     public void onUpdate() {
         if (getOwner() == null || getPlayer() == null) {
-            cancel();
+            task.cancel();
             return;
         }
         if (customGuardian == null || !customGuardian.isAlive()) {
             getOwner().removeCosmetic(Category.MORPHS);
-            cancel();
+            task.cancel();
         }
     }
 }

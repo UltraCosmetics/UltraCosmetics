@@ -5,7 +5,6 @@ import be.isach.ultracosmetics.command.SubCommand;
 import be.isach.ultracosmetics.util.UpdateManager;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.scheduler.BukkitRunnable;
 
 public class SubCommandUpdate extends SubCommand {
 
@@ -31,17 +30,15 @@ public class SubCommandUpdate extends SubCommand {
         }
         sender.sendMessage(ChatColor.GREEN + "UltraCosmetics " + updateManager.getSpigotVersion() + " is available to download.");
         sender.sendMessage(ChatColor.YELLOW + "Requesting update...");
-        new BukkitRunnable() {
-            @Override
-            public void run() {
-                boolean success = updateManager.update();
-                if (success) {
-                    sender.sendMessage(ChatColor.GREEN + "Update succeeded, please restart the server to complete the update.");
-                } else {
-                    sender.sendMessage(ChatColor.RED + "Update failed or aborted, please check the console for more information.");
-                }
+
+        ultraCosmetics.getScheduler().runAsync((task) -> {
+            boolean success = updateManager.update();
+            if (success) {
+                sender.sendMessage(ChatColor.GREEN + "Update succeeded, please restart the server to complete the update.");
+            } else {
+                sender.sendMessage(ChatColor.RED + "Update failed or aborted, please check the console for more information.");
             }
-        }.runTaskAsynchronously(ultraCosmetics);
+        });
     }
 
 }

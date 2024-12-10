@@ -24,13 +24,7 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityPickupItemEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
-import org.bukkit.event.player.PlayerChangedWorldEvent;
-import org.bukkit.event.player.PlayerCommandPreprocessEvent;
-import org.bukkit.event.player.PlayerItemDamageEvent;
-import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
-import org.bukkit.event.player.PlayerRespawnEvent;
-import org.bukkit.event.player.PlayerTeleportEvent;
+import org.bukkit.event.player.*;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.Arrays;
@@ -71,7 +65,7 @@ public class PlayerListener implements Listener {
         UltraPlayer ultraPlayer = pm.getUltraPlayer(event.getPlayer());
         if (SettingsManager.isAllowedWorld(event.getPlayer().getWorld())) {
             // Delay in case other plugins clear inventory on join
-            Bukkit.getScheduler().runTaskLater(ultraCosmetics, () -> {
+            ultraCosmetics.getScheduler().runAtEntityLater(event.getPlayer(), () -> {
                 if (menuItemEnabled && event.getPlayer().hasPermission("ultracosmetics.receivechest")) {
                     ultraPlayer.giveMenuItem();
                 }
@@ -99,12 +93,12 @@ public class PlayerListener implements Listener {
         if (SettingsManager.isAllowedWorld(event.getPlayer().getWorld())) {
             UltraPlayer up = pm.getUltraPlayer(event.getPlayer());
             if (menuItemEnabled && event.getPlayer().hasPermission("ultracosmetics.receivechest")) {
-                Bukkit.getScheduler().runTaskLater(ultraCosmetics, up::giveMenuItem, respawnItemDelay);
+                ultraCosmetics.getScheduler().runAtEntityLater(event.getPlayer(), up::giveMenuItem, respawnItemDelay);
             }
             // If the player joined an allowed world from a non-allowed world
             // or we need to update their cosmetics for another reason, re-equip their cosmetics.
             if (!SettingsManager.isAllowedWorld(event.getFrom()) || updateOnWorldChange) {
-                Bukkit.getScheduler().runTaskLater(ultraCosmetics, () -> up.getProfile().equip(), respawnItemDelay);
+                ultraCosmetics.getScheduler().runAtEntityLater(event.getPlayer(), () -> up.getProfile().equip(), respawnItemDelay);
             }
         }
     }
@@ -144,7 +138,7 @@ public class PlayerListener implements Listener {
     public void onRespawn(PlayerRespawnEvent event) {
         // When PlayerRespawnEvent is being called, the player may or may not be at
         // the final respawn location, so wait one tick before re-equipping.
-        Bukkit.getScheduler().runTaskLater(ultraCosmetics, () -> {
+        ultraCosmetics.getScheduler().runAtEntityLater(event.getPlayer(), () -> {
             if (!SettingsManager.isAllowedWorld(event.getPlayer().getWorld())) return;
             UltraPlayer ultraPlayer = pm.getUltraPlayer(event.getPlayer());
             if (menuItemEnabled) {
@@ -158,7 +152,7 @@ public class PlayerListener implements Listener {
     public void onQuit(PlayerQuitEvent event) {
         pm.getUltraPlayer(event.getPlayer()).dispose();
         // workaround plugins calling events after player quit
-        Bukkit.getScheduler().runTaskLater(ultraCosmetics, () -> pm.remove(event.getPlayer()), 1);
+        ultraCosmetics.getScheduler().runAtEntityLater(event.getPlayer(), () -> pm.remove(event.getPlayer()), 1);
     }
 
     @EventHandler(priority = EventPriority.LOWEST)

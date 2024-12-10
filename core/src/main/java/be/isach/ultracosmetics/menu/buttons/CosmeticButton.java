@@ -4,21 +4,9 @@ import be.isach.ultracosmetics.UltraCosmetics;
 import be.isach.ultracosmetics.UltraCosmeticsData;
 import be.isach.ultracosmetics.config.MessageManager;
 import be.isach.ultracosmetics.config.SettingsManager;
-import be.isach.ultracosmetics.cosmetics.type.CosmeticType;
-import be.isach.ultracosmetics.cosmetics.type.EmoteType;
-import be.isach.ultracosmetics.cosmetics.type.GadgetType;
-import be.isach.ultracosmetics.cosmetics.type.MorphType;
-import be.isach.ultracosmetics.cosmetics.type.PetType;
-import be.isach.ultracosmetics.menu.Button;
-import be.isach.ultracosmetics.menu.ClickData;
-import be.isach.ultracosmetics.menu.MenuPurchase;
-import be.isach.ultracosmetics.menu.MenuPurchaseFactory;
-import be.isach.ultracosmetics.menu.PurchaseData;
-import be.isach.ultracosmetics.menu.buttons.togglecosmetic.ToggleCosmeticButton;
-import be.isach.ultracosmetics.menu.buttons.togglecosmetic.ToggleEmoteCosmeticButton;
-import be.isach.ultracosmetics.menu.buttons.togglecosmetic.ToggleGadgetCosmeticButton;
-import be.isach.ultracosmetics.menu.buttons.togglecosmetic.ToggleMorphCosmeticButton;
-import be.isach.ultracosmetics.menu.buttons.togglecosmetic.TogglePetCosmeticButton;
+import be.isach.ultracosmetics.cosmetics.type.*;
+import be.isach.ultracosmetics.menu.*;
+import be.isach.ultracosmetics.menu.buttons.togglecosmetic.*;
 import be.isach.ultracosmetics.permissions.PermissionManager;
 import be.isach.ultracosmetics.player.UltraPlayer;
 import be.isach.ultracosmetics.util.ItemFactory;
@@ -26,7 +14,6 @@ import be.isach.ultracosmetics.util.TextUtil;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import net.kyori.adventure.text.serializer.plain.PlainTextComponentSerializer;
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -132,7 +119,7 @@ public abstract class CosmeticButton implements Button {
                 pm.setPermission(ultraPlayer, cosmeticType);
                 // Delay by five ticks so the command processes
                 // TODO: Remove this?
-                Bukkit.getScheduler().runTaskLater(ultraCosmetics, () -> {
+                ultraCosmetics.getScheduler().runAtEntityLater(ultraPlayer.getBukkitPlayer(), () -> {
                     cosmeticType.equip(ultraPlayer, ultraCosmetics);
                     data.getMenu().refresh(ultraPlayer);
                 }, 5);

@@ -1,8 +1,8 @@
 package be.isach.ultracosmetics.treasurechests;
 
-import org.bukkit.scheduler.BukkitRunnable;
+import be.isach.ultracosmetics.task.UltraTask;
 
-public class ItemBounceTask extends BukkitRunnable {
+public class ItemBounceTask extends UltraTask {
     private final StationaryChest stationaryChest;
 
     public ItemBounceTask(StationaryChest stationaryChest) {
@@ -11,6 +11,10 @@ public class ItemBounceTask extends BukkitRunnable {
 
     @Override
     public void run() {
+
+    }
+
+    @Override public void schedule() {
 
     }
 

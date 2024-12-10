@@ -6,7 +6,6 @@ import be.isach.ultracosmetics.player.UltraPlayer;
 import be.isach.ultracosmetics.util.ItemFactory;
 import com.cryptomorin.xseries.XMaterial;
 import com.cryptomorin.xseries.XSound;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Item;
 import org.bukkit.event.player.PlayerInteractEvent;
 
@@ -29,6 +28,6 @@ public class MorphVillager extends MorphLeftClickCooldown {
         event.setCancelled(true);
         sound.play();
         Item emerald = ItemFactory.createUnpickableItemDirectional(XMaterial.EMERALD, getPlayer(), 1.5);
-        Bukkit.getScheduler().runTaskLater(getUltraCosmetics(), emerald::remove, 80);
+        getUltraCosmetics().getScheduler().runAtEntityLater(getPlayer(), emerald::remove, 80);
     }
 }

@@ -2,17 +2,17 @@ package be.isach.ultracosmetics.treasurechests;
 
 import be.isach.ultracosmetics.UltraCosmetics;
 import be.isach.ultracosmetics.UltraCosmeticsData;
+import be.isach.ultracosmetics.task.UltraTask;
 import com.cryptomorin.xseries.particles.ParticleDisplay;
 import com.cryptomorin.xseries.particles.XParticle;
 import org.bukkit.Location;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
-import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
-import java.awt.Color;
+import java.awt.*;
 
-public class ChestParticleRunnable extends BukkitRunnable {
+public class ChestParticleRunnable extends UltraTask {
     private static final Vector Y_AXIS = new Vector(0, 1, 0);
     private final TreasureChest chest;
     private final UltraCosmetics uc;
@@ -52,8 +52,13 @@ public class ChestParticleRunnable extends BukkitRunnable {
             playHelix(particleEffect, chestLocation, 3.5F);
             animationTime = 30;
         }
-        chestRunnable = new PlaceChestRunnable(chest, chestLocation.getBlock(), i--);
-        chestRunnable.runTaskLater(uc, animationTime);
+        chestRunnable = new PlaceChestRunnable(chest, chestLocation.getBlock(), i--, animationTime);
+        chestRunnable.schedule();
+    }
+
+    @Override
+    public void schedule() {
+        task = getScheduler().runAtLocationTimer(chest.getCenter(), this::run, 0L, 50L);
     }
 
     private Location getChestLocation() {
@@ -103,26 +108,23 @@ public class ChestParticleRunnable extends BukkitRunnable {
         if (particle == XParticle.DUST) {
             display.withColor(Color.RED);
         }
-        BukkitRunnable runnable = new BukkitRunnable() {
-            double radius = 0;
-            double step = 0;
-            final double y = loc.getY();
-            final double inc = (2 * Math.PI) / 50;
-            final Location location = loc.clone().add(0, 3, 0);
 
-            @Override
-            public void run() {
-                double angle = step * inc + offset;
-                Vector v = new Vector(Math.cos(angle), 0, Math.sin(angle)).multiply(radius);
-                display.spawn(location);
-                location.subtract(v).subtract(0, 0.1d, 0);
-                if (location.getY() <= y) {
-                    cancel();
-                }
-                step += 4;
-                radius += 1 / 50f;
+        final double[] radius = {0};
+        final double[] step = {0};
+        final double y = loc.getY();
+        final double inc = (2 * Math.PI) / 50;
+        final Location location = loc.clone().add(0, 3, 0);
+
+        UltraCosmeticsData.get().getPlugin().getScheduler().runAtEntityTimer(chest.getPlayer(), (task) -> {
+            double angle = step[0] * inc + offset;
+            Vector v = new Vector(Math.cos(angle), 0, Math.sin(angle)).multiply(radius[0]);
+            display.spawn(location);
+            location.subtract(v).subtract(0, 0.1d, 0);
+            if (location.getY() <= y) {
+                cancel();
             }
-        };
-        runnable.runTaskTimer(UltraCosmeticsData.get().getPlugin(), 0, 1);
+            step[0] += 4;
+            radius[0] += 1 / 50f;
+        }, 0, 1);
     }
 }

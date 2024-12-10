@@ -1,9 +1,8 @@
 package be.isach.ultracosmetics.run;
 
 import be.isach.ultracosmetics.UltraCosmeticsData;
-import org.bukkit.Bukkit;
+import be.isach.ultracosmetics.task.UltraTask;
 import org.bukkit.entity.Entity;
-import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -12,7 +11,7 @@ import java.util.List;
 /**
  * Created by Sacha on 15/12/15.
  */
-public class FallDamageManager extends BukkitRunnable {
+public class FallDamageManager extends UltraTask {
 
     public static final List<Entity> noFallDamage = Collections.synchronizedList(new ArrayList<>());
     public static final List<Entity> queue = Collections.synchronizedList(new ArrayList<>());
@@ -38,8 +37,12 @@ public class FallDamageManager extends BukkitRunnable {
                 }
             }
         }
-        Bukkit.getScheduler().runTaskLaterAsynchronously(UltraCosmeticsData.get().getPlugin(), () -> noFallDamage.removeAll(toRemove), 5);
+        UltraCosmeticsData.get().getPlugin().getScheduler().runLaterAsync(() -> noFallDamage.removeAll(toRemove), 5);
         noFallDamage.addAll(queue);
         queue.clear();
+    }
+
+    @Override public void schedule() {
+        task = getScheduler().runTimerAsync(this::run, 0, 1);
     }
 }
