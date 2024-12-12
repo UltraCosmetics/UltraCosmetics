@@ -7,7 +7,6 @@ import be.isach.ultracosmetics.player.UltraPlayer;
 import be.isach.ultracosmetics.util.ItemFactory;
 import be.isach.ultracosmetics.util.MathUtils;
 import com.cryptomorin.xseries.XMaterial;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
@@ -40,11 +39,11 @@ public class GadgetThorHammer extends Gadget implements PlayerAffectingCosmetic 
         hammer = ItemFactory.spawnUnpickableItem(ItemFactory.create(XMaterial.IRON_AXE, getTypeName()), getPlayer().getEyeLocation(), velocity);
         getPlayer().getInventory().setItem(slot, null);
         v = getPlayer().getEyeLocation().getDirection().multiply(1.4).add(new Vector(0, 1, 0));
-        Bukkit.getScheduler().runTaskLater(getUltraCosmetics(), () -> {
+        getUltraCosmetics().getScheduler().runAtEntityLater(getPlayer(), () -> {
             if (hammer == null) return;
             hammer.setVelocity(getPlayer().getEyeLocation().toVector().subtract(hammer.getLocation().toVector()).multiply(0.2).add(new Vector(0, 0, 0)));
             v = null;
-            Bukkit.getScheduler().runTaskLater(getUltraCosmetics(), () -> {
+            getUltraCosmetics().getScheduler().runAtEntityLater(getPlayer(), () -> {
                 if (hammer == null) return;
                 pickupItem();
             }, 40);

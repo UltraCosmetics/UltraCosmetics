@@ -9,6 +9,7 @@ import be.isach.ultracosmetics.cosmetics.Updatable;
 import be.isach.ultracosmetics.cosmetics.type.MountType;
 import be.isach.ultracosmetics.player.UltraPlayer;
 import be.isach.ultracosmetics.run.MountRegionChecker;
+import be.isach.ultracosmetics.task.UltraTask;
 import be.isach.ultracosmetics.util.Area;
 import be.isach.ultracosmetics.util.BlockUtils;
 import be.isach.ultracosmetics.util.ItemFactory;
@@ -19,12 +20,7 @@ import org.bukkit.Difficulty;
 import org.bukkit.Location;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.block.Block;
-import org.bukkit.entity.AbstractHorse;
-import org.bukkit.entity.Ageable;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.Slime;
+import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
@@ -34,7 +30,6 @@ import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.vehicle.VehicleExitEvent;
 import org.bukkit.inventory.InventoryHolder;
 import org.bukkit.metadata.FixedMetadataValue;
-import org.bukkit.scheduler.BukkitTask;
 
 import java.util.HashMap;
 import java.util.List;
@@ -47,7 +42,7 @@ import java.util.Map;
  * @since 08-03-2015
  */
 public abstract class Mount extends EntityCosmetic<MountType, Entity> implements Updatable {
-    private BukkitTask mountRegionTask = null;
+    private UltraTask mountRegionTask = null;
 
     protected boolean beingRemoved = false;
     protected final boolean placesBlocks = getType().doesPlaceBlocks();
@@ -79,13 +74,14 @@ public abstract class Mount extends EntityCosmetic<MountType, Entity> implements
         if (!getUltraCosmetics().getWorldGuardManager().isHooked()) return;
         // Horses trigger PlayerMoveEvent so the standard WG move handler will be sufficient
         if (isHorse(entity.getType())) return;
-        mountRegionTask = new MountRegionChecker(getOwner(), getUltraCosmetics()).runTaskTimer(getUltraCosmetics(), 0, 1);
+        mountRegionTask = new MountRegionChecker(getOwner(), getUltraCosmetics());
+        mountRegionTask.schedule();
     }
 
     @Override
     protected void scheduleTask() {
         if (getType().getRepeatDelay() == 0) return;
-        runTaskTimer(getUltraCosmetics(), 0, getType().getRepeatDelay());
+        task = getUltraCosmetics().getScheduler().runAtEntityTimer(getPlayer(), this::run, 0, getType().getRepeatDelay());
     }
 
     @Override
@@ -114,7 +110,7 @@ public abstract class Mount extends EntityCosmetic<MountType, Entity> implements
         }
 
         if (!entity.isValid()) {
-            cancel();
+            task.cancel();
             return;
         }
 
@@ -130,7 +126,7 @@ public abstract class Mount extends EntityCosmetic<MountType, Entity> implements
                 && getOwner().getCurrentMount().getType() == getType()) {
             onUpdate();
         } else {
-            cancel();
+            task.cancel();
         }
     }
 
@@ -180,7 +176,7 @@ public abstract class Mount extends EntityCosmetic<MountType, Entity> implements
         if (event.getEntity() == getEntity()) {
             entity.remove();
             if (mountRegionTask != null) mountRegionTask.cancel();
-            Bukkit.getScheduler().runTaskLater(getUltraCosmetics(), this::onEquip, 1);
+            getUltraCosmetics().getScheduler().runAtEntityLater(getEntity(), this::onEquip, 1);
         }
     }
 

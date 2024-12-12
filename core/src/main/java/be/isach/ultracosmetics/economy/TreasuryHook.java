@@ -7,7 +7,6 @@ import me.lokka30.treasury.api.common.service.Service;
 import me.lokka30.treasury.api.common.service.ServiceRegistry;
 import me.lokka30.treasury.api.economy.EconomyProvider;
 import me.lokka30.treasury.api.economy.currency.Currency;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import java.math.BigDecimal;
@@ -38,7 +37,7 @@ public class TreasuryHook implements EconomyHook {
     }
 
     private Runnable mainThread(Runnable runnable) {
-        return () -> Bukkit.getScheduler().runTask(ultraCosmetics, runnable);
+        return () -> ultraCosmetics.getScheduler().runNextTick((task) -> runnable.run());
     }
 
     @Override

@@ -34,7 +34,7 @@ public class UltraPlayerManager {
         // In this case, schedule a task to load a new UltraPlayer as soon
         // as the old one is disposed of.
         if (playerCache.containsKey(uuid)) {
-            new LoadUltraPlayerTask(uuid, this).runTaskLater(ultraCosmetics, 2);
+            new LoadUltraPlayerTask(uuid, this).schedule();
             return;
         }
         playerCache.put(uuid, new UltraPlayer(uuid, ultraCosmetics));

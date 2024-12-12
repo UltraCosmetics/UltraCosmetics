@@ -61,7 +61,7 @@ public class GadgetEtherealPearl extends Gadget implements Updatable {
 
         pearl = getPlayer().launchProjectile(EnderPearl.class);
         pearl.setVelocity(getPlayer().getEyeLocation().getDirection().multiply(1.53d));
-        getPlayer().teleport(getPlayer().getLocation().add(0, 5, 0));
+        getUltraCosmetics().getScheduler().teleportAsync(getPlayer(), getPlayer().getLocation().add(0, 5, 0));
         // Teleportation can cause the pearl to hit the player in the same tick
         if (pearl == null) return;
         if (!pearl.addPassenger(getPlayer())) {
@@ -117,7 +117,7 @@ public class GadgetEtherealPearl extends Gadget implements Updatable {
 
         // Don't get stuck in the ground or in a wall
         if (lastLoc != null) {
-            getPlayer().teleport(lastLoc.add(0, 1, 0));
+            getUltraCosmetics().getScheduler().teleportAsync(getPlayer(), lastLoc.add(0, 1, 0));
         }
         EntitySpawner.spawnFireworks(getPlayer().getLocation(), PRIMARY_EFFECT, SECONDARY_EFFECT);
         running = false;

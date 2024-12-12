@@ -6,7 +6,6 @@ import be.isach.ultracosmetics.command.SubCommand;
 import be.isach.ultracosmetics.mysql.tables.PlayerDataTable;
 import be.isach.ultracosmetics.player.profile.PlayerData;
 import be.isach.ultracosmetics.util.SmartLogger.LogLevel;
-
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
@@ -52,7 +51,7 @@ public class SubCommandMigrate extends SubCommand {
             error(sender, "If you want to proceed, use /uc migrate " + args[1] + " confirm");
             return;
         }
-        Bukkit.getScheduler().runTaskAsynchronously(ultraCosmetics, () -> migrate(flatfile));
+        ultraCosmetics.getScheduler().runAsync((task) -> migrate(flatfile));
     }
 
     private void migrate(boolean flatfile) {

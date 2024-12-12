@@ -7,7 +7,6 @@ import com.cryptomorin.xseries.XSound;
 import me.libraryaddict.disguise.disguisetypes.watchers.SheepWatcher;
 import org.bukkit.DyeColor;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.scheduler.BukkitRunnable;
 
 /**
  * Represents an instance of a sheep morph summoned by a player.
@@ -28,18 +27,16 @@ public class MorphSheep extends MorphLeftClickCooldown {
         event.setCancelled(true);
         sound.play();
         SheepWatcher sheepWatcher = (SheepWatcher) getDisguise().getWatcher();
-        new BukkitRunnable() {
-            private int count = 0;
 
-            @Override
-            public void run() {
-                if (count > 9) {
-                    cancel();
-                    return;
-                }
-                sheepWatcher.setColor(DyeColor.values()[RANDOM.nextInt(DyeColor.values().length)]);
-                count++;
+        final int[] count = {0};
+
+        getUltraCosmetics().getScheduler().runAtEntityTimer(getPlayer(), (task) -> {
+            if (count[0] > 9) {
+                task.cancel();
+                return;
             }
-        }.runTaskTimer(getUltraCosmetics(), 0, 2);
+            sheepWatcher.setColor(DyeColor.values()[RANDOM.nextInt(DyeColor.values().length)]);
+            count[0]++;
+        }, 0, 2);
     }
 }

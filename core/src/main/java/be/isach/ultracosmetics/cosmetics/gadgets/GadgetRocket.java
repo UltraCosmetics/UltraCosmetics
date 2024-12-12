@@ -13,7 +13,7 @@ import com.cryptomorin.xseries.XMaterial;
 import com.cryptomorin.xseries.XSound;
 import com.cryptomorin.xseries.particles.ParticleDisplay;
 import com.cryptomorin.xseries.particles.XParticle;
-import org.bukkit.Bukkit;
+import com.tcoded.folialib.wrapper.task.WrappedTask;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
@@ -23,8 +23,8 @@ import org.bukkit.block.BlockFace;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.FallingBlock;
+import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
 import java.util.ArrayList;
@@ -74,7 +74,8 @@ public class GadgetRocket extends Gadget implements Updatable {
         loc.setX(loc.getBlockX() + 0.5);
         loc.setY(loc.getBlockY());
         loc.setZ(loc.getBlockZ() + 0.5);
-        Bukkit.getScheduler().runTaskLater(getUltraCosmetics(), () -> {
+
+        getUltraCosmetics().getScheduler().runAtEntityLater(getPlayer(), () -> {
             if (getOwner() == null || getOwner().getCurrentGadget() != this) return;
             for (int i = 0; i < 2; i++) {
                 Block center = loc.clone().add(0, i, 0).getBlock();
@@ -87,7 +88,8 @@ public class GadgetRocket extends Gadget implements Updatable {
             armorStand.setVisible(false);
             armorStand.setGravity(false);
         }, 10);
-        Bukkit.getScheduler().runTaskLater(getUltraCosmetics(), () -> {
+
+        getUltraCosmetics().getScheduler().runAtEntityLater(getPlayer(), (task) -> {
             if (getOwner() == null || getOwner().getCurrentGadget() != this) return;
             // prevent kicking
             enableFlight();
@@ -100,12 +102,12 @@ public class GadgetRocket extends Gadget implements Updatable {
                 @Override
                 public void run() {
                     if (getOwner() == null || getPlayer() == null || !getPlayer().isOnline()) {
-                        cancel();
+                        task.cancel();
                         return;
                     }
 
                     if (!isStillCurrentGadget()) {
-                        cancel();
+                        task.cancel();
                         return;
                     }
                     if (countdown > 0) {
@@ -143,7 +145,7 @@ public class GadgetRocket extends Gadget implements Updatable {
                             if (getPlayer().getLocation().getBlockY() < height - 10) return;
                             playerVehicle = null;
                             if (!isStillCurrentGadget()) {
-                                cancel();
+                                task.cancel();
                                 activeTask = null;
                                 return;
                             }
@@ -160,9 +162,9 @@ public class GadgetRocket extends Gadget implements Updatable {
                             EMITTER.spawn(getPlayer().getLocation());
                             disableFlight();
                             launching = false;
-                            cancel();
+                            task.cancel();
                         }
-                    }.schedule(getUltraCosmetics(), 5, 5);
+                    }.schedule(getUltraCosmetics(), getPlayer(), 5, 5);
                 }
 
                 @Override
@@ -173,9 +175,9 @@ public class GadgetRocket extends Gadget implements Updatable {
 
                     rollback.rollback();
                     sendTitle(" ");
-                    cancel();
+                    task.cancel();
                 }
-            }.schedule(getUltraCosmetics(), 0, 20);
+            }.schedule(getUltraCosmetics(), getPlayer(), 0, 20);
         }, 12);
     }
 
@@ -252,7 +254,7 @@ public class GadgetRocket extends Gadget implements Updatable {
     public boolean onDismount(Entity who, Entity dismounted) {
         if (who != getPlayer() || dismounted != playerVehicle) return false;
         disableFlight();
-        cancel();
+        activeTask.cancel();
         if (activeTask != null) {
             activeTask.stop();
             activeTask = null;
@@ -275,11 +277,20 @@ public class GadgetRocket extends Gadget implements Updatable {
         getPlayer().sendTitle(title, "");
     }
 
-    private abstract static class RocketTask extends BukkitRunnable {
-        public abstract void stop();
+    private abstract static class RocketTask {
+        protected WrappedTask task;
 
-        public RocketTask schedule(UltraCosmetics ultraCosmetics, long delay, long period) {
-            runTaskTimer(ultraCosmetics, delay, period);
+        public abstract void stop();
+        public abstract void run();
+
+        public void cancel() {
+            if (task != null) {
+                task.cancel();
+            }
+        }
+
+        public RocketTask schedule(UltraCosmetics ultraCosmetics, Player player, long delay, long period) {
+            task = ultraCosmetics.getScheduler().runAtEntityTimer(player, this::run, delay, period);
             return this;
         }
     }

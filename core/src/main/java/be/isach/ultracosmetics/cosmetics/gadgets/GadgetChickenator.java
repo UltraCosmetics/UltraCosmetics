@@ -7,7 +7,6 @@ import be.isach.ultracosmetics.util.EntitySpawner;
 import be.isach.ultracosmetics.util.ItemFactory;
 import com.cryptomorin.xseries.XMaterial;
 import com.cryptomorin.xseries.XSound;
-import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.entity.Chicken;
 import org.bukkit.entity.EntityType;
@@ -43,14 +42,14 @@ public class GadgetChickenator extends Gadget {
         chicken.setVelocity(getPlayer().getLocation().getDirection().multiply(Math.PI / 1.5));
         ambient.play();
         explode.play();
-        Bukkit.getScheduler().runTaskLater(getUltraCosmetics(), () -> {
+        getUltraCosmetics().getScheduler().runAtEntityLater(getPlayer(), () -> {
             EntitySpawner.spawnFireworks(chicken.getLocation(), Color.WHITE, Color.WHITE);
             hurt.play();
             chicken.remove();
             for (int i = 0; i < 30; i++) {
                 items.add(ItemFactory.createUnpickableItemVariance(XMaterial.COOKED_CHICKEN, chicken.getLocation(), RANDOM, 1));
             }
-            Bukkit.getScheduler().runTaskLater(getUltraCosmetics(), () -> items.forEach(Item::remove), 50);
+            getUltraCosmetics().getScheduler().runAtEntityLater(getPlayer(), () -> items.forEach(Item::remove), 50);
         }, 9);
         getPlayer().updateInventory();
     }

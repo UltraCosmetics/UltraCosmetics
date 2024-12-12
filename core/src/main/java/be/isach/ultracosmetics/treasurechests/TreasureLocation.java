@@ -1,5 +1,6 @@
 package be.isach.ultracosmetics.treasurechests;
 
+import be.isach.ultracosmetics.UltraCosmeticsData;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
@@ -24,7 +25,7 @@ public class TreasureLocation {
 
     public void tpTo(Player player) {
         // add 0.5 to the Y too so it's less likely the player gets stuck in the ground
-        player.teleport(toLocation(player).add(0.5, 0.5, 0.5));
+        UltraCosmeticsData.get().getPlugin().getScheduler().teleportAsync(player, toLocation(player).add(0.5, 0.5, 0.5));
     }
 
     public static TreasureLocation fromLocation(Location location) {

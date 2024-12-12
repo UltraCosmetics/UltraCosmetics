@@ -1,7 +1,6 @@
 package be.isach.ultracosmetics.economy;
 
 import be.isach.ultracosmetics.UltraCosmetics;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import ru.soknight.peconomy.api.PEconomyAPI;
 import ru.soknight.peconomy.configuration.CurrencyInstance;
@@ -32,21 +31,21 @@ public class PEconomyHook implements EconomyHook {
 
     @Override
     public void withdraw(Player player, int amount, Runnable onSuccess, Runnable onFailure) {
-        Bukkit.getScheduler().runTaskAsynchronously(ultraCosmetics, () -> {
+        ultraCosmetics.getScheduler().runAsync((outer) -> {
             WalletModel wallet = api.getWallet(player.getName());
             if (wallet.hasAmount(currency.getId(), amount)) {
                 wallet.takeAmount(currency.getId(), amount);
                 api.updateWallet(wallet);
-                Bukkit.getScheduler().runTask(ultraCosmetics, onSuccess);
+                ultraCosmetics.getScheduler().runNextTick((inner) -> onSuccess.run());
             } else {
-                Bukkit.getScheduler().runTask(ultraCosmetics, onFailure);
+                ultraCosmetics.getScheduler().runNextTick((inner) -> onFailure.run());
             }
         });
     }
 
     @Override
     public void deposit(Player player, int amount) {
-        Bukkit.getScheduler().runTaskAsynchronously(ultraCosmetics, () -> api.updateWallet(api.addAmount(player.getName(), currency.getId(), amount)));
+        ultraCosmetics.getScheduler().runAsync((task) -> api.updateWallet(api.addAmount(player.getName(), currency.getId(), amount)));
     }
 
     @Override

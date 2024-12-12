@@ -426,7 +426,7 @@ public class UltraPlayer {
 
     public void applyVelocity(Vector vector) {
         getBukkitPlayer().setVelocity(vector);
-        Bukkit.getScheduler().runTaskLaterAsynchronously(UltraCosmeticsData.get().getPlugin(), () -> FallDamageManager.addNoFall(getBukkitPlayer()), 2);
+        ultraCosmetics.getScheduler().runLaterAsync(() -> FallDamageManager.addNoFall(getBukkitPlayer()), 2);
     }
 
     /**

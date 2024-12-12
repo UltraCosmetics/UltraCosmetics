@@ -160,6 +160,6 @@ public class Menus {
         });
         pd.setOnCancel(() -> menus.openMainMenu(ultraPlayer));
         MenuPurchase mp = menus.getMenuPurchaseFactory().createPurchaseMenu(ultraCosmetics, MessageManager.getMessage("Buy-Treasure-Key"), pd);
-        Bukkit.getScheduler().runTaskLater(ultraCosmetics, () -> player.openInventory(mp.getInventory(ultraPlayer)), 1);
+        ultraCosmetics.getScheduler().runAtEntityLater(player, () -> player.openInventory(mp.getInventory(ultraPlayer)), 1);
     }
 }

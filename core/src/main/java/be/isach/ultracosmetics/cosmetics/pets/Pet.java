@@ -1,6 +1,7 @@
 package be.isach.ultracosmetics.cosmetics.pets;
 
 import be.isach.ultracosmetics.UltraCosmetics;
+import be.isach.ultracosmetics.UltraCosmeticsData;
 import be.isach.ultracosmetics.config.MessageManager;
 import be.isach.ultracosmetics.config.SettingsManager;
 import be.isach.ultracosmetics.cosmetics.EntityCosmetic;
@@ -15,7 +16,6 @@ import me.gamercoder215.mobchip.ai.goal.PathfinderLookAtEntity;
 import me.gamercoder215.mobchip.bukkit.BukkitBrain;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
-import org.bukkit.Bukkit;
 import org.bukkit.Difficulty;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
@@ -136,7 +136,7 @@ public class Pet extends EntityCosmetic<PetType, Mob> implements Updatable {
 
     @Override
     protected void scheduleTask() {
-        runTaskTimer(getUltraCosmetics(), 0, 3);
+        task = getUltraCosmetics().getScheduler().runAtEntityTimer(getPlayer(), this::run, 0, 3);
     }
 
     @Override
@@ -263,7 +263,7 @@ public class Pet extends EntityCosmetic<PetType, Mob> implements Updatable {
         Vector velocity = new Vector(RANDOM.nextDouble() - 0.5, RANDOM.nextDouble() / 2.0 + 0.3, RANDOM.nextDouble() - 0.5).multiply(0.4);
         final Item drop = ItemFactory.spawnUnpickableItem(dropItem, ((LivingEntity) entity).getEyeLocation(), velocity);
         items.add(drop);
-        Bukkit.getScheduler().runTaskLater(getUltraCosmetics(), () -> {
+        getUltraCosmetics().getScheduler().runAtEntityLater(getPlayer(), () -> {
             drop.remove();
             items.remove(drop);
         }, 5);
@@ -284,7 +284,7 @@ public class Pet extends EntityCosmetic<PetType, Mob> implements Updatable {
         // If the player teleported to a different world, they will be respawned
         // by the main Pet task.
         if (event.getPlayer() == getPlayer() && event.getFrom().getWorld() == event.getTo().getWorld()) {
-            entity.teleport(event.getTo());
+            getUltraCosmetics().getScheduler().teleportAsync(entity, event.getTo());
             invalidBypassTicks = 20;
         }
     }

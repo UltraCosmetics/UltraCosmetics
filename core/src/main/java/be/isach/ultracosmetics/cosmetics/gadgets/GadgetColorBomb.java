@@ -11,7 +11,6 @@ import com.cryptomorin.xseries.XSound;
 import com.cryptomorin.xseries.XTag;
 import com.cryptomorin.xseries.particles.ParticleDisplay;
 import com.cryptomorin.xseries.particles.XParticle;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
@@ -51,7 +50,7 @@ public class GadgetColorBomb extends Gadget implements PlayerAffectingCosmetic, 
         if (!running && bomb.isOnGround()) {
             running = true;
             bomb.setVelocity(new Vector(0, 0, 0));
-            Bukkit.getScheduler().runTaskLater(getUltraCosmetics(), this::onClear, 100);
+            getUltraCosmetics().getScheduler().runAtEntityLater(bomb, this::onClear, 100);
         }
 
         if (!running) return;
@@ -79,7 +78,7 @@ public class GadgetColorBomb extends Gadget implements PlayerAffectingCosmetic, 
             }
         }
 
-        Bukkit.getScheduler().runTask(getUltraCosmetics(), () -> {
+        getUltraCosmetics().getScheduler().runAtEntity(getPlayer(), (task) -> {
             if (bomb == null) {
                 return;
             }

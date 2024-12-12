@@ -1,6 +1,6 @@
 package be.isach.ultracosmetics.cosmetics.emotes;
 
-import org.bukkit.scheduler.BukkitRunnable;
+import com.tcoded.folialib.wrapper.task.WrappedTask;
 
 /**
  * Settings manager.
@@ -8,7 +8,7 @@ import org.bukkit.scheduler.BukkitRunnable;
  * @author iSach
  * @since 06-17-2016
  */
-class EmoteAnimation extends BukkitRunnable {
+class EmoteAnimation {
 
     private static final int INTERVAL_BETWEEN_REPLAY = 20;
 
@@ -19,6 +19,8 @@ class EmoteAnimation extends BukkitRunnable {
     private final Emote emote;
     private boolean running, up = true;
 
+    private WrappedTask task;
+
     EmoteAnimation(int ticksPerFrame, Emote emote) {
         this.ticksPerFrame = ticksPerFrame;
         this.emote = emote;
@@ -26,7 +28,6 @@ class EmoteAnimation extends BukkitRunnable {
         this.running = false;
     }
 
-    @Override
     public void run() {
         if (ticks < ticksPerFrame) {
             ticks++;
@@ -38,7 +39,7 @@ class EmoteAnimation extends BukkitRunnable {
 
     void start() {
         this.running = true;
-        runTaskTimer(emote.getUltraCosmetics(), 0, ticksPerFrame);
+        task = emote.getUltraCosmetics().getScheduler().runAtEntityTimer(emote.getPlayer(), this::run, 0, ticksPerFrame);
     }
 
     void stop() {
@@ -49,7 +50,7 @@ class EmoteAnimation extends BukkitRunnable {
         this.running = false;
 
         try {
-            cancel();
+            if (task != null) task.cancel();
         } catch (IllegalStateException ignored) {
             // not scheduled yet
         }

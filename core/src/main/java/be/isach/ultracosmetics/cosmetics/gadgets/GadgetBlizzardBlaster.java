@@ -9,7 +9,6 @@ import be.isach.ultracosmetics.player.UltraPlayer;
 import be.isach.ultracosmetics.util.BlockUtils;
 import com.cryptomorin.xseries.particles.ParticleDisplay;
 import com.cryptomorin.xseries.particles.XParticle;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.util.Vector;
 
@@ -37,7 +36,7 @@ public class GadgetBlizzardBlaster extends Gadget implements PlayerAffectingCosm
         this.location = getPlayer().getLocation().subtract(0, 1, 0).add(vector);
         this.active = true;
 
-        Bukkit.getScheduler().runTaskLater(getUltraCosmetics(), () -> active = false, 40);
+        getUltraCosmetics().getScheduler().runAtEntityLater(getPlayer(), () -> active = false, 40);
 
     }
 

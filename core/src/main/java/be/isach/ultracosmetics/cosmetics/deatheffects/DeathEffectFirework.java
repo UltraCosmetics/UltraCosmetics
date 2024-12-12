@@ -31,6 +31,6 @@ public class DeathEffectFirework extends DeathEffect {
         Firework firework = player.getWorld().spawn(player.getLocation(), Firework.class);
         firework.setFireworkMeta(meta);
         firework.setMetadata("uc_firework", new FixedMetadataValue(UltraCosmeticsData.get().getPlugin(), true));
-        Bukkit.getScheduler().runTaskLater(getUltraCosmetics(), firework::detonate, 5);
+        getUltraCosmetics().getScheduler().runAtEntityLater(getPlayer(), firework::detonate, 5);
     }
 }

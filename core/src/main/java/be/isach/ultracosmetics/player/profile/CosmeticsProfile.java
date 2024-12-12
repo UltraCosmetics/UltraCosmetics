@@ -8,7 +8,6 @@ import be.isach.ultracosmetics.cosmetics.type.CosmeticType;
 import be.isach.ultracosmetics.cosmetics.type.GadgetType;
 import be.isach.ultracosmetics.cosmetics.type.PetType;
 import be.isach.ultracosmetics.player.UltraPlayer;
-import org.bukkit.Bukkit;
 
 import java.util.Collections;
 import java.util.Map.Entry;
@@ -31,11 +30,11 @@ public abstract class CosmeticsProfile {
         this.uuid = ultraPlayer.getUUID();
         this.ultraCosmetics = ultraCosmetics;
         this.data = new PlayerData(uuid);
-        Bukkit.getScheduler().runTaskAsynchronously(ultraCosmetics, () -> {
+        ultraCosmetics.getScheduler().runAsync((outer) -> {
             load();
             synchronized (loaded) {
                 loaded.set(true);
-                Bukkit.getScheduler().runTask(ultraCosmetics, () -> onLoad.accept(this));
+                ultraCosmetics.getScheduler().runNextTick((inner) -> onLoad.accept(this));
             }
         });
     }
