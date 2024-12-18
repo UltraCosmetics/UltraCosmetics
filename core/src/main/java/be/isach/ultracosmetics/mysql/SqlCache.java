@@ -8,10 +8,7 @@ import be.isach.ultracosmetics.cosmetics.type.PetType;
 import be.isach.ultracosmetics.player.UltraPlayer;
 import be.isach.ultracosmetics.player.profile.CosmeticsProfile;
 import be.isach.ultracosmetics.player.profile.ProfileKey;
-
-import org.bukkit.Bukkit;
-import org.bukkit.scheduler.BukkitRunnable;
-import org.bukkit.scheduler.BukkitTask;
+import com.tcoded.folialib.wrapper.task.WrappedTask;
 
 import java.util.Queue;
 import java.util.Set;
@@ -26,7 +23,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 public class SqlCache extends CosmeticsProfile {
     private final MySqlConnectionManager sql;
     private final Queue<Runnable> queue = new ConcurrentLinkedQueue<>();
-    private BukkitTask updateTask = null;
+    private WrappedTask updateTask = null;
 
     public SqlCache(UltraPlayer ultraPlayer, UltraCosmetics ultraCosmetics) {
         super(ultraPlayer, ultraCosmetics);
@@ -130,15 +127,13 @@ public class SqlCache extends CosmeticsProfile {
      */
     private void queueUpdate(Runnable update) {
         queue.add(update);
-        if (updateTask == null || !Bukkit.getScheduler().isQueued(updateTask.getTaskId())) {
-            updateTask = new BukkitRunnable() {
-                @Override
-                public void run() {
-                    while (!queue.isEmpty()) {
-                        queue.poll().run();
-                    }
+        if (updateTask == null || updateTask.isCancelled()) {
+            updateTask = ultraCosmetics.getScheduler().runLaterAsync(() -> {
+                while (!queue.isEmpty()) {
+                    queue.poll().run();
                 }
-            }.runTaskAsynchronously(ultraCosmetics);
+                updateTask.cancel();
+            }, 1); // 1 tick delay so that the queue can be filled before running
         }
     }
 }

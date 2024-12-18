@@ -11,7 +11,6 @@ import be.isach.ultracosmetics.util.MathUtils;
 import be.isach.ultracosmetics.util.StructureRollback;
 import com.cryptomorin.xseries.XBlock;
 import com.cryptomorin.xseries.XMaterial;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
@@ -46,7 +45,7 @@ public class GadgetTrampoline extends Gadget implements Updatable {
 
         generateStructure();
 
-        getPlayer().teleport(getPlayer().getLocation().add(0, 4, 0));
+        getUltraCosmetics().getScheduler().teleportAsync(getPlayer(), getPlayer().getLocation().add(0, 4, 0));
 
         running = true;
     }
@@ -120,7 +119,7 @@ public class GadgetTrampoline extends Gadget implements Updatable {
         genLadder(get(-3, 1, 0));
         genLadder(get(-3, 0, 0));
 
-        Bukkit.getScheduler().runTaskLater(getUltraCosmetics(), this::clearBlocks, 240);
+        getUltraCosmetics().getScheduler().runAtEntityLater(getPlayer(), this::clearBlocks, 240);
     }
 
     private void genBarr(Block block) {

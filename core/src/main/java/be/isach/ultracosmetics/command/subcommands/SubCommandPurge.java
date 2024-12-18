@@ -2,10 +2,10 @@ package be.isach.ultracosmetics.command.subcommands;
 
 import be.isach.ultracosmetics.UltraCosmetics;
 import be.isach.ultracosmetics.command.SubCommand;
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.YamlConfiguration;
+
 import java.io.File;
 
 /**
@@ -28,7 +28,7 @@ public class SubCommandPurge extends SubCommand {
             return;
         }
         sender.sendMessage(ChatColor.AQUA.toString() + ChatColor.BOLD + "Starting deletion now, this may take a while. Please wait...");
-        Bukkit.getScheduler().runTaskAsynchronously(ultraCosmetics, () -> {
+        ultraCosmetics.getScheduler().runAsync((task) -> {
             File dataFolder = new File(ultraCosmetics.getDataFolder(), "data");
             int deletedFiles = 0;
             int savedFiles = 0;

@@ -9,7 +9,6 @@ import be.isach.ultracosmetics.util.Area;
 import be.isach.ultracosmetics.util.BlockUtils;
 import be.isach.ultracosmetics.util.EntitySpawner;
 import be.isach.ultracosmetics.util.MathUtils;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Chicken;
@@ -41,13 +40,13 @@ public class GadgetParachute extends Gadget implements Updatable {
         killParachute();
         Location loc = getPlayer().getLocation();
 
-        getPlayer().teleport(loc.add(0, 35, 0));
+        getUltraCosmetics().getScheduler().teleportAsync(getPlayer(), loc.add(0, 35, 0));
         getPlayer().setVelocity(new Vector(0, 0, 0));
 
         getOwner().setCanBeHitByOtherGadgets(false);
 
         chickens = new EntitySpawner<>(EntityType.CHICKEN, loc.add(0, 3, 0), 20, true, c -> c.setLeashHolder(getPlayer()), getUltraCosmetics());
-        Bukkit.getScheduler().runTaskLater(getUltraCosmetics(), () -> active = true, 5);
+        getUltraCosmetics().getScheduler().runAtEntityLater(getPlayer(), () -> active = true, 5);
     }
 
     private void killParachute() {

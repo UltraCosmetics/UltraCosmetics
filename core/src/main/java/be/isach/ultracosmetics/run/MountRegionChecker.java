@@ -2,16 +2,15 @@ package be.isach.ultracosmetics.run;
 
 import be.isach.ultracosmetics.UltraCosmetics;
 import be.isach.ultracosmetics.player.UltraPlayer;
-
+import be.isach.ultracosmetics.task.UltraTask;
 import org.bukkit.entity.Player;
-import org.bukkit.scheduler.BukkitRunnable;
 
 /*
  * Mounts that aren't horses don't trigger PlayerMoveEvent I guess,
  * so we have to check manually for those.
  */
 
-public class MountRegionChecker extends BukkitRunnable {
+public class MountRegionChecker extends UltraTask {
     private UltraPlayer player;
     private UltraCosmetics uc;
 
@@ -26,5 +25,9 @@ public class MountRegionChecker extends BukkitRunnable {
         // Mount#onClear() will cancel it for us
         if (bukkitPlayer == null) return;
         uc.getWorldGuardManager().doCosmeticCheck(bukkitPlayer, uc);
+    }
+
+    @Override public void schedule() {
+        task = getScheduler().runAtEntityTimer(player.getBukkitPlayer(), this::run, 0, 1);
     }
 }

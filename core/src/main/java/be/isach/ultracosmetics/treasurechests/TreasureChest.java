@@ -20,11 +20,7 @@ import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.Lidded;
-import org.bukkit.entity.ArmorStand;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Item;
-import org.bukkit.entity.Player;
+import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
@@ -37,11 +33,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.util.Vector;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 
 public class TreasureChest implements Listener {
 
@@ -104,9 +96,9 @@ public class TreasureChest implements Listener {
         this.randomGenerator = new TreasureRandomizer(getPlayer(), getPlayer().getLocation());
 
         blocksRunnable = new PlaceBlocksRunnable(this);
-        blocksRunnable.runTaskTimer(uc, 0L, 12L);
+        blocksRunnable.schedule();
 
-        Bukkit.getScheduler().runTaskLater(uc, () -> {
+        UltraCosmeticsData.get().getPlugin().getScheduler().runAtEntityLater(player, () -> {
             if (pm.getUltraPlayer(player) != null && pm.getUltraPlayer(player).getCurrentTreasureChest() == TreasureChest.this) {
                 forceOpen(45);
             }
@@ -114,7 +106,7 @@ public class TreasureChest implements Listener {
 
         pm.getUltraPlayer(getPlayer()).setCurrentTreasureChest(this);
 
-        new PlayerBounceRunnable(this).runTaskTimer(uc, 0L, 1L);
+        new PlayerBounceRunnable(this).schedule();
     }
 
     public Player getPlayer() {
@@ -129,7 +121,7 @@ public class TreasureChest implements Listener {
         if (stopping) {
             cleanup();
         } else {
-            Bukkit.getScheduler().runTaskLater(UltraCosmeticsData.get().getPlugin(), this::cleanup, 30L);
+            UltraCosmeticsData.get().getPlugin().getScheduler().runAtEntityLater(getPlayer(), this::cleanup, 30L);
         }
     }
 
@@ -149,7 +141,7 @@ public class TreasureChest implements Listener {
         if (getPlayer() != null) {
             UltraCosmeticsData.get().getPlugin().getPlayerManager().getUltraPlayer(getPlayer()).setCurrentTreasureChest(null);
             if (preLoc != null) {
-                getPlayer().teleport(preLoc);
+                UltraCosmeticsData.get().getPlugin().getScheduler().teleportAsync(getPlayer(), preLoc);
             }
         }
         HandlerList.unregisterAll(this);
@@ -164,7 +156,7 @@ public class TreasureChest implements Listener {
     public void onMove(PlayerMoveEvent event) {
         if (event.getPlayer() == getPlayer() && !event.getTo().getBlock().equals(centerBlock)) {
             event.setCancelled(true);
-            event.getPlayer().teleport(event.getFrom());
+            UltraCosmeticsData.get().getPlugin().getScheduler().teleportAsync(getPlayer(), event.getFrom());
         }
     }
 
@@ -188,13 +180,13 @@ public class TreasureChest implements Listener {
             LootReward reward = randomGenerator.giveRandomThing(this, false);
 
             items.add(spawnItem(reward.getStack(), b.getLocation()));
-            Bukkit.getScheduler().runTaskLater(UltraCosmeticsData.get().getPlugin(), () -> makeHolograms(b.getLocation(), reward), 15L);
+            UltraCosmeticsData.get().getPlugin().getScheduler().runAtLocationLater(b.getLocation(), () -> makeHolograms(b.getLocation(), reward), 15L);
 
             chestsLeft -= 1;
         }
         unopenedChests.clear();
 
-        Bukkit.getScheduler().runTaskLater(UltraCosmeticsData.get().getPlugin(), this::clear, delay);
+        UltraCosmeticsData.get().getPlugin().getScheduler().runAtEntityLater(getPlayer(), this::clear, delay);
     }
 
     private void makeHolograms(Location location, LootReward reward) {
@@ -258,17 +250,17 @@ public class TreasureChest implements Listener {
         LootReward reward = randomGenerator.giveRandomThing(this, false);
 
         cooldown = true;
-        Bukkit.getScheduler().runTaskLaterAsynchronously(UltraCosmeticsData.get().getPlugin(), () -> cooldown = false, 3L);
+        UltraCosmeticsData.get().getPlugin().getScheduler().runLaterAsync(() -> cooldown = false, 3L);
 
         ItemStack is = reward.getStack();
 
         items.add(spawnItem(is, loc));
-        Bukkit.getScheduler().runTaskLater(UltraCosmeticsData.get().getPlugin(), () -> makeHolograms(loc, reward), 15L);
+        UltraCosmeticsData.get().getPlugin().getScheduler().runAtLocationLater(loc, () -> makeHolograms(loc, reward), 15L);
 
         chestsLeft -= 1;
         unopenedChests.remove(block);
         if (chestsLeft == 0) {
-            Bukkit.getScheduler().runTaskLater(UltraCosmeticsData.get().getPlugin(), this::clear, 50L);
+            UltraCosmeticsData.get().getPlugin().getScheduler().runAtLocationLater(loc, this::clear, 50L);
         }
     }
 
@@ -288,7 +280,7 @@ public class TreasureChest implements Listener {
         if (event.getPlayer() == getPlayer() && event.getReason().equals("Flying is not enabled on this server")) {
             UltraCosmeticsData.get().getPlugin().getSmartLogger().write(LogLevel.INFO, "Cancelled flight kick while opening treasure chest");
             event.setCancelled(true);
-            event.getPlayer().teleport(center);
+            UltraCosmeticsData.get().getPlugin().getScheduler().teleportAsync(getPlayer(), center);
         }
     }
 

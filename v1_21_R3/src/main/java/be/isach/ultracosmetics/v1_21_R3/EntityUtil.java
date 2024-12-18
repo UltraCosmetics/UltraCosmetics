@@ -80,7 +80,7 @@ public class EntityUtil implements IEntityUtil {
             sendPacket(loopPlayer, dataPacket);
             sendPacket(loopPlayer, equipmentPacket);
         }
-        Bukkit.getScheduler().runTaskLater(UltraCosmeticsData.get().getPlugin(), () -> {
+        UltraCosmeticsData.get().getPlugin().getScheduler().runAtEntityLater(as.getBukkitEntity(), () -> {
             for (Player pl : player.getWorld().getPlayers()) {
                 sendPacket(pl, new ClientboundRemoveEntitiesPacket(as.getId()));
             }
@@ -91,7 +91,7 @@ public class EntityUtil implements IEntityUtil {
                 .forEachOrdered(ent -> {
                     MathUtils.applyVelocity(ent, new Vector(0, 1, 0).add(v));
                     cooldownJump.add(ent);
-                    Bukkit.getScheduler().runTaskLater(UltraCosmeticsData.get().getPlugin(),
+                    UltraCosmeticsData.get().getPlugin().getScheduler().runAtEntityLater(as.getBukkitEntity(),
                             () -> cooldownJump.remove(ent), 20);
                 });
     }

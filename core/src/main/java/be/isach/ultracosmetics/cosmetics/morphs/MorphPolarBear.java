@@ -8,7 +8,6 @@ import be.isach.ultracosmetics.player.UltraPlayer;
 import be.isach.ultracosmetics.util.BlockUtils;
 import com.cryptomorin.xseries.particles.ParticleDisplay;
 import com.cryptomorin.xseries.particles.XParticle;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.util.Vector;
@@ -35,7 +34,7 @@ public class MorphPolarBear extends MorphLeftClickCooldown implements Updatable 
         vector = getPlayer().getLocation().getDirection().normalize().multiply(0.3).setY(-1);
         location = getPlayer().getLocation().add(vector);
         active = true;
-        Bukkit.getScheduler().runTaskLater(getUltraCosmetics(), () -> active = false, 40);
+        getUltraCosmetics().getScheduler().runAtEntityLater(getPlayer(), () -> active = false, 40);
     }
 
     @Override

@@ -3,21 +3,15 @@ package be.isach.ultracosmetics.util;
 import be.isach.ultracosmetics.UltraCosmetics;
 import be.isach.ultracosmetics.UltraCosmeticsData;
 import be.isach.ultracosmetics.config.SettingsManager;
+import be.isach.ultracosmetics.task.UltraTask;
 import be.isach.ultracosmetics.util.SmartLogger.LogLevel;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.scheduler.BukkitRunnable;
 
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Base64;
@@ -31,7 +25,7 @@ import java.util.logging.Level;
  * Date: 5/08/16
  * Project: UltraCosmetics
  */
-public class UpdateManager extends BukkitRunnable {
+public class UpdateManager extends UltraTask {
 
     private static final String RESOURCE_URL = "https://api.spiget.org/v2/resources/10905/";
     // String starts with a space on purpose, because that's what's returned from the API for some reason.
@@ -73,6 +67,11 @@ public class UpdateManager extends BukkitRunnable {
         if (outdated && SettingsManager.getConfig().getBoolean("Auto-Update")) {
             update();
         }
+    }
+
+    @Override
+    public void schedule() {
+        task = getScheduler().runLaterAsync(this::run, 1);
     }
 
     private void determineStatus() {

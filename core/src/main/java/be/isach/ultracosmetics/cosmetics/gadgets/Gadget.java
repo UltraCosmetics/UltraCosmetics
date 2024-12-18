@@ -20,7 +20,6 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.format.TextDecoration;
 import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
-import org.bukkit.Bukkit;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.Action;
@@ -271,7 +270,7 @@ public abstract class Gadget extends Cosmetic<GadgetType> implements UnmovableIt
         boolean isLeft = event.getAction() == Action.LEFT_CLICK_AIR || event.getAction() == Action.LEFT_CLICK_BLOCK;
         Runnable callClick = isLeft ? this::onLeftClick : this::onRightClick;
         if (asynchronous) {
-            Bukkit.getScheduler().runTaskAsynchronously(getUltraCosmetics(), callClick);
+            getUltraCosmetics().getScheduler().runAsync((task) -> callClick.run());
         } else {
             callClick.run();
         }

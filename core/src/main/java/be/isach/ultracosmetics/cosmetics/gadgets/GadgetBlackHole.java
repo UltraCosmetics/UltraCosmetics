@@ -10,7 +10,6 @@ import be.isach.ultracosmetics.util.MathUtils;
 import com.cryptomorin.xseries.XMaterial;
 import com.cryptomorin.xseries.particles.ParticleDisplay;
 import com.cryptomorin.xseries.particles.XParticle;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Item;
@@ -41,7 +40,7 @@ public class GadgetBlackHole extends Gadget implements PlayerAffectingCosmetic, 
 
         item = ItemFactory.spawnUnpickableItem(XMaterial.BLACK_TERRACOTTA.parseItem(), getPlayer().getEyeLocation(), getPlayer().getEyeLocation().getDirection().multiply(1.3d));
 
-        Bukkit.getScheduler().runTaskLater(getUltraCosmetics(), () -> {
+        getUltraCosmetics().getScheduler().runAtLocationLater(getPlayer().getLocation(), () -> {
             if (item != null) {
                 item.remove();
                 item = null;

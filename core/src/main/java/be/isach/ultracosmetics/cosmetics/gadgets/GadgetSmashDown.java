@@ -11,7 +11,7 @@ import be.isach.ultracosmetics.util.StructureRollback;
 import com.cryptomorin.xseries.XSound;
 import com.cryptomorin.xseries.particles.ParticleDisplay;
 import com.cryptomorin.xseries.particles.XParticle;
-import org.bukkit.Bukkit;
+import com.tcoded.folialib.wrapper.task.WrappedTask;
 import org.bukkit.Location;
 import org.bukkit.Particle;
 import org.bukkit.block.Block;
@@ -23,8 +23,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.entity.EntityChangeBlockEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
-import org.bukkit.scheduler.BukkitRunnable;
-import org.bukkit.scheduler.BukkitTask;
 import org.bukkit.util.Vector;
 
 import java.util.ArrayList;
@@ -47,6 +45,8 @@ public class GadgetSmashDown extends Gadget implements PlayerAffectingCosmetic, 
     private int i = 1;
     private boolean playEffect;
 
+    private WrappedTask gadgetTask;
+
     public GadgetSmashDown(UltraPlayer owner, GadgetType type, UltraCosmetics ultraCosmetics) {
         super(owner, type, ultraCosmetics);
         useSound = XSound.ENTITY_FIREWORK_ROCKET_LAUNCH.record().withVolume(2.0f).publicSound(true).soundPlayer().forPlayers(getPlayer());
@@ -58,19 +58,18 @@ public class GadgetSmashDown extends Gadget implements PlayerAffectingCosmetic, 
     protected void onRightClick() {
         useSound.play();
         getPlayer().setVelocity(new Vector(0, 3, 0));
-        final BukkitTask task = new BukkitRunnable() {
-            @Override
-            public void run() {
-                if (getOwner() != null && getPlayer() != null && isEquipped()) {
-                    cloud.spawn();
-                } else {
-                    cancel();
-                }
-            }
-        }.runTaskTimer(getUltraCosmetics(), 0, 1);
-        Bukkit.getScheduler().runTaskLater(getUltraCosmetics(), () -> {
+
+        gadgetTask = getUltraCosmetics().getScheduler().runAtEntityTimer(getPlayer(), () -> {
             if (getOwner() != null && getPlayer() != null && isEquipped()) {
-                task.cancel();
+                cloud.spawn();
+            } else {
+                gadgetTask.cancel();
+            }
+        }, 0, 1);
+
+        getUltraCosmetics().getScheduler().runAtEntityLater(getPlayer(), () -> {
+            if (getOwner() != null && getPlayer() != null && isEquipped()) {
+                gadgetTask.cancel();
                 getOwner().applyVelocity(new Vector(0, -3, 0));
                 active = true;
             }
@@ -89,7 +88,7 @@ public class GadgetSmashDown extends Gadget implements PlayerAffectingCosmetic, 
     public void onUpdate() {
         if (active && getPlayer().isOnGround()) {
             this.playEffect = true;
-            Bukkit.getScheduler().runTaskLaterAsynchronously(getUltraCosmetics(), () -> active = false, 5);
+            getUltraCosmetics().getScheduler().runLaterAsync(() -> active = false, 5);
             return;
         }
 
@@ -117,7 +116,7 @@ public class GadgetSmashDown extends Gadget implements PlayerAffectingCosmetic, 
                         && !StructureRollback.isBlockRollingBack(b)
                         && b.getType().isSolid()
                         && BlockUtils.isAir(b.getRelative(BlockFace.UP).getType())) {
-                    Bukkit.getScheduler().runTask(getUltraCosmetics(), () -> {
+                    getUltraCosmetics().getScheduler().runAtEntity(getPlayer(), (task) -> {
                         FallingBlock fb = BlockUtils.spawnFallingBlock(b.getLocation().clone().add(0, 1.1f, 0), b);
 
                         fb.setVelocity(new Vector(0, 0.3f, 0));

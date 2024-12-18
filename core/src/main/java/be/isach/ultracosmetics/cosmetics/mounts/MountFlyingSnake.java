@@ -1,6 +1,7 @@
 package be.isach.ultracosmetics.cosmetics.mounts;
 
 import be.isach.ultracosmetics.UltraCosmetics;
+import be.isach.ultracosmetics.UltraCosmeticsData;
 import be.isach.ultracosmetics.cosmetics.type.MountType;
 import be.isach.ultracosmetics.player.UltraPlayer;
 import org.bukkit.Location;
@@ -52,7 +53,7 @@ public abstract class MountFlyingSnake extends Mount {
             double yaw = -Math.atan2(deltaLoc.getX(), deltaLoc.getZ());
             double hyp = deltaLoc.getX() * deltaLoc.getX() + deltaLoc.getZ() * deltaLoc.getZ();
             double pitch = Math.atan2(Math.sqrt(hyp), deltaLoc.getY());
-            armorStand.teleport(lastLocation);
+            UltraCosmeticsData.get().getPlugin().getScheduler().teleportAsync(armorStand, lastLocation);
             // Setting yaw by rotating the whole armor stand is less buggy
             armorStand.setHeadPose(new EulerAngle(pitch, 0, 0));
             armorStand.setRotation((float) Math.toDegrees(yaw), 0);

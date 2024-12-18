@@ -6,12 +6,11 @@ import be.isach.ultracosmetics.player.UltraPlayer;
 import com.cryptomorin.xseries.XPotion;
 import com.cryptomorin.xseries.particles.ParticleDisplay;
 import com.cryptomorin.xseries.particles.XParticle;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Horse;
 import org.bukkit.potion.PotionEffect;
 
-import java.awt.Color;
+import java.awt.*;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
@@ -36,9 +35,9 @@ public class MountDruggedHorse extends MountAbstractHorse {
         horse.setColor(Horse.Color.CHESTNUT);
         horse.setJumpStrength(1.3);
 
-        Bukkit.getScheduler().runTaskLater(getUltraCosmetics(), () -> {
+        getUltraCosmetics().getScheduler().runAtEntity(getPlayer(), (task) -> {
             getPlayer().addPotionEffect(new PotionEffect(XPotion.NAUSEA.getPotionEffectType(), 10000000, 1));
-        }, 1);
+        });
     }
 
     @Override
