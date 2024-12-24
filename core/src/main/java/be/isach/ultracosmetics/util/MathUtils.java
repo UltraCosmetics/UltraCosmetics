@@ -2,7 +2,6 @@ package be.isach.ultracosmetics.util;
 
 import be.isach.ultracosmetics.UltraCosmeticsData;
 import be.isach.ultracosmetics.run.FallDamageManager;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Entity;
@@ -402,7 +401,7 @@ public class MathUtils {
     public static void applyVelocity(final Entity ent, Vector v) {
         ent.setVelocity(v);
         if (UltraCosmeticsData.get().getPlugin().isEnabled()) {
-            Bukkit.getScheduler().runTaskLaterAsynchronously(UltraCosmeticsData.get().getPlugin(), () -> FallDamageManager.addNoFall(ent), 4);
+            UltraCosmeticsData.get().getPlugin().getScheduler().runLaterAsync(() -> FallDamageManager.addNoFall(ent), 4);
         }
     }
 

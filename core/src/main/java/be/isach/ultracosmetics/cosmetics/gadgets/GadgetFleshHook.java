@@ -8,7 +8,6 @@ import be.isach.ultracosmetics.player.UltraPlayer;
 import be.isach.ultracosmetics.util.ItemFactory;
 import be.isach.ultracosmetics.util.MathUtils;
 import com.cryptomorin.xseries.XMaterial;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
@@ -86,7 +85,7 @@ public class GadgetFleshHook extends Gadget implements PlayerAffectingCosmetic, 
             }
         }
         if (!toRemove.isEmpty()) {
-            Bukkit.getScheduler().runTaskLater(getUltraCosmetics(), () -> {
+            getUltraCosmetics().getScheduler().runAtEntityLater(getPlayer(), () -> {
                 for (Item item : toRemove) {
                     item.remove();
                     forRemoval.remove(item);

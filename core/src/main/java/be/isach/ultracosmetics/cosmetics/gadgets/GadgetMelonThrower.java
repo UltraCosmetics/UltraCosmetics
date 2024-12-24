@@ -19,7 +19,6 @@ import org.bukkit.event.entity.ItemMergeEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
-import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -92,15 +91,14 @@ public class GadgetMelonThrower extends Gadget implements PlayerAffectingCosmeti
             for (int i = 0; i < 8; i++) {
                 melonSlices.add(ItemFactory.createUnpickableItemVariance(XMaterial.MELON_SLICE, melon.getLocation(), RANDOM, 0.75));
             }
-            new BukkitRunnable() {
-                @Override
-                public void run() {
-                    for (Item slice : melonSlices) {
-                        slice.remove();
-                    }
-                    melonSlices.clear();
+
+            getUltraCosmetics().getScheduler().runAtEntityLater(getPlayer(), () -> {
+                for (Item slice : melonSlices) {
+                    slice.remove();
                 }
-            }.runTaskLater(getUltraCosmetics(), 100);
+                melonSlices.clear();
+            }, 100);
+
             melon.remove();
             melon = null;
         }

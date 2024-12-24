@@ -10,7 +10,6 @@ import be.isach.ultracosmetics.util.MathUtils;
 import com.cryptomorin.xseries.XSound;
 import com.cryptomorin.xseries.particles.ParticleDisplay;
 import com.cryptomorin.xseries.particles.XParticle;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Bat;
 import org.bukkit.entity.EntityType;
@@ -42,7 +41,7 @@ public class GadgetBatBlaster extends Gadget implements PlayerAffectingCosmetic,
         this.playerStartLoc = getPlayer().getEyeLocation();
         this.bats = new EntitySpawner<>(EntityType.BAT, getPlayer().getEyeLocation(), 16, getUltraCosmetics());
 
-        Bukkit.getScheduler().runTaskLater(getUltraCosmetics(), this::clean, 60);
+        getUltraCosmetics().getScheduler().runAtEntityLater(getPlayer(), this::clean, 60);
     }
 
     public boolean hitPlayer(Location location, Player player) {

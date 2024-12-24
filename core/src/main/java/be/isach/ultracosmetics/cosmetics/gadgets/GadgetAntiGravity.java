@@ -8,7 +8,6 @@ import be.isach.ultracosmetics.player.UltraPlayer;
 import com.cryptomorin.xseries.XMaterial;
 import com.cryptomorin.xseries.particles.ParticleDisplay;
 import com.cryptomorin.xseries.particles.XParticle;
-import org.bukkit.Bukkit;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
@@ -48,7 +47,7 @@ public class GadgetAntiGravity extends Gadget implements PlayerAffectingCosmetic
         portalParticles = ParticleDisplay.of(XParticle.PORTAL).offset(3, 3, 3).withCount(150).withLocation(as.getLocation());
         witchParticles = ParticleDisplay.of(XParticle.WITCH).offset(0.3, 0.3, 0.3).withCount(5).withLocation(as.getEyeLocation());
 
-        Bukkit.getScheduler().runTaskLater(getUltraCosmetics(), () -> running = false, 240);
+        getUltraCosmetics().getScheduler().runLaterAsync(() -> running = false, 240);
     }
 
     @Override

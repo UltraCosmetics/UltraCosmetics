@@ -154,7 +154,7 @@ public class TreasureChestManager implements Listener {
             player.closeInventory();
             MessageManager.send(player, "Chest-Location.Region-Disabled");
             if (preLoc != null) {
-                player.teleport(preLoc);
+                ultraCosmetics.getScheduler().teleportAsync(player, preLoc);
             }
             return false;
         }

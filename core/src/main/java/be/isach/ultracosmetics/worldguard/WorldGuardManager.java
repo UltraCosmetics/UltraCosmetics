@@ -136,7 +136,7 @@ public class WorldGuardManager {
             }
         }
         if (ultraPlayer.hasCosmetic(Category.GADGETS)) {
-            Bukkit.getScheduler().runTask(ultraCosmetics, () -> {
+            ultraCosmetics.getScheduler().runAtEntity(ultraPlayer.getBukkitPlayer(), (task) -> {
                 Gadget gadget = (Gadget) ultraPlayer.getCurrentGadget();
                 // One tick has elapsed since the previous check, so we should check again.
                 if (gadget == null) return;

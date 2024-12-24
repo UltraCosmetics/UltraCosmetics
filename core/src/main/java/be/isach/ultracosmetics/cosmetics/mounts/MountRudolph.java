@@ -71,8 +71,8 @@ public class MountRudolph extends MountAbstractHorse {
 
         location.add(PlayerUtils.getHorizontalDirection(getPlayer(), 0.75)).subtract(0, 1.7, 0);
 
-        left.teleport(location.clone().add(leftVector));
-        right.teleport(location.clone().add(rightVector));
+        getUltraCosmetics().getScheduler().teleportAsync(left, location.clone().add(leftVector));
+        getUltraCosmetics().getScheduler().teleportAsync(right, location.clone().add(rightVector));
 
         Location noseLocation = getEyeLocation();
         double y = noseLocation.getY();

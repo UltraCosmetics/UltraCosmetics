@@ -1,24 +1,26 @@
 package be.isach.ultracosmetics.treasurechests;
 
+import be.isach.ultracosmetics.task.UltraTask;
 import com.cryptomorin.xseries.XBlock;
 import com.cryptomorin.xseries.XSound;
 import com.cryptomorin.xseries.particles.ParticleDisplay;
 import com.cryptomorin.xseries.particles.XParticle;
 import org.bukkit.block.Block;
-import org.bukkit.scheduler.BukkitRunnable;
 
-public class PlaceChestRunnable extends BukkitRunnable {
+public class PlaceChestRunnable extends UltraTask {
     private static final ParticleDisplay SMOKE = ParticleDisplay.of(XParticle.LARGE_SMOKE).withCount(5);
     private static final ParticleDisplay LAVA = ParticleDisplay.of(XParticle.LAVA).withCount(5);
     private final TreasureChest chest;
     private final Block chestBlock;
     private final int direction;
     private final XSound.SoundPlayer sound;
+    private final int animationTime;
 
-    public PlaceChestRunnable(TreasureChest chest, Block chestBlock, int direction) {
+    public PlaceChestRunnable(TreasureChest chest, Block chestBlock, int direction, int animationTime) {
         this.chest = chest;
         this.chestBlock = chestBlock;
         this.direction = direction;
+        this.animationTime = animationTime;
         sound = XSound.BLOCK_ANVIL_LAND.record().withVolume(1.4f).withPitch(1.5f).soundPlayer().forPlayers(chest.getPlayer());
     }
 
@@ -31,4 +33,8 @@ public class PlaceChestRunnable extends BukkitRunnable {
         XBlock.setDirection(chestBlock, ChestParticleRunnable.getDirection(direction).getOppositeFace());
     }
 
+    @Override
+    public void schedule() {
+        task = getScheduler().runAtLocationLater(chestBlock.getLocation(), this::run, animationTime);
+    }
 }

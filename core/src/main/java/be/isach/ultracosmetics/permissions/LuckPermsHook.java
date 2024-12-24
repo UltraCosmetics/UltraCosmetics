@@ -4,17 +4,14 @@ import be.isach.ultracosmetics.UltraCosmetics;
 import be.isach.ultracosmetics.config.SettingsManager;
 import be.isach.ultracosmetics.cosmetics.type.CosmeticType;
 import be.isach.ultracosmetics.util.SmartLogger.LogLevel;
-
-import org.bukkit.Bukkit;
-import org.bukkit.entity.Player;
-import org.bukkit.scheduler.BukkitRunnable;
-
-import java.util.Set;
-
 import net.luckperms.api.LuckPerms;
 import net.luckperms.api.context.ImmutableContextSet;
 import net.luckperms.api.model.user.User;
 import net.luckperms.api.node.Node;
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
+
+import java.util.Set;
 
 public class LuckPermsHook implements CosmeticPermissionSetter, RawPermissionSetter {
     private final UltraCosmetics ultraCosmetics;
@@ -47,15 +44,13 @@ public class LuckPermsHook implements CosmeticPermissionSetter, RawPermissionSet
         if (log) {
             ultraCosmetics.getSmartLogger().write("Setting permission '" + permission + "' for user " + player.getName());
         }
-        new BukkitRunnable() {
-            @Override
-            public void run() {
-                User user = api.getPlayerAdapter(Player.class).getUser(player);
-                Node node = Node.builder(permission).value(true).context(context).build();
-                user.data().add(node);
-                api.getUserManager().saveUser(user);
-            }
-        }.runTaskAsynchronously(ultraCosmetics);
+
+        ultraCosmetics.getScheduler().runAsync((task) -> {
+            User user = api.getPlayerAdapter(Player.class).getUser(player);
+            Node node = Node.builder(permission).value(true).context(context).build();
+            user.data().add(node);
+            api.getUserManager().saveUser(user);
+        });
     }
 
     @Override
