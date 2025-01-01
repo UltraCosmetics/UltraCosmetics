@@ -1866,4 +1866,4 @@ Must-Remove:
 Use-Rename-Pet-Command: <prefix> <red>Utiliser <yellow>/uc rename</yellow> pour renommer
 Commands-Disabled-During-Chest: <prefix> <bold><red>Vous ne pouvez pas utiliser de commandes lorsque vous ouvrez un coffre !
 No-Buy-Key-Permission: <prefix><red><bold>Tu n'as pas la permission d'acheter des clés !
-Particles-Minimal-In-Client: <yellow>You have particles set to "minimal" in your client settings and so you won't be able to see particles.
+Particles-Minimal-In-Client: <yellow>Vous avez défini les particules sur « minimum » dans les paramètres de votre client et vous ne pourrez donc pas voir les particules.
