@@ -891,10 +891,10 @@ Pets:
   Unequip: <prefix> <blue>Despawneaste <petname>
   Armadillo:
     menu-name: <bold><gold>Armadillo
-    entity-displayname: <bold><playername>'s Armadillo
+    entity-displayname: <bold><playername> Armadillo
     Description: |-
-      Don't scare me,
-      or I'll roll up into a ball!
+      ¡No me asusten,
+      o me enrollaré en una pelota!
 Morphs:
   Blaze:
     name: <bold><gold>Blaze
@@ -1866,4 +1866,4 @@ Must-Remove:
 Use-Rename-Pet-Command: <prefix> <red>Usa <yellow>/uc rename</yellow> para renombrar
 Commands-Disabled-During-Chest: <prefix> <bold><red>¡No puedes usar comandos mientras abres un cofre!
 No-Buy-Key-Permission: <prefix> <red><bold>¡No tienes permiso para comprar llaves del tesoro!
-Particles-Minimal-In-Client: <yellow>You have particles set to "minimal" in your client settings and so you won't be able to see particles.
+Particles-Minimal-In-Client: <yellow>Tienes las partículas configuradas como "mínimas" en la configuración de tu Minecraft, por lo que no podrá verlas.
