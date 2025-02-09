@@ -27,9 +27,11 @@ public abstract class EntityCosmetic<T extends CosmeticEntType<?>, E extends Ent
     }
 
     protected void removeEntity() {
-        if (entity != null) {
-            entity.remove();
-        }
+        getUltraCosmetics().getScheduler().runAtLocation(entity.getLocation(), (task) -> {
+            if (entity != null) {
+                entity.remove();
+            }
+        });
     }
 
     protected void setupEntity() {
