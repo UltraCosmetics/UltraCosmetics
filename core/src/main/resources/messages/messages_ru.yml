@@ -81,8 +81,8 @@ Menu:
     Button:
       Name: <bold><gold>Транспорт
       Lore: '<gray>Разблокировано: </gray><white><unlocked>'
-      Tooltip-Equip: <bold><aqua>Получить
-      Tooltip-Unequip: <bold><red>Убрать
+      Tooltip-Equip: <bold><aqua>Заспавнить
+      Tooltip-Unequip: <bold><red>Респавн
   Morphs:
     Title: <bold>Превращения
     Button:
@@ -116,22 +116,22 @@ Menu:
     Button:
       Name: <bold><yellow>Эмоции
       Lore: '<gray>Разблокировано: </gray><white><unlocked>'
-      Tooltip-Equip: <bold><aqua>Показать
-      Tooltip-Unequip: <bold><red>Скрыть
+      Tooltip-Equip: <bold><aqua>Одеть
+      Tooltip-Unequip: <bold><red>Снять
   Projectile-Effects:
     Title: <bold>Эффекты снаряда
     Button:
       Name: <bold><dark_purple>Эффекты снаряда
       Lore: '<gray>Разблокировано: </gray><white><unlocked>'
-      Tooltip-Equip: <bold><aqua>Применить
+      Tooltip-Equip: <bold><aqua>Одеть
       Tooltip-Unequip: <bold><red>Снять
   Death-Effects:
     Title: <bold>Эффекты смерти
     Button:
       Name: <bold><red>Эффекты смерти
       Lore: '<gray>Разблокировано: </gray><white><unlocked>'
-      Tooltip-Equip: <bold><aqua>Экипировать
-      Tooltip-Unequip: <bold><red>Скрыть
+      Tooltip-Equip: <bold><aqua>Одеть
+      Tooltip-Unequip: <bold><red>Снять
   Buy-Ammo:
     Title: <bold>Купить заряды
   Misc:
@@ -396,7 +396,7 @@ Mounts:
       Теперь Вы можете!
   Slime:
     menu-name: <bold><green>Слизень
-    entity-displayname: <bold><playername>'s Слизень
+    entity-displayname: <bold><playername>' Слизень
     Description: Шлепок! Шлепок!
   Spider:
     menu-name: <bold><dark_gray>Паук
@@ -416,8 +416,8 @@ Mounts:
       существует мифический вид расплавленного
       Змеи. Этот будет служить вам вечно.
   Strider:
-    menu-name: <bold><red>Паук
-    entity-displayname: <bold><playername>' Паук
+    menu-name: <bold><red>Бродяга
+    entity-displayname: <bold><playername>' Бродяга
     Description: |-
       Таинственная толпа в форме куба
       способный ходить прямо по лаве.
@@ -622,7 +622,7 @@ Pets:
   Mooshroom:
     menu-name: <bold><dark_red>Муухомор
     entity-displayname: <bold><playername>' Муухомор
-    Description: Муууу!
+    Description: МУуу!
   IronGolem:
     menu-name: <bold><gray>Железный Голем
     entity-displayname: <bold><playername>' Железный Голем
@@ -789,7 +789,7 @@ Pets:
     Description: Самое счастливое создание морей!
   Spider:
     menu-name: <bold><dark_gray>Паук
-    entity-displayname: <bold><playername>' Паук
+    entity-displayname: <bold><playername>'s Паук
     Description: Ваш дружелюбный соседский паук!
   ZombifiedPiglin:
     menu-name: <bold><light_purple>Зомбированный поросенок
@@ -812,7 +812,7 @@ Pets:
     entity-displayname: <bold><playername>' Вызыватель
     Description: Зарабатывает на жизнь призывом вексов!
   Ghast:
-    menu-name: <bold><white>Гаст
+    menu-name: <bold><white>Вурдалак
     entity-displayname: <bold><playername>' Гаст
     Description: '*Демонический крик*'
   Guardian:
@@ -864,7 +864,7 @@ Pets:
     entity-displayname: <bold><playername>' Ведьма
     Description: Любит черных кошек!
   WitherSkeleton:
-    menu-name: <bold><dark_gray>Скелет-иссушитель
+    menu-name: <bold><dark_gray>Скелет-Иссушитель
     entity-displayname: <bold><playername>' Скелет-иссушитель
     Description: Причина, по которой существует мародерство.
   Zoglin:
@@ -905,7 +905,7 @@ Morphs:
     skill: '<yellow>Крадись </yellow><gray>ждя того чтобы: </gray><green>Откладывать яйца'
     Description: Стань цыпленком!
   Slime:
-    name: <bold><green>Слизнь
+    name: <bold><green>Слизень
     skill: '<yellow>Крадись </yellow><gray>ждя того чтобы: </gray><green>Подпрыгивать'
     Description: Шлепок, шлепок!
   Pig:
@@ -919,7 +919,7 @@ Morphs:
       Я иду оттуда в
       там, потом ты потерял меня...
   Bat:
-    name: <bold><dark_gray>Летучая мышь
+    name: <bold><dark_gray>Летающая мышь
     skill: '<yellow>Двойной прыжок </yellow><gray>для того чтобы: </gray><green>Парить'
     Description: Станьте летучей мышью!
   Creeper:
@@ -947,15 +947,15 @@ Morphs:
   Cow:
     name: <bold><dark_gray>Корова
     skill: '<yellow>Левый клик </yellow><gray>для того чтобы: </gray><green>МУУу!'
-    Description: Муууу!
+    Description: МУуу!
   Sheep:
     name: <bold><white>Овца
     skill: '<yellow>Левый клик </yellow><gray>для того чтобы: </gray><green>Поменять цвета'
-    Description: Бееее, бееее
+    Description: Баааа, баа
   Mooshroom:
     name: <bold><red>Муухомор
     skill: '<yellow>Крадись </yellow><gray>ждя того чтобы: </gray><green>Разбросать тарелки с супом'
-    Description: Муууу!
+    Description: МУуу!
   Villager:
     name: <bold><green>Житель
     skill: '<yellow>Левый клик </yellow><gray>для того чтобы: </gray><green>Разбросать изумруды'
@@ -977,11 +977,11 @@ Morphs:
     skill: '<yellow>Двойной прыжок </yellow><gray>для того чтобы: </gray><green>Парить'
     Description: Полли, хочешь крекер?
   Allay:
-    name: <bold><green>Элей
-    skill: '<yellow>Двойной прыжок</yellow><gray> для: </gray><green> взмаха'
+    name: <bold><green>Аллай
+    skill: '<yellow>Двойной прыжок </yellow><gray>для того чтобы: </gray><green>Парить'
     Description: Новый друг!
   Axolotl:
-    name: <bold><dark_purple>Аксолотлик
+    name: <bold><dark_purple>Аксолотль
     skill: <yellow>Левое нажатие</yellow><gray> для милых звуков
     Description: Такоой милый!
   Bee:
@@ -1009,9 +1009,9 @@ Morphs:
     skill: '<yellow>Щелкните левой кнопкой мыши</yellow><gray>, чтобы: </gray><green>выполнить задачу'
     Description: Могу унести все ваши вещи!
   Drowned:
-    name: <bold><dark_aqua>Утопленник
+    name: <bold><dark_aqua>Подводный зомби!
     skill: '<yellow>Щелкните левой кнопкой мыши</yellow><gray>, чтобы: </gray><green>выполнить задачу'
-    Description: Утопленник охотится на вас в воде!
+    Description: Подводный зомби, охотится на вас в воде!
   Endermite:
     name: <bold><dark_purple>Эндермит
     skill: '<yellow>Щелкните левой кнопкой мыши</yellow><gray>, чтобы: </gray><green>выполнить задачу'
@@ -1029,7 +1029,7 @@ Morphs:
     skill: '<yellow>Щелкните левой кнопкой мыши</yellow><gray>, чтобы: </gray><green>выполнить задачу'
     Description: Что говорит лиса?
   GlowSquid:
-    name: <bold><dark_aqua>Светящийся спрут
+    name: <bold><dark_aqua>Светящийся кальмар
     skill: '<yellow>Щелкните левой кнопкой мыши</yellow><gray>, чтобы: </gray><green>выполнить задачу'
     Description: Он светится!
   Goat:
@@ -1037,7 +1037,7 @@ Morphs:
     skill: '<yellow>Щелкните левой кнопкой мыши</yellow><gray>, чтобы: </gray><green>выполнить задачу'
     Description: Беее!
   Guardian:
-    name: <bold><dark_aqua>Страж
+    name: <bold><dark_aqua>Опекун
     skill: '<yellow>Щелкните левой кнопкой мыши</yellow><gray>, чтобы: </gray><green>выполнить задачу'
     Description: Ненавидит кальмаров!
   Wolf:
@@ -1062,7 +1062,7 @@ Morphs:
     name: <bold><dark_gray>Паук
     Description: ХИИИСССС...
   Ghast:
-    name: <bold><white>Гаст
+    name: <bold><white>Вурдалак
     Description: '*пронзительный крик*'
   MagmaCube:
     name: <bold><red>Магмовый куб
@@ -1071,8 +1071,8 @@ Morphs:
     name: <bold><green>Лошадь
     Description: '*фхррррхх*'
   Warden:
-    name: <bold><dark_aqua>Варден
-    Description: Будь тише тише тише...
+    name: <bold><dark_aqua>Надзиратель
+    Description: Быть тихим...
   Tadpole:
     name: <bold><dark_gray>Головастик
     Description: Вырастет в лягушку!
@@ -1080,13 +1080,13 @@ Morphs:
     name: <bold><gold>Пиглин
     Description: Сделки за золото!
   Strider:
-    name: <bold><red>Лавомерка
+    name: <bold><red>Бродяга
     Description: Я ненавижу воду!
   Hoglin:
     name: <bold><red>Хоглин
     Description: Свинья, но в гневе.
   PiglinBrute:
-    name: <bold><gold>брутальный пиглин
+    name: <bold><gold>Пиглин Брут
     Description: Симпатичный пиглин!
   Zoglin:
     name: <bold><red>Хоглин
@@ -1104,11 +1104,11 @@ Morphs:
     name: <bold><dark_blue>Бродячий торговец
     Description: Бродит повсюду, пытаясь продать свои вещи!
   Pillager:
-    name: <bold><gray>Разоритель
+    name: <bold><gray>Грабитель
     Description: Любит грабить деревни!
   Ravager:
     name: <bold><dark_gray>Опустошитель
-    Description: Любимый компаньон разорителя!
+    Description: Любимый компаньон грабителя!
   Pufferfish:
     name: <bold><yellow>Рыба-фугу
     Description: Не любит, когда к нему прикасаются!
@@ -1122,16 +1122,16 @@ Morphs:
     name: <bold><green>Черепаха
     Description: Не торопитесь.
   Phantom:
-    name: <dark_blue>Фантом
+    name: <bold><dark_blue>Призрак
     Description: Ненавидит игроков, которые не спят!
   Illusioner:
     name: <bold><dark_blue>Иллюзионист
-    Description: Только с помощью команд спавнится!
+    Description: Только с помощью команд!
   Vex:
-    name: <bold><gray>Векс
-    Description: ДААААА, Хехехехе!
+    name: <bold><gray>Вех
+    Description: ДА, Хехехехе!
   Vindicator:
-    name: <bold><gray>Защитник
+    name: <bold><gray>Воздаятель
     Description: Не стоит недооценивать их силу!
   Mule:
     name: <bold><dark_gray>Мул
@@ -1218,7 +1218,7 @@ Hats:
     Name: <bold><white>Курица
     Description: Бввааааааааааааккккк!
   Blaze:
-    Name: <bold><gold>Ифрит
+    Name: <bold><gold>Блейз
     Description: Берегись огня!
   Piston:
     Name: <bold><gray>Поршень
@@ -1231,13 +1231,13 @@ Hats:
     Description: Хрю-хрю!
   Cow:
     Name: <bold><green>Корова
-    Description: МУУУуу!
+    Description: МУуу!
   Mooshroom:
-    Name: <bold><red>Грибная корова
-    Description: МУУУуу!
+    Name: <bold><red>Муухомор
+    Description: МУуу!
   BrownMooshroom:
     Name: <bold><aqua>Темная грибная корова
-    Description: МУУУуу
+    Description: МУуу!
   Moobloom:
     Name: <bold><yellow>Желтая грибная корова
     Description: Очень редкая корова!
@@ -1269,7 +1269,7 @@ Hats:
     Name: <bold><dark_green>Зомби
     Description: Мозги!!!
   Drowned:
-    Name: <bold><dark_aqua>Утопший Зомби
+    Name: <bold><dark_aqua>Подводный зомби!
     Description: Подводный зомби
   Strider:
     Name: <bold><red>Бродяга
@@ -1287,7 +1287,7 @@ Hats:
     Name: <bold><dark_purple>Ведьма
     Description: Пожалуйста, попробуйте мое зелье!
   Guardian:
-    Name: <bold><dark_aqua>Страж
+    Name: <bold><dark_aqua>Опекун
     Description: Защитник океанских памятников!
   ShepherdVillager:
     Name: <bold><yellow>Сельский пастух
@@ -1810,7 +1810,7 @@ Projectile-Effects:
     name: <bold><white>Снежинка
     Description: Небольшие, белые облака
   GlowSquid:
-    name: <bold><dark_aqua>Светящийся спрут
+    name: <bold><dark_aqua>Светящийся кальмар
     Description: Бирюзовые звезды
   GlowSquidInk:
     name: <bold><dark_aqua>Чернила Светящегося спрута
