@@ -81,8 +81,8 @@ Menu:
     Button:
       Name: <bold>Montarias
       Lore: '<gray>Desbloqueado: </gray><white><unlocked>'
-      Tooltip-Equip: <bold><aqua>Spawn
-      Tooltip-Unequip: <bold><red>Despawn
+      Tooltip-Equip: <bold><aqua>Spawnar
+      Tooltip-Unequip: <bold><red>Despawnar
   Morphs:
     Title: <bold>Transformações
     Button:
@@ -131,7 +131,7 @@ Menu:
       Name: <bold><red>Efeitos da Morte
       Lore: '<gray>Desbloqueado: </gray><white><unlocked>'
       Tooltip-Equip: <bold><aqua>Equipar
-      Tooltip-Unequip: <bold><red>Remover
+      Tooltip-Unequip: <bold><red>Desequipar
   Buy-Ammo:
     Title: <bold>Adquirir munição
   Misc:
@@ -432,7 +432,7 @@ Mounts:
     entity-displayname: <bold><playername>'s Mule
     Description: A sua normal, mula do dia a dia
   Pig:
-    menu-name: <bold><light_purple>Porco
+    menu-name: <bold><light_purple>Pig
     entity-displayname: <bold>Porco de <playername>
     Description: Oink!
     Held-Item-Lore: <italic><gray>Comida do Strider em uma vara!
