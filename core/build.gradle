@@ -40,7 +40,7 @@ dependencies {
     // https://github.com/TownyAdvanced/Towny
     compileOnly 'com.palmergames.bukkit.towny:towny:0.100.4.7' // future versions only support Java 21
     // https://github.com/brettwooldridge/HikariCP
-    library 'com.zaxxer:HikariCP:6.2.1'
+    library 'com.zaxxer:HikariCP:6.3.0'
     // https://github.com/WesJD/AnvilGUI
     implementation 'net.wesjd:anvilgui:1.10.4-SNAPSHOT'
     // https://github.com/datatags/MobChipLite
