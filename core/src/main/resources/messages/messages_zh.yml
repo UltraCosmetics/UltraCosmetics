@@ -194,7 +194,7 @@ Treasure-Chests-Loot-Messages:
   Mounts: <prefix> <bold><gold><name> 发现了稀有的 <cosmetic>
   Particle-Effects: <prefix> <bold><gold><name> 发现了传奇的 <cosmetic>
   Morphs: <prefix> <bold><gold><name> 发现了传奇的 <cosmetic>
-  Hats: <prefix> <bold><gold><name> 发现罕见的 <cosmetic>
+  Hats: <prefix> <bold><gold><name> 发现了稀有的 <cosmetic>
   Gadgets: <prefix> <bold><gold><name> 发现了小道具 <cosmetic>
   Suits: <prefix> <bold><gold><name> 发现了稀有的 <cosmetic>
   Emotes: <prefix> <bold><gold><name> 发现了稀有的 <cosmetic>
@@ -416,7 +416,7 @@ Mounts:
       存在着一种神话般的熔蛇
       它将永远为你服务
   Strider:
-    menu-name: <bold><red>炽足兽
+    menu-name: <bold><red>流浪者
     entity-displayname: <bold><playername>的炽足兽
     Description: |-
       神秘的立方体生物
@@ -749,7 +749,7 @@ Pets:
     entity-displayname: <bold><playername>的鱿鱼
     Description: 不要吓到它们，不然水要变黑！
   Strider:
-    menu-name: <bold><red>炽足兽
+    menu-name: <bold><red>流浪者
     entity-displayname: <bold><playername>的炽足兽
     Description: 岩浆行者！
   Tadpole:
@@ -1206,7 +1206,7 @@ Hats:
     Name: <bold><white>鸡
     Description: 咯咯咯哒！
   Blaze:
-    Name: <bold><gold>火焰
+    Name: <bold><gold>烈焰
     Description: 小心火焰！
   Piston:
     Name: <bold><gray>活塞

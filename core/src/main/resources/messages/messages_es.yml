@@ -123,7 +123,7 @@ Menu:
     Button:
       Name: <bold><dark_purple>Efectos de Proyectiles
       Lore: '<gray>Desbloqueaste: </gray><white><unlocked>'
-      Tooltip-Equip: <bold><aqua>equipar
+      Tooltip-Equip: <bold><aqua>Equipar
       Tooltip-Unequip: <bold><red>Desequipar
   Death-Effects:
     Title: <bold>Efectos al morir
@@ -417,7 +417,7 @@ Mounts:
       Fundidas. Esta sirve a su amo por la eternidad.
   Strider:
     menu-name: <bold><red>Strider
-    entity-displayname: <bold> Strider de<playername>
+    entity-displayname: <bold>Caminante de lava de <playername>
     Description: |-
       Un mob misterioso en forma de cubo
       capaz de caminar recto sobre lava.
@@ -428,14 +428,14 @@ Mounts:
     Description: Donde estés, tu caballo estará
   Donkey:
     menu-name: <bold><dark_gray>Burro
-    entity-displayname: <bold>Burro de <playername>
+    entity-displayname: <bold>Doggy de <playername>
     Description: Donde estés, tu burro estará
   Mule:
     menu-name: <bold><dark_gray>Mula
     entity-displayname: <bold>Mula de <playername>
     Description: Tu Mula de siempre, estes donde estes
   Pig:
-    menu-name: <bold><light_purple>Cerdo
+    menu-name: <bold><light_purple>Pig
     entity-displayname: Cerdo de <bold><playername>
     Description: Oink!
     Held-Item-Lore: <italic><gray>Comida de cerdo en un palo!
@@ -760,7 +760,7 @@ Pets:
     entity-displayname: <bold>Calamar de <playername>
     Description: No le asustes, o el agua se teñirá negra!
   Strider:
-    menu-name: <bold><red>Caminante
+    menu-name: <bold><red>Strider
     entity-displayname: <bold>Caminante de lava de <playername>
     Description: Caminar sobre Lava!
   Tadpole:
@@ -891,10 +891,10 @@ Pets:
   Unequip: <prefix> <blue>Despawneaste <petname>
   Armadillo:
     menu-name: <bold><gold>Armadillo
-    entity-displayname: <bold><playername>'s Armadillo
+    entity-displayname: <bold><playername> Armadillo
     Description: |-
-      Don't scare me,
-      or I'll roll up into a ball!
+      ¡No me asusten,
+      o me enrollaré en una pelota!
 Morphs:
   Blaze:
     name: <bold><gold>Blaze
@@ -919,7 +919,7 @@ Morphs:
       Voy de aqui hacia
       alla, y ahora... me perdiste...
   Bat:
-    name: <bold><dark_gray>Bat
+    name: <bold><dark_gray>Murcielago
     skill: '<yellow>Doble Salto</yellow><gray> para: </gray><green>Flap'
     Description: Conviertete en un murcielago!
   Creeper:
@@ -974,7 +974,7 @@ Morphs:
     Description: Necesitas que lleve algo?
   Parrot:
     name: <bold><green>Loro
-    skill: '<yellow>Double Jump</yellow><gray> para: </gray><green>Flap'
+    skill: '<yellow>Doble Salto</yellow><gray> para: </gray><green>Flap'
     Description: Polly quiere una galleta?
   Allay:
     name: <bold><green>Allay
@@ -995,37 +995,37 @@ Morphs:
   CaveSpider:
     name: <bold><yellow>Araña de cueva
     skill: '<yellow>Click-izquierdo</yellow><gray> para: </gray><green>TODO'
-    Description: Una araña, pero venenosa!
+    Description: A Araña, pero venenosa!
   Cod:
     name: <bold><yellow>Bacalao
     skill: '<yellow>Click-izquierdo</yellow><gray> para: </gray><green>TODO'
-    Description: Prefiere agua por sobre tierra!
+    Description: Prefiere el agua sobre tierra!
   Dolphin:
     name: <bold><yellow>Delfin
     skill: '<yellow>Click-izquierdo</yellow><gray> para: </gray><green>TODO'
-    Description: La criatura mas feliz de los mares!
+    Description: Las criaturas mas felices de los mares!
   Donkey:
     name: <bold><gray>Burro
     skill: '<yellow>Click-izquierdo</yellow><gray> para: </gray><green>TODO'
-    Description: Puede llevar todas tus cosas!
+    Description: '¡Puedes llevar todas tus cosas!'
   Drowned:
     name: <bold><dark_aqua>Ahogado
     skill: '<yellow>Click-izquierdo</yellow><gray> para: </gray><green>TODO'
-    Description: Un zombie subacuatico!
+    Description: Un Zombie subacuatico!
   Endermite:
     name: <bold><dark_purple>Endermite
     skill: '<yellow>Click-izquierdo</yellow><gray> para: </gray><green>TODO'
-    Description: Atrae a los Enderman!
+    Description: Atrae Endermans!
   Evoker:
     name: <bold><gray>Evoker
     skill: '<yellow>Click-izquierdo</yellow><gray> para: </gray><green>TODO'
     Description: Invoca Vexes por instinto!
   Frog:
-    name: <bold><dark_green>Rano
+    name: <bold><dark_green>Rana
     skill: '<yellow>Click-izquierdo</yellow><gray> para: </gray><green>TODO'
     Description: No le gusta las luciernagas!
   Fox:
-    name: <bold><light_purple>Zorro
+    name: <bold><light_purple>Fox
     skill: '<yellow>Click-izquierdo</yellow><gray> para: </gray><green>TODO'
     Description: What does the fox say?
   GlowSquid:
@@ -1048,7 +1048,7 @@ Morphs:
     Description: Odia los zombies!
   Wither:
     name: <bold><dark_gray>Wither
-    Description: Ten cuidado conmigo...
+    Description: Ten cuidado conmigo-...
   Skeleton:
     name: <bold><gray>Esqueleto
     Description: Muy buen arquero!
@@ -1093,13 +1093,13 @@ Morphs:
     Description: Un Hoglin Zombificado!
   ZombifiedPiglin:
     name: <bold><light_purple>Piglin Zombificado
-    Description: Atacalo y todos ellos iran detrás de tí!
+    Description: Atacalo y todos ellos estarán detrás de tí!
   Panda:
     name: <bold><green>Panda
     Description: Le gusta el Bamboo!
   Ocelot:
     name: <bold><yellow>Ocelote
-    Description: El rey de la selva
+    Description: Rey de la selva
   WanderingTrader:
     name: <bold><dark_blue>Vendedor Ambulante
     Description: Deambula tratando de vender cosas!
@@ -1122,10 +1122,10 @@ Morphs:
     name: <bold><green>Tortuga
     Description: Tómate tu tiempo.
   Phantom:
-    name: <bold><dark_blue>Fantasma
+    name: <bold><dark_blue>Phantom
     Description: Odia a quienes no duermen!
   Illusioner:
-    name: <bold><dark_blue>Ilusionista
+    name: <bold><dark_blue>Illusioner
     Description: Spawneable solamente con comandos!
   Vex:
     name: <bold><gray>Vex
@@ -1138,7 +1138,7 @@ Morphs:
     Description: Tu Mula de siempre, estes donde estes
   SkeletonHorse:
     name: <bold><white>Caballo Esqueleto
-    Description: Cuidado si un rayo impacta!
+    Description: '¡Busca relámpagos!'
   ZombieHorse:
     name: <bold><dark_green>Caballo Zombie
     Description: '¡El caballo más raro de Minecraft!'
@@ -1206,7 +1206,7 @@ Hats:
     Name: <bold><gray>Bloque de comandos
     Description: Controla el mundo con el!
   Music:
-    Name: <bold><blue>Musical
+    Name: <bold><blue>Musica
     Description: Eres tan musical.
   Squid:
     Name: <bold><dark_aqua>Calamar
@@ -1227,7 +1227,7 @@ Hats:
     Name: <bold><white>Oveja
     Description: Baaaa, baa
   Pig:
-    Name: <bold><light_purple>Cerdo
+    Name: <bold><light_purple>Pig
     Description: Oink Oink!
   Cow:
     Name: <bold><green>Vaca
@@ -1866,4 +1866,4 @@ Must-Remove:
 Use-Rename-Pet-Command: <prefix> <red>Usa <yellow>/uc rename</yellow> para renombrar
 Commands-Disabled-During-Chest: <prefix> <bold><red>¡No puedes usar comandos mientras abres un cofre!
 No-Buy-Key-Permission: <prefix> <red><bold>¡No tienes permiso para comprar llaves del tesoro!
-Particles-Minimal-In-Client: <yellow>You have particles set to "minimal" in your client settings and so you won't be able to see particles.
+Particles-Minimal-In-Client: <yellow>Tienes las partículas configuradas como "mínimas" en la configuración de tu Minecraft, por lo que no podrá verlas.
