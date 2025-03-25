@@ -893,11 +893,10 @@ Pets:
   Equip: <prefix> <blue>Du hast <petname> </blue><blue>ausgerüstet
   Unequip: <prefix> <blue>Du hast <petname> </blue><blue>entfernt
   Armadillo:
-    menu-name: <bold><gold>Armadillo
-    entity-displayname: <bold><playername>'s Armadillo
+    menu-name: <bold><gold>Gürteltier
+    entity-displayname: <bold><playername>'s Gürteltier
     Description: |-
-      Don't scare me,
-      or I'll roll up into a ball!
+      Erschrecke mich nicht, sonst rolle ich mich auf!
 Morphs:
   Blaze:
     name: <bold><gold>Lohe
@@ -1869,4 +1868,4 @@ Must-Remove:
 Use-Rename-Pet-Command: <prefix> <red>Benutze <yellow>/uc rename</yellow> um den Namen zu ändern
 Commands-Disabled-During-Chest: <prefix> <bold><red>Du kannst beim Öffnen einer Truhe keine Befehle verwenden!
 No-Buy-Key-Permission: <prefix> <red><bold>Du hast keine Berechtigung Schatzschlüssel zu kaufen!
-Particles-Minimal-In-Client: <yellow>You have particles set to "minimal" in your client settings and so you won't be able to see particles.
+Particles-Minimal-In-Client: <yellow>Du hast Partikel auf "minimal" in deinen Client-Einstellungen gesetzt und wirst daher keine Partikel sehen können.

@@ -109,28 +109,28 @@ Menu:
     Button:
       Name: <bold><dark_aqua>Costumes
       Lore: '<gray>Déverouillé: </gray><white><unlocked>'
-      Tooltip-Equip: <bold><aqua>Équiper
+      Tooltip-Equip: <bold><aqua>l'Équiper
       Tooltip-Unequip: <bold><red>Déséquiper
   Emotes:
     Title: <bold>Émotes
     Button:
       Name: <bold><yellow>Émotes
       Lore: '<gray>Déverouillé: </gray><white><unlocked>'
-      Tooltip-Equip: <bold><aqua>Équiper
+      Tooltip-Equip: <bold><aqua>l'Équiper
       Tooltip-Unequip: <bold><red>Déséquiper
   Projectile-Effects:
     Title: <bold>Effets de projectiles
     Button:
       Name: <bold><dark_purple>Effets de projectiles
       Lore: '<gray>Déverouillé: </gray><white><unlocked>'
-      Tooltip-Equip: <bold><aqua>Équiper
+      Tooltip-Equip: <bold><aqua>l'Équiper
       Tooltip-Unequip: <bold><red>Déséquiper
   Death-Effects:
     Title: <bold>Effets de Mort
     Button:
       Name: <bold><red>Effets de Mort
       Lore: '<gray>Déverouillé: </gray><white><unlocked>'
-      Tooltip-Equip: <bold><aqua>Équiper
+      Tooltip-Equip: <bold><aqua>l'Équiper
       Tooltip-Unequip: <bold><red>Déséquiper
   Buy-Ammo:
     Title: <bold>Acheter des munitions
@@ -436,7 +436,7 @@ Mounts:
     entity-displayname: <bold>Mule de <playername>
     Description: Votre banal, mulet de toujours
   Pig:
-    menu-name: <bold><light_purple>Cochonnet
+    menu-name: <bold><light_purple>Cochon
     entity-displayname: <bold>Cochonnet de <playername>
     Description: Oink !
     Held-Item-Lore: <italic><gray>Nourriture de cochons sur un bâton!
@@ -967,26 +967,26 @@ Morphs:
   PolarBear:
     name: <bold><white>Ours polaire
     skill: '<yellow>Clic-Gauche</yellow><gray> pour : </gray><green>Blizzard'
-    Description: Je préfère les zones froides
+    Description: Je préfère les endroits froids
   Llama:
     name: <bold><dark_aqua>Lama
     skill: '<yellow>Clic-Gauche</yellow><gray> pour : </gray><green>Cracher'
-    Description: Besoin de moi pour transporter quelque chose ?
+    Description: Besoin de moi pour transporter quoi que ce soit ?
   Parrot:
     name: <bold><green>Perroquet
-    skill: '<yellow>Double saut </yellow><gray>vers: </gray><green>Battre des ailes'
-    Description: Polly veut un craquer ?
+    skill: '<yellow>Double saut </yellow><gray>vers : </gray><green>Battre des ailes'
+    Description: Un biscuit ?
   Allay:
     name: <bold><green>Allay
-    skill: '<yellow>Double saut </yellow><gray>vers: </gray><green>Battre des ailes'
+    skill: '<yellow>Double saut </yellow><gray>vers : </gray><green>Battre des ailes'
     Description: Un nouvel ami !
   Axolotl:
-    name: <bold><dark_purple>Axolot
+    name: <bold><dark_purple>Axolotl
     skill: <yellow>Clic-Gauche </yellow><gray>pour les sons mignons
     Description: Siii mignon !
   Bee:
     name: <bold><yellow>Abeille
-    skill: '<yellow>Double saut </yellow><gray>vers: </gray><green>Battre des ailes'
+    skill: '<yellow>Double saut </yellow><gray>vers : </gray><green>Battre des ailes'
     Description: '*bzzzz* *bzzzz*'
   Cat:
     name: <bold><yellow>Chat
@@ -998,48 +998,48 @@ Morphs:
     Description: Une araignée, mais toxique!
   Cod:
     name: <bold><yellow>Morue
-    skill: '<yellow>Clic-Gauche </yellow><gray>pour: </gray><green>À Faire'
-    Description: Préfère l'eau à la terre !
+    skill: '<yellow>Clic-Gauche</yellow><gray> pour : </gray><green>À Faire'
+    Description: Préfère l'eau à la terre!
   Dolphin:
     name: <bold><yellow>Dauphin
-    skill: '<yellow>Clic-Gauche </yellow><gray>pour: </gray><green>À Faire'
-    Description: La créature la plus heureuse de la mer !
+    skill: '<yellow>Clic-Gauche</yellow><gray> pour : </gray><green>À Faire'
+    Description: La créature la plus heureuse de la mer!
   Donkey:
     name: <bold><gray>Âne
-    skill: '<yellow>Clic-Gauche </yellow><gray>pour: </gray><green>À Faire'
-    Description: Peut transporter toutes vos affaires !
+    skill: '<yellow>Clic-Gauche</yellow><gray> pour : </gray><green>À Faire'
+    Description: Peut transporter toutes vos affaires!
   Drowned:
     name: <bold><dark_aqua>Noyé
-    skill: '<yellow>Clic-Gauche </yellow><gray>pour: </gray><green>À Faire'
+    skill: '<yellow>Clic-Gauche</yellow><gray> pour : </gray><green>À Faire'
     Description: Un zombie noyé !
   Endermite:
     name: <bold><dark_purple>Endermite
-    skill: '<yellow>Clic-Gauche </yellow><gray>pour: </gray><green>À Faire'
-    Description: Attire les Endermites !
+    skill: '<yellow>Clic-Gauche</yellow><gray> pour : </gray><green>À Faire'
+    Description: Attire les Endermen !
   Evoker:
-    name: <bold><gray>Evoker
-    skill: '<yellow>Clic-Gauche </yellow><gray>pour: </gray><green>À Faire'
-    Description: Invoque des Vexes pour vivre !
+    name: <bold><gray>Évocateur
+    skill: '<yellow>Clic-Gauche</yellow><gray> pour : </gray><green>À Faire'
+    Description: Invoque des Vexes pour vivre!
   Frog:
     name: <bold><dark_green>Grenouille
-    skill: '<yellow>Clic-Gauche </yellow><gray>pour: </gray><green>À Faire'
+    skill: '<yellow>Clic-Gauche</yellow><gray> pour : </gray><green>À Faire'
     Description: N'aime pas les lucioles !
   Fox:
     name: <bold><light_purple>Renard
-    skill: '<yellow>Clic-Gauche </yellow><gray>pour: </gray><green>À Faire'
+    skill: '<yellow>Clic-Gauche</yellow><gray> pour : </gray><green>À Faire'
     Description: Que dit le renard ?
   GlowSquid:
-    name: <bold><dark_aqua>Poulpe Brillant
-    skill: '<yellow>Clic-Gauche </yellow><gray>pour: </gray><green>À Faire'
-    Description: C'est brillant !
+    name: <bold><dark_aqua>Poulpe Lumineux
+    skill: '<yellow>Clic-Gauche</yellow><gray> pour : </gray><green>À Faire'
+    Description: C'est lumineux!
   Goat:
     name: <bold><white>Chèvre
-    skill: '<yellow>Clic-Gauche </yellow><gray>pour: </gray><green>À Faire'
+    skill: '<yellow>Clic-Gauche</yellow><gray> pour : </gray><green>À Faire'
     Description: Mêêêêêh !
   Guardian:
-    name: <bold><dark_aqua>Guardian
-    skill: '<yellow>Clic-Gauche </yellow><gray>pour: </gray><green>À Faire'
-    Description: Déteste les poulpes !
+    name: <bold><dark_aqua>Gardien
+    skill: '<yellow>Clic-Gauche</yellow><gray> pour : </gray><green>À Faire'
+    Description: Hait les poulpes !
   Wolf:
     name: <bold><gray>Loup
     Description: Wouaf !
@@ -1075,7 +1075,7 @@ Morphs:
     Description: Être silencieux...
   Tadpole:
     name: <bold><dark_gray>Têtard
-    Description: Deviendra une grenouille !
+    Description: Se transforme en grenouille !
   Piglin:
     name: <bold><gold>Piglin
     Description: Des affaires en OR !
@@ -1087,28 +1087,28 @@ Morphs:
     Description: Un cochon, mais en colère.
   PiglinBrute:
     name: <bold><gold>Piglin Brute
-    Description: Un joli Piglin Brute !
+    Description: Un joli cochon !
   Zoglin:
     name: <bold><red>Zoglin
     Description: Un Hoglin zombifié !
   ZombifiedPiglin:
-    name: <bold><light_purple>Piglin Zombifié
+    name: <bold><light_purple>Cochon Zombifié
     Description: Attaquez-le et tous seront après vous !
   Panda:
     name: <bold><green>Panda
     Description: Aime le bambou !
   Ocelot:
     name: <bold><yellow>Ocelot
-    Description: Roi de la Jungle
+    Description: Roi de la jungle
   WanderingTrader:
     name: <bold><dark_blue>Marchand errant
-    Description: Se promène partout en essayant de vendre ses affaires !
+    Description: Il se balade partout en essayant de vendre ses affaires !
   Pillager:
     name: <bold><gray>Pilleur
-    Description: Aime piller les villages !
+    Description: Aime piller des villages !
   Ravager:
     name: <bold><dark_gray>Ravageur
-    Description: Le compagnon préféré d'un Pillard !
+    Description: Le compagnon préféré du Pillard!
   Pufferfish:
     name: <bold><yellow>Poisson-globe
     Description: N'aime pas être touché !
@@ -1116,26 +1116,26 @@ Morphs:
     name: <bold><red>Saumon
     Description: Ils ont l'air vraiment bon !
   TropicalFish:
-    name: <bold><yellow>Poisson tropical
-    Description: Un poisson coloré !
+    name: <bold><yellow>Poissons tropicaux
+    Description: Une bombe colorée !
   Turtle:
     name: <bold><green>Tortue
     Description: Prenez votre temps.
   Phantom:
-    name: <bold><dark_blue>Phantom
-    Description: Déteste les joueurs qui ne dorment pas !
+    name: <bold><dark_blue>Fantôme
+    Description: Hait les joueurs qui ne dorment pas!
   Illusioner:
     name: <bold><dark_blue>Illusionniste
     Description: Ne peut apparaître qu'avec des commandes !
   Vex:
     name: <bold><gray>Vex
-    Description: YAAHH Ehehhehe !
+    Description: YAAHH Ehehhehe!
   Vindicator:
     name: <bold><gray>Vindicateur
     Description: Ne sous-estimez pas leurs forces !
   Mule:
     name: <bold><dark_gray>Mule
-    Description: Votre banal mulet, de toujours
+    Description: Votre banal, mulet de toujours
   SkeletonHorse:
     name: <bold><white>Cheval Squelette
     Description: Attention aux coups de foudre !
@@ -1287,7 +1287,7 @@ Hats:
     Name: <bold><dark_purple>Sorcière
     Description: Essayez ma potion s'il te plaît !
   Guardian:
-    Name: <bold><dark_aqua>Guardian
+    Name: <bold><dark_aqua>Gardien
     Description: Protégez les monuments de l'océan !
   ShepherdVillager:
     Name: <bold><yellow>Villageois de bergers
@@ -1832,7 +1832,7 @@ Death-Effects:
   Unequip: <prefix> <blue>Tu as déséquipé <death-effectname>
   Explosion:
     name: <bold><dark_red>Explosion
-    Description: BOOM!
+    Description: BOOM !
   Firework:
     name: <bold><gray>Fusée d'artifice
     Description: |-
@@ -1866,4 +1866,4 @@ Must-Remove:
 Use-Rename-Pet-Command: <prefix> <red>Utiliser <yellow>/uc rename</yellow> pour renommer
 Commands-Disabled-During-Chest: <prefix> <bold><red>Vous ne pouvez pas utiliser de commandes lorsque vous ouvrez un coffre !
 No-Buy-Key-Permission: <prefix><red><bold>Tu n'as pas la permission d'acheter des clés !
-Particles-Minimal-In-Client: <yellow>You have particles set to "minimal" in your client settings and so you won't be able to see particles.
+Particles-Minimal-In-Client: <yellow>Vous avez défini les particules sur « minimum » dans les paramètres de votre client et vous ne pourrez donc pas voir les particules.
