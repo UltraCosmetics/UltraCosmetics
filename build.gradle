@@ -113,9 +113,10 @@ subprojects { subproj ->
         maven { url = 'https://jitpack.io' }
         // Paper API
         maven { url = 'https://repo.papermc.io/repository/maven-public/' }
-        // Mojang Authlib
+        // Mojang, Authlib
         maven { url = 'https://libraries.minecraft.net' }
     }
+
     def version = 17
     if (subproj.hasProperty('javaVersion')) {
         version = subproj.property('javaVersion')

@@ -1,4 +1,6 @@
 dependencies {
-    implementation project(":core")
+    // https://github.com/PaperMC/Paper
     compileOnly 'io.papermc.paper:paper-api:1.21.4-R0.1-SNAPSHOT'
+
+    implementation project(":core")
 }
