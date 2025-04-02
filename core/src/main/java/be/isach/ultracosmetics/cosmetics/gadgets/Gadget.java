@@ -212,8 +212,14 @@ public abstract class Gadget extends Cosmetic<GadgetType> implements UnmovableIt
             return false;
         }
 
+        // If a gadget name is the default color for the item, we won't actually see it
+        // in getDisplayName(), so we have to correct for that in the original display name.
+        String displayName = MessageManager.toLegacy(getItemDisplayName());
+        if (displayName.startsWith("§f")) {
+            displayName = displayName.substring(2);
+        }
         // Case sensitivity causes issues with hex color codes for some reason, even with MiniMessage
-        return stack.getItemMeta().getDisplayName().toLowerCase().equals(MessageManager.toLegacy(getItemDisplayName()).toLowerCase());
+        return stack.getItemMeta().getDisplayName().equalsIgnoreCase(displayName);
     }
 
     @Override
