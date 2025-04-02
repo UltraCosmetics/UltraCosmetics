@@ -32,7 +32,7 @@ dependencies {
     implementation 'com.zaxxer:HikariCP:4.0.3'
     implementation 'net.wesjd:anvilgui:1.9.3-SNAPSHOT'
     implementation 'me.gamercoder215:mobchip-bukkit:1.9.5-SNAPSHOT'
-    compileOnly 'com.discordsrv:discordsrv:1.28.0-SNAPSHOT'
+    compileOnly 'com.discordsrv:discordsrv:1.28.0'
     compileOnly 'me.soknight:peconomy:2.7.4-pre1'
     implementation "net.kyori:adventure-text-minimessage:4.17.0"
     implementation "net.kyori:adventure-platform-bukkit:4.3.2"

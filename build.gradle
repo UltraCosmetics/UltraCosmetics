@@ -132,7 +132,7 @@ subprojects { subproj ->
 
         // ChestSort
         maven {
-            url = 'https://hub.jeff-media.com/nexus/repository/jeff-media-public/'
+            url = 'https://repo.jeff-media.com/public'
         }
 
         // Towny
