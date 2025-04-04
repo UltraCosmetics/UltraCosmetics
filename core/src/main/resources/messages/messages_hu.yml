@@ -992,7 +992,7 @@ Morphs:
   CaveSpider:
     name: <bold><yellow>Bányapók
     skill: '<yellow>Bal klikkelj</yellow><gray> a </gray><green>háló csináláshoz'
-    Description: Egy pók, viszont mérgező!
+    Description: Olyan mint egy pók csak mérgesebb (Szó szerint)!
   Cod:
     name: <bold><yellow>Tőkehal
     skill: '<yellow>Bal klikkelj</yellow><gray> a </gray><green>háló csináláshoz'
@@ -1045,7 +1045,7 @@ Morphs:
     Description: Utálja a zombikat!
   Wither:
     name: <bold><dark_gray>Wither
-    Description: Vigyázz velem...
+    Description: Vigyázz, harapok...
   Skeleton:
     name: <bold><gray>Csontváz
     Description: Nem kancsal, csak néha!
@@ -1098,10 +1098,10 @@ Morphs:
     name: <bold><yellow>Ocelot
     Description: A Dzsungel Királya
   WanderingTrader:
-    name: <bold><dark_blue>Vándorfalusi
+    name: <bold><dark_blue>Vándorkereskedő
     Description: Sebby, <strikethrough>főznünk kell</strikethrough> el kell adnunk cuccokat!
   Pillager:
-    name: <bold><gray>Pillager
+    name: <bold><gray>Rabló
     Description: "Városokat rombol, gyújtogat...\nSzimpatikus természete van!"
   Ravager:
     name: <bold><dark_gray>Ravager
