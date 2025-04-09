@@ -116,22 +116,22 @@ Menu:
     Button:
       Name: <bold><yellow>Емоції
       Lore: '<gray>Розблоковано: </gray><white><unlocked>'
-      Tooltip-Equip: <bold><aqua>Активувати
-      Tooltip-Unequip: <bold><red>Деактивувати
+      Tooltip-Equip: <bold><aqua>Одягнути
+      Tooltip-Unequip: <bold><red>Зняти
   Projectile-Effects:
     Title: <bold>Ефекти снаряду
     Button:
       Name: <bold><dark_purple>Ефекти снаряду
       Lore: '<gray>Розблоковано: </gray><white><unlocked>'
-      Tooltip-Equip: <bold><aqua>Активувати
-      Tooltip-Unequip: <bold><red>Деактивувати
+      Tooltip-Equip: <bold><aqua>Одягнути
+      Tooltip-Unequip: <bold><red>Зняти
   Death-Effects:
     Title: <bold>Ефекти смерті
     Button:
       Name: <bold><red>Ефекти смерті
       Lore: '<gray>Розблоковано: </gray><white><unlocked>'
-      Tooltip-Equip: <bold><aqua>Активувати
-      Tooltip-Unequip: <bold><red>Деактивувати
+      Tooltip-Equip: <bold><aqua>Одягнути
+      Tooltip-Unequip: <bold><red>Зняти
   Buy-Ammo:
     Title: <bold>Купити бали
   Misc:
@@ -429,7 +429,7 @@ Mounts:
     Description: Ваш стандартний, повсякденний кінь
   Donkey:
     menu-name: <bold><dark_gray>Осел
-    entity-displayname: <bold>Осел гравця <playername>
+    entity-displayname: <bold>Віслюк гравця <playername>
     Description: Ваш стандартний, повсякденний віслюк
   Mule:
     menu-name: <bold><dark_gray>Мул
@@ -623,7 +623,7 @@ Pets:
   Mooshroom:
     menu-name: <bold><dark_red>Грибна корова
     entity-displayname: <bold>Грибна корова гравця <playername>
-    Description: Муууууу!
+    Description: МУУУУ!
   IronGolem:
     menu-name: <bold><gray>Голем
     entity-displayname: <bold>Голем гравця <playername>
@@ -891,11 +891,11 @@ Pets:
   Equip: <prefix> <blue>Ви заспавнили <petname>
   Unequip: <prefix> <blue>Ви задеспавнили <petname>
   Armadillo:
-    menu-name: <bold><gold>Armadillo
-    entity-displayname: <bold><playername>'s Armadillo
+    menu-name: <bold><gold>Броненосець
+    entity-displayname: <bold>Броненосець гравця <playername>
     Description: |-
-      Don't scare me,
-      or I'll roll up into a ball!
+      Не лякай мене,
+      а то я згорнуся в клубок!
 Morphs:
   Blaze:
     name: <bold><gold>Пломінь
@@ -948,7 +948,7 @@ Morphs:
   Cow:
     name: <bold><dark_gray>Корова
     skill: '<yellow>Лівий клік</yellow><gray> для: </gray><green>Муууу'
-    Description: Мууууу!
+    Description: МУУУУ!
   Sheep:
     name: <bold><white>Овечка
     skill: '<yellow>Лівий клік</yellow><gray> для: </gray><green>зміни кольору'
@@ -956,11 +956,11 @@ Morphs:
   Mooshroom:
     name: <bold><red>Грибна корова
     skill: '<yellow>Шифт</yellow><gray> для: </gray><green>Кидка супу'
-    Description: Мууууу!
+    Description: МУУУУ!
   Villager:
     name: <bold><green>Житель
     skill: '<yellow>Лівий клік</yellow><gray> для: </gray><green>Смарагдового кидка'
-    Description: Хммммммм
+    Description: Хмммммммммм
   Witch:
     name: <bold><dark_purple>Відьма
     skill: '<yellow>Лівий клік</yellow><gray> для: </gray><green>Кидка зіллям'
@@ -988,7 +988,7 @@ Morphs:
   Bee:
     name: <bold><yellow>Бджола
     skill: '<yellow>Подвійний стрибок</yellow><gray> для: </gray><green>Клаптя'
-    Description: '*бзззз* *бзззз*'
+    Description: '*дззз* *дззз*'
   Cat:
     name: <bold><yellow>Кіт
     skill: '<yellow>Лівий клік</yellow><gray> для: </gray><green>Мяу'
@@ -1006,7 +1006,7 @@ Morphs:
     skill: '<yellow>Лівий клік</yellow><gray> для: </gray><green>КХКХХХ'
     Description: Найщасливіше створіння морів!
   Donkey:
-    name: <bold><gray>Осел
+    name: <bold><gray>Віслюк
     skill: '<yellow>Лівий клік</yellow><gray> для: </gray><green>КХКХХХ'
     Description: Може перевозити всі ваші речі!
   Drowned:
@@ -1020,7 +1020,7 @@ Morphs:
   Evoker:
     name: <bold><gray>Евокер
     skill: '<yellow>Лівий клік</yellow><gray> для: </gray><green>КХКХХХ'
-    Description: Викликайте Бісиків, для життя!
+    Description: Викликає Бісиків, щоб жити!
   Frog:
     name: <bold><dark_green>Жаба
     skill: '<yellow>Лівий клік</yellow><gray> для: </gray><green>КХКХХХ'
@@ -1058,7 +1058,7 @@ Morphs:
     Description: Мозок!!!
   Squid:
     name: <bold><light_purple>Кальмар
-    Description: Блуп, блуп, блуп!
+    Description: Блуп-Блуп!
   Spider:
     name: <bold><dark_gray>Павук
     Description: ШИПІННЯ...
@@ -1118,7 +1118,7 @@ Morphs:
     Description: Вони дуже смачні!
   TropicalFish:
     name: <bold><yellow>Тропічна риба
-    Description: Барвиста рибка!
+    Description: Кольорова рибка!
   Turtle:
     name: <bold><green>Черепаха
     Description: Не поспішай.
@@ -1232,13 +1232,13 @@ Hats:
     Description: Хрю! Хрю!
   Cow:
     Name: <bold><green>Корова
-    Description: Мууууу!
+    Description: МУУУУ!
   Mooshroom:
     Name: <bold><red>Грибна корова
-    Description: Мууууу!
+    Description: МУУУУ!
   BrownMooshroom:
     Name: <bold><aqua>Коричнева Грибна корова
-    Description: Мууууу!
+    Description: МУУУУ!
   Moobloom:
     Name: <bold><yellow>Мооблум
     Description: Дуже рідкісна корова!
@@ -1867,4 +1867,4 @@ Must-Remove:
 Use-Rename-Pet-Command: <prefix> <red>використовувати <yellow>/uc rename</yellow> для перейменувати
 Commands-Disabled-During-Chest: <prefix> <bold><red>Ви не можете використовувати команди з відкритою скринею!
 No-Buy-Key-Permission: <prefix> <red><bold>Ви не маєте дозволу на придбання ключів скарбів!
-Particles-Minimal-In-Client: <yellow>You have particles set to "minimal" in your client settings and so you won't be able to see particles.
+Particles-Minimal-In-Client: <yellow>У налаштуваннях клієнту частинки встановлено на "мінімальне" значення, тож Ви не зможете їх бачити.

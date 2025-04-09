@@ -673,7 +673,7 @@ Pets:
     entity-displayname: <bold><playername>'s Gold Dealer
     Description: Deals with Gold!
   Slime:
-    menu-name: <bold><green>Slime
+    menu-name: <bold><green>Lima
     entity-displayname: <bold><playername>'s Slime
     Description: Squish...
   Bee:
@@ -924,7 +924,7 @@ Morphs:
     skill: '<yellow>Double Jump</yellow><gray> to: </gray><green>Flap'
     Description: Become a bat!
   Creeper:
-    name: <bold><green>Lurkki
+    name: <bold><green>Creeper
     skill: '<yellow>Sneak</yellow><gray> to: </gray><green>Detonate'
     charging: '<bold><green>Charging: <chargelevel>/100'
     release-to-explode: <bold><white>Release to explode!
@@ -1226,7 +1226,7 @@ Hats:
     Description: Have you got the redstone?
   Sheep:
     Name: <bold><white>Lammas
-    Description: <italic><gray>Baaaa, baa
+    Description: Baaaa, baa
   Pig:
     Name: <bold><light_purple>Possu
     Description: <italic><gray>Oink Oink!
