@@ -42,7 +42,7 @@ dependencies {
     // https://github.com/brettwooldridge/HikariCP
     library 'com.zaxxer:HikariCP:6.3.0'
     // https://github.com/WesJD/AnvilGUI
-    implementation 'net.wesjd:anvilgui:1.10.4-SNAPSHOT'
+    implementation 'net.wesjd:anvilgui:1.10.5-SNAPSHOT'
     // https://github.com/datatags/MobChipLite
     implementation 'com.github.datatags.MobChipLite:mobchip-bukkit:1.10.9'
     // keep for testing purposes
