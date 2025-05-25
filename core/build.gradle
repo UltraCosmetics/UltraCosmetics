@@ -32,7 +32,7 @@ dependencies {
     // https://github.com/Bastian/bstats-metrics
     implementation 'org.bstats:bstats-bukkit:3.1.0'
     // https://github.com/LuckPerms/LuckPerms
-    compileOnly 'net.luckperms:api:5.4'
+    compileOnly 'net.luckperms:api:5.5'
     // https://github.com/ArcanePlugins/Treasury
     compileOnly 'me.lokka30:treasury-api:2.0.2-SNAPSHOT'
     // https://github.com/JEFF-Media-GbR/Spigot-ChestSortAPI
