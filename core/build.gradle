@@ -54,7 +54,7 @@ dependencies {
     // https://github.com/KyoriPowered/adventure
     implementation 'net.kyori:adventure-text-minimessage:4.21.0'
     implementation 'net.kyori:adventure-platform-bukkit:4.4.0'
-    implementation 'net.kyori:adventure-text-serializer-plain:4.21.0'
+    implementation 'net.kyori:adventure-text-serializer-plain:4.22.0'
     implementation 'net.kyori:adventure-api:4.22.0'
     // https://github.com/TechnicallyCoded/FoliaLib
     implementation 'com.github.technicallycoded:FoliaLib:0.4.4'
