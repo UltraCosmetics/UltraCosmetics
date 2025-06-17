@@ -55,7 +55,7 @@ dependencies {
     implementation 'net.kyori:adventure-text-minimessage:4.21.0'
     implementation 'net.kyori:adventure-platform-bukkit:4.4.0'
     implementation 'net.kyori:adventure-text-serializer-plain:4.21.0'
-    implementation 'net.kyori:adventure-api:4.21.0'
+    implementation 'net.kyori:adventure-api:4.22.0'
     // https://github.com/TechnicallyCoded/FoliaLib
     implementation 'com.github.technicallycoded:FoliaLib:0.4.4'
     // https://www.spigotmc.org/resources/%E2%AD%90-player-auctions-%E2%AD%90-%E2%9E%A2-let-your-players-sell-items-1-7-1-20-4.83073
