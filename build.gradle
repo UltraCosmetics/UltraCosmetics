@@ -31,13 +31,8 @@ allprojects {
         compile.extendsFrom shaded
     }
 
-    def getGitHash = { ->
-        def stdout = new ByteArrayOutputStream()
-        exec {
-            commandLine 'git', 'rev-parse', '--short', 'HEAD'
-            standardOutput = stdout
-        }
-        return stdout.toString().trim()
+    def gitVersionProvider = providers.exec {
+        commandLine 'git', 'rev-parse', '--short', 'HEAD'
     }
 
     processResources {
@@ -45,7 +40,7 @@ allprojects {
 
         filter ReplaceTokens, tokens: [
                 'VERSION' : project.version,
-                'GIT-HASH': getGitHash()
+                'GIT-HASH': gitVersionProvider.standardOutput.asText.get().trim()
         ]
     }
 
@@ -61,11 +56,17 @@ allprojects {
     }
 }
 
-defaultTasks 'obfuscate'
+defaultTasks 'build'
 
-subprojects.each {
-    if (!it.hasProperty('remapMcVersion')) return
-    tasks.register('obf' + it.name, VersionedObfTask, it)
+tasks {
+    compileJava {
+        dependsOn "core:jar"
+        subprojects.forEach {
+            if (it.hasProperty("remapMcVersion")) {
+                dependsOn("${it.path}:assemble")
+            }
+        }
+    }
 }
 
 dependencies {
@@ -129,49 +130,6 @@ subprojects { subproj ->
             languageVersion = JavaLanguageVersion.of(version)
         }
     }
-}
-
-abstract class VersionedObfTask extends DefaultTask {
-    private Project subproj;
-
-    @Inject
-    public VersionedObfTask(Project subproj) {
-        this.subproj = subproj
-        dependsOn 'jar'
-        description 'Generates an obfuscated version of the jar for use with Spigot.'
-        group = 'jar preparation'
-        ext.toolingDir = System.getProperty('user.dir')
-        ext.homeDir = project.gradle.gradleUserHomeDir.parent
-    }
-
-    @TaskAction
-    def go() {
-        def nms = subproj.name
-        def mcVer = subproj.getProperty('remapMcVersion')
-        def filename = project.tasks.jar.archiveFileName.get()
-        project.exec {
-            workingDir project.buildDir
-            commandLine 'java', '-cp', ext.toolingDir + '/tooling/specialsource/SpecialSource.jar' + File.pathSeparator + ext.homeDir + "/.m2/repository/org/spigotmc/spigot/$mcVer-R0.1-SNAPSHOT/spigot-$mcVer-R0.1-SNAPSHOT-remapped-mojang.jar",
-                    'net.md_5.specialsource.SpecialSource', '--live', '--only', "be/isach/ultracosmetics/$nms", '-q',
-                    '-i', 'libs/' + filename,
-                    '-o', 'libs/obfuscated-donotuse-' + filename,
-                    '-m', ext.homeDir + "/.m2/repository/org/spigotmc/minecraft-server/$mcVer-R0.1-SNAPSHOT/minecraft-server-$mcVer-R0.1-SNAPSHOT-maps-mojang.txt",
-                    '--reverse'
-        }
-        project.exec {
-            workingDir project.buildDir
-            commandLine 'java', '-cp', ext.toolingDir + '/tooling/specialsource/SpecialSource.jar' + File.pathSeparator + ext.homeDir + "/.m2/repository/org/spigotmc/spigot/$mcVer-R0.1-SNAPSHOT/spigot-$mcVer-R0.1-SNAPSHOT-remapped-obf.jar",
-                    'net.md_5.specialsource.SpecialSource', '--live', '--only', "be/isach/ultracosmetics/$nms", '-q',
-                    '-i', 'libs/obfuscated-donotuse-' + filename,
-                    '-o', 'libs/' + filename,
-                    '-m', ext.homeDir + "/.m2/repository/org/spigotmc/minecraft-server/$mcVer-R0.1-SNAPSHOT/minecraft-server-$mcVer-R0.1-SNAPSHOT-maps-spigot.csrg"
-        }
-    }
-}
-
-tasks.register('obfuscate') {
-    dependsOn tasks.withType(VersionedObfTask)
-    group = 'jar preparation'
 }
 
 boolean isDependencyInstalled(String version) {

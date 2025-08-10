@@ -1,6 +1,20 @@
+plugins {
+    id "io.github.patrick.remapper" version "1.4.2"
+}
+
 dependencies {
     // https://hub.spigotmc.org/stash/projects/SPIGOT/repos/spigot/browse
-    implementation 'org.spigotmc:spigot:1.21.8-R0.1-SNAPSHOT:remapped-mojang'
+    implementation "org.spigotmc:spigot:$remapMcVersion-R0.1-SNAPSHOT:remapped-mojang"
 
     implementation project(':core')
+}
+
+tasks {
+    assemble {
+        dependsOn('remap')
+    }
+
+    remap {
+        version.set(remapMcVersion)
+    }
 }
