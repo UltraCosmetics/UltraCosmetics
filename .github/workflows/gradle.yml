@@ -73,7 +73,7 @@ jobs:
         run: ./gradlew validateLibraryLoaderDeps prepareDependencies --no-daemon
 
       - name: Build project
-        run: ./gradlew obfuscate --no-daemon
+        run: ./gradlew build --no-daemon
 
       # https://github.com/actions/upload-artifact
       - name: Upload build artifact
