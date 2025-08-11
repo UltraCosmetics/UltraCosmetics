@@ -25,7 +25,7 @@ jobs:
     steps:
       # https://github.com/actions/checkout
       - name: Checkout repository
-        uses: actions/checkout@v4.2.2
+        uses: actions/checkout@v4.3.0
 
       # https://github.com/actions/setup-java
       - name: Set up JDK 21

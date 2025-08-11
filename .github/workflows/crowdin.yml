@@ -15,7 +15,7 @@ jobs:
     steps:
       # https://github.com/actions/checkout
       - name: Check out Git repository
-        uses: actions/checkout@v4.2.2
+        uses: actions/checkout@v4.3.0
 
       # https://github.com/crowdin/github-action
       - name: Crowdin action
