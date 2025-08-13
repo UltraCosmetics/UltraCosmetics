@@ -3,7 +3,7 @@ plugins {
 }
 
 dependencies {
-    // https://hub.spigotmc.org/stash/projects/SPIGOT/repos/spigot/browse
+    // https://hub.spigotmc.org/stash/projects/SPIGOT/repos/spigot
     implementation "org.spigotmc:spigot:$remapMcVersion-R0.1-SNAPSHOT:remapped-mojang"
 
     implementation project(':core')

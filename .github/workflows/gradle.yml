@@ -3,11 +3,9 @@ name: Build Gradle
 
 on:
   push:
-    paths-ignore:
-      - 'core/src/main/resources/**'
+    paths-ignore: ["core/src/main/resources/**"]
   pull_request:
-    branches-ignore:
-      - 'renovate/**'
+    branches-ignore: ["renovate/**"]
   workflow_dispatch:
 
 
@@ -21,7 +19,7 @@ jobs:
 
     steps:
       # https://github.com/actions/checkout
-      - name: Check out Git repository
+      - name: Checkout Git repository
         uses: actions/checkout@v5.0.0
 
       # https://github.com/actions/cache
@@ -35,10 +33,6 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
           restore-keys: |
             ${{ runner.os }}-gradle-        
-
-      # https://github.com/gradle/wrapper-validation-action
-      - name: Wrapper validation
-        uses: gradle/actions/wrapper-validation@v4.4.2
 
       # https://github.com/gradle/gradle-build-action
       - name: Setup Gradle

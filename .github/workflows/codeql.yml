@@ -24,7 +24,7 @@ jobs:
 
     steps:
       # https://github.com/actions/checkout
-      - name: Checkout repository
+      - name: Checkout Git repository
         uses: actions/checkout@v5.0.0
 
       # https://github.com/actions/setup-java
@@ -44,9 +44,7 @@ jobs:
           languages: 'java'
 
       - name: Build project for test
-        run: |
-          echo "Run, Build Application using script"
-          ./gradlew --no-daemon -S core:testClasses
+        run: ./gradlew --no-daemon -S core:testClasses
 
       # https://github.com/github/codeql-action
       - name: Perform CodeQL Analysis

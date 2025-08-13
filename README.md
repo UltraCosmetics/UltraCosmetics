@@ -106,13 +106,8 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 ```
 
 [discord-invite]: https://discord.gg/PgSXZT37JV
-
 [wiki-link]: https://github.com/UltraCosmetics/UltraCosmetics/wiki
-
 [spigotmc-link]: https://www.spigotmc.org/resources/10905/
-
 [crowdin-link]: https://crowdin.com/project/ultracosmetics
-
 [github-releases-link]: https://github.com/UltraCosmetics/UltraCosmetics/releases
-
 [modrinth-link]: https://modrinth.com/plugin/ultracosmetics

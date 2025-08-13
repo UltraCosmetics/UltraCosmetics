@@ -7,9 +7,9 @@ plugins {
 
 dependencies {
     // Depend on a jar in the 'core' folder: fileTree(dir: '.', include: ['*.jar'])
-    // https://hub.spigotmc.org/stash/projects/SPIGOT/repos/spigot/browse
+    // https://hub.spigotmc.org/stash/projects/SPIGOT/repos/spigot
     compileOnly 'org.spigotmc:spigot-api:1.21.8-R0.1-SNAPSHOT'
-    // https://github.com/libraryaddict/LibsDisguises/
+    // https://github.com/libraryaddict/LibsDisguises
     compileOnly('LibsDisguises:LibsDisguises:10.0.44') {
         exclude group: 'org.spigotmc'
         exclude group: 'com.comphenix.protocol'

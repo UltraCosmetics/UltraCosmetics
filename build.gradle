@@ -1,7 +1,7 @@
 import org.apache.tools.ant.filters.ReplaceTokens
 
 allprojects {
-    apply plugin: 'java-library'
+    apply plugin: 'java'
     apply plugin: 'eclipse'
     apply plugin: 'idea'
     apply plugin: 'maven-publish'
@@ -60,9 +60,10 @@ defaultTasks 'build'
 
 tasks {
     compileJava {
-        dependsOn "core:jar"
         subprojects.forEach {
-            if (it.hasProperty("remapMcVersion")) {
+            if (it.name == 'core') {
+                dependsOn "core:jar"
+            } else {
                 dependsOn("${it.path}:assemble")
             }
         }
@@ -87,36 +88,36 @@ subprojects { subproj ->
         // mavenCentral()
         // Instead of real maven central we use the maven mirror Paper uses, to ensure all the dependencies we want will
         // also be available to the library loader.
-        maven { url = 'https://maven-central.storage-download.googleapis.com/maven2/' }
+        maven { url = 'https://maven-central.storage-download.googleapis.com/maven2' }
 
         // AnvilGUI, Treasury
-        maven { url = 'https://repo.codemc.io/repository/maven-snapshots/' }
+        maven { url = 'https://repo.codemc.io/repository/maven-snapshots' }
         // Lib's Disguises
-        maven { url = 'https://repo.md-5.net/content/groups/public/' }
+        maven { url = 'https://repo.md-5.net/content/groups/public' }
         // WorldEdit
         maven { url = 'https://repo.aikar.co/nexus/content/groups/aikar' }
         // BungeeCord
         maven { url = 'https://oss.sonatype.org/content/repositories/snapshots' }
         // PlaceholderAPI
-        maven { url = 'https://repo.extendedclip.com/content/repositories/placeholderapi/' }
+        maven { url = 'https://repo.extendedclip.com/content/repositories/placeholderapi' }
         // PlayerPoints
-        maven { url = 'https://repo.rosewooddev.io/repository/public/' }
+        maven { url = 'https://repo.rosewooddev.io/repository/public' }
         // SpigotMC
-        maven { url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/' }
+        maven { url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots' }
         // DiscordSRV
-        maven { url = 'https://nexus.scarsz.me/content/groups/public/' }
+        maven { url = 'https://nexus.scarsz.me/content/groups/public' }
         // ChestSort
-        maven { url = 'https://repo.jeff-media.com/public/' }
+        maven { url = 'https://repo.jeff-media.com/public' }
         // Towny
-        maven { url = 'https://repo.glaremasters.me/repository/towny/' }
+        maven { url = 'https://repo.glaremasters.me/repository/towny' }
         // PlayerAuctions
-        maven { url = 'https://repo.olziedev.com/' }
+        maven { url = 'https://repo.olziedev.com' }
         // WorldGuard
-        maven { url = 'https://maven.enginehub.org/repo/' }
+        maven { url = 'https://maven.enginehub.org/repo' }
         // Vault, PEconomy, MobChipLite, FoliaLib
         maven { url = 'https://jitpack.io' }
         // Paper API
-        maven { url = 'https://repo.papermc.io/repository/maven-public/' }
+        maven { url = 'https://repo.papermc.io/repository/maven-public' }
         // Mojang Authlib
         maven { url = 'https://libraries.minecraft.net' }
     }

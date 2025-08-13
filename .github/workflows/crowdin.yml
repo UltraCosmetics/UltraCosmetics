@@ -3,18 +3,18 @@ name: Crowdin
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   workflow_dispatch:
 
 
 jobs:
   synchronize-with-crowdin:
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     steps:
       # https://github.com/actions/checkout
-      - name: Check out Git repository
+      - name: Checkout Git repository
         uses: actions/checkout@v5.0.0
 
       # https://github.com/crowdin/github-action
