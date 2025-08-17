@@ -21,7 +21,7 @@ dependencies {
     // https://github.com/PlaceholderAPI/PlaceholderAPI
     compileOnly 'me.clip:placeholderapi:2.11.6'
     // https://github.com/Rosewood-Development/PlayerPoints
-    compileOnly 'org.black_ixx:playerpoints:3.3.2'
+    compileOnly 'org.black_ixx:playerpoints:3.3.3'
     // https://github.com/EngineHub/WorldGuard
     compileOnly 'com.sk89q.worldguard:worldguard-bukkit:7.0.9'
     compileOnly 'com.mojang:authlib:2.3.31'
