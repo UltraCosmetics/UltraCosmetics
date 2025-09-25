@@ -39,7 +39,7 @@ jobs:
 
       # https://github.com/github/codeql-action
       - name: Initialize CodeQL
-        uses: github/codeql-action/init@v3.30.3
+        uses: github/codeql-action/init@v3.30.4
         with:
           languages: 'java'
 
@@ -48,4 +48,4 @@ jobs:
 
       # https://github.com/github/codeql-action
       - name: Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@v3.30.3
+        uses: github/codeql-action/analyze@v3.30.4
