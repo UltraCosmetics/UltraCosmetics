@@ -38,7 +38,6 @@ jobs:
         uses: gradle/actions/setup-gradle@v5.0.0
         with:
           gradle-version: wrapper
-          cache-overwrite-existing: true
 
       # https://github.com/actions/setup-java
       - name: Setup JDK 17
@@ -48,7 +47,6 @@ jobs:
           java-version: '17'
           java-package: jdk
           architecture: x64
-          cache: gradle
 
       # https://github.com/actions/setup-java
       - name: Setup JDK 21
@@ -58,7 +56,6 @@ jobs:
           java-version: '21'
           java-package: jdk
           architecture: x64
-          cache: gradle
 
       - name: Configure Git
         run: git config --global user.name "Github Actions" && git config --global user.email "actions@github.com"
