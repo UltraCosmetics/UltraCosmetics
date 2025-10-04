@@ -127,8 +127,8 @@ bukkit {
 publishing {
     publications {
         pluginMaven(MavenPublication) {
-            groupId project.group
             //artifactId project.name
+            groupId project.group
             version project.version
             from components.java
         }
