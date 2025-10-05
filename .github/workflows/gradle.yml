@@ -38,6 +38,7 @@ jobs:
         uses: gradle/actions/setup-gradle@v5.0.0
         with:
           gradle-version: wrapper
+          cache-overwrite-existing: true
 
       # https://github.com/actions/setup-java
       - name: Setup JDK 17
