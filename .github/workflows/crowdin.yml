@@ -26,12 +26,12 @@ jobs:
           download_translations: true
           download_sources: true
           create_pull_request: true
-          pull_request_base_branch_name: 'main'
-          localization_branch_name: 'l10n_main'
-          commit_message: '[ci-skip] Commit new translations'
-          pull_request_assignees: 'datatags'
-          pull_request_title: 'New translations'
-          pull_request_body: 'New translations are available via [Crowdin](https://crowdin.com/project/ultracosmetics)!'
+          pull_request_base_branch_name: main
+          localization_branch_name: l10n_main
+          commit_message: "[ci-skip] Commit new translations"
+          pull_request_assignees: datatags
+          pull_request_title: "New translations"
+          pull_request_body: "New translations are available via [Crowdin](https://crowdin.com/project/ultracosmetics)!"
         env:
           # A classic GitHub Personal Access Token with the 'repo' scope selected (the user should have write access to the repository).
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}

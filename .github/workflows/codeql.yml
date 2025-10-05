@@ -31,17 +31,16 @@ jobs:
       - name: Setup JDK 21
         uses: actions/setup-java@v5.0.0
         with:
-          distribution: 'temurin'
-          java-version: '21'
+          distribution: temurin
+          java-version: 21
           java-package: jdk
           architecture: x64
-          cache: gradle
 
       # https://github.com/github/codeql-action
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v3.30.6
         with:
-          languages: 'java'
+          languages: java
 
       - name: Build project for test
         run: ./gradlew --no-daemon -S core:testClasses
