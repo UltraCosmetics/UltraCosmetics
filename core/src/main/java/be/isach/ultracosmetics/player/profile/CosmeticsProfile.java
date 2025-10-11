@@ -77,6 +77,10 @@ public abstract class CosmeticsProfile {
         data.getEnabledCosmetics().clear();
     }
 
+    public boolean hasAnyEquipped() {
+        return !data.getEnabledCosmetics().isEmpty();
+    }
+
     public int getAmmo(GadgetType gadget) {
         return data.getAmmo().getOrDefault(gadget, 0);
     }

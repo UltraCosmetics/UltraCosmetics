@@ -37,12 +37,12 @@ public class SubCommandTreasure extends SubCommand {
     @Override
     protected void onExeAnyone(CommandSender sender, String[] args) {
         if (args.length < 2 && !(sender instanceof Player)) {
-            sender.sendMessage(ChatColor.RED + "You must specify a player.");
+            MessageManager.send(sender, "Must-Specify-Player");
             return;
         }
 
         if (args.length > 6) {
-            sender.sendMessage(ChatColor.RED + "" + ChatColor.BOLD + "Incorrect Usage! " + getUsage());
+            badUsage(sender);
             return;
         }
 
@@ -54,7 +54,7 @@ public class SubCommandTreasure extends SubCommand {
         } else {
             opener = Bukkit.getPlayer(args[1]);
             if (opener == null) {
-                sender.sendMessage(ChatColor.RED + "" + ChatColor.BOLD + "Player " + args[1] + " not found!");
+                MessageManager.send(sender, "Invalid-Player");
                 return;
             }
         }

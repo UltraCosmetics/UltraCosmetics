@@ -33,58 +33,96 @@ public class SubCommandToggle extends SubCommand {
 
     @Override
     protected void onExePlayer(Player sender, String[] args) {
-        if (args.length < 3 || args.length > 4) {
+        // Usage patterns:
+        // /uc toggle
+        // /uc toggle Player
+        // /uc toggle hats a
+        // /uc toggle hats a Player
+        if (args.length < 1 || args.length > 4) {
             badUsage(sender);
             return;
         }
 
         Player target;
-        if (args.length > 3) {
+        if (args.length == 2 || args.length == 4) {
             // null check later
-            target = Bukkit.getPlayer(args[3]);
+            target = Bukkit.getPlayer(args[args.length - 1]);
         } else {
             target = sender;
         }
 
-        toggle(sender, target, args[1].toLowerCase(Locale.ROOT), args[2].toLowerCase(Locale.ROOT));
+        if (args.length < 3) {
+            toggleAll(sender, target);
+        } else {
+            toggle(sender, target, args[1].toLowerCase(Locale.ROOT), args[2].toLowerCase(Locale.ROOT));
+        }
     }
 
     @Override
     protected void onExeAnyone(CommandSender sender, String[] args) {
-        if (args.length != 4) {
-            badUsage(sender, "/uc toggle <type> <cosmetic> <player>");
+        if (args.length != 2 && args.length != 4) {
+            badUsage(sender, "/uc toggle [<type> <cosmetic>] <player>");
             return;
         }
 
         toggle(sender, Bukkit.getPlayer(args[3]), args[1].toLowerCase(Locale.ROOT), args[2].toLowerCase(Locale.ROOT));
     }
 
-    private void toggle(CommandSender sender, Player targetPlayer, String type, String cosm) {
+    private UltraPlayer commonChecks(CommandSender sender, Player targetPlayer) {
         if (sender != targetPlayer && !sender.hasPermission(getPermission().getName() + ".others")) {
-            error(sender, "You do not have permission to toggle cosmetics for others.");
-            return;
+            MessageManager.send(sender, "No-Permission");
+            return null;
         }
 
         UltraPlayer target = ultraCosmetics.getPlayerManager().getUltraPlayer(targetPlayer);
         if (target == null) {
-            error(sender, "Invalid player.");
-            return;
+            MessageManager.send(sender, "Invalid-Player");
+            return null;
         }
 
         if (!SettingsManager.isAllowedWorld(target.getBukkitPlayer().getWorld())) {
             MessageManager.send(sender, "World-Disabled");
+            return null;
+        }
+
+        return target;
+    }
+
+    private void toggleAll(CommandSender sender, Player targetPlayer) {
+        UltraPlayer target = commonChecks(sender, targetPlayer);
+        if (target == null) {
+            return;
+        }
+
+        if (!target.getProfile().hasAnyEquipped()) {
+            error(sender, "Please specify the cosmetic to toggle");
+            return;
+        }
+
+        if (target.hasCosmeticsEquipped()) {
+            target.withPreserveEquipped(target::clear);
+            MessageManager.send(sender, "Cosmetics-Toggled-Off");
+        } else {
+            target.getProfile().equip();
+            MessageManager.send(sender, "Cosmetics-Toggled-On");
+        }
+    }
+
+    private void toggle(CommandSender sender, Player targetPlayer, String type, String cosm) {
+        UltraPlayer target = commonChecks(sender, targetPlayer);
+        if (target == null) {
             return;
         }
 
         Optional<Category> categories = Arrays.stream(Category.values()).filter(category -> category.isEnabled() && category.toString().toLowerCase(Locale.ROOT).startsWith(type)).findFirst();
         if (categories.isEmpty()) {
-            error(sender, "Invalid category.");
+            MessageManager.send(sender, "Invalid-Category");
             return;
         }
         Category category = categories.get();
         CosmeticType<?> matchingType = findCosmetic(category, cosm);
         if (matchingType == null) {
-            error(sender, "Invalid cosmetic.");
+            MessageManager.send(sender, "Invalid-Cosmetic");
             return;
         }
         if (target.getCosmetic(category) != null && matchingType == target.getCosmetic(category).getType()) {

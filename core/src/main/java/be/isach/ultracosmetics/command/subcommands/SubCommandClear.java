@@ -2,9 +2,9 @@ package be.isach.ultracosmetics.command.subcommands;
 
 import be.isach.ultracosmetics.UltraCosmetics;
 import be.isach.ultracosmetics.command.SubCommand;
+import be.isach.ultracosmetics.config.MessageManager;
 import be.isach.ultracosmetics.cosmetics.Category;
 import be.isach.ultracosmetics.player.UltraPlayer;
-
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -30,19 +30,19 @@ public class SubCommandClear extends SubCommand {
             if (sender instanceof Player) {
                 target = (Player) sender;
             } else {
-                error(sender, "You must specify a player.");
+                MessageManager.send(sender, "Must-Specify-Player");
                 return;
             }
         } else {
             target = Bukkit.getPlayer(args[1]);
             if (target == null) {
-                error(sender, "Player " + args[1] + " not found!");
+                MessageManager.send(sender, "Invalid-Player");
                 return;
             }
         }
 
         if (target != sender && !sender.hasPermission(getPermission() + ".others")) {
-            error(sender, "You do not have permission to clear others.");
+            MessageManager.send(sender, "No-Permission");
             return;
         }
 
@@ -55,7 +55,7 @@ public class SubCommandClear extends SubCommand {
 
         Category cat = Category.fromString(args[2]);
         if (cat == null) {
-            error(sender, "Invalid cosmetic type.");
+            MessageManager.send(sender, "Invalid-Category");
             return;
         }
         up.removeCosmetic(cat);

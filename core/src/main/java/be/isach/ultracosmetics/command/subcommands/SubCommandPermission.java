@@ -2,9 +2,9 @@ package be.isach.ultracosmetics.command.subcommands;
 
 import be.isach.ultracosmetics.UltraCosmetics;
 import be.isach.ultracosmetics.command.SubCommand;
+import be.isach.ultracosmetics.config.MessageManager;
 import be.isach.ultracosmetics.cosmetics.Category;
 import be.isach.ultracosmetics.cosmetics.type.CosmeticType;
-
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
@@ -39,7 +39,7 @@ public class SubCommandPermission extends SubCommand {
             }
             unlock = false;
         } else {
-            error(sender, "Must provide 'add' or 'remove' for first arg");
+            badUsage(sender);
             return;
         }
 
@@ -48,13 +48,13 @@ public class SubCommandPermission extends SubCommand {
             if (sender instanceof Player) {
                 target = (Player) sender;
             } else {
-                error(sender, "A target player is required.");
+                MessageManager.send(sender, "Must-Specify-Player");
                 return;
             }
         } else {
             target = Bukkit.getPlayer(args[4]);
             if (target == null) {
-                error(sender, "Invalid player: " + args[4]);
+                MessageManager.send(sender, "Invalid-Player");
                 return;
             }
         }

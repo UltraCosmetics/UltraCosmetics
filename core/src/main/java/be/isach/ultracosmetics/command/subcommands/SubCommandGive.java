@@ -7,6 +7,7 @@ import be.isach.ultracosmetics.cosmetics.Category;
 import be.isach.ultracosmetics.cosmetics.type.CosmeticType;
 import be.isach.ultracosmetics.cosmetics.type.GadgetType;
 import be.isach.ultracosmetics.util.MathUtils;
+import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
@@ -48,13 +49,13 @@ public class SubCommandGive extends SubCommand {
             if (sender instanceof Player) {
                 target = (Player) sender;
             } else {
-                error(sender, "You must specify a player.");
+                MessageManager.send(sender, "Must-Specify-Player");
                 return;
             }
         } else {
             target = Bukkit.getPlayer(args[targetArg]);
             if (target == null) {
-                error(sender, "Player " + args[3] + " not found!");
+                MessageManager.send(sender, "Invalid-Player");
                 return;
             }
         }
@@ -63,7 +64,7 @@ public class SubCommandGive extends SubCommand {
             int keys = 1;
             if (args.length > 2) { // if amount arg supplied
                 if (!MathUtils.isInteger(args[2])) {
-                    error(sender, args[2] + " isn't a number!");
+                    MessageManager.send(sender, "Invalid-Number", Placeholder.unparsed("value", args[2]));
                     return;
                 }
                 keys = Integer.parseInt(args[2]);
@@ -72,6 +73,8 @@ public class SubCommandGive extends SubCommand {
             // negative keys is fine, see comment on addAmmo
             addKeys(target, keys);
 
+            MessageManager.send(sender, "Treasure-Keys-Given",
+                    Placeholder.unparsed("keys", String.valueOf(keys)), Placeholder.unparsed("playername", target.getName()));
             sender.sendMessage(ChatColor.GREEN.toString() + keys + " treasure keys given to " + target.getName());
             return;
         }
@@ -93,7 +96,7 @@ public class SubCommandGive extends SubCommand {
         }
 
         if (!MathUtils.isInteger(args[3])) {
-            error(sender, args[3] + " isn't a number!");
+            MessageManager.send(sender, "Invalid-Number", Placeholder.unparsed("value", args[3]));
             return;
         }
 
@@ -103,7 +106,8 @@ public class SubCommandGive extends SubCommand {
         int ammo = Integer.parseInt(args[3]);
 
         addAmmo(gadgetType, target, ammo);
-        sender.sendMessage(ChatColor.GREEN.toString() + ammo + " " + gadgetType.toString().toLowerCase(Locale.ROOT) + " ammo given to " + target.getName());
+        MessageManager.send(sender, "Ammo-Given", Placeholder.unparsed("ammo", String.valueOf(ammo)),
+                Placeholder.unparsed("gadgetname", gadgetType.toString()), Placeholder.unparsed("playername", target.getName()));
     }
 
     private void addKeys(Player player, int amount) {

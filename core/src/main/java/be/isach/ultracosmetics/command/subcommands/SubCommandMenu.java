@@ -37,12 +37,12 @@ public class SubCommandMenu extends SubCommand {
         if (args.length > 3) {
             player = Bukkit.getPlayer(args[3]);
             if (player == null) {
-                error(sender, "Player not found");
+                MessageManager.send(sender, "Invalid-Player");
                 return;
             }
         } else {
             if (!(sender instanceof Player)) {
-                error(sender, "You must specify a player");
+                MessageManager.send(sender, "Must-Specify-Player");
                 return;
             }
             player = (Player) sender;
@@ -71,7 +71,7 @@ public class SubCommandMenu extends SubCommand {
             return;
         } else if (s.startsWith("r") && SettingsManager.getConfig().getBoolean("Pets-Rename.Enabled")) {
             if (SettingsManager.getConfig().getBoolean("Pets-Rename.Permission-Required") && !sender.hasPermission("ultracosmetics.pets.rename")) {
-                error(sender, "You don't have permission.");
+                MessageManager.send(sender, "No-Permission");
                 return;
             }
             if (ultraPlayer.getCurrentPet() == null) {
