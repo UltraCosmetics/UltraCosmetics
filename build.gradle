@@ -12,7 +12,7 @@ allprojects {
     idea.module.downloadSources = true
 
     group = 'be.isach.UltraCosmetics'
-    version = '3.14-DEV-b2'
+    version = '3.14-RELEASE'
 
     tasks.withType(JavaCompile) {
         options.encoding = 'UTF-8'
