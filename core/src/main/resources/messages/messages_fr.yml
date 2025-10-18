@@ -1842,8 +1842,8 @@ Death-Effects:
     name: <bold><white>Foudre
     Description: '⚡ ZAP!'
   PuffOfSmoke:
-    Description: Disappear in a puff of smoke!
-    name: <bold><gray>Puff of Smoke
+    Description: Disparaître dans une bouffée de fumée !
+    name: <bold><gray>Bouffée de fumée
 Enabled-SelfMorphView: <prefix> <blue>Vous avez activé l'auto-affichage pour les morphes !
 Disabled-SelfMorphView: <prefix> <blue>Vous avez désactivé l'auto-affichage pour les morphes !
 Enabled-Gadgets: <prefix> <blue>Vous avez activé les gadgets !
@@ -1870,12 +1870,12 @@ Use-Rename-Pet-Command: <prefix> <red>Utiliser <yellow>/uc rename</yellow> pour 
 Commands-Disabled-During-Chest: <prefix> <bold><red>Vous ne pouvez pas utiliser de commandes lorsque vous ouvrez un coffre !
 No-Buy-Key-Permission: <prefix><red><bold>Tu n'as pas la permission d'acheter des clés !
 Particles-Minimal-In-Client: <yellow>Vous avez défini les particules sur « minimum » dans les paramètres de votre client et vous ne pourrez donc pas voir les particules.
-Cosmetics-Toggled-Off: <prefix> <blue>Cosmetics toggled off
-Cosmetics-Toggled-On: <prefix> <blue>Cosmetics toggled on
-Invalid-Category: <prefix> <bold><red>Invalid Category!
-Invalid-Cosmetic: <prefix> <bold><red>Invalid Cosmetic!
-Invalid-Player: '<prefix> <bold><red>Invalid Player!'
-Must-Specify-Player: <prefix> <bold><red>You must specify a player!
-Invalid-Number: '<prefix> <bold><red>Invalid number: <value>'
-Treasure-Keys-Given: <green><keys> keys given to <playername>
-Ammo-Given: <green><ammo> <gadgetname> ammo given to <playername>
+Cosmetics-Toggled-Off: <prefix> <blue>Cosmétiques désactivés
+Cosmetics-Toggled-On: <prefix> <blue>Cosmétiques activés
+Invalid-Category: <prefix> <bold><red>Catégorie invalide !
+Invalid-Cosmetic: <prefix> <bold><red>Cosmétiques invalide !
+Invalid-Player: '<prefix> <bold><red>Joueur invalide !'
+Must-Specify-Player: <prefix> <bold><red>Vous devez spécifier un joueur !
+Invalid-Number: '<prefix> <bold><red>Nombre invalide : <value>'
+Treasure-Keys-Given: <green><keys> clés données à <playername>
+Ammo-Given: <green><ammo> <gadgetname> munitions données à <playername>

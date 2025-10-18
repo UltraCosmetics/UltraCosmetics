@@ -3,44 +3,44 @@ No-Permission: <bold><red>Non hai il permesso!
 Cosmetic-Disabled: <prefix> <bold><red>Questo cosmetico è disabilitato!
 Invalid-Gadget: <prefix> <bold><red>Gadget non valido!
 Invalid-Pet: <prefix> <bold><red>Pet non valido!
-Invalid-Mount: <prefix> <bold><red>Invalid Mount!
+Invalid-Mount: <prefix><bold><red>Cavalcatura non valida!
 Invalid-Effect: <prefix> <bold><red>Pet non valido!
-Invalid-Morph: <prefix> <bold><red>Invalid Morph!
+Invalid-Morph: <prefix><bold><red>Trasformazione non valida!
 Invalid-Hat: <prefix> <bold><red>Cappello non valido!
 Invalid-Suit: <prefix> <bold><red>Abito Non Valido!
 Invalid-Emote: <prefix> <bold><red>Emote non valida!
 Invalid-Menu: <prefix> <bold><red>Menu Non Valido!
-Ammo: '<gray>Your ammo: </gray><yellow><ammo>'
+Ammo: '<gray>Le tue munizioni:</gray><yellow><ammo>'
 Purchase: <bold><green>ACQUISTA
 Cancel: <bold><red>ANNULLA
 Buy-Ammo-Description: <bold><yellow>Acquista munizioni <amount> <gadgetname> per $<price>
-Buy-Cosmetic-Description: <bold><yellow>Buy <gadgetname> for $<price>
-Right-Click-Buy-Ammo: <gray>Right Click to Buy Ammo
-Click-To-Purchase: <yellow>Click to purchase for $<price>
-Not-Enough-Money: <prefix> <bold><red>You don't have enough money!
-Successful-Purchase: <prefix> <bold><green>Successful purchase!
-Buy-Treasure-Key: <bold>Buy a Treasure Key
-Treasure-Keys: <bold><gray>Treasure Keys
-Treasure-Chests: <bold><gold>Treasure Chests
-Dont-Have-Key: <bold><dark_red>You need a key!
-Click-Open-Chest: <green>Click to open a chest
-Click-Buy-Key: <green>Click to buy a key
-Left-Click-Open-Chest: <green>Left-click to open a chest
-Right-Click-Simple: <green>Right-click to just get cosmetics
-Your-Keys: '<italic><gray>Your keys: </gray></italic><bold><white><keys>'
-Buy-Treasure-Key-ItemName: <bold><yellow>1 </yellow><gray>Treasure Key </gray><yellow>for $<price>
+Buy-Cosmetic-Description: <bold><yellow>Compra <gadgetname> per $<price>
+Right-Click-Buy-Ammo: <gray>Tasto Destro per Comprare Munizioni
+Click-To-Purchase: <yellow>Clicca per acquistare per $<price>
+Not-Enough-Money: <prefix> <bold><red>Non hai abbastanza denaro!
+Successful-Purchase: <prefix> <bold><green>Acquisto riuscito!
+Buy-Treasure-Key: <bold>Acquista una Chiave del Tesoro
+Treasure-Keys: <bold><gray>Chiavi del Tesoro
+Treasure-Chests: <bold><gold>Casse Del Tesoro
+Dont-Have-Key: <bold><dark_red>Hai bisogno di una chiave!
+Click-Open-Chest: <green>Clicca per aprire una cassa
+Click-Buy-Key: <green>Clicca per acquistare una chiave
+Left-Click-Open-Chest: <green>Tasto Sinistro per aprire una cassa
+Right-Click-Simple: <green>Tasto Destro per ottenere solo i cosmetici
+Your-Keys: '<italic><gray>Le tue chiavi: </gray></italic><bold><white><keys>'
+Buy-Treasure-Key-ItemName: <bold><yellow>1 </yellow><gray>Chiave del Tesoro </gray><yellow>per $<price>
 You-Won-Treasure-Chests: '<prefix> <bold><white>Hai vinto: <name>!'
 Treasure-Chest-Occupied: <prefix> <bold><red>Tutti i luoghi del tesoro sono pieni, si prega di attendere e riprovare
 No-Ammo: <prefix> <bold><red>Non hai nessuna munizioni per questo gadget!
-Cannot-Sell-Item: <prefix> <bold><red>You cannot sell this item!
+Cannot-Sell-Item: <prefix> <bold><red>Non puoi vendere questo oggetto!
 Structure-Chests-Disabled: <prefix> <bold><red>Structure chests are disabled!
 Clear:
   Cosmetics: <bold><red>Rimuovi Cosmetici
   Gadgets: <bold><red>Rimuovi il gadget corrente
-  Pets: <bold><red>Clear current pet
-  Mounts: <bold><red>Clear current mount
-  Particle-Effects: <bold><red>Clear current effect
-  Morphs: <bold><red>Clear current morph
+  Pets: <bold><red>Cancella l'animale domestico corrente
+  Mounts: <bold><red>Cancella la montatura corrente
+  Particle-Effects: <bold><red>Cancella l'effetto corrente
+  Morphs: <bold><red>Cancella la trasformazione corrente
   Hats: <bold><red>Cancella il cappello corrente
   Suits: <bold><red>Cancella l'abito corrente
   Emotes: <bold><red>Cancella l'emote corrente
@@ -49,87 +49,87 @@ Clear:
 Menu:
   Purchase-Rename:
     Button:
-      Showcase: <bold><red>Rename the pet to </red><white><name> </white><red>for </red><yellow>$<price>
-    Title: <bold>Rename Pet
+      Showcase: <bold><red>Rinomina l'animale domestico a </red><white><name></white><red> per </red><yellow>$<price>
+    Title: <bold>Rinomina animale domestico
   Purchase-Cosmetic:
-    Title: <bold>Purchase <cosmetic>
+    Title: <bold>Compra <cosmetic>
   Rename-Pet:
     Button:
-      Name: '<bold><red>Click to rename: <petname>'
-    Placeholder: Pet Name
-    Title: Rename pet
+      Name: '<bold><red>Clicca per rinominare: <petname>'
+    Placeholder: Nome dell'animale domestico
+    Title: Rinomina animale domestico
   Main:
-    Title: <bold>Main Menu
+    Title: <bold>Menu Principale
     Button:
-      Name: <bold><red>Main Menu
+      Name: <bold><red>Menu Principale
   Pets:
     Title: <bold>Animali domestici
     Button:
-      Name: <bold><green>Pets
-      Lore: '<gray>Unlocked: </gray><white><unlocked>'
+      Name: <bold><green>Animali Domestici
+      Lore: '<gray>Sbloccato: </gray><white><unlocked>'
       Tooltip-Equip: <bold><aqua>Produrre
       Tooltip-Unequip: <bold><red>Scomparsa
   Gadgets:
     Title: <bold>Gadget
     Button:
       Name: <bold><blue>Gadgets
-      Lore: '<gray>Unlocked: </gray><white><unlocked>'
+      Lore: '<gray>Sbloccato: </gray><white><unlocked>'
       Tooltip-Equip: <bold><aqua>Activate
       Tooltip-Unequip: <bold><red>Deactivate
   Mounts:
     Title: <bold>Monti
     Button:
       Name: <bold><gold>Monti
-      Lore: '<gray>Unlocked: </gray><white><unlocked>'
+      Lore: '<gray>Sbloccato: </gray><white><unlocked>'
       Tooltip-Equip: <bold><aqua>Produrre
       Tooltip-Unequip: <bold><red>Scomparsa
   Morphs:
     Title: <bold>Morphs
     Button:
       Name: <bold><dark_green>Morphs
-      Lore: '<gray>Unlocked: </gray><white><unlocked>'
+      Lore: '<gray>Sbloccato: </gray><white><unlocked>'
       Tooltip-Equip: <bold><aqua>Morph into
       Tooltip-Unequip: <bold><red>Unmorph from
   Hats:
     Title: <bold>Cappelli
     Button:
       Name: <bold><light_purple>Hats
-      Lore: '<gray>Unlocked: </gray><white><unlocked>'
+      Lore: '<gray>Sbloccato: </gray><white><unlocked>'
       Tooltip-Equip: <bold><aqua>Equipaggiare
       Tooltip-Unequip: <bold><red>Unequip
   Particle-Effects:
     Title: <bold>Particle Effects
     Button:
       Name: <bold><aqua>Particle Effects
-      Lore: '<gray>Unlocked: </gray><white><unlocked>'
+      Lore: '<gray>Sbloccato: </gray><white><unlocked>'
       Tooltip-Equip: <bold><aqua>Summon
       Tooltip-Unequip: <bold><red>Unsummon
   Suits:
     Title: <bold>Suits
     Button:
       Name: <bold><dark_aqua>Suits
-      Lore: '<gray>Unlocked: </gray><white><unlocked>'
+      Lore: '<gray>Sbloccato: </gray><white><unlocked>'
       Tooltip-Equip: <bold><aqua>Equipaggiare
       Tooltip-Unequip: <bold><red>Unequip
   Emotes:
     Title: <bold>Emotes
     Button:
       Name: <bold><yellow>Emotes
-      Lore: '<gray>Unlocked: </gray><white><unlocked>'
+      Lore: '<gray>Sbloccato: </gray><white><unlocked>'
       Tooltip-Equip: <bold><aqua>Equipaggiare
       Tooltip-Unequip: <bold><red>Unequip
   Projectile-Effects:
     Title: <bold>Projectile Effects
     Button:
       Name: <bold><dark_purple>Projectile Effects
-      Lore: '<gray>Unlocked: </gray><white><unlocked>'
+      Lore: '<gray>Sbloccato: </gray><white><unlocked>'
       Tooltip-Equip: <bold><aqua>Equipaggiare
       Tooltip-Unequip: <bold><red>Unequip
   Death-Effects:
     Title: <bold>Death Effects
     Button:
       Name: <bold><red>Death Effects
-      Lore: '<gray>Unlocked: </gray><white><unlocked>'
+      Lore: '<gray>Sbloccato: </gray><white><unlocked>'
       Tooltip-Equip: <bold><aqua>Equipaggiare
       Tooltip-Unequip: <bold><red>Unequip
   Buy-Ammo:
