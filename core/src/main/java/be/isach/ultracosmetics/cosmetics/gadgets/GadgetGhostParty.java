@@ -49,6 +49,7 @@ public class GadgetGhostParty extends Gadget implements Updatable {
         bats = new EntitySpawner<>(EntityType.BAT, loc, 20, bat -> {
             bat.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 160, 1));
             ArmorStand ghost = (ArmorStand) bat.getWorld().spawnEntity(bat.getLocation(), EntityType.ARMOR_STAND);
+            ghost.setPersistent(false);
             ghost.setSmall(true);
             ghost.setGravity(false);
             ghost.setVisible(false);
@@ -59,7 +60,7 @@ public class GadgetGhostParty extends Gadget implements Updatable {
             bat.addPassenger(ghost);
         }, getUltraCosmetics());
 
-        getUltraCosmetics().getScheduler().runAtEntityLater(getPlayer(), this::killBats, 160);
+        getUltraCosmetics().getScheduler().runAtEntityLater(bats.getEntities().stream().findAny().get(), this::killBats, 160);
     }
 
     @EventHandler
