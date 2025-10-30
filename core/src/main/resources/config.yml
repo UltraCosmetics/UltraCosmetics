@@ -435,14 +435,13 @@ MySQL:
 Menu-Item:
   Enabled: false
   Slot: 3
-  Type: ENDER_CHEST
-  Displayname: '<bold><gold>Cosmetics'
-  # Lore to apply to the menu item. Set to '' to disable
-  Lore: |-
-    <green>Right-click with this
-    <green>to open the menu
-  # Custom model data for the menu item.
-  Custom-Model-Data: 0
+  item:
+    material: ENDER_CHEST
+    name: <bold><gold>Cosmetics
+    lore: |-
+      <green>Right-click with this
+      <green>to open the menu
+    custom-model-data: 0
   # Whether to open cosmetics menu when the menu item is clicked from the player's inventory
   Open-Menu-On-Inventory-Click: false
 
