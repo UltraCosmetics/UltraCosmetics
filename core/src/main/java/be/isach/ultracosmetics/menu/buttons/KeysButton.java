@@ -40,6 +40,10 @@ public class KeysButton extends TreasureButton {
         noKeysSound = XSound.BLOCK_ANVIL_LAND.record().withVolume(0.2f).withPitch(1.2f).soundPlayer();
     }
 
+    public static XMaterial getKeyItem() {
+        return KEY_ITEM;
+    }
+
     @Override
     public ItemStack getDisplayItem(UltraPlayer ultraPlayer) {
         Component yourKeysMessage = MessageManager.getMessage("Your-Keys",

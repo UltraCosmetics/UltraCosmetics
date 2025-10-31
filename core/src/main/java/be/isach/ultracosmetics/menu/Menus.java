@@ -6,6 +6,7 @@ import be.isach.ultracosmetics.config.SettingsManager;
 import be.isach.ultracosmetics.cosmetics.Category;
 import be.isach.ultracosmetics.cosmetics.type.GadgetType;
 import be.isach.ultracosmetics.events.UCKeyPurchaseEvent;
+import be.isach.ultracosmetics.menu.buttons.KeysButton;
 import be.isach.ultracosmetics.menu.menus.*;
 import be.isach.ultracosmetics.player.UltraPlayer;
 import be.isach.ultracosmetics.util.ItemFactory;
@@ -32,7 +33,6 @@ public class Menus {
     private final Map<Category, CosmeticMenu<?>> categoryMenus = new HashMap<>();
     private Menu mainMenu;
     private MenuPurchaseFactory menuPurchaseFactory = StandardMenuPurchase::new;
-    private ItemStack treasureKeyBaseItem = XMaterial.TRIPWIRE_HOOK.parseItem();
 
     public Menus(UltraCosmetics ultraCosmetics) {
         this.ultraCosmetics = ultraCosmetics;
@@ -117,14 +117,6 @@ public class Menus {
         this.menuPurchaseFactory = factory;
     }
 
-    public ItemStack getTreasureKeyBaseItem() {
-        return treasureKeyBaseItem;
-    }
-
-    public void setTreasureKeyBaseItem(ItemStack treasureKeyBaseItem) {
-        this.treasureKeyBaseItem = treasureKeyBaseItem;
-    }
-
     /**
      * Opens the Key Purchase Menu.
      */
@@ -141,7 +133,7 @@ public class Menus {
         }
         int discountPrice = ultraCosmetics.getEconomyHandler().calculateDiscountPrice(player, price);
         TagResolver.Single pricePlaceholder = Placeholder.unparsed("price", TextUtil.formatNumber(discountPrice));
-        ItemStack itemStack = ItemFactory.rename(getTreasureKeyBaseItem(), MessageManager.getLegacyMessage("Buy-Treasure-Key-ItemName", pricePlaceholder));
+        ItemStack itemStack = ItemFactory.create(KeysButton.getKeyItem(), MessageManager.getLegacyMessage("Buy-Treasure-Key-ItemName", pricePlaceholder));
 
         PurchaseData pd = new PurchaseData();
         pd.setBasePrice(discountPrice);

@@ -188,7 +188,7 @@ public class ItemFactory {
         migrate.accept("Type", "material");
         migrate.accept("Displayname", "name");
         migrate.accept("Lore", "lore");
-        migrate.accept("CustomModelData", "custom-model-data");
+        migrate.accept("Custom-Model-Data", "custom-model-data");
     }
 
     private static ItemStack createMenuItem() {
