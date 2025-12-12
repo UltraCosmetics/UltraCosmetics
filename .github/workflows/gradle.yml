@@ -69,7 +69,7 @@ jobs:
 
       # https://github.com/actions/upload-artifact
       - name: Upload build artifact
-        uses: actions/upload-artifact@v5.0.0
+        uses: actions/upload-artifact@v6.0.0
         with:
           name: UltraCosmetics
           path: build/libs/UltraCosmetics-*.jar
