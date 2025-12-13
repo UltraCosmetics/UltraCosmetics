@@ -120,6 +120,7 @@ public class CommandManager implements CommandExecutor {
         registerCommand(new SubCommandPermission(ultraCosmetics));
         registerCommand(new SubCommandRename(ultraCosmetics));
         registerCommand(new SubCommandWhyDoIHave(ultraCosmetics));
+        registerCommand(new SubCommandDebug(ultraCosmetics));
     }
 
     public static void sendNoPermissionMessage(CommandSender sender) {
