@@ -34,6 +34,7 @@ import org.bukkit.inventory.meta.BlockStateMeta;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.inventory.meta.SkullMeta;
+import org.bukkit.inventory.meta.components.UseCooldownComponent;
 import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.profile.PlayerProfile;
@@ -137,6 +138,23 @@ public class ItemFactory {
         meta.getPersistentDataContainer().set(marker, PersistentDataType.BYTE, (byte) 1);
         item.setItemMeta(meta);
         return item;
+    }
+
+    /**
+     * Attempt to suppress the cooldown for the given item
+     *
+     * @param item The item to modify.
+     */
+    @SuppressWarnings("UnstableApiUsage")
+    public static void removeCooldown(ItemStack item) {
+        try {
+            ItemMeta meta = item.getItemMeta();
+            UseCooldownComponent cooldown = meta.getUseCooldown();
+            cooldown.setCooldownSeconds(0.01f);
+            meta.setUseCooldown(cooldown);
+            item.setItemMeta(meta);
+        } catch (NoSuchMethodError ignored) {
+        }
     }
 
     public static ItemStack getItemStackFromConfig(String path) {
