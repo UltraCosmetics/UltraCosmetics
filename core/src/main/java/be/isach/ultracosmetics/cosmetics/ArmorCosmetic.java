@@ -22,8 +22,10 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.components.EquippableComponent;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -169,13 +171,31 @@ public abstract class ArmorCosmetic<T extends CosmeticType<?>> extends Cosmetic<
     public void onInteract(PlayerInteractEvent event) {
         if (event.getPlayer() != getPlayer() || !event.hasItem()) return;
         if (event.getAction() != Action.RIGHT_CLICK_AIR && event.getAction() != Action.RIGHT_CLICK_BLOCK) return;
-        Material itemType = event.getItem().getType();
-        if (itemType.name().endsWith("_" + getArmorSlot()) || (itemType == XMaterial.ELYTRA.get() && getArmorSlot() == ArmorSlot.CHESTPLATE)) {
+        if (canSwapToOurSlot(event.getItem())) {
             event.setUseItemInHand(Event.Result.DENY);
         }
         if (isItemThis(event.getItem())) {
             event.setUseItemInHand(Event.Result.DENY);
             clear();
+        }
+    }
+
+    @SuppressWarnings("UnstableApiUsage")
+    private boolean canSwapToOurSlot(ItemStack item) {
+        if (item == null || item.getItemMeta() == null) return false;
+        Material type = item.getType();
+        if (type.name().endsWith("_" + getArmorSlot())) {
+            return true;
+        }
+        EquipmentSlot slot = getArmorSlot().toBukkit();
+        if (type == XMaterial.ELYTRA.get() && slot == EquipmentSlot.CHEST) {
+            return true;
+        }
+        try {
+            EquippableComponent equip = item.getItemMeta().getEquippable();
+            return equip.isSwappable() && equip.getSlot() == slot;
+        } catch (NoSuchMethodError ignored) {
+            return false;
         }
     }
 
