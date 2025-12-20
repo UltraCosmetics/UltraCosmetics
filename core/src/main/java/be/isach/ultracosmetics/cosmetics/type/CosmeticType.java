@@ -43,6 +43,7 @@ public abstract class CosmeticType<T extends Cosmetic<?>> {
     private static final Map<Category, List<CosmeticType<?>>> VALUES = new HashMap<>();
     private static final Map<Category, List<CosmeticType<?>>> ENABLED = new HashMap<>();
     private static final YamlConfiguration customConfig = new YamlConfiguration();
+    protected static boolean rewriteCustomConfig = false;
 
     static {
         try {
@@ -68,6 +69,16 @@ public abstract class CosmeticType<T extends Cosmetic<?>> {
     protected static ConfigurationSection getCustomConfig(Category cat) {
         if (cat.isSuits()) return customConfig.getConfigurationSection("Suits");
         return customConfig.getConfigurationSection(cat.getConfigPath());
+    }
+
+    private static void saveCustomCosmetics() {
+        try {
+            File configFile = new File(UltraCosmeticsData.get().getPlugin().getDataFolder(), "custom_cosmetics.yml");
+            customConfig.save(configFile);
+        } catch (IOException e) {
+            UltraCosmeticsData.get().getPlugin().getSmartLogger().write(LogLevel.ERROR, "Failed to load custom cosmetics, they will be ignored.");
+            e.printStackTrace();
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -109,6 +120,9 @@ public abstract class CosmeticType<T extends Cosmetic<?>> {
         EmoteType.register();
         ProjectileEffectType.register(version);
         DeathEffectType.register();
+        if (rewriteCustomConfig) {
+            saveCustomCosmetics();
+        }
 
         // Permissions registered by cosmetics are not fully calculated until here,
         // reducing loading time.
@@ -208,7 +222,7 @@ public abstract class CosmeticType<T extends Cosmetic<?>> {
 
     public ItemStack getItemStack() {
         String skull = SettingsManager.getConfig().getString(category.getConfigPath() + "." + getConfigName() + ".Custom-Head");
-        if(skull != null) {
+        if (skull != null) {
             return ItemFactory.createSkull(skull, "");
         }
         return material.parseItem();

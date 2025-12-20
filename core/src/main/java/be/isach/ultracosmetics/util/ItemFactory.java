@@ -49,16 +49,17 @@ import java.util.Random;
 import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.function.BiConsumer;
-import java.util.function.Function;
 
 /**
  * Created by sacha on 03/08/15.
  */
 public class ItemFactory {
+    private static final NamespacedKey MARKER = new NamespacedKey(UltraCosmeticsData.get().getPlugin(), "marker");
     // for some reason I don't understand, there's no Tag or XTag for dyes
     private static final List<XMaterial> DYES = new ArrayList<>(16);
     private static final List<XMaterial> STAINED_GLASS = new ArrayList<>(16);
     private static final FixedMetadataValue UNPICKABLE_META = new FixedMetadataValue(UltraCosmeticsData.get().getPlugin(), true);
+    private static final XItemStack.Deserializer deserializer;
 
     static {
         for (XMaterial mat : XMaterial.VALUES) {
@@ -68,6 +69,13 @@ public class ItemFactory {
                 STAINED_GLASS.add(mat);
             }
         }
+
+        //noinspection UnstableApiUsage
+        deserializer = new XItemStack.Deserializer().withMiniMessage(lines -> {
+            List<Component> components = new ArrayList<>();
+            lines.forEach(s -> components.add(MessageManager.getMiniMessage().deserialize(s)));
+            return components;
+        });
     }
 
     private ItemFactory() {
@@ -133,9 +141,7 @@ public class ItemFactory {
      */
     public static ItemStack applyCosmeticMarker(ItemStack item) {
         ItemMeta meta = item.getItemMeta();
-        // Do not cache this in a field, it doesn't exist on versions below 1.12
-        NamespacedKey marker = new NamespacedKey(UltraCosmeticsData.get().getPlugin(), "marker");
-        meta.getPersistentDataContainer().set(marker, PersistentDataType.BYTE, (byte) 1);
+        meta.getPersistentDataContainer().set(MARKER, PersistentDataType.BYTE, (byte) 1);
         item.setItemMeta(meta);
         return item;
     }
@@ -159,8 +165,10 @@ public class ItemFactory {
 
     public static ItemStack getItemStackFromConfig(String path) {
         XMaterial mat = getFromConfigInternal(path);
-        if (mat != null) return mat.parseItem();
-        return create(XMaterial.BEDROCK, "&cError parsing material", "&cFailed to parse material");
+        if (mat == null) {
+            return create(XMaterial.BEDROCK, "&cError parsing material", "&cFailed to parse material");
+        }
+        return mat.parseItem();
     }
 
     public static XMaterial getXMaterialFromConfig(String path) {
@@ -228,8 +236,7 @@ public class ItemFactory {
     }
 
     public static ItemStack parseXItemStack(ConfigurationSection section) {
-        Function<String, String> translator = s -> MessageManager.toLegacy(MessageManager.getMiniMessage().deserialize(s));
-        return applyCosmeticMarker(XItemStack.deserialize(section, translator));
+        return applyCosmeticMarker(getItemDeserializer().withConfig(section).read());
     }
 
     public static ItemStack createSkull(String url, String name) {
@@ -362,5 +369,9 @@ public class ItemFactory {
             return aMeta.equals(bMeta);
         }
         return a.isSimilar(b);
+    }
+
+    public static XItemStack.Deserializer getItemDeserializer() {
+        return deserializer.copy();
     }
 }

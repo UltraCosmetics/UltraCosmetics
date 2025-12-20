@@ -5,14 +5,13 @@ import be.isach.ultracosmetics.config.MessageManager;
 import be.isach.ultracosmetics.cosmetics.Category;
 import be.isach.ultracosmetics.cosmetics.hats.Hat;
 import be.isach.ultracosmetics.util.ItemFactory;
-import be.isach.ultracosmetics.util.SmartLogger.LogLevel;
 import com.cryptomorin.xseries.XMaterial;
 import net.kyori.adventure.text.Component;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.Optional;
+import java.util.logging.Level;
 
 /**
  * Hat types.
@@ -41,12 +40,9 @@ public class HatType extends CosmeticType<Hat> {
     /**
      * Used for carved pumpkins and such
      */
-    private HatType(XMaterial material, int customModelData, String configName) {
-        super(Category.HATS, configName, material, Hat.class);
-        ItemStack stack = material.parseItem();
-        ItemFactory.rename(stack, HAT_NAME);
-        ItemFactory.setCustomModelData(stack, customModelData);
-        this.itemStack = stack;
+    private HatType(ItemStack item, String configName) {
+        super(Category.HATS, configName, XMaterial.matchXMaterial(item.getType()), Hat.class);
+        this.itemStack = item;
         if (GENERATE_MISSING_MESSAGES) {
             MessageManager.addMessage(getConfigPath() + ".Name", configName);
         }
@@ -234,27 +230,40 @@ public class HatType extends CosmeticType<Hat> {
         ConfigurationSection hats = getCustomConfig(Category.HATS);
         if (hats == null) return;
         for (String key : hats.getKeys(false)) {
-            if (hats.getString(key + ".type", "player_head").equalsIgnoreCase("player_head")) {
-                String url = hats.getString(key + ".url");
-                if (url == null) {
-                    UltraCosmeticsData.get().getPlugin().getSmartLogger().write(LogLevel.WARNING, "Incomplete custom hat '" + key + "'");
-                    continue;
-                }
-                addCustomStrings(key);
-                new HatType(url, key);
+            ConfigurationSection hat = hats.getConfigurationSection(key);
+            if (hat == null) {
                 continue;
             }
-            Optional<XMaterial> choice = XMaterial.matchXMaterial(hats.getString(key + ".type", ""));
-            if (!choice.isPresent() || !choice.get().isSupported()) {
-                // Invalid type
-                UltraCosmeticsData.get().getPlugin().getSmartLogger().write(LogLevel.WARNING, "Invalid type for custom hat '" + key + "'");
+            if (hat.isString("type")) {
+                migrateToXseries(hat);
+            }
+            ItemStack item;
+            try {
+                item = ItemFactory.getItemDeserializer().withConfig(hat).read();
+            } catch (RuntimeException e) {
+                UltraCosmeticsData.get().getPlugin().getLogger().log(Level.WARNING, "Failed to parse custom hat '" + key + "'", e);
                 continue;
             }
-            int customModelData = hats.getInt(key + ".custom-model-data", 0);
-            XMaterial material = choice.get();
             addCustomStrings(key);
-            new HatType(material, customModelData, key);
+            new HatType(item, key);
         }
+    }
+
+    private static void migrateToXseries(ConfigurationSection hat) {
+        if (hat.isString("type")) {
+            hat.set("material", hat.getString("type"));
+            hat.set("type", null);
+        }
+        if (hat.isString("url")) {
+            hat.set("skull", hat.getString("url"));
+            hat.set("url", null);
+            // Hat type wasn't previously required, so if we only have a URL, add the material too
+            if (!hat.isString("material")) {
+                hat.set("material", XMaterial.PLAYER_HEAD.name());
+            }
+        }
+        // custom-model-data is already the correct key so we don't migrate it
+        rewriteCustomConfig = true;
     }
 
     private static void addCustomStrings(String key) {
