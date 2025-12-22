@@ -65,7 +65,7 @@ public class PetType extends CosmeticEntType<Pet> {
     public Pet equip(UltraPlayer player, UltraCosmetics ultraCosmetics) {
         Pet pet = super.equip(player, ultraCosmetics);
         if (pet != null && customization != null) {
-            if (!pet.customize(customization)) {
+            if (!pet.setCustomization(customization)) {
                 UltraCosmeticsData.get().getPlugin().getSmartLogger().write(LogLevel.WARNING, "Invalid customization string for pet " + getConfigName());
                 player.sendMessage(ChatColor.RED + "Invalid customization string, please contact an admin.");
             }

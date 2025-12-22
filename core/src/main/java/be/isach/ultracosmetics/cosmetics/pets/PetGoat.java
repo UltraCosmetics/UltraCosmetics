@@ -19,7 +19,7 @@ public class PetGoat extends Pet {
     }
 
     @Override
-    public boolean customize(String customization) {
+    protected boolean customize(String customization) {
         String[] parts = customization.split(":", 3);
         if (parts.length != 3) return false;
         Goat goat = (Goat) entity;

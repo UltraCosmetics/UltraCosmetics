@@ -21,7 +21,7 @@ public class PetHorse extends Pet {
     }
 
     @Override
-    public boolean customize(String customization) {
+    protected boolean customize(String customization) {
         String[] parts = customization.split(":");
         Color color;
         Style style = Style.NONE;

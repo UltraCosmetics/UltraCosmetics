@@ -27,7 +27,7 @@ public class PetSnowman extends Pet {
     }
 
     @Override
-    public boolean customize(String customization) {
+    protected boolean customize(String customization) {
         if (customization.equalsIgnoreCase("true")) {
             ((Snowman) entity).setDerp(true);
         }

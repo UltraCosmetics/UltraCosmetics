@@ -22,7 +22,7 @@ public class PetVillager extends Pet {
 
     @SuppressWarnings("deprecation")
     @Override
-    public boolean customize(String customization) {
+    protected boolean customize(String customization) {
         Type type;
         Profession profession = Profession.NONE;
         String[] parts = customization.split(":", 2);

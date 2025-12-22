@@ -19,7 +19,7 @@ public class PetMooshroom extends Pet {
     }
 
     @Override
-    public boolean customize(String customization) {
+    protected boolean customize(String customization) {
         return enumCustomize(Variant.class, customization, ((MushroomCow) entity)::setVariant);
     }
 }

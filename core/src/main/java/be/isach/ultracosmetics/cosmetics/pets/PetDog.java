@@ -30,7 +30,7 @@ public class PetDog extends Pet {
     }
 
     @Override
-    public boolean customize(String customization) {
+    protected boolean customize(String customization) {
         String[] parts = customization.split(":", 2);
         Wolf wolf = (Wolf) entity;
         fixedColor = enumCustomize(DyeColor.class, parts[0], wolf::setCollarColor);

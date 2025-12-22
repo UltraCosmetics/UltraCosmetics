@@ -79,6 +79,8 @@ public class Pet extends EntityCosmetic<PetType, Mob> implements Updatable {
 
     private int leashReattachTicks = 0;
 
+    private String customization = null;
+
     public Pet(UltraPlayer owner, PetType petType, UltraCosmetics ultraCosmetics, ItemStack dropItem) {
         super(owner, petType, ultraCosmetics);
         this.dropItem = dropItem;
@@ -136,6 +138,9 @@ public class Pet extends EntityCosmetic<PetType, Mob> implements Updatable {
 
         entity.setMetadata("Pet", new FixedMetadataValue(getUltraCosmetics(), "UltraCosmetics"));
         setupEntity();
+        if (customization != null) {
+            customize(customization);
+        }
     }
 
     private EntityBrain clearPathfinders(Mob entity) {
@@ -375,7 +380,15 @@ public class Pet extends EntityCosmetic<PetType, Mob> implements Updatable {
         return false;
     }
 
-    public boolean customize(String customization) {
+    public boolean setCustomization(String customization) {
+        if (customization != null && !customize(customization)) {
+            return false;
+        }
+        this.customization = customization;
+        return true;
+    }
+
+    protected boolean customize(String customization) {
         return false;
     }
 

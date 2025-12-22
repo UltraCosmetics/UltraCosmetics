@@ -18,7 +18,7 @@ public class PetMule extends Pet {
     }
 
     @Override
-    public boolean customize(String customization) {
+    protected boolean customize(String customization) {
         if (customization.equalsIgnoreCase("true")) {
             ((Mule) entity).setCarryingChest(true);
         }

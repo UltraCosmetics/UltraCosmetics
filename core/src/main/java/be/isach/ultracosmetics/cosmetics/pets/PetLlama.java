@@ -23,7 +23,7 @@ public class PetLlama extends Pet {
     }
 
     @Override
-    public boolean customize(String customization) {
+    protected boolean customize(String customization) {
         String[] parts = customization.split(":", 2);
         Color color;
         Material carpet = null;

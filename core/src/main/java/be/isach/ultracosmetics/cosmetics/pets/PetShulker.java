@@ -24,7 +24,7 @@ public class PetShulker extends Pet {
     }
 
     @Override
-    public boolean customize(String customization) {
+    protected boolean customize(String customization) {
         return enumCustomize(DyeColor.class, customization, ((Shulker) entity)::setColor);
     }
 }

@@ -24,7 +24,7 @@ public class PetSlime extends Pet {
     }
 
     @Override
-    public boolean customize(String customization) {
+    protected boolean customize(String customization) {
         int size;
         try {
             size = Integer.parseInt(customization);

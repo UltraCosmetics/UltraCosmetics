@@ -19,7 +19,7 @@ public class PetKitty extends Pet {
     }
 
     @Override
-    public boolean customize(String customization) {
+    protected boolean customize(String customization) {
         return oldEnumCustomize(Type.class, customization, ((Cat) entity)::setCatType);
     }
 }

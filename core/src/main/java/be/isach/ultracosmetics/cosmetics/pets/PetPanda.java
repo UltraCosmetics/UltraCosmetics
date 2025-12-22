@@ -19,7 +19,7 @@ public class PetPanda extends Pet {
     }
 
     @Override
-    public boolean customize(String customization) {
+    protected boolean customize(String customization) {
         return enumCustomize(Gene.class, customization, gene -> {
             Panda panda = (Panda) entity;
             panda.setMainGene(gene);

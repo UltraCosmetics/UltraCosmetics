@@ -21,7 +21,7 @@ public class PetTropicalFish extends Pet {
     }
 
     @Override
-    public boolean customize(String customization) {
+    protected boolean customize(String customization) {
         Pattern pattern;
         DyeColor bodyColor;
         DyeColor patternColor;

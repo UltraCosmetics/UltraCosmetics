@@ -18,7 +18,7 @@ public class PetDonkey extends Pet {
     }
 
     @Override
-    public boolean customize(String customization) {
+    protected boolean customize(String customization) {
         ((Donkey) entity).setCarryingChest(customization.equalsIgnoreCase("true"));
         return true;
     }

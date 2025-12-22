@@ -18,7 +18,7 @@ public class PetFrog extends Pet {
     }
 
     @Override
-    public boolean customize(String customization) {
+    protected boolean customize(String customization) {
         return oldEnumCustomize(Variant.class, customization, ((Frog) entity)::setVariant);
     }
 }

@@ -18,7 +18,7 @@ public class PetPufferfish extends Pet {
     }
 
     @Override
-    public boolean customize(String customization) {
+    protected boolean customize(String customization) {
         int value = -1;
         try {
             value = Integer.parseInt(customization);

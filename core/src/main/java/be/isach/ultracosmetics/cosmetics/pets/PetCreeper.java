@@ -18,7 +18,7 @@ public class PetCreeper extends Pet {
     }
 
     @Override
-    public boolean customize(String customization) {
+    protected boolean customize(String customization) {
         if (customization.equalsIgnoreCase("true")) {
             ((Creeper) entity).setPowered(true);
         }
