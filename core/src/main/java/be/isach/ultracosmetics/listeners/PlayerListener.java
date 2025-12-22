@@ -5,10 +5,10 @@ import be.isach.ultracosmetics.config.MessageManager;
 import be.isach.ultracosmetics.config.SettingsManager;
 import be.isach.ultracosmetics.cosmetics.Category;
 import be.isach.ultracosmetics.cosmetics.suits.ArmorSlot;
+import be.isach.ultracosmetics.menu.MenuItemHandler;
 import be.isach.ultracosmetics.player.UltraPlayer;
 import be.isach.ultracosmetics.player.UltraPlayerManager;
 import be.isach.ultracosmetics.run.FallDamageManager;
-import be.isach.ultracosmetics.util.ItemFactory;
 import com.tcoded.folialib.wrapper.task.WrappedTask;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.NamedTextColor;
@@ -29,7 +29,6 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
-import org.bukkit.inventory.ItemStack;
 
 import java.util.Arrays;
 import java.util.Locale;
@@ -45,7 +44,6 @@ public class PlayerListener implements Listener {
 
     private final UltraCosmetics ultraCosmetics;
     private final UltraPlayerManager pm;
-    private final ItemStack menuItem;
     private final boolean menuItemEnabled = SettingsManager.getConfig().getBoolean("Menu-Item.Enabled");
     private final int menuItemSlot = SettingsManager.getConfig().getInt("Menu-Item.Slot");
     private final long joinItemDelay = SettingsManager.getConfig().getLong("Item-Delay.Join", 1);
@@ -56,7 +54,6 @@ public class PlayerListener implements Listener {
     public PlayerListener(UltraCosmetics ultraCosmetics) {
         this.ultraCosmetics = ultraCosmetics;
         this.pm = ultraCosmetics.getPlayerManager();
-        this.menuItem = ItemFactory.getMenuItem();
     }
 
     private boolean isNPC(Player player) {
@@ -167,7 +164,7 @@ public class PlayerListener implements Listener {
     public void onDeath(PlayerDeathEvent event) {
         // Ignore NPC deaths as per iSach#467
         if (isNPC(event.getEntity())) return;
-        if (isMenuItem(event.getEntity().getInventory().getItem(menuItemSlot))) {
+        if (MenuItemHandler.isMenuItem(event.getEntity().getInventory().getItem(menuItemSlot))) {
             event.getDrops().remove(event.getEntity().getInventory().getItem(menuItemSlot));
             event.getEntity().getInventory().setItem(menuItemSlot, null);
         }
@@ -210,7 +207,7 @@ public class PlayerListener implements Listener {
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onPlayerPickUpItem(EntityPickupItemEvent event) {
-        if (isMenuItem(event.getItem().getItemStack())) {
+        if (MenuItemHandler.isMenuItem(event.getItem().getItemStack())) {
             event.setCancelled(true);
             event.getItem().remove();
         }
@@ -270,9 +267,5 @@ public class PlayerListener implements Listener {
                 task[0].cancel();
             }
         }, minDelay, 1);
-    }
-
-    private boolean isMenuItem(ItemStack item) {
-        return ItemFactory.isSimilar(menuItem, item);
     }
 }

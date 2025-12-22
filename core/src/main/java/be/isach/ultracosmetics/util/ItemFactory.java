@@ -3,7 +3,6 @@ package be.isach.ultracosmetics.util;
 import be.isach.ultracosmetics.UltraCosmeticsData;
 import be.isach.ultracosmetics.config.CustomConfiguration;
 import be.isach.ultracosmetics.config.MessageManager;
-import be.isach.ultracosmetics.config.SettingsManager;
 import be.isach.ultracosmetics.util.SmartLogger.LogLevel;
 import be.isach.ultracosmetics.version.ServerVersion;
 import com.cryptomorin.xseries.XAttribute;
@@ -21,7 +20,6 @@ import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.Tag;
 import org.bukkit.attribute.AttributeModifier;
-import org.bukkit.block.BlockState;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Item;
@@ -30,7 +28,6 @@ import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.EquipmentSlotGroup;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.BlockStateMeta;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.inventory.meta.SkullMeta;
@@ -48,7 +45,6 @@ import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
-import java.util.function.BiConsumer;
 
 /**
  * Created by sacha on 03/08/15.
@@ -204,37 +200,6 @@ public class ItemFactory {
         return XMaterial.matchXMaterial(fromConfig).orElse(null);
     }
 
-    private static void migrateMenuItem(ConfigurationSection section) {
-        // Migrate item format to XItemStack
-        ConfigurationSection item = section.createSection("item");
-        BiConsumer<String, String> migrate = (before, after) -> {
-            item.set(after, section.get(before));
-            section.set(before, null);
-        };
-        migrate.accept("Type", "material");
-        migrate.accept("Displayname", "name");
-        migrate.accept("Lore", "lore");
-        migrate.accept("Custom-Model-Data", "custom-model-data");
-    }
-
-    private static ItemStack createMenuItem() {
-        ConfigurationSection section = SettingsManager.getConfig().getConfigurationSection("Menu-Item");
-        if (section.isString("Type")) {
-            migrateMenuItem(section);
-        }
-        if (!section.isConfigurationSection("item")) {
-            section.createSection("item").set("material", "ENDER_CHEST");
-        }
-        return parseXItemStack(section.getConfigurationSection("item"));
-    }
-
-    public static ItemStack getMenuItem() {
-        if (!SettingsManager.getConfig().getBoolean("Menu-Item.Enabled")) {
-            return null;
-        }
-        return createMenuItem();
-    }
-
     public static ItemStack parseXItemStack(ConfigurationSection section) {
         return applyCosmeticMarker(getItemDeserializer().withConfig(section).read());
     }
@@ -352,23 +317,6 @@ public class ItemFactory {
     public static Material randomFromTag(Tag<Material> tag) {
         // copy tag values into temporary ArrayList because getting random values from a Set is hard
         return randomFromList(new ArrayList<>(tag.getValues()));
-    }
-
-    public static boolean isSimilar(ItemStack a, ItemStack b) {
-        if (a == b) return true;
-        if (a == null || b == null) return false;
-        if (a.getType() != b.getType()) return false;
-        if (a.getItemMeta() instanceof BlockStateMeta aMeta && b.getItemMeta() instanceof BlockStateMeta bMeta) {
-            // Block state meta spontaneously creates "internal" data that causes it to not be equal.
-            // So, we set them to have the same state part and then compare them.
-            // There seems to be some sort of conversion that happens when getting the state,
-            // so just `aMeta.setBlockState(bMeta.getBlockState())` isn't enough, we have to set both.
-            BlockState common = aMeta.getBlockState();
-            aMeta.setBlockState(common);
-            bMeta.setBlockState(common);
-            return aMeta.equals(bMeta);
-        }
-        return a.isSimilar(b);
     }
 
     public static XItemStack.Deserializer getItemDeserializer() {

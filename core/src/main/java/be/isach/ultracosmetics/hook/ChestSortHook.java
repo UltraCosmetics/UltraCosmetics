@@ -3,8 +3,8 @@ package be.isach.ultracosmetics.hook;
 import be.isach.ultracosmetics.UltraCosmetics;
 import be.isach.ultracosmetics.cosmetics.gadgets.Gadget;
 import be.isach.ultracosmetics.menu.CosmeticsInventoryHolder;
+import be.isach.ultracosmetics.menu.MenuItemHandler;
 import be.isach.ultracosmetics.player.UltraPlayerManager;
-import be.isach.ultracosmetics.util.ItemFactory;
 import de.jeff_media.chestsort.api.ChestSortAPI;
 import de.jeff_media.chestsort.api.ChestSortEvent;
 import org.bukkit.entity.Player;
@@ -14,7 +14,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 public class ChestSortHook implements Listener {
-    private final ItemStack menuItem = ItemFactory.getMenuItem();
+    private final ItemStack menuItem = MenuItemHandler.getMenuItem();
     private final UltraPlayerManager pm;
 
     public ChestSortHook(UltraCosmetics ultraCosmetics) {

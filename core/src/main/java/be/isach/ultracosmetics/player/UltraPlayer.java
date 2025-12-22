@@ -18,19 +18,18 @@ import be.isach.ultracosmetics.cosmetics.suits.Suit;
 import be.isach.ultracosmetics.cosmetics.type.CosmeticType;
 import be.isach.ultracosmetics.cosmetics.type.GadgetType;
 import be.isach.ultracosmetics.cosmetics.type.PetType;
+import be.isach.ultracosmetics.menu.MenuItemHandler;
 import be.isach.ultracosmetics.mysql.SqlCache;
 import be.isach.ultracosmetics.player.profile.CosmeticsProfile;
 import be.isach.ultracosmetics.player.profile.FileCosmeticsProfile;
 import be.isach.ultracosmetics.run.FallDamageManager;
 import be.isach.ultracosmetics.treasurechests.TreasureChest;
-import be.isach.ultracosmetics.util.ItemFactory;
 import be.isach.ultracosmetics.util.PlayerUtils;
 import com.cryptomorin.xseries.messages.ActionBar;
 import net.kyori.adventure.platform.bukkit.BukkitComponentSerializer;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
@@ -524,23 +523,23 @@ public class UltraPlayer {
             return;
         }
         removeMenuItem();
-        ConfigurationSection section = SettingsManager.getConfig().getConfigurationSection("Menu-Item");
-        int slot = section.getInt("Slot");
+        int slot = SettingsManager.getConfig().getInt("Menu-Item.Slot");
         ItemStack slotItem = getBukkitPlayer().getInventory().getItem(slot);
-        ItemStack menuItem = ItemFactory.getMenuItem();
-        if (slotItem != null && !ItemFactory.isSimilar(slotItem, menuItem)) {
+        if (slotItem != null && !MenuItemHandler.isMenuItem(slotItem)) {
             getBukkitPlayer().getWorld().dropItemNaturally(getBukkitPlayer().getLocation(), slotItem);
         }
-        getBukkitPlayer().getInventory().setItem(slot, menuItem);
+        getBukkitPlayer().getInventory().setItem(slot, MenuItemHandler.getMenuItem());
     }
 
     /**
      * Removes the menu Item.
      */
     public void removeMenuItem() {
-        if (!menuItemEnabled || getBukkitPlayer() == null) return;
-        ItemStack menuItem = ItemFactory.getMenuItem();
-        PlayerUtils.removeItems(getBukkitPlayer(), i -> ItemFactory.isSimilar(i, menuItem));
+        if (!menuItemEnabled) return;
+        Player player = getBukkitPlayer();
+        if (player != null) {
+            PlayerUtils.removeItems(player, MenuItemHandler::isMenuItem);
+        }
     }
 
     public void sendMessage(String message) {
