@@ -45,6 +45,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.function.Function;
 
 /**
  * Created by sacha on 03/08/15.
@@ -66,12 +67,8 @@ public class ItemFactory {
             }
         }
 
-        //noinspection UnstableApiUsage
-        deserializer = new XItemStack.Deserializer().withMiniMessage(lines -> {
-            List<Component> components = new ArrayList<>();
-            lines.forEach(s -> components.add(MessageManager.getMiniMessage().deserialize(s)));
-            return components;
-        });
+        Function<String, String> translator = s -> MessageManager.toLegacy(MessageManager.getMiniMessage().deserialize(s));
+        deserializer = new XItemStack.Deserializer().withTranslator(translator);
     }
 
     private ItemFactory() {
