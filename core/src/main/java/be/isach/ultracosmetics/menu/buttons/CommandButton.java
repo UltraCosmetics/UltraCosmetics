@@ -32,7 +32,7 @@ public class CommandButton implements Button {
         if (closeAfterClick) {
             clickData.getClicker().getBukkitPlayer().closeInventory();
         }
-        if (command == null) return;
+        if (command == null || command.isBlank()) return;
         Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command.replace("%player%", clickData.getClicker().getBukkitPlayer().getName()));
     }
 
