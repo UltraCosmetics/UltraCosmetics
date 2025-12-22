@@ -60,7 +60,7 @@ public class GadgetGhostParty extends Gadget implements Updatable {
             bat.addPassenger(ghost);
         }, getUltraCosmetics());
 
-        getUltraCosmetics().getScheduler().runAtEntityLater(bats.getEntities().stream().findAny().get(), this::killBats, 160);
+        getUltraCosmetics().getScheduler().runAtLocationLater(loc, this::killBats, 160);
     }
 
     @EventHandler

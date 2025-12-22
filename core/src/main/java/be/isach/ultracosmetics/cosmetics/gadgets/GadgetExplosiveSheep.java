@@ -76,9 +76,11 @@ public class GadgetExplosiveSheep extends Gadget {
 
     @Override
     public void onClear() {
-        for (Sheep sheep : sheeps) {
-            sheep.remove();
-        }
+        sheeps.stream().findAny().ifPresent(s -> getUltraCosmetics().getScheduler().runAtEntity(s, t -> {
+            for (Sheep sheep : sheeps) {
+                sheep.remove();
+            }
+        }));
         if (sheepRemovalRunnable != null) {
             // No try-catch because this gadget doesn't run on legacy versions anyway.
             sheepRemovalRunnable.cancel();
@@ -87,31 +89,26 @@ public class GadgetExplosiveSheep extends Gadget {
 
     private class SheepColorRunnable {
         private final Sheep s;
-        private boolean red;
-        private double time;
-
-        private final WrappedTask task;
+        private final boolean red;
+        private final double time;
 
         private SheepColorRunnable(Sheep s, double time, boolean red) {
             this.s = s;
             this.red = red;
             this.time = time;
-            task = getUltraCosmetics().getScheduler().runAtEntityLater(s, this::run, (int) time);
+            getUltraCosmetics().getScheduler().runAtEntityLater(s, this::run, (int) time);
         }
 
         public void run() {
             if (getOwner() == null || getPlayer() == null || !s.isValid()) {
-                task.cancel();
                 return;
             }
             s.setColor(red ? DyeColor.RED : DyeColor.WHITE);
-            tickSound.atLocation(s.getLocation()).play();
-            red = !red;
-            time -= 0.2;
 
-            if (time >= 0.5) {
+            if (time >= 0.7) {
+                tickSound.atLocation(s.getLocation()).play();
                 // unfortunately we can't reschedule this existing task, we have to make a new one.
-                new SheepColorRunnable(s, time, red);
+                new SheepColorRunnable(s, time - 0.2, !red);
                 return;
             }
             explodeSound.atLocation(s.getLocation()).play();
@@ -120,7 +117,8 @@ public class GadgetExplosiveSheep extends Gadget {
             s.remove();
             DyeColor[] colors = DyeColor.values();
             Player player = getPlayer();
-            EntitySpawner<Sheep> sheeps = new EntitySpawner<>(EntityType.SHEEP, s.getLocation(), 50, sheep -> {
+            final Location spawnLoc = s.getLocation();
+            EntitySpawner<Sheep> sheeps = new EntitySpawner<>(EntityType.SHEEP, spawnLoc, 50, sheep -> {
                 sheep.setColor(colors[RANDOM.nextInt(colors.length)]);
                 MathUtils.applyVelocity(sheep, new Vector(RANDOM.nextDouble() - 0.5, RANDOM.nextDouble() / 2, RANDOM.nextDouble() - 0.5).multiply(2).add(new Vector(0, 0.8, 0)));
                 sheep.setBaby();
@@ -135,7 +133,7 @@ public class GadgetExplosiveSheep extends Gadget {
                 GadgetExplosiveSheep.this.sheeps.add(sheep);
             }, getUltraCosmetics());
 
-            sheepRemovalRunnable = getUltraCosmetics().getScheduler().runAtEntityLater(player, () -> {
+            sheepRemovalRunnable = getUltraCosmetics().getScheduler().runAtLocationLater(spawnLoc, () -> {
                 for (Sheep sheep : sheeps.getEntities()) {
                     lava.spawn(sheep.getLocation());
                     GadgetExplosiveSheep.this.sheeps.remove(sheep);
