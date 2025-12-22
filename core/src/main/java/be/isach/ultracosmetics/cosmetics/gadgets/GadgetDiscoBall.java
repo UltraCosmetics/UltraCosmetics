@@ -14,7 +14,9 @@ import com.cryptomorin.xseries.XMaterial;
 import com.cryptomorin.xseries.XTag;
 import com.cryptomorin.xseries.particles.ParticleDisplay;
 import com.cryptomorin.xseries.particles.XParticle;
+import com.cryptomorin.xseries.reflection.XReflection;
 import org.bukkit.Location;
+import org.bukkit.Particle;
 import org.bukkit.block.Block;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
@@ -24,9 +26,10 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.util.Vector;
 
-import java.awt.*;
+import java.awt.Color;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Represents an instance of a discoball gadget summoned by a player.
@@ -71,6 +74,10 @@ public class GadgetDiscoBall extends Gadget implements PlayerAffectingCosmetic, 
         return true;
     }
 
+    private static int randomRGB() {
+        return ThreadLocalRandom.current().nextInt(1 << 24);
+    }
+
     @Override
     public void onUpdate() {
         if (armorStand == null) {
@@ -85,11 +92,14 @@ public class GadgetDiscoBall extends Gadget implements PlayerAffectingCosmetic, 
 
         armorStand.getEquipment().setHelmet(ItemFactory.getRandomStainedGlass());
 
+        if (XReflection.supports(21, 9)) {
+            effect.withRawData(new Particle.Spell(org.bukkit.Color.fromRGB(randomRGB()), 1));
+            instantEffect.withRawData(new Particle.Spell(org.bukkit.Color.fromRGB(randomRGB()), 1));
+        }
         effect.spawn();
         instantEffect.spawn();
         Location loc = armorStand.getEyeLocation().add(MathUtils.randomDouble(-4, 4), MathUtils.randomDouble(-3, 3), MathUtils.randomDouble(-4, 4));
-        // This picks a random note color. Kinda weird but that's how you have to do it in XParticle I guess
-        note.withColor(new Color(RANDOM.nextInt(256), 0, 0)).spawn(loc);
+        note.withNoteColor(ThreadLocalRandom.current().nextInt(25)).spawn(loc);
         double angle, x, z;
 
         angle = 2 * Math.PI * i / 100;
@@ -151,7 +161,7 @@ public class GadgetDiscoBall extends Gadget implements PlayerAffectingCosmetic, 
         Location loc = location.clone().subtract(v);
         for (int i = 0; i < particles; i++) {
             loc.add(v);
-            dust.withColor(new Color(MathUtils.random(255), MathUtils.random(255), MathUtils.random(255))).spawn(loc);
+            dust.withColor(new Color(randomRGB())).spawn(loc);
         }
     }
 }
