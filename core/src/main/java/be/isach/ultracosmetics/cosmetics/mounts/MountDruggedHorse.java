@@ -6,7 +6,9 @@ import be.isach.ultracosmetics.player.UltraPlayer;
 import com.cryptomorin.xseries.XPotion;
 import com.cryptomorin.xseries.particles.ParticleDisplay;
 import com.cryptomorin.xseries.particles.XParticle;
+import com.cryptomorin.xseries.reflection.XReflection;
 import org.bukkit.Location;
+import org.bukkit.Particle;
 import org.bukkit.entity.Horse;
 import org.bukkit.potion.PotionEffect;
 
@@ -40,15 +42,27 @@ public class MountDruggedHorse extends MountAbstractHorse {
         });
     }
 
+    private static int randomRGB() {
+        return ThreadLocalRandom.current().nextInt(1 << 24);
+    }
+
     @Override
     public void onUpdate() {
         Location loc = entity.getLocation().add(0, 1, 0);
+        if (XReflection.supports(21, 9)) {
+            effectDisplay.withRawData(new Particle.Spell(org.bukkit.Color.fromRGB(randomRGB()), 1));
+            coloredEffectDisplay.withRawData(new Particle.Spell(org.bukkit.Color.fromRGB(5, 255, 0), 1));
+        }
         fireworkDisplay.spawn(loc);
         effectDisplay.spawn(loc);
         coloredEffectDisplay.spawn(loc);
         ThreadLocalRandom r = ThreadLocalRandom.current();
         for (int i = 0; i < 5; i++) {
-            ambientEffectDisplay.withColor(new Color(r.nextInt(256), r.nextInt(256), r.nextInt(256), AMBIENT_ALPHA)).spawn(loc);
+            if (XReflection.supports(21, 9)) {
+                coloredEffectDisplay.withRawData(new Particle.Spell(org.bukkit.Color.fromRGB(randomRGB()), AMBIENT_ALPHA / 255f));
+            } else {
+                ambientEffectDisplay.withColor(new Color(r.nextInt(256), r.nextInt(256), r.nextInt(256), AMBIENT_ALPHA)).spawn(loc);
+            }
         }
     }
 
