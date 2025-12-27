@@ -35,7 +35,8 @@ dependencies {
     // https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple
     compileOnly 'com.googlecode.json-simple:json-simple:1.1.1'
     // https://github.com/CryptoMorin/XSeries
-    library 'com.github.cryptomorin:XSeries:13.6.0'
+//    library 'com.github.cryptomorin:XSeries:13.6.0'
+    implementation fileTree(dir: '.', include: ['XSeries-*.jar'])
     // https://github.com/Bastian/bstats-metrics
     implementation 'org.bstats:bstats-bukkit:3.1.0'
     // https://github.com/LuckPerms/LuckPerms
@@ -77,12 +78,12 @@ shadowJar {
     // Causes shadow jar to overwrite normal jar, which makes it work with Jitpack
     archiveClassifier = ''
     // removes unused classes in 'implementation' path dependencies
-    minimize {
-        // Loads classes reflectively
-        exclude(dependency('net.wesjd:anvilgui:.*'))
-        exclude(dependency('com.github.technicallycoded:FoliaLib:.*'))
-        exclude(dependency('com.github.datatags.MobChipLite:.*:.*'))
-    }
+//    minimize {
+//        // Loads classes reflectively
+//        exclude(dependency('net.wesjd:anvilgui:.*'))
+//        exclude(dependency('com.github.technicallycoded:FoliaLib:.*'))
+//        exclude(dependency('com.github.datatags.MobChipLite:.*:.*'))
+//    }
     def path = 'be.isach.ultracosmetics.shaded'
     relocate('org.bstats', path + '.metrics')
     relocate('net.wesjd', path + '.anvilgui')

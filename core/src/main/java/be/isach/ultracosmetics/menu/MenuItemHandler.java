@@ -131,6 +131,6 @@ public class MenuItemHandler implements UnmovableItemProvider {
     }
 
     public static boolean isMenuItem(ItemStack stack) {
-        return stack != null && stack.getItemMeta() != null && stack.getItemMeta().getPersistentDataContainer().has(TAG);
+        return stack != null && stack.getItemMeta() != null && stack.getItemMeta().getPersistentDataContainer().has(TAG, PersistentDataType.BYTE);
     }
 }

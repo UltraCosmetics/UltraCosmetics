@@ -68,7 +68,7 @@ public class ItemFactory {
         }
 
         Function<String, String> translator = s -> MessageManager.toLegacy(MessageManager.getMiniMessage().deserialize(s));
-        deserializer = new XItemStack.Deserializer().withTranslator(translator);
+        deserializer = XItemStack.deserializer().withTranslator(translator);
     }
 
     private ItemFactory() {
@@ -317,6 +317,6 @@ public class ItemFactory {
     }
 
     public static XItemStack.Deserializer getItemDeserializer() {
-        return deserializer.copy();
+        return deserializer.copy().withItem(null);
     }
 }

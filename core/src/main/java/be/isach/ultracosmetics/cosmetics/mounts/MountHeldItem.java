@@ -84,7 +84,7 @@ public abstract class MountHeldItem extends Mount implements UnmovableItemProvid
 
     @Override
     public boolean itemMatches(ItemStack stack) {
-        return stack != null && stack.getItemMeta() != null && stack.getItemMeta().getPersistentDataContainer().has(TAG);
+        return stack != null && stack.getItemMeta() != null && stack.getItemMeta().getPersistentDataContainer().has(TAG, PersistentDataType.BYTE);
     }
 
     @Override

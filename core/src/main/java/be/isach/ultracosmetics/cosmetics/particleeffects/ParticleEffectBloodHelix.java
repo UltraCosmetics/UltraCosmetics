@@ -15,8 +15,7 @@ import java.awt.Color;
  * @since 08-12-2015
  */
 public class ParticleEffectBloodHelix extends ParticleEffect {
-
-    double i = 0;
+    private double i = 0;
 
     public ParticleEffectBloodHelix(UltraPlayer owner, ParticleEffectType type, UltraCosmetics ultraCosmetics) {
         super(owner, type, ultraCosmetics);

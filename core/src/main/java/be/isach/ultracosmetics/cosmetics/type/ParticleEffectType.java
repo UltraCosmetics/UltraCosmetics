@@ -50,7 +50,7 @@ public class ParticleEffectType extends CosmeticParticleType<ParticleEffect> {
         new ParticleEffectType("ShadowFootprints", 2, XParticle.LARGE_SMOKE, XMaterial.BLACK_WOOL, ParticleEffectFootprints.class, false);
         new ParticleEffectType("Notes", 6, XParticle.NOTE, XMaterial.NOTE_BLOCK, ParticleEffectAboveHead.class, false);
         new ParticleEffectType("Hearts", 6, XParticle.HEART, XMaterial.RED_WOOL, ParticleEffectAboveHead.class, false);
-        new ParticleEffectType("EnderFootprints", 1, XParticle.DRAGON_BREATH, XMaterial.DRAGON_BREATH, ParticleEffectEnderFootprints.class, false);
+        new ParticleEffectType("EnderFootprints", 1, XParticle.DRAGON_BREATH, XMaterial.DRAGON_BREATH, ParticleEffectFootprints.class, false);
         new ParticleEffectType("ArcaneFlame", 3, XParticle.SOUL_FIRE_FLAME, XMaterial.SOUL_TORCH, ParticleEffectAboveHead.class, false);
         new ParticleEffectType("DivineHalo", 2, XParticle.WAX_OFF, XMaterial.GLOWSTONE, ParticleEffectHalo.class, false);
         new ParticleEffectType("SnowFootprints", 1, XParticle.SNOWFLAKE, XMaterial.POWDER_SNOW_BUCKET, ParticleEffectFootprints.class, false);
