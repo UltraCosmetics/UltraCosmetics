@@ -585,7 +585,7 @@ Particle-Effects:
       Leaves a trail of
       snow behind.
   CherryFairy:
-    name: <bold><pink>Cherry Fairy
+    name: <bold><#DE3163>Cherry Fairy
     Description: Protector of the cherry grove.
 Pets:
   Piggy:

@@ -9,12 +9,6 @@ import com.cryptomorin.xseries.particles.XParticle;
 import org.bukkit.Location;
 import org.bukkit.util.Vector;
 
-/**
- * Represents an instance of flame fairy particles summoned by a player.
- *
- * @author iSach
- * @since 12-23-2015
- */
 public class ParticleEffectCherryFairy extends ParticleEffect {
     private final ParticleDisplay lavaDisplay = ParticleDisplay.of(XParticle.CHERRY_LEAVES);
     private final ParticleDisplay flameDisplay = ParticleDisplay.of(XParticle.WITCH);
