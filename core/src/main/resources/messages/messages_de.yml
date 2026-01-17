@@ -557,6 +557,11 @@ Particle-Effects:
     Description: |-
       Hinterlässt eine Spur
       aus Rauch.
+  SuperVillain:
+    name: <bold><dark_purple>Super Villain
+    Description: |-
+      Become Batman... or whoever is
+      more evil than Superman!
   Notes:
     name: <bold><gold>Noten
     Description: Noten über deinem Kopf.
@@ -581,6 +586,9 @@ Particle-Effects:
     Description: |-
       Hinterlässt eine Spur
       aus Schnee.
+  CherryFairy:
+    name: '<bold><#DE3163>Cherry Fairy'
+    Description: Protector of the cherry grove.
 Pets:
   Piggy:
     menu-name: <bold><light_purple>Schwein
@@ -1846,6 +1854,15 @@ Death-Effects:
   PuffOfSmoke:
     Description: Disappear in a puff of smoke!
     name: <bold><gray>Puff of Smoke
+  DragonBreath:
+    name: <bold><gray>Dragon Breath
+    Description: Disintegrate into the dragon mist.
+  Flames:
+    name: <bold><gold>Flames
+    Description: Explode into bursts of fire and sparks!
+  ItemExplode:
+    name: <bold><light_purple>Candy Explode
+    Description: ALL OUR (SWEET) FOOD KEEPS BLOWING UP
 Enabled-SelfMorphView: <prefix> <blue>Du hast die Selbstansicht für Verwandlungen aktiviert!
 Disabled-SelfMorphView: <prefix> <blue>Du hast die Selbstansicht für Verwandlungen deaktiviert!
 Enabled-Gadgets: <prefix> <blue>Du hast Gadgets aktiviert!

@@ -554,6 +554,11 @@ Particle-Effects:
     Description: |-
       Deja un rastro de
       humo al caminar.
+  SuperVillain:
+    name: <bold><dark_purple>Super Villain
+    Description: |-
+      Become Batman... or whoever is
+      more evil than Superman!
   Notes:
     name: <bold><gold>Notas musicales
     Description: Notas musicales sobre tu cabeza.
@@ -578,6 +583,9 @@ Particle-Effects:
     Description: |-
       Deja un rastro de
       nieve al caminar.
+  CherryFairy:
+    name: '<bold><#DE3163>Cherry Fairy'
+    Description: Protector of the cherry grove.
 Pets:
   Piggy:
     menu-name: <bold><light_purple>Piggy
@@ -1842,8 +1850,17 @@ Death-Effects:
     name: <bold><white>Relampago
     Description: '⚡ ZAP!'
   PuffOfSmoke:
-    Description: Disappear in a puff of smoke!
+    Description: '¡Desapareció en un puff de Humo!'
     name: <bold><gray>Puff of Smoke
+  DragonBreath:
+    name: <bold><gray>Dragon Breath
+    Description: Disintegrate into the dragon mist.
+  Flames:
+    name: <bold><gold>Flames
+    Description: Explode into bursts of fire and sparks!
+  ItemExplode:
+    name: <bold><light_purple>Candy Explode
+    Description: ALL OUR (SWEET) FOOD KEEPS BLOWING UP
 Enabled-SelfMorphView: <prefix> <blue>Activaste vista propia de las transformaciones!
 Disabled-SelfMorphView: <prefix> <blue>Desactivaste vista propia de las transformaciones!
 Enabled-Gadgets: <prefix> <blue>Activaste los gadgets!

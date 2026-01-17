@@ -413,7 +413,7 @@ Mounts:
       existe uma espécie mítica de Molten
       Snakes. Esta lhe servirá eternamente.
   Strider:
-    menu-name: <bold><red>Strider
+    menu-name: <bold><red>Peregrino
     entity-displayname: <bold>Lavagante de <playername>
     Description: |-
       A misteriosa criatura em forma de cubo
@@ -551,6 +551,11 @@ Particle-Effects:
     Description: |-
       Deixa um rastro de
       dark de energia para trás.
+  SuperVillain:
+    name: <bold><dark_purple>Super Villain
+    Description: |-
+      Become Batman... or whoever is
+      more evil than Superman!
   Notes:
     name: <bold><gold>Notas
     Description: Notas acima da sua cabeça.
@@ -575,6 +580,9 @@ Particle-Effects:
     Description: |-
       Deixa um rastro de
       dark de energia para trás.
+  CherryFairy:
+    name: '<bold><#DE3163>Cherry Fairy'
+    Description: Protector of the cherry grove.
 Pets:
   Piggy:
     menu-name: <bold><light_purple>Porco
@@ -741,7 +749,7 @@ Pets:
     entity-displayname: <bold>Baiacu de <playername>
     Description: Não gosta de ser tocado!
   Ocelot:
-    menu-name: <bold><yellow>Ocelot
+    menu-name: <bold><yellow>Jaguatirica
     entity-displayname: <bold>Jaguatirica de <playername>
     Description: Cuidado... eles são muito tímidos!
   Salmon:
@@ -757,7 +765,7 @@ Pets:
     entity-displayname: <bold>Lula de <playername>
     Description: Não o assuste, ou a água fica preta!
   Strider:
-    menu-name: <bold><red>Strider
+    menu-name: <bold><red>Peregrino
     entity-displayname: <bold>Lavagante de <playername>
     Description: Anda sobre a lava!
   Tadpole:
@@ -809,7 +817,7 @@ Pets:
     entity-displayname: <bold>Invocador de <playername>
     Description: Invoca Vexes para ganhar a vida!
   Ghast:
-    menu-name: <bold><white>Ghast
+    menu-name: <bold><yellow>Fantasma
     entity-displayname: <bold>Ghast de <playername>
     Description: '*Gritos demoníacos*'
   Guardian:
@@ -942,7 +950,7 @@ Morphs:
     skill: '<yellow>Left-Click</yellow><gray> to: </gray><green>Laser'
     Description: Become an Elder Guardian!!
   Cow:
-    name: <bold><dark_gray>Cow
+    name: <bold><dark_gray>Vaca
     skill: '<yellow>Left-Click</yellow><gray> to: </gray><green>Moo'
     Description: Muuuu!
   Sheep:
@@ -950,7 +958,7 @@ Morphs:
     skill: '<yellow>Left-Click</yellow><gray> to: </gray><green>Change Colors'
     Description: Béééé, béé
   Mooshroom:
-    name: <bold><red>Mooshroom
+    name: <bold><red>Vaca-Cogumelo
     skill: '<yellow>Sneak</yellow><gray> to: </gray><green>Soup Throw'
     Description: Muuuu!
   Villager:
@@ -962,11 +970,11 @@ Morphs:
     skill: '<yellow>Left-Click</yellow><gray> to: </gray><green>Potion Throw'
     Description: Muahahahahaha
   PolarBear:
-    name: <bold><white>Polar Bear
+    name: <bold><white>Urso Polar
     skill: '<yellow>Left-Click</yellow><gray> to: </gray><green>Blizzard'
     Description: Eu prefiro áreas geladas
   Llama:
-    name: <bold><dark_aqua>Llama
+    name: <bold><dark_aqua>Ilhama
     skill: '<yellow>Left-Click</yellow><gray> to: </gray><green>Spit'
     Description: Precisa de mim para carregar algo?
   Parrot:
@@ -986,7 +994,7 @@ Morphs:
     skill: '<yellow>Double Jump</yellow><gray> to: </gray><green>Flap'
     Description: '*bzzzz* *bzzzz*'
   Cat:
-    name: <bold><yellow>Cat
+    name: <bold><yellow>Gato
     skill: '<yellow>Left-Click</yellow><gray> to: </gray><green>Meow'
     Description: Basically a tiny tiger
   CaveSpider:
@@ -1059,7 +1067,7 @@ Morphs:
     name: <bold><dark_gray>Aranha
     Description: HISS...
   Ghast:
-    name: <bold><white>Ghast
+    name: <bold><yellow>Fantasma
     Description: '*high-pitched scream*'
   MagmaCube:
     name: <bold><red>Cubo de Magma
@@ -1077,8 +1085,8 @@ Morphs:
     name: <bold><gold>Piglin
     Description: Deals with gold!
   Strider:
-    name: <bold><red>Strider
-    Description: I hate water!
+    name: <bold><red>Peregrino
+    Description: Eu odeio água!
   Hoglin:
     name: <bold><red>Hoglin
     Description: Um porco, mas com raiva.
@@ -1095,7 +1103,7 @@ Morphs:
     name: <bold><green>Panda
     Description: Gosta de bambo!
   Ocelot:
-    name: <bold><yellow>Ocelot
+    name: <bold><yellow>Jaguatirica
     Description: King of the jungle
   WanderingTrader:
     name: <bold><dark_blue>Vendedor Ambulante
@@ -1191,25 +1199,25 @@ Hats:
     Name: <bold><yellow>Smile
     Description: Because I'm happy
   Iron:
-    Name: <bold><gray>Iron
+    Name: <bold><gray>Ferro
     Description: As hard as iron!
   Gold:
     Name: <bold><yellow>Gold
-    Description: My precious!
+    Description: Meu precioso!
   Diamond:
-    Name: <bold><aqua>Diamond
+    Name: <bold><aqua>Diamante
     Description: This is really strong!
   CommandBlock:
-    Name: <bold><gray>Command Block
+    Name: <bold><gray>Bloco de Comandos
     Description: Control the world with it!
   Music:
     Name: <bold><blue>Música
     Description: You are so musical.
   Squid:
-    Name: <bold><dark_aqua>Squid
+    Name: <bold><dark_aqua>Lula
     Description: Bloop Bloop!
   GlowSquid:
-    Name: <bold><aqua>Glow Squid
+    Name: <bold><aqua>Lula Brilhante
     Description: Light up the ocean!
   Chicken:
     Name: <bold><white>Galinha
@@ -1218,7 +1226,7 @@ Hats:
     Name: <bold><gold>Blaze
     Description: Watch out for the fire!
   Piston:
-    Name: <bold><gray>Piston
+    Name: <bold><gray>Pistão
     Description: Have you got the redstone?
   Sheep:
     Name: <bold><white>Ovelha
@@ -1227,10 +1235,10 @@ Hats:
     Name: <bold><light_purple>Porco
     Description: Oink Oink!
   Cow:
-    Name: <bold><green>Cow
+    Name: <bold><green>Vaca
     Description: Muuuu!
   Mooshroom:
-    Name: <bold><red>Mooshroom
+    Name: <bold><red>Vaca-Cogumelo
     Description: Muuuu!
   BrownMooshroom:
     Name: <bold><aqua>Brown Mooshroom
@@ -1269,13 +1277,13 @@ Hats:
     Name: <bold><dark_aqua>Afogado
     Description: Underwater zombie
   Strider:
-    Name: <bold><red>Strider
-    Description: I hate water!
+    Name: <bold><red>Peregrino
+    Description: Eu odeio água!
   WitherSkeleton:
     Name: <bold><gray>Wither Skeleton
     Description: Guardian of the nether fortress
   Ghast:
-    Name: <bold><white>Ghast
+    Name: <bold><yellow>Fantasma
     Description: '*high-pitched scream*'
   Warden:
     Name: <bold><dark_aqua>Defensor
@@ -1305,7 +1313,7 @@ Hats:
     Name: <bold><white>Snow Fox
     Description: Snowy biomes are my home.
   Ocelot:
-    Name: <bold><yellow>Ocelot
+    Name: <bold><yellow>Jaguatirica
     Description: King of the jungle
   Frog:
     Name: <bold><dark_green>Sapo
@@ -1386,7 +1394,7 @@ Hats:
     Name: <bold><gold>Chest
     Description: Open, and close
   Skull:
-    Name: <bold><white>Skull
+    Name: <bold><white>Cabeça
     Description: Who is headless now?
   JackOLantern:
     Name: <bold><gold>Jack-O'-Lantern
@@ -1404,7 +1412,7 @@ Hats:
     Name: <bold><white>Boneco de Neve
     Description: I don't have a skull... or bones
   Present:
-    Name: <bold><red>Present
+    Name: <bold><red>Presente
     Description: From Santa, to you!
   Elf:
     Name: <bold><green>Elf
@@ -1841,6 +1849,15 @@ Death-Effects:
   PuffOfSmoke:
     Description: Disappear in a puff of smoke!
     name: <bold><gray>Puff of Smoke
+  DragonBreath:
+    name: <bold><gray>Dragon Breath
+    Description: Disintegrate into the dragon mist.
+  Flames:
+    name: <bold><gold>Flames
+    Description: Explode into bursts of fire and sparks!
+  ItemExplode:
+    name: <bold><light_purple>Candy Explode
+    Description: ALL OUR (SWEET) FOOD KEEPS BLOWING UP
 Enabled-SelfMorphView: <prefix> <blue>You enabled self view for morphs!
 Disabled-SelfMorphView: <prefix> <blue>You disabled self view for morphs!
 Enabled-Gadgets: <prefix> <blue>You enabled gadgets!
