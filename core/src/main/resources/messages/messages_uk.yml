@@ -555,6 +555,11 @@ Particle-Effects:
     Description: |-
       Залишає за собою
       sслід диму.
+  SuperVillain:
+    name: <bold><dark_purple>Super Villain
+    Description: |-
+      Become Batman... or whoever is
+      more evil than Superman!
   Notes:
     name: <bold><gold>Ноти
     Description: Ноти над головою.
@@ -579,6 +584,9 @@ Particle-Effects:
     Description: |-
       Залишає по собі слід
       снігу за собою.
+  CherryFairy:
+    name: '<bold><#DE3163>Cherry Fairy'
+    Description: Protector of the cherry grove.
 Pets:
   Piggy:
     menu-name: <bold><light_purple>Свинка
@@ -1845,6 +1853,15 @@ Death-Effects:
   PuffOfSmoke:
     Description: Зникнення в хмарі диму!
     name: <bold><gray>Хмара диму
+  DragonBreath:
+    name: <bold><gray>Dragon Breath
+    Description: Disintegrate into the dragon mist.
+  Flames:
+    name: <bold><gold>Flames
+    Description: Explode into bursts of fire and sparks!
+  ItemExplode:
+    name: <bold><light_purple>Candy Explode
+    Description: ALL OUR (SWEET) FOOD KEEPS BLOWING UP
 Enabled-SelfMorphView: <prefix> <blue>Ви увімкнули самоперегляд для морфів!
 Disabled-SelfMorphView: <prefix> <blue>Ви вимкнули самоперегляд для морфів!
 Enabled-Gadgets: <prefix> <blue>Ви увімкнули гаджети!

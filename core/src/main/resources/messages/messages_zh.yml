@@ -546,6 +546,11 @@ Particle-Effects:
     name: <bold><gray>影之足迹
     Description: |-
       会在身后留下一片烟雾.
+  SuperVillain:
+    name: <bold><dark_purple>Super Villain
+    Description: |-
+      Become Batman... or whoever is
+      more evil than Superman!
   Notes:
     name: <bold><gold>音符
     Description: 在头上盘旋的音符.
@@ -567,6 +572,9 @@ Particle-Effects:
     name: <bold><white>雪地足迹
     Description: |-
       会在身后留下一片雪花.
+  CherryFairy:
+    name: '<bold><#DE3163>Cherry Fairy'
+    Description: Protector of the cherry grove.
 Pets:
   Piggy:
     menu-name: <bold><light_purple>猪仔
@@ -1832,6 +1840,15 @@ Death-Effects:
   PuffOfSmoke:
     Description: Disappear in a puff of smoke!
     name: <bold><gray>Puff of Smoke
+  DragonBreath:
+    name: <bold><gray>Dragon Breath
+    Description: Disintegrate into the dragon mist.
+  Flames:
+    name: <bold><gold>Flames
+    Description: Explode into bursts of fire and sparks!
+  ItemExplode:
+    name: <bold><light_purple>Candy Explode
+    Description: ALL OUR (SWEET) FOOD KEEPS BLOWING UP
 Enabled-SelfMorphView: <prefix> <blue>你启用了第一人称伪装视角
 Disabled-SelfMorphView: <prefix> <blue>你禁用了第一人称伪装视角
 Enabled-Gadgets: <prefix> <blue>您启用了小工具！

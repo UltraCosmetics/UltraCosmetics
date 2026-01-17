@@ -550,6 +550,11 @@ Particle-Effects:
     name: <bold><gray>Árny lábnyomok
     Description: |-
       Füstöt hagy maga után.
+  SuperVillain:
+    name: <bold><dark_purple>Super Villain
+    Description: |-
+      Become Batman... or whoever is
+      more evil than Superman!
   Notes:
     name: <bold><gold>Zenék
     Description: Mutasd meg milyen jó zenéket tudsz.
@@ -573,6 +578,9 @@ Particle-Effects:
     Description: |-
       Havat hagy maga után...
       Olyan, mint a hóember.
+  CherryFairy:
+    name: '<bold><#DE3163>Cherry Fairy'
+    Description: Protector of the cherry grove.
 Pets:
   Piggy:
     menu-name: <bold><light_purple>Malacka
@@ -1839,6 +1847,15 @@ Death-Effects:
   PuffOfSmoke:
     Description: Eltűnés egy füstfelhőben!
     name: <bold><gray>Füstfelhő
+  DragonBreath:
+    name: <bold><gray>Dragon Breath
+    Description: Disintegrate into the dragon mist.
+  Flames:
+    name: <bold><gold>Flames
+    Description: Explode into bursts of fire and sparks!
+  ItemExplode:
+    name: <bold><light_purple>Candy Explode
+    Description: ALL OUR (SWEET) FOOD KEEPS BLOWING UP
 Enabled-SelfMorphView: <prefix><blue>Bekapcsoltad a saját nézet változásokat!
 Disabled-SelfMorphView: <prefix><blue>Kikapcsoltad a saját nézet álcákat!
 Enabled-Gadgets: <prefix><blue>Bekapcsoltad a kütyüket!

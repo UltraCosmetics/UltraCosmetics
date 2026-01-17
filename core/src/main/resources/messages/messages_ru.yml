@@ -554,6 +554,11 @@ Particle-Effects:
     Description: |-
       Оставляет за собой шлейф
       дыма.
+  SuperVillain:
+    name: <bold><dark_purple>Super Villain
+    Description: |-
+      Become Batman... or whoever is
+      more evil than Superman!
   Notes:
     name: <bold><gold>Ноты
     Description: Ноты над твоей головой.
@@ -578,6 +583,9 @@ Particle-Effects:
     Description: |-
       Оставляет за собой шлейф из
       снега.
+  CherryFairy:
+    name: '<bold><#DE3163>Cherry Fairy'
+    Description: Protector of the cherry grove.
 Pets:
   Piggy:
     menu-name: <bold><light_purple>Поросенок
@@ -1843,7 +1851,16 @@ Death-Effects:
     Description: '⚡ БАЦ!'
   PuffOfSmoke:
     Description: Исчезнет в кусочке дыма!
-    name: <bold><gray>Puff of Smoke
+    name: <bold><gray>Облачко дыма
+  DragonBreath:
+    name: <bold><gray>Dragon Breath
+    Description: Disintegrate into the dragon mist.
+  Flames:
+    name: <bold><gold>Flames
+    Description: Explode into bursts of fire and sparks!
+  ItemExplode:
+    name: <bold><light_purple>Candy Explode
+    Description: ALL OUR (SWEET) FOOD KEEPS BLOWING UP
 Enabled-SelfMorphView: <prefix> <blue>Вы включили просмотр себя для превращений!
 Disabled-SelfMorphView: <prefix> <blue>Вы отключили просмотр себя для превращений!
 Enabled-Gadgets: <prefix> <blue>Вы включили гаджеты!
@@ -1870,12 +1887,12 @@ Use-Rename-Pet-Command: <prefix> <red>Используйте <yellow>/uc rename<
 Commands-Disabled-During-Chest: <prefix> <bold><red>Вы не можете использовать команды во время открытия сундука!
 No-Buy-Key-Permission: <prefix> <red><bold>Вы не имеете разрешения на покупку ключей сокровища!
 Particles-Minimal-In-Client: <yellow>В настройках клиента для частиц установлено значение "минимально" и вы не сможете видеть частицы.
-Cosmetics-Toggled-Off: <prefix> <blue>Cosmetics toggled off
-Cosmetics-Toggled-On: <prefix> <blue>Cosmetics toggled on
-Invalid-Category: <prefix> <bold><red>Invalid Category!
-Invalid-Cosmetic: <prefix> <bold><red>Invalid Cosmetic!
-Invalid-Player: '<prefix> <bold><red>Invalid Player!'
-Must-Specify-Player: <prefix> <bold><red>You must specify a player!
-Invalid-Number: '<prefix> <bold><red>Invalid number: <value>'
-Treasure-Keys-Given: <green><keys> keys given to <playername>
-Ammo-Given: <green><ammo> <gadgetname> ammo given to <playername>
+Cosmetics-Toggled-Off: <prefix> <blue>Косметика была выключена
+Cosmetics-Toggled-On: <prefix> <blue>Косметика была включена
+Invalid-Category: <prefix> <bold><red>Недопустимая категория!
+Invalid-Cosmetic: <prefix> <bold><red>Недействительная косметика!
+Invalid-Player: '<prefix> <bold><red>Недопустимый игрок!'
+Must-Specify-Player: <prefix> <bold><red>Вы должны указать игрока!
+Invalid-Number: '<prefix> <bold><red>Неверный номер: <value>'
+Treasure-Keys-Given: <green><keys> Ключи, переданные <playername>
+Ammo-Given: <green><ammo> <gadgetname> Боеприпасы, выданные <playername>
