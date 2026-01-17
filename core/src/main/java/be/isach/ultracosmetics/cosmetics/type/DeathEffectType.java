@@ -2,10 +2,7 @@ package be.isach.ultracosmetics.cosmetics.type;
 
 import be.isach.ultracosmetics.config.MessageManager;
 import be.isach.ultracosmetics.cosmetics.Category;
-import be.isach.ultracosmetics.cosmetics.deatheffects.DeathEffect;
-import be.isach.ultracosmetics.cosmetics.deatheffects.DeathEffectFirework;
-import be.isach.ultracosmetics.cosmetics.deatheffects.DeathEffectLightning;
-import be.isach.ultracosmetics.cosmetics.deatheffects.DeathEffectPuffOfSmoke;
+import be.isach.ultracosmetics.cosmetics.deatheffects.*;
 import com.cryptomorin.xseries.XMaterial;
 import com.cryptomorin.xseries.particles.XParticle;
 
@@ -23,5 +20,8 @@ public class DeathEffectType extends CosmeticParticleType<DeathEffect> {
         new DeathEffectType("Firework", XParticle.FIREWORK, XMaterial.FIREWORK_ROCKET, DeathEffectFirework.class, false);
         new DeathEffectType("Lightning", XParticle.CRIT, XMaterial.DAYLIGHT_DETECTOR, DeathEffectLightning.class, false);
         new DeathEffectType("PuffOfSmoke", XParticle.LARGE_SMOKE, XMaterial.SMOKER, DeathEffectPuffOfSmoke.class, true);
+        new DeathEffectType("DragonBreath", XParticle.DRAGON_BREATH, XMaterial.DRAGON_BREATH, DeathEffectDragonBreath.class, false);
+        new DeathEffectType("Flames", XParticle.FLAME, XMaterial.BLAZE_POWDER, DeathEffectFlames.class,false);
+        new DeathEffectType("ItemExplode", XParticle.CRIT, XMaterial.FERMENTED_SPIDER_EYE, DeathEffectItemExplode.class,false);
     }
 }

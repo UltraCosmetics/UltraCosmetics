@@ -54,5 +54,9 @@ public class ParticleEffectType extends CosmeticParticleType<ParticleEffect> {
         new ParticleEffectType("ArcaneFlame", 3, XParticle.SOUL_FIRE_FLAME, XMaterial.SOUL_TORCH, ParticleEffectAboveHead.class, false);
         new ParticleEffectType("DivineHalo", 2, XParticle.WAX_OFF, XMaterial.GLOWSTONE, ParticleEffectHalo.class, false);
         new ParticleEffectType("SnowFootprints", 1, XParticle.SNOWFLAKE, XMaterial.POWDER_SNOW_BUCKET, ParticleEffectFootprints.class, false);
+        new ParticleEffectType("SuperVillain", 2,XParticle.DUST, XMaterial.DRIED_KELP, ParticleEffectSuperVillain.class, false);
+        if (XParticle.CHERRY_LEAVES.isSupported()) {
+            new ParticleEffectType("CherryFairy", 2,XParticle.WITCH, XMaterial.PINK_PETALS, ParticleEffectCherryFairy.class, false);
+        }
     }
 }
