@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>io.github.patrick-choe</groupId>
+  <artifactId>mojang-spigot-remapper</artifactId>
+  <versioning>
+    <latest>1.4.2-custom</latest>
+    <release>1.4.2-custom</release>
+    <versions>
+      <version>1.4.2-custom</version>
+    </versions>
+    <lastUpdated>20260122054842</lastUpdated>
+  </versioning>
+</metadata>

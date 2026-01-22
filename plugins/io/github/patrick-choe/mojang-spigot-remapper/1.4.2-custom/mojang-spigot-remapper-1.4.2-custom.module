@@ -1,0 +1,89 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "io.github.patrick-choe",
+    "module": "mojang-spigot-remapper",
+    "version": "1.4.2-custom",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.7"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.jvm.version": 8,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "1.9.23"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "mojang-spigot-remapper-1.4.2-custom.jar",
+          "url": "mojang-spigot-remapper-1.4.2-custom.jar",
+          "size": 20956,
+          "sha512": "2d41d10f44a3864a65e3d6958d1d986b1d33987a434b2f291cb85870526787845bfffd498c35908abbbb09c5178144b7ad461c922b2cbaea75ae14ecbb32d56a",
+          "sha256": "0078a99364218d3c87313209cfe1ea5d66cad7675f45c0c5b9efc190c31321a6",
+          "sha1": "d75ca0539b01a498de15712530693b8f66749f78",
+          "md5": "0673e568801bdfec5dd81594d7db5b35"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.jvm.version": 8,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "net.md-5",
+          "module": "SpecialSource",
+          "version": {
+            "requires": "1.11.4"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "1.9.23"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "mojang-spigot-remapper-1.4.2-custom.jar",
+          "url": "mojang-spigot-remapper-1.4.2-custom.jar",
+          "size": 20956,
+          "sha512": "2d41d10f44a3864a65e3d6958d1d986b1d33987a434b2f291cb85870526787845bfffd498c35908abbbb09c5178144b7ad461c922b2cbaea75ae14ecbb32d56a",
+          "sha256": "0078a99364218d3c87313209cfe1ea5d66cad7675f45c0c5b9efc190c31321a6",
+          "sha1": "d75ca0539b01a498de15712530693b8f66749f78",
+          "md5": "0673e568801bdfec5dd81594d7db5b35"
+        }
+      ]
+    }
+  ]
+}

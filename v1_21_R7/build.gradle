@@ -1,10 +1,10 @@
 plugins {
-    id "io.github.patrick.remapper" version "1.4.2"
+    id "io.github.patrick.remapper" version "1.4.2-custom"
 }
 
 dependencies {
     // https://hub.spigotmc.org/stash/projects/SPIGOT/repos/spigot
-    implementation "org.spigotmc:spigot:$remapMcVersion-R0.1-SNAPSHOT:remapped-mojang"
+    implementation "org.spigotmc:spigot:$remapMcVersion:remapped-mojang"
 
     implementation project(':core')
 }
