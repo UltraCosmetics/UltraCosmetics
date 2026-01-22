@@ -1,5 +1,5 @@
 plugins {
-    id "io.github.patrick.remapper" version "1.4.2-custom"
+    id "io.github.patrick.remapper" version "1.4.2"
 }
 
 dependencies {
