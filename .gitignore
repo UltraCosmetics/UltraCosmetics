@@ -130,6 +130,7 @@ hts*
 
 # Don't ignore jars in tools
 !tooling/*/*.jar
+!plugins/**/*.jar
 
 # Filter copyrighted files from ObfuscatedFields_generator
 tooling/ObfuscatedFields generator/*.txt
