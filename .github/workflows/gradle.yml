@@ -20,7 +20,7 @@ jobs:
     steps:
       # https://github.com/actions/checkout
       - name: Checkout Git repository
-        uses: actions/checkout@v6.0.1
+        uses: actions/checkout@v6.0.2
 
       # https://github.com/actions/cache
       - name: Cache Gradle
