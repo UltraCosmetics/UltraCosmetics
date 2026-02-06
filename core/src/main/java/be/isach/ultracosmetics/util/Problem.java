@@ -21,7 +21,7 @@ public enum Problem {
     BAD_MAPPINGS_VERSION(ProblemSeverity.WARNING, "Server internals seem to have changed since this build was created, you will likely experience issues.", "bad-mappings-version") {
         @Override
         public Component getSummary() {
-            return super.getSummary().append(Component.text(" (Expected version: " + UltraCosmeticsData.get().getServerVersion().getName() + ")"));
+            return super.getSummary().append(Component.text(" (Expected version: " + UltraCosmeticsData.get().getServerVersion().canonicalName() + ")"));
         }
     },
     TALL_DISGUISES_DISABLED(ProblemSeverity.WARNING, "TallSelfDisguises is disabled in LibsDisguises self_disguise.yml. This may cause morph self view to not behave as intended.", "tall-disguises-disabled"),

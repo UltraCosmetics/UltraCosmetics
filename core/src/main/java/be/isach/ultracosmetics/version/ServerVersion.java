@@ -44,7 +44,7 @@ public enum ServerVersion {
     }
 
     private ServerVersion(int majorVer, int minorVer, String mappingsVersion, int nmsRevision) {
-        this.name = "1." + majorVer + (minorVer > 0 ? "." + minorVer : "");
+        this.name = majorVer + (minorVer > 0 ? "." + minorVer : "");
         this.majorVer = majorVer;
         this.minorVer = minorVer;
         this.mappingsVersion = mappingsVersion;
@@ -53,6 +53,10 @@ public enum ServerVersion {
 
     public String getName() {
         return name;
+    }
+
+    public String canonicalName() {
+        return (majorVer < 26 && majorVer > 0 ? "1." : "") + name;
     }
 
     public int getMajorVer() {
@@ -75,14 +79,19 @@ public enum ServerVersion {
         return values()[0];
     }
 
+    /**
+     * Look up the ServerVersion for the given ID.
+     *
+     * @param id The major version ID to look for, e.g. 26
+     * @return The matching ServerVersion, or ServerVersion.NEW if no match was found.
+     */
     public static ServerVersion byId(int id) {
-        if (id == 0) return null;
         for (ServerVersion version : values()) {
             if (id == version.majorVer) {
                 return version;
             }
         }
-        return null;
+        return ServerVersion.NEW;
     }
 
     public boolean isAtLeast(ServerVersion version) {
@@ -98,14 +107,23 @@ public enum ServerVersion {
         return toString() + "_R" + nmsRevision;
     }
 
+    /**
+     * Get the Minecraft version, without the leading "1.", if present.
+     *
+     * @return The minecraft version, like 17.1 or 26
+     */
     public static String getMinecraftVersion() {
-        String rawVersion = Bukkit.getVersion();
-        return rawVersion.substring(rawVersion.lastIndexOf(" ") + 1, rawVersion.length() - 1);
+        // Should be something like "1.21.11-R0.2-SNAPSHOT"
+        String version = Bukkit.getBukkitVersion().split("-")[0];
+        if (version.startsWith("1.")) {
+            return version.substring(2);
+        }
+        return version;
     }
 
     public static boolean isMobchipEdgeCase() {
         // MobChip thinks it works on this version but it really has some critical issues due to mapping changes.
-        return getMinecraftVersion().equals("1.19");
+        return getMinecraftVersion().equals("19");
     }
 
     /**

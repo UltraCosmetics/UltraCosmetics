@@ -11,8 +11,6 @@ import org.bukkit.Bukkit;
 
 import java.lang.reflect.Method;
 
-import static be.isach.ultracosmetics.version.ServerVersion.isMobchipEdgeCase;
-
 /**
  * This class is only for cleaning main class a bit.
  *
@@ -123,7 +121,7 @@ public class UltraCosmeticsData {
 
     protected boolean initModule() {
         SmartLogger logger = ultraCosmetics.getSmartLogger();
-        logger.write("Initializing module " + serverVersion + " (expected version: " + serverVersion.getName() + ")");
+        logger.write("Initializing module " + serverVersion + " (expected version: " + serverVersion.canonicalName() + ")");
 
         // If NMS is force enabled and we don't know what version we're on, don't use strict version checking.
         boolean isNmsDowngrade = false;
@@ -201,28 +199,45 @@ public class UltraCosmeticsData {
     }
 
     /**
+     * Attempt to parse the Minecraft version of the server into a ServerVersion.
+     *
+     * @return The parsed server version, or {@code ServerVersion.NEW} if it couldn't be determined.
+     */
+    private ServerVersion parseVersion() {
+        try {
+            String version = ServerVersion.getMinecraftVersion();
+            String[] parts = version.split("\\.");
+            int majorVer = Integer.parseInt(parts[0]);
+            int minorVer = 0;
+            // If version has minor component, e.g. 8.8 (canonically 1.8.8)
+            if (parts.length > 1) {
+                minorVer = Integer.parseInt(parts[1]);
+            }
+            ServerVersion serverVersion = ServerVersion.byId(majorVer);
+            // If the version we were expecting is less than the version of the actual server,
+            // treat it as an unrecognized version.
+            // TODO: maybe we don't need this? NMS is probably more stable when completely unobfuscated
+            if (serverVersion == ServerVersion.NEW || serverVersion.getMinorVer() < minorVer) {
+                return ServerVersion.NEW;
+            }
+            return serverVersion;
+        } catch (NumberFormatException ignored) {
+            return ServerVersion.NEW;
+        }
+    }
+
+    /**
      * Checks to make sure UC is OK to run on this MC version
      *
      * @return the reason the check failed, or null if it succeeded.
      */
     protected Problem checkServerVersion() {
-        String version = ServerVersion.getMinecraftVersion();
-        String[] parts = version.split("\\.");
-        int majorVer = Integer.parseInt(parts[1]);
-        int minorVer = 0;
-        // If version has minor component, e.g. 1.8.8
-        if (parts.length > 2) {
-            minorVer = Integer.parseInt(parts[2]);
-        }
-        ServerVersion serverVersion = ServerVersion.byId(majorVer);
-        // If we don't know the server version, or if the server version is a
-        // newer revision of one we know, use NEW.
-        if (serverVersion == null || (serverVersion.getNMSRevision() > 0 && serverVersion.getMinorVer() < minorVer)) {
+        serverVersion = parseVersion();
+        // If we don't know the server version...
+        if (serverVersion == ServerVersion.NEW) {
             // Error message printed in onEnable so it's more visible
-            this.serverVersion = ServerVersion.NEW;
             return Problem.BAD_MC_VERSION;
         }
-        this.serverVersion = serverVersion;
         return null;
     }
 
@@ -247,7 +262,7 @@ public class UltraCosmeticsData {
     }
 
     private boolean checkMobChipAvailable() {
-        if (isMobchipEdgeCase()) {
+        if (ServerVersion.isMobchipEdgeCase()) {
             return false;
         }
 
