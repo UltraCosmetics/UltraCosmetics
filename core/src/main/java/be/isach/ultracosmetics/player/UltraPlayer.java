@@ -163,6 +163,16 @@ public class UltraPlayer {
     }
 
     /**
+     * Checks if the player has permission to purchase a cosmetic.
+     *
+     * @param type the type of cosmetic to check for
+     * @return true if the cosmetic can be purchased
+     */
+    public boolean canPurchase(CosmeticType<?> type) {
+        return ultraCosmetics.getPermissionManager().hasRawPermission(getBukkitPlayer(), type.getPurchasePermission().getName());
+    }
+
+    /**
      * Sets the cooldown of a cosmetic.
      *
      * @param type     The cosmetic.
