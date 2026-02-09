@@ -234,7 +234,7 @@ public class HatType extends CosmeticType<Hat> {
             if (hat == null) {
                 continue;
             }
-            if (hat.isString("type")) {
+            if (hat.isString("type") || hat.isString("url")) {
                 migrateToXseries(hat);
             }
             ItemStack item;
