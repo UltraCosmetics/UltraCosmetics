@@ -452,8 +452,6 @@ No-Permission:
   Show-In-Lore: true
   Dont-Show-Item: false
   Allow-Purchase: false
-  # Whether per cosmetic purchasing permissions should be used
-  Use-Purchase-Permissions: false
   Custom-Item:
     enabled: false
     Type: BARRIER

@@ -27,7 +27,6 @@ public abstract class CosmeticButton implements Button {
     private final int price;
     private final boolean ignoreTooltip;
     private final boolean allowPurchase = SettingsManager.getConfig().getBoolean("No-Permission.Allow-Purchase");
-    private final boolean usePurchasePermissions = SettingsManager.getConfig().getBoolean("No-Permission.Use-Purchase-Permissions");
     private final Component noPermissionMessage = MessageManager.getMessage("No-Permission");
     private ItemStack stack = null;
 
@@ -107,8 +106,7 @@ public abstract class CosmeticButton implements Button {
             if (!allowPurchase || price <= 0) {
                 ultraPlayer.sendMessage(noPermissionMessage);
                 return true;
-            }
-            if (usePurchasePermissions && !ultraPlayer.canPurchase(cosmeticType)) {
+            } else if (!ultraPlayer.canPurchase(cosmeticType)) {
                 ultraPlayer.sendMessage(noPermissionMessage);
                 return true;
             }
@@ -147,16 +145,14 @@ public abstract class CosmeticButton implements Button {
     }
 
     private void addPurchaseLore(ItemStack stack, UltraPlayer player) {
-        if (price > 0 && !player.canEquip(cosmeticType) && allowPurchase) {
-            if(player.canPurchase(cosmeticType)) {
-                ItemMeta meta = stack.getItemMeta();
-                List<String> lore = meta.getLore();
-                lore.add("");
-                int discountPrice = ultraCosmetics.getEconomyHandler().calculateDiscountPrice(player.getBukkitPlayer(), price);
-                lore.add(MessageManager.getLegacyMessage("Click-To-Purchase", Placeholder.unparsed("price", String.valueOf(discountPrice))));
-                meta.setLore(lore);
-                stack.setItemMeta(meta);
-            }
+        if (price > 0 && !player.canEquip(cosmeticType) && allowPurchase && player.canPurchase(cosmeticType)) {
+            ItemMeta meta = stack.getItemMeta();
+            List<String> lore = meta.getLore();
+            lore.add("");
+            int discountPrice = ultraCosmetics.getEconomyHandler().calculateDiscountPrice(player.getBukkitPlayer(), price);
+            lore.add(MessageManager.getLegacyMessage("Click-To-Purchase", Placeholder.unparsed("price", String.valueOf(discountPrice))));
+            meta.setLore(lore);
+            stack.setItemMeta(meta);
         }
     }
 
