@@ -165,6 +165,11 @@ public enum Category {
         return "ultracosmetics." + permission;
     }
 
+    public String getPurchasePermission() {
+        return "ultracosmetics.purchase." + permission;
+    }
+
+
     public List<? extends CosmeticType<?>> getEnabled() {
         return CosmeticType.enabledOf(this);
     }

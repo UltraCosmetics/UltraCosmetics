@@ -150,6 +150,7 @@ public abstract class CosmeticType<T extends Cosmetic<?>> {
     private final Category category;
     private final XMaterial material;
     private Permission permission;
+    private Permission purchasePermission;
 
     public CosmeticType(Category category, String configName, XMaterial material, Class<? extends T> clazz) {
         this(category, configName, material, clazz, true);
@@ -206,6 +207,10 @@ public abstract class CosmeticType<T extends Cosmetic<?>> {
 
     public Permission getPermission() {
         return permission;
+    }
+
+    public Permission getPurchasePermission() {
+        return purchasePermission;
     }
 
     public Class<? extends T> getClazz() {
@@ -288,6 +293,11 @@ public abstract class CosmeticType<T extends Cosmetic<?>> {
                 Bukkit.getPluginManager().addPermission(perm);
             } catch (IllegalArgumentException ignored) {
             }
+            return perm;
+        });
+        purchasePermission = registeredPermissions.computeIfAbsent(category.getPurchasePermission() + "." + getPermissionSuffix(), s -> {
+            Permission perm = new Permission(s);
+            Bukkit.getPluginManager().addPermission(perm);
             return perm;
         });
     }
