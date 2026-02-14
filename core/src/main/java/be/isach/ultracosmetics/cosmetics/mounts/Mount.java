@@ -12,6 +12,7 @@ import be.isach.ultracosmetics.run.MountRegionChecker;
 import be.isach.ultracosmetics.task.UltraTask;
 import be.isach.ultracosmetics.util.Area;
 import be.isach.ultracosmetics.util.BlockUtils;
+import be.isach.ultracosmetics.util.EntityMountManager;
 import be.isach.ultracosmetics.util.ItemFactory;
 import be.isach.ultracosmetics.version.VersionManager;
 import com.cryptomorin.xseries.XMaterial;
@@ -68,7 +69,7 @@ public abstract class Mount extends EntityCosmetic<MountType, Entity> implements
         }
         entity.setCustomNameVisible(true);
         getUltraCosmetics().getPaperSupport().setCustomName(entity, getType().getName(getPlayer()));
-        entity.addPassenger(getPlayer());
+        EntityMountManager.withBypass(() -> entity.addPassenger(getPlayer()));
         entity.setPersistent(false);
         entity.setMetadata("Mount", new FixedMetadataValue(UltraCosmeticsData.get().getPlugin(), "UltraCosmetics"));
         setupEntity();

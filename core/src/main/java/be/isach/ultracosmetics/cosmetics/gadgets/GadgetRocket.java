@@ -8,6 +8,7 @@ import be.isach.ultracosmetics.player.UltraPlayer;
 import be.isach.ultracosmetics.run.FallDamageManager;
 import be.isach.ultracosmetics.util.Area;
 import be.isach.ultracosmetics.util.BlockUtils;
+import be.isach.ultracosmetics.util.EntityMountManager;
 import be.isach.ultracosmetics.util.StructureRollback;
 import com.cryptomorin.xseries.XMaterial;
 import com.cryptomorin.xseries.XSound;
@@ -92,7 +93,7 @@ public class GadgetRocket extends Gadget implements Updatable {
         getUltraCosmetics().getScheduler().runAtEntityLater(getPlayer(), () -> {
             if (getOwner() == null || getOwner().getCurrentGadget() != this) return;
             playerVehicle = null;
-            boolean success = armorStand.addPassenger(getPlayer());
+            boolean success = EntityMountManager.withBypass(() -> armorStand.addPassenger(getPlayer()));
             if (!success) {
                 cleanup();
                 return;
@@ -137,7 +138,7 @@ public class GadgetRocket extends Gadget implements Updatable {
 
                     fallingBlocks.add(top);
                     fallingBlocks.add(base);
-                    boolean success = top.addPassenger(getPlayer());
+                    boolean success = EntityMountManager.withBypass(() -> top.addPassenger(getPlayer()));
                     if (!success) {
                         cleanup();
                     }

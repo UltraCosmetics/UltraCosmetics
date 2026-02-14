@@ -6,6 +6,7 @@ import be.isach.ultracosmetics.cosmetics.Updatable;
 import be.isach.ultracosmetics.cosmetics.type.GadgetType;
 import be.isach.ultracosmetics.player.UltraPlayer;
 import be.isach.ultracosmetics.util.BlockUtils;
+import be.isach.ultracosmetics.util.EntityMountManager;
 import be.isach.ultracosmetics.util.EntitySpawner;
 import org.bukkit.Color;
 import org.bukkit.GameMode;
@@ -68,7 +69,7 @@ public class GadgetEtherealPearl extends Gadget implements Updatable {
         //getUltraCosmetics().getScheduler().teleportAsync(getPlayer(), getPlayer().getLocation().add(0, 5, 0));
         // Teleportation can cause the pearl to hit the player in the same tick
         if (pearl == null) return;
-        if (!pearl.addPassenger(getPlayer())) {
+        if (!EntityMountManager.withBypass(() -> pearl.addPassenger(getPlayer()))) {
             pearl.remove();
             return;
         }

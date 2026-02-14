@@ -6,6 +6,7 @@ import be.isach.ultracosmetics.config.SettingsManager;
 import be.isach.ultracosmetics.cosmetics.type.MountType;
 import be.isach.ultracosmetics.player.UltraPlayer;
 import be.isach.ultracosmetics.run.FallDamageManager;
+import be.isach.ultracosmetics.util.EntityMountManager;
 import be.isach.ultracosmetics.util.EntitySpawningManager;
 import me.gamercoder215.mobchip.EntityBrain;
 import me.gamercoder215.mobchip.ai.controller.NaturalMoveType;
@@ -41,7 +42,7 @@ public class MountDragon extends Mount {
             boost.setAware(false);
             boost.setPersistent(false);
             entity.removePassenger(getPlayer());
-            boost.addPassenger(getPlayer());
+            EntityMountManager.withBypass(() -> boost.addPassenger(getPlayer()));
             entity.addPassenger(boost);
             entity.setMetadata("Mount", new FixedMetadataValue(UltraCosmeticsData.get().getPlugin(), "UltraCosmetics"));
         }
