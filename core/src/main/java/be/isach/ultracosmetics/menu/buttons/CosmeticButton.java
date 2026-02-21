@@ -106,6 +106,9 @@ public abstract class CosmeticButton implements Button {
             if (!allowPurchase || price <= 0) {
                 ultraPlayer.sendMessage(noPermissionMessage);
                 return true;
+            } else if (!ultraPlayer.canPurchase(cosmeticType)) {
+                ultraPlayer.sendMessage(noPermissionMessage);
+                return true;
             }
             String itemName = MessageManager.getLegacyMessage("Buy-Cosmetic-Description",
                     Placeholder.unparsed("price", TextUtil.formatNumber(ultraCosmetics.getEconomyHandler().calculateDiscountPrice(ultraPlayer.getBukkitPlayer(), price))),
@@ -142,7 +145,7 @@ public abstract class CosmeticButton implements Button {
     }
 
     private void addPurchaseLore(ItemStack stack, UltraPlayer player) {
-        if (price > 0 && !player.canEquip(cosmeticType) && allowPurchase) {
+        if (price > 0 && !player.canEquip(cosmeticType) && allowPurchase && player.canPurchase(cosmeticType)) {
             ItemMeta meta = stack.getItemMeta();
             List<String> lore = meta.getLore();
             lore.add("");
