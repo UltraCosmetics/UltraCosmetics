@@ -33,6 +33,7 @@ import be.isach.ultracosmetics.run.FallDamageManager;
 import be.isach.ultracosmetics.run.InvalidWorldChecker;
 import be.isach.ultracosmetics.run.VanishChecker;
 import be.isach.ultracosmetics.treasurechests.TreasureChestManager;
+import be.isach.ultracosmetics.util.EntityMountManager;
 import be.isach.ultracosmetics.util.EntitySpawningManager;
 import be.isach.ultracosmetics.util.InventoryViewHelper;
 import be.isach.ultracosmetics.util.PermissionPrinter;
