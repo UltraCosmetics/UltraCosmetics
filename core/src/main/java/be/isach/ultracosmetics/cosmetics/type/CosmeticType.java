@@ -20,6 +20,7 @@ import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.permissions.Permission;
+import org.bukkit.permissions.PermissionDefault;
 
 import java.io.File;
 import java.io.IOException;
@@ -296,7 +297,7 @@ public abstract class CosmeticType<T extends Cosmetic<?>> {
             return perm;
         });
         purchasePermission = registeredPermissions.computeIfAbsent(category.getPurchasePermission() + "." + getPermissionSuffix(), s -> {
-            Permission perm = new Permission(s);
+            Permission perm = new Permission(s, PermissionDefault.TRUE);
             Bukkit.getPluginManager().addPermission(perm);
             return perm;
         });
