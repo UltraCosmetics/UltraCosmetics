@@ -34,6 +34,10 @@ public abstract class TrailSuit extends Suit implements Updatable {
         // Easy way to make sure that walking in a straight line goes through each block sequence, even if we cross a
         // block we've already changed.
         int index = (block.getX() + block.getZ()) % trailBlocks.size();
+        if (index < 0) {
+            // -1 mod 3 is -1, but we want it to be 2
+            index += trailBlocks.size();
+        }
         Map<Block, XMaterial> updates = new HashMap<>();
         updates.put(block, trailBlocks.get(index));
         BlockUtils.setToRestore(updates, 60);
