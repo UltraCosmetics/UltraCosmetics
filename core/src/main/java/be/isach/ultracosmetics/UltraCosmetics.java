@@ -33,6 +33,7 @@ import be.isach.ultracosmetics.run.FallDamageManager;
 import be.isach.ultracosmetics.run.InvalidWorldChecker;
 import be.isach.ultracosmetics.run.VanishChecker;
 import be.isach.ultracosmetics.treasurechests.TreasureChestManager;
+import be.isach.ultracosmetics.util.EntityMountManager;
 import be.isach.ultracosmetics.util.EntitySpawningManager;
 import be.isach.ultracosmetics.util.InventoryViewHelper;
 import be.isach.ultracosmetics.util.PermissionPrinter;
@@ -548,6 +549,7 @@ public class UltraCosmetics extends JavaPlugin {
         pluginManager.registerEvents(new PlayerListener(this), this);
         pluginManager.registerEvents(new MainListener(), this);
         pluginManager.registerEvents(new EntitySpawningManager(), this);
+        pluginManager.registerEvents(new EntityMountManager(), this);
         unmovableItemListener = new UnmovableItemListener(this);
         pluginManager.registerEvents(unmovableItemListener, this);
         // No need to register this one, it doesn't have any event handlers of its own
