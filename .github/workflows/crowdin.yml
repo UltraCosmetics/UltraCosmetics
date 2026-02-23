@@ -19,7 +19,7 @@ jobs:
 
       # https://github.com/crowdin/github-action
       - name: Crowdin action
-        uses: crowdin/github-action@v2.14.1
+        uses: crowdin/github-action@v2.15.0
         with:
           upload_sources: false
           upload_translations: false
