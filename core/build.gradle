@@ -38,7 +38,7 @@ dependencies {
 //    library 'com.github.cryptomorin:XSeries:13.6.0'
     implementation fileTree(dir: '.', include: ['XSeries-*.jar'])
     // https://github.com/Bastian/bstats-metrics
-    implementation 'org.bstats:bstats-bukkit:3.1.0'
+    implementation 'org.bstats:bstats-bukkit:3.2.0'
     // https://github.com/LuckPerms/LuckPerms
     compileOnly 'net.luckperms:api:5.5'
     // https://github.com/ArcanePlugins/Treasury
