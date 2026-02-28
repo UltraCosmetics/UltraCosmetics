@@ -1,45 +1,52 @@
 package be.isach.ultracosmetics.run;
 
-import be.isach.ultracosmetics.UltraCosmeticsData;
 import be.isach.ultracosmetics.task.UltraTask;
 import org.bukkit.entity.Entity;
 
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 /**
  * Created by Sacha on 15/12/15.
  */
 public class FallDamageManager extends UltraTask {
-
-    public static final List<Entity> noFallDamage = Collections.synchronizedList(new ArrayList<>());
-    public static final List<Entity> queue = Collections.synchronizedList(new ArrayList<>());
+    // Keys which map to this value have not started their countdown yet
+    private static final int SENTINEL = Integer.MAX_VALUE;
+    private static final int COUNTDOWN_TICKS = 5;
+    private static final Map<Entity, Integer> noFallDamage = Collections.synchronizedMap(new HashMap<>());
 
     public static void addNoFall(Entity entity) {
-        if (!queue.contains(entity)
-                && !noFallDamage.contains(entity)) {
-            queue.add(entity);
-        }
+        noFallDamage.put(entity, SENTINEL);
     }
 
     public static boolean shouldBeProtected(Entity entity) {
-        return noFallDamage.contains(entity) || queue.contains(entity);
+        return noFallDamage.containsKey(entity);
     }
 
     @Override
     public void run() {
-        List<Entity> toRemove = new ArrayList<>();
+        // Even though the map itself is synchronized, the docs say iteration must be synchronized manually
         synchronized (noFallDamage) {
-            for (Entity ent : noFallDamage) {
-                if (ent.isOnGround()) {
-                    toRemove.add(ent);
+            Iterator<Map.Entry<Entity, Integer>> iter = noFallDamage.entrySet().iterator();
+            while (iter.hasNext()) {
+                Map.Entry<Entity, Integer> entry = iter.next();
+                if (!entry.getKey().isValid()) {
+                    iter.remove();
+                    continue;
+                }
+                if (entry.getValue() == SENTINEL) {
+                    if (entry.getKey().isOnGround()) {
+                        entry.setValue(COUNTDOWN_TICKS);
+                    }
+                } else if (entry.getValue() == 0) {
+                    iter.remove();
+                } else {
+                    entry.setValue(entry.getValue() - 1);
                 }
             }
         }
-        UltraCosmeticsData.get().getPlugin().getScheduler().runLaterAsync(() -> noFallDamage.removeAll(toRemove), 5);
-        noFallDamage.addAll(queue);
-        queue.clear();
     }
 
     @Override
