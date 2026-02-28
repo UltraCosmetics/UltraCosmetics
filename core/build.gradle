@@ -1,6 +1,6 @@
 plugins {
     // https://github.com/GradleUp/shadow
-    id 'com.gradleup.shadow' version '9.3.1'
+    id 'com.gradleup.shadow' version '9.3.2'
     // https://github.com/eldoriarpg/plugin-yml
     id 'de.eldoria.plugin-yml.bukkit' version '0.8.0'
 }
