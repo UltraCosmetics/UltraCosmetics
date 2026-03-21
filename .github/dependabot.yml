@@ -1,0 +1,25 @@
+version: 2
+
+
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "daily"
+      time: "23:00"
+      timezone: America/New_York
+    open-pull-requests-limit: 10
+
+  - package-ecosystem: "gradle"
+    directory: "/"
+    schedule:
+      interval: "daily"
+      time: "23:00"
+      timezone: America/New_York
+    open-pull-requests-limit: 10
+    ignore:
+      - dependency-name: "io.papermc.paper:paper-api"
+      - dependency-name: "org.spigotmc:spigot-api"
+      - dependency-name: "net.wesjd:anvilgui"
+      - dependency-name: "com.palmergames.bukkit.towny:towny"
+      - dependency-name: "com.sk89q.worldguard:worldguard-bukkit"
