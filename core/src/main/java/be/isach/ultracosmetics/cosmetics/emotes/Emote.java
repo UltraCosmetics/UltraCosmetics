@@ -33,10 +33,12 @@ public class Emote extends ArmorCosmetic<EmoteType> {
         animation.stop();
     }
 
+    @Override
     protected void setItemStack(ItemStack itemStack) {
-        this.itemStack = itemStack.clone();
-        writeAttributes(this.itemStack);
-        setArmorItem(this.itemStack);
+        ItemStack item = itemStack.clone();
+        writeAttributes(item);
+        super.setItemStack(itemStack);
+        updateArmorItem();
     }
 
     @Override

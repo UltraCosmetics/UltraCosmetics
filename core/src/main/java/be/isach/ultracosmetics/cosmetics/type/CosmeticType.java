@@ -15,12 +15,15 @@ import be.isach.ultracosmetics.version.ServerVersion;
 import com.cryptomorin.xseries.XMaterial;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
+import org.bukkit.NamespacedKey;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.permissions.Permission;
 import org.bukkit.permissions.PermissionDefault;
+import org.bukkit.persistence.PersistentDataType;
 
 import java.io.File;
 import java.io.IOException;
@@ -150,6 +153,7 @@ public abstract class CosmeticType<T extends Cosmetic<?>> {
     private final Class<? extends T> clazz;
     private final Category category;
     private final XMaterial material;
+    private final NamespacedKey itemTag;
     private Permission permission;
     private Permission purchasePermission;
 
@@ -161,6 +165,7 @@ public abstract class CosmeticType<T extends Cosmetic<?>> {
         this.category = category;
         this.configName = configName;
         this.material = material;
+        this.itemTag = new NamespacedKey(UltraCosmeticsData.get().getPlugin(), category.name() + "_" + configName);
         this.clazz = clazz;
 
         if (GENERATE_MISSING_MESSAGES) {
@@ -226,12 +231,24 @@ public abstract class CosmeticType<T extends Cosmetic<?>> {
         return material;
     }
 
+    public NamespacedKey getItemTag() {
+        return itemTag;
+    }
+
     public ItemStack getItemStack() {
         String skull = SettingsManager.getConfig().getString(category.getConfigPath() + "." + getConfigName() + ".Custom-Head");
-        if (skull != null) {
-            return ItemFactory.createSkull(skull, "");
+        ItemStack stack;
+        if (skull == null) {
+            stack = material.parseItem();
+        } else {
+            stack = ItemFactory.createSkull(skull, "");
         }
-        return material.parseItem();
+        ItemMeta meta = stack.getItemMeta();
+        if (meta != null) {
+            meta.getPersistentDataContainer().set(itemTag, PersistentDataType.BYTE, (byte) 1);
+            stack.setItemMeta(meta);
+        }
+        return stack;
     }
 
     public String getConfigPath() {

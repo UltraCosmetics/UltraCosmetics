@@ -7,7 +7,6 @@ import be.isach.ultracosmetics.cosmetics.Updatable;
 import be.isach.ultracosmetics.cosmetics.type.SuitType;
 import be.isach.ultracosmetics.player.UltraPlayer;
 import be.isach.ultracosmetics.util.ItemFactory;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.function.Consumer;
@@ -54,7 +53,7 @@ public class Suit extends ArmorCosmetic<SuitType> {
     }
 
     protected void setupItemStack() {
-        itemStack = ItemFactory.rename(getType().getItemStack(), getTypeName(), "", MessageManager.getLegacyMessage("Suits.Suit-Part-Lore"));
+        setItemStack(ItemFactory.rename(getType().getItemStack(), getTypeName(), "", MessageManager.getLegacyMessage("Suits.Suit-Part-Lore")));
     }
 
     @Override
@@ -75,11 +74,10 @@ public class Suit extends ArmorCosmetic<SuitType> {
     }
 
     protected void updateMeta(Consumer<ItemMeta> func) {
-        ItemStack item = getArmorItem();
-        ItemMeta meta = item.getItemMeta();
+        ItemMeta meta = getItemStack().getItemMeta();
         func.accept(meta);
-        item.setItemMeta(meta);
-        setArmorItem(item);
+        getItemStack().setItemMeta(meta);
+        updateArmorItem();
     }
 
     /**

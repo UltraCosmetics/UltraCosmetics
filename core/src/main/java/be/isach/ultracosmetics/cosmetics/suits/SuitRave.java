@@ -53,10 +53,10 @@ public class SuitRave extends Suit implements Updatable {
     private void refresh() {
         if (getPlayer().getGameMode() == GameMode.CREATIVE && ++tick < updateInterval) return;
         tick = 0;
-        LeatherArmorMeta itemMeta = (LeatherArmorMeta) itemStack.getItemMeta();
+        LeatherArmorMeta itemMeta = (LeatherArmorMeta) getItemStack().getItemMeta();
         itemMeta.setColor(Color.fromRGB(colors[0], colors[1], colors[2]));
-        itemStack.setItemMeta(itemMeta);
-        setArmorItem(itemStack);
+        getItemStack().setItemMeta(itemMeta);
+        updateArmorItem();
     }
 
     public int getTick() {

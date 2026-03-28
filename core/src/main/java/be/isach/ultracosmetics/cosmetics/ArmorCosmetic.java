@@ -26,6 +26,7 @@ import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.components.EquippableComponent;
+import org.bukkit.persistence.PersistentDataType;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -33,7 +34,7 @@ import java.util.Optional;
 
 public abstract class ArmorCosmetic<T extends CosmeticType<?>> extends Cosmetic<T> {
     protected final Map<Attribute, Double> attributes;
-    protected ItemStack itemStack;
+    private ItemStack itemStack;
 
     public ArmorCosmetic(UltraPlayer owner, T type, UltraCosmetics ultraCosmetics) {
         super(owner, type, ultraCosmetics);
@@ -112,36 +113,26 @@ public abstract class ArmorCosmetic<T extends CosmeticType<?>> extends Cosmetic<
         }
     }
 
-    protected ItemStack getArmorItem() {
+    private ItemStack getArmorItem() {
+        return switch (getArmorSlot()) {
+            case BOOTS -> getPlayer().getInventory().getBoots();
+            case LEGGINGS -> getPlayer().getInventory().getLeggings();
+            case CHESTPLATE -> getPlayer().getInventory().getChestplate();
+            case HELMET -> getPlayer().getInventory().getHelmet();
+        };
+    }
+
+    private void setArmorItem(ItemStack item) {
         switch (getArmorSlot()) {
-            case BOOTS:
-                return getPlayer().getInventory().getBoots();
-            case LEGGINGS:
-                return getPlayer().getInventory().getLeggings();
-            case CHESTPLATE:
-                return getPlayer().getInventory().getChestplate();
-            case HELMET:
-                return getPlayer().getInventory().getHelmet();
-            default:
-                return null;
+            case BOOTS -> getPlayer().getInventory().setBoots(item);
+            case LEGGINGS -> getPlayer().getInventory().setLeggings(item);
+            case CHESTPLATE -> getPlayer().getInventory().setChestplate(item);
+            case HELMET -> getPlayer().getInventory().setHelmet(item);
         }
     }
 
-    protected void setArmorItem(ItemStack item) {
-        switch (getArmorSlot()) {
-            case BOOTS:
-                getPlayer().getInventory().setBoots(item);
-                break;
-            case LEGGINGS:
-                getPlayer().getInventory().setLeggings(item);
-                break;
-            case CHESTPLATE:
-                getPlayer().getInventory().setChestplate(item);
-                break;
-            case HELMET:
-                getPlayer().getInventory().setHelmet(item);
-                break;
-        }
+    protected void updateArmorItem() {
+        setArmorItem(itemStack);
     }
 
     /**
@@ -151,6 +142,19 @@ public abstract class ArmorCosmetic<T extends CosmeticType<?>> extends Cosmetic<
      */
     public ItemStack getItemStack() {
         return itemStack;
+    }
+
+    protected void setItemStack(ItemStack stack) {
+        if (stack == null) {
+            this.itemStack = null;
+            return;
+        }
+        this.itemStack = stack.clone();
+        ItemMeta meta = this.itemStack.getItemMeta();
+        if (meta != null) {
+            meta.getPersistentDataContainer().set(getType().getItemTag(), PersistentDataType.BYTE, (byte) 1);
+            this.itemStack.setItemMeta(meta);
+        }
     }
 
     @EventHandler(priority = EventPriority.HIGHEST)
@@ -223,8 +227,7 @@ public abstract class ArmorCosmetic<T extends CosmeticType<?>> extends Cosmetic<
     }
 
     protected boolean isItemThis(ItemStack is) {
-        return is != null && is.hasItemMeta() && is.getItemMeta().hasDisplayName()
-                && is.getItemMeta().getDisplayName().equals(itemStack.getItemMeta().getDisplayName());
+        return is != null && is.hasItemMeta() && is.getItemMeta().getPersistentDataContainer().has(getType().getItemTag());
     }
 
     protected abstract ArmorSlot getArmorSlot();

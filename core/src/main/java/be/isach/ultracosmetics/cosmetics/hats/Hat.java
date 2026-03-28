@@ -16,7 +16,7 @@ public class Hat extends ArmorCosmetic<HatType> {
 
     public Hat(UltraPlayer owner, HatType type, UltraCosmetics ultraCosmetics) {
         super(owner, type, ultraCosmetics);
-        itemStack = type.getItemStack();
+        setItemStack(type.getItemStack());
     }
 
     @Override
