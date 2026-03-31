@@ -9,9 +9,6 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 
 public interface IModule {
-    public boolean enable();
-
-    public void disable();
 
     public Class<? extends Mount> getSpiderClass();
 

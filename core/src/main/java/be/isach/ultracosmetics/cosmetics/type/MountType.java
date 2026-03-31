@@ -6,7 +6,6 @@ import be.isach.ultracosmetics.config.MessageManager;
 import be.isach.ultracosmetics.config.SettingsManager;
 import be.isach.ultracosmetics.cosmetics.Category;
 import be.isach.ultracosmetics.cosmetics.mounts.*;
-import be.isach.ultracosmetics.version.ServerVersion;
 import be.isach.ultracosmetics.version.VersionManager;
 import com.cryptomorin.xseries.XEntityType;
 import com.cryptomorin.xseries.XMaterial;
@@ -91,7 +90,7 @@ public class MountType extends CosmeticEntType<Mount> {
         }
     }
 
-    public static void register(ServerVersion version) {
+    public static void register() {
         VersionManager vm = UltraCosmeticsData.get().getVersionManager();
         new MountType("DruggedHorse", XMaterial.SUGAR, XEntityType.HORSE, 2, 1.1, MountDruggedHorse.class);
         new MountType("GlacialSteed", XMaterial.PACKED_ICE, XEntityType.HORSE, 2, 0.4, MountGlacialSteed.class, Collections.singletonList(XMaterial.SNOW_BLOCK));
@@ -122,7 +121,7 @@ public class MountType extends CosmeticEntType<Mount> {
 
         new MountType("Strider", XMaterial.WARPED_FUNGUS_ON_A_STICK, XEntityType.STRIDER, 0, 0.35, MountStrider.class);
 
-        if (version.isAtLeast(ServerVersion.v1_20)) {
+        if (XEntityType.CAMEL.isSupported()) {
             new MountType("Camel", XMaterial.CACTUS, XEntityType.CAMEL, 0, 0.35, MountCamel.class);
         }
 

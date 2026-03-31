@@ -12,15 +12,6 @@ import org.bukkit.entity.Player;
 public class DummyModule implements IModule {
 
     @Override
-    public boolean enable() {
-        return true;
-    }
-
-    @Override
-    public void disable() {
-    }
-
-    @Override
     public Class<? extends Mount> getSpiderClass() {
         return null;
     }

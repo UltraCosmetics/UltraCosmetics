@@ -1,54 +1,50 @@
 package be.isach.ultracosmetics.version;
 
-import org.bukkit.Bukkit;
+import com.cryptomorin.xseries.reflection.XReflection;
 
 /**
  * Created by Sacha on 6/03/16.
  */
 public enum ServerVersion {
 
-    // Do not supply a mapping version when there is no NMS module.
+    // Do not supply a NMS revision when there is no NMS module.
     // 1.17 is the first version to support Java 17
     v1_17(17, 1),
     v1_18(18, 2),
     v1_19(19, 4),
-    v1_20(20, 6, "ee13f98a43b9c5abffdcc0bb24154460", 4),
-    v1_21(21, 11, "e3cd927e07e6ff434793a0474c51b2b9", 7),
+    v1_20(20, 6),
+    v1_21(21, 11, "v1_21_R7"),
+    NMS("26+", "nms"),
     NEW("???"),
     ;
 
     private final String name;
     private final int majorVer;
     private final int minorVer;
-    // mappingsVersion is a random string that is changed whenever NMS changes
-    // which is more often than actual NMS revisions happen. You can find this
-    // value by checking the source code of this method:
-    // org.bukkit.craftbukkit.util.CraftMagicNumbers#getMappingsVersion
-    // https://hub.spigotmc.org/stash/projects/SPIGOT/repos/craftbukkit/browse/src/main/java/org/bukkit/craftbukkit/util/CraftMagicNumbers.java#240
-    // getMappingsVersion was added in 1.13.2, earlier versions don't have it.
-    private final String mappingsVersion;
-    // The NMS revision the corresponding module is built for, or 0 for no module.
-    private final int nmsRevision;
+    // The name of the package containing support for this version, or null if none.
+    private final String module;
 
     // Dummy constructor for placeholder versions
     private ServerVersion(String name) {
+        this(name, null);
+    }
+
+    private ServerVersion(String name, String module) {
         this.name = name;
         this.majorVer = 0;
         this.minorVer = 0;
-        this.mappingsVersion = null;
-        this.nmsRevision = 0;
+        this.module = module;
     }
 
     private ServerVersion(int majorVer, int minorVer) {
-        this(majorVer, minorVer, null, 0);
+        this(majorVer, minorVer, null);
     }
 
-    private ServerVersion(int majorVer, int minorVer, String mappingsVersion, int nmsRevision) {
+    private ServerVersion(int majorVer, int minorVer, String module) {
         this.name = majorVer + (minorVer > 0 ? "." + minorVer : "");
         this.majorVer = majorVer;
         this.minorVer = minorVer;
-        this.mappingsVersion = mappingsVersion;
-        this.nmsRevision = nmsRevision;
+        this.module = module;
     }
 
     public String getName() {
@@ -67,14 +63,6 @@ public enum ServerVersion {
         return minorVer;
     }
 
-    public String getMappingsVersion() {
-        return mappingsVersion;
-    }
-
-    public int getNMSRevision() {
-        return nmsRevision;
-    }
-
     public static ServerVersion earliest() {
         return values()[0];
     }
@@ -86,6 +74,9 @@ public enum ServerVersion {
      * @return The matching ServerVersion, or ServerVersion.NEW if no match was found.
      */
     public static ServerVersion byId(int id) {
+        if (id >= 26) {
+            return ServerVersion.NMS;
+        }
         for (ServerVersion version : values()) {
             if (id == version.majorVer) {
                 return version;
@@ -94,31 +85,29 @@ public enum ServerVersion {
         return ServerVersion.NEW;
     }
 
-    public boolean isAtLeast(ServerVersion version) {
-        return this.compareTo(version) >= 0;
-    }
-
     public boolean isNmsSupported() {
-        return nmsRevision > 0;
+        return module != null;
     }
 
-    public String getNmsVersion() {
-        //noinspection UnnecessaryToStringCall
-        return toString() + "_R" + nmsRevision;
+    public String getModule() {
+        return module;
     }
 
     /**
      * Get the Minecraft version, without the leading "1.", if present.
      *
-     * @return The minecraft version, like 17.1 or 26
+     * @return The minecraft version, like 17.1 or 26.1
      */
     public static String getMinecraftVersion() {
-        // Should be something like "1.21.11-R0.2-SNAPSHOT"
-        String version = Bukkit.getBukkitVersion().split("-")[0];
-        if (version.startsWith("1.")) {
-            return version.substring(2);
+        StringBuilder builder = new StringBuilder();
+        if (XReflection.MAJOR_NUMBER != 1) {
+            builder.append(XReflection.MAJOR_NUMBER).append('.');
         }
-        return version;
+        builder.append(XReflection.MINOR_NUMBER);
+        if (XReflection.PATCH_NUMBER != 0) {
+            builder.append('.').append(XReflection.PATCH_NUMBER);
+        }
+        return builder.toString();
     }
 
     public static boolean isMobchipEdgeCase() {

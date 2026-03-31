@@ -6,7 +6,6 @@ import be.isach.ultracosmetics.config.MessageManager;
 import be.isach.ultracosmetics.config.SettingsManager;
 import be.isach.ultracosmetics.cosmetics.Category;
 import be.isach.ultracosmetics.cosmetics.gadgets.*;
-import be.isach.ultracosmetics.version.ServerVersion;
 import com.cryptomorin.xseries.XMaterial;
 
 import java.util.ArrayList;
@@ -80,7 +79,7 @@ public class GadgetType extends CosmeticType<Gadget> {
         }
     }
 
-    public static void register(ServerVersion version) {
+    public static void register() {
         new GadgetType(XMaterial.IRON_HORSE_ARMOR, 8, 3, "BatBlaster", GadgetBatBlaster.class);
         new GadgetType(XMaterial.COOKED_CHICKEN, 6, 3, "Chickenator", GadgetChickenator.class);
         new GadgetType(XMaterial.BEACON, 45, 20, "DiscoBall", GadgetDiscoBall.class);

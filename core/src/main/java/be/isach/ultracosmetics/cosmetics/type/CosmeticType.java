@@ -11,7 +11,6 @@ import be.isach.ultracosmetics.cosmetics.PlayerAffectingCosmetic;
 import be.isach.ultracosmetics.player.UltraPlayer;
 import be.isach.ultracosmetics.util.ItemFactory;
 import be.isach.ultracosmetics.util.SmartLogger.LogLevel;
-import be.isach.ultracosmetics.version.ServerVersion;
 import com.cryptomorin.xseries.XMaterial;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
@@ -110,10 +109,9 @@ public abstract class CosmeticType<T extends Cosmetic<?>> {
     }
 
     public static void registerAll() {
-        ServerVersion version = UltraCosmeticsData.get().getServerVersion();
-        GadgetType.register(version);
-        MountType.register(version);
-        ParticleEffectType.register(version);
+        GadgetType.register();
+        MountType.register();
+        ParticleEffectType.register();
         PetType.register();
         HatType.register();
         SuitCategory.register();
@@ -122,7 +120,7 @@ public abstract class CosmeticType<T extends Cosmetic<?>> {
         }
         MorphType.register();
         EmoteType.register();
-        ProjectileEffectType.register(version);
+        ProjectileEffectType.register();
         DeathEffectType.register();
         if (rewriteCustomConfig) {
             saveCustomCosmetics();

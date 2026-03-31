@@ -32,7 +32,7 @@ public class VersionManager {
 
     @SuppressWarnings("unchecked")
     private <T> T loadModule(String name) throws ReflectiveOperationException {
-        return (T) Class.forName(PACKAGE + "." + serverVersion.getNmsVersion() + "." + name).getConstructor().newInstance();
+        return (T) Class.forName(PACKAGE + "." + serverVersion.getModule() + "." + name).getConstructor().newInstance();
     }
 
     public IEntityUtil getEntityUtil() {

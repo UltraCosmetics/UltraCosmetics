@@ -102,7 +102,7 @@ public class SuitCategory {
         if (!section.isConfigurationSection(key)) {
             return null;
         }
-        return ItemFactory.getItemDeserializer().withConfig(section).read();
+        return ItemFactory.getItemDeserializer().fromConfig(section).deserialize();
     }
 
     private static void addDefaultStrings(String key) {

@@ -1,0 +1,6 @@
+dependencies {
+    // https://hub.spigotmc.org/stash/projects/SPIGOT/repos/spigot
+    implementation "org.spigotmc:spigot:26.1-R0.1-SNAPSHOT"
+
+    implementation project(':core')
+}

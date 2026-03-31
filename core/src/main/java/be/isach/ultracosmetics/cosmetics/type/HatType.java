@@ -239,7 +239,7 @@ public class HatType extends CosmeticType<Hat> {
             }
             ItemStack item;
             try {
-                item = ItemFactory.getItemDeserializer().withConfig(hat).read();
+                item = ItemFactory.getItemDeserializer().fromConfig(hat).deserialize();
             } catch (RuntimeException e) {
                 UltraCosmeticsData.get().getPlugin().getLogger().log(Level.WARNING, "Failed to parse custom hat '" + key + "'", e);
                 continue;

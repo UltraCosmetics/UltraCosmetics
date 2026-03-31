@@ -3,7 +3,6 @@ package be.isach.ultracosmetics.cosmetics.type;
 import be.isach.ultracosmetics.config.MessageManager;
 import be.isach.ultracosmetics.cosmetics.Category;
 import be.isach.ultracosmetics.cosmetics.particleeffects.*;
-import be.isach.ultracosmetics.version.ServerVersion;
 import com.cryptomorin.xseries.XMaterial;
 import com.cryptomorin.xseries.particles.XParticle;
 
@@ -22,7 +21,7 @@ public class ParticleEffectType extends CosmeticParticleType<ParticleEffect> {
         }
     }
 
-    public static void register(ServerVersion version) {
+    public static void register() {
         new ParticleEffectType("SnowCloud", 1, XParticle.ITEM_SNOWBALL, XMaterial.SNOWBALL, ParticleEffectCloud.class, true);
         new ParticleEffectType("BloodHelix", 1, XParticle.DUST, XMaterial.REDSTONE, ParticleEffectBloodHelix.class, true);
         new ParticleEffectType("FrostLord", 1, XParticle.ITEM_SNOWBALL, XMaterial.PACKED_ICE, ParticleEffectFrostLord.class, true);
@@ -54,9 +53,9 @@ public class ParticleEffectType extends CosmeticParticleType<ParticleEffect> {
         new ParticleEffectType("ArcaneFlame", 3, XParticle.SOUL_FIRE_FLAME, XMaterial.SOUL_TORCH, ParticleEffectAboveHead.class, false);
         new ParticleEffectType("DivineHalo", 2, XParticle.WAX_OFF, XMaterial.GLOWSTONE, ParticleEffectHalo.class, false);
         new ParticleEffectType("SnowFootprints", 1, XParticle.SNOWFLAKE, XMaterial.POWDER_SNOW_BUCKET, ParticleEffectFootprints.class, false);
-        new ParticleEffectType("SuperVillain", 2,XParticle.DUST, XMaterial.DRIED_KELP, ParticleEffectSuperVillain.class, false);
+        new ParticleEffectType("SuperVillain", 2, XParticle.DUST, XMaterial.DRIED_KELP, ParticleEffectSuperVillain.class, false);
         if (XParticle.CHERRY_LEAVES.isSupported()) {
-            new ParticleEffectType("CherryFairy", 2,XParticle.WITCH, XMaterial.PINK_PETALS, ParticleEffectCherryFairy.class, false);
+            new ParticleEffectType("CherryFairy", 2, XParticle.WITCH, XMaterial.PINK_PETALS, ParticleEffectCherryFairy.class, false);
         }
     }
 }

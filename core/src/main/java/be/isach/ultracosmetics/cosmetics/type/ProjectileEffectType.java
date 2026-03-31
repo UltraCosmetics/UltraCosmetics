@@ -10,7 +10,6 @@ import be.isach.ultracosmetics.cosmetics.projectileeffects.ProjectileEffectNote;
 import be.isach.ultracosmetics.cosmetics.projectileeffects.ProjectileEffectRainbow;
 import be.isach.ultracosmetics.cosmetics.projectileeffects.ProjectileEffectRedstone;
 import be.isach.ultracosmetics.cosmetics.projectileeffects.ProjectileEffectRedstoneHelix;
-import be.isach.ultracosmetics.version.ServerVersion;
 import com.cryptomorin.xseries.XMaterial;
 import com.cryptomorin.xseries.particles.XParticle;
 
@@ -27,7 +26,7 @@ public class ProjectileEffectType extends CosmeticParticleType<ProjectileEffect>
         }
     }
 
-    public static void register(ServerVersion version) {
+    public static void register() {
         // Rainbow Trail
         new ProjectileEffectType("Rainbow", 1, XParticle.DUST, XMaterial.LIME_WOOL, ProjectileEffectRainbow.class);
 
@@ -67,7 +66,7 @@ public class ProjectileEffectType extends CosmeticParticleType<ProjectileEffect>
         new ProjectileEffectType("Scrape", 1, XParticle.SCRAPE, XMaterial.OXIDIZED_COPPER, ProjectileEffectBasicTrail.class);
         new ProjectileEffectType("WaxOff", 1, XParticle.WAX_OFF, XMaterial.WAXED_COPPER_BLOCK, ProjectileEffectBasicTrail.class);
         new ProjectileEffectType("WaxOn", 1, XParticle.WAX_ON, XMaterial.HONEYCOMB, ProjectileEffectBasicTrail.class);
-        if (version.isAtLeast(ServerVersion.v1_19)) {
+        if (XParticle.SCULK_SOUL.isSupported()) {
             new ProjectileEffectType("SculkSoul", 1, XParticle.SCULK_SOUL, XMaterial.SCULK_CATALYST, ProjectileEffectBasicTrail.class);
         }
     }

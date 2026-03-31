@@ -4,7 +4,6 @@ import be.isach.ultracosmetics.UltraCosmeticsData;
 import be.isach.ultracosmetics.config.CustomConfiguration;
 import be.isach.ultracosmetics.config.MessageManager;
 import be.isach.ultracosmetics.util.SmartLogger.LogLevel;
-import be.isach.ultracosmetics.version.ServerVersion;
 import com.cryptomorin.xseries.XAttribute;
 import com.cryptomorin.xseries.XItemStack;
 import com.cryptomorin.xseries.XMaterial;
@@ -12,6 +11,7 @@ import com.cryptomorin.xseries.XTag;
 import com.cryptomorin.xseries.profiles.builder.XSkull;
 import com.cryptomorin.xseries.profiles.objects.ProfileInputType;
 import com.cryptomorin.xseries.profiles.objects.Profileable;
+import com.cryptomorin.xseries.reflection.XReflection;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
@@ -198,12 +198,12 @@ public class ItemFactory {
     }
 
     public static ItemStack parseXItemStack(ConfigurationSection section) {
-        return applyCosmeticMarker(getItemDeserializer().withConfig(section).read());
+        return applyCosmeticMarker(getItemDeserializer().fromConfig(section).deserialize());
     }
 
     public static ItemStack createSkull(String url, String name) {
         ItemStack head = create(XMaterial.PLAYER_HEAD, name);
-        if (UltraCosmeticsData.get().getServerVersion().isAtLeast(ServerVersion.v1_18)) {
+        if (XReflection.supports(18)) {
             SkullMeta meta = (SkullMeta) head.getItemMeta();
             UUID uuid = UUID.nameUUIDFromBytes(url.getBytes());
             PlayerProfile profile = Bukkit.createPlayerProfile(uuid, uuid.toString().substring(0, 16));
@@ -317,6 +317,6 @@ public class ItemFactory {
     }
 
     public static XItemStack.Deserializer getItemDeserializer() {
-        return deserializer.copy().withItem(null);
+        return deserializer.copy().modifyItem(null);
     }
 }

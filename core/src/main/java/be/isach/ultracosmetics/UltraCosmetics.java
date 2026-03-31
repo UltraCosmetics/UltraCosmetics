@@ -46,6 +46,7 @@ import be.isach.ultracosmetics.util.UpdateManager;
 import be.isach.ultracosmetics.version.ServerVersion;
 import be.isach.ultracosmetics.worldguard.WorldGuardManager;
 import com.cryptomorin.xseries.XMaterial;
+import com.cryptomorin.xseries.reflection.XReflection;
 import com.tcoded.folialib.FoliaLib;
 import com.tcoded.folialib.impl.PlatformScheduler;
 import me.libraryaddict.disguise.DisguiseConfig;
@@ -438,7 +439,7 @@ public class UltraCosmetics extends JavaPlugin {
     }
 
     private boolean loadPaperSupport() {
-        if (!UltraCosmeticsData.get().getServerVersion().isAtLeast(ServerVersion.v1_20)) {
+        if (!XReflection.supports(20)) {
             // Commodore didn't have a new enough version of ASM to load Java 21 classes until 1.20
             return false;
         }
@@ -482,8 +483,6 @@ public class UltraCosmetics extends JavaPlugin {
         }
 
         playerManager.dispose();
-
-        UltraCosmeticsData.get().getVersionManager().getModule().disable();
     }
 
     public void reload() {
@@ -569,7 +568,7 @@ public class UltraCosmetics extends JavaPlugin {
         String nms;
         ServerVersion sv = UltraCosmeticsData.get().getServerVersion();
         if (UltraCosmeticsData.get().getVersionManager().isUsingNMS()) {
-            nms = sv.getNmsVersion();
+            nms = sv.getModule();
         } else {
             nms = "NMS-less flattening";
         }

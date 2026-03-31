@@ -6,10 +6,8 @@ import be.isach.ultracosmetics.util.SmartLogger;
 import be.isach.ultracosmetics.util.SmartLogger.LogLevel;
 import be.isach.ultracosmetics.version.ServerVersion;
 import be.isach.ultracosmetics.version.VersionManager;
+import com.cryptomorin.xseries.reflection.XReflection;
 import me.gamercoder215.mobchip.abstraction.ChipUtil;
-import org.bukkit.Bukkit;
-
-import java.lang.reflect.Method;
 
 /**
  * This class is only for cleaning main class a bit.
@@ -154,42 +152,12 @@ public class UltraCosmeticsData {
      */
     protected boolean startNMS() {
         SmartLogger logger = ultraCosmetics.getSmartLogger();
-        if (!checkMappingsVersion(serverVersion)) {
-            ultraCosmetics.addProblem(Problem.BAD_MAPPINGS_VERSION);
-            if (useNMS.equalsIgnoreCase("force")) {
-                logger.write(LogLevel.WARNING, "Server internals seem to have changed since this build was created,");
-                logger.write(LogLevel.WARNING, "but you have chosen to override version checking!");
-            } else {
-                logger.write(LogLevel.WARNING, "Server internals have changed since this build was created, so");
-                logger.write(LogLevel.WARNING, "NMS support will be disabled. If you're sure you know what you're doing,");
-                logger.write(LogLevel.WARNING, "you can override this in the config.");
-                return false;
-            }
-        }
 
         try {
             versionManager = new VersionManager(serverVersion, true);
         } catch (ReflectiveOperationException | NoClassDefFoundError e) {
-            if (e instanceof NoClassDefFoundError) {
-                StackTraceElement[] elements = ((NoClassDefFoundError) e).getStackTrace();
-                for (int i = 0; i < 5; i++) {
-                    if (elements[i].getClassName().startsWith("io.papermc.reflectionrewriter")) {
-                        String brand = Bukkit.getName();
-                        logger.write(LogLevel.WARNING, "This appears to be a version of " + brand + " that doesn't support remapping.");
-                        logger.write(LogLevel.WARNING, "Please check for " + brand + " updates. UC will try to continue in NMS-less mode.");
-                        ultraCosmetics.addProblem(Problem.NMS_LOAD_FAILURE);
-                        return false;
-                    }
-                }
-            }
             e.printStackTrace();
             logger.write(LogLevel.ERROR, "Couldn't find module for " + serverVersion + ", please report this issue.");
-            logger.write("UC will try to continue in NMS-less mode.");
-            ultraCosmetics.addProblem(Problem.NMS_LOAD_FAILURE);
-            return false;
-        }
-        if (!versionManager.getModule().enable()) {
-            logger.write(LogLevel.ERROR, "Failed to start NMS module, please report this issue.");
             logger.write("UC will try to continue in NMS-less mode.");
             ultraCosmetics.addProblem(Problem.NMS_LOAD_FAILURE);
             return false;
@@ -204,26 +172,7 @@ public class UltraCosmeticsData {
      * @return The parsed server version, or {@code ServerVersion.NEW} if it couldn't be determined.
      */
     private ServerVersion parseVersion() {
-        try {
-            String version = ServerVersion.getMinecraftVersion();
-            String[] parts = version.split("\\.");
-            int majorVer = Integer.parseInt(parts[0]);
-            int minorVer = 0;
-            // If version has minor component, e.g. 8.8 (canonically 1.8.8)
-            if (parts.length > 1) {
-                minorVer = Integer.parseInt(parts[1]);
-            }
-            ServerVersion serverVersion = ServerVersion.byId(majorVer);
-            // If the version we were expecting is less than the version of the actual server,
-            // treat it as an unrecognized version.
-            // TODO: maybe we don't need this? NMS is probably more stable when completely unobfuscated
-            if (serverVersion == ServerVersion.NEW || serverVersion.getMinorVer() < minorVer) {
-                return ServerVersion.NEW;
-            }
-            return serverVersion;
-        } catch (NumberFormatException ignored) {
-            return ServerVersion.NEW;
-        }
+        return ServerVersion.byId(XReflection.MAJOR_NUMBER == 1 ? XReflection.MINOR_NUMBER : XReflection.MAJOR_NUMBER);
     }
 
     /**
@@ -239,22 +188,6 @@ public class UltraCosmeticsData {
             return Problem.BAD_MC_VERSION;
         }
         return null;
-    }
-
-    @SuppressWarnings("deprecation")
-    protected boolean checkMappingsVersion(ServerVersion version) {
-        if (version.getMappingsVersion() == null) return true;
-        String currentMappingsVersion;
-        Object magicNumbers = Bukkit.getUnsafe();
-        Class<?> magicNumbersClass = magicNumbers.getClass();
-        try {
-            Method mappingsVersionMethod = magicNumbersClass.getDeclaredMethod("getMappingsVersion");
-            currentMappingsVersion = (String) mappingsVersionMethod.invoke(magicNumbers);
-        } catch (ReflectiveOperationException ex) {
-            // Paper doesn't support this so we just hope for the best in that case
-            return true;
-        }
-        return currentMappingsVersion.equals(version.getMappingsVersion());
     }
 
     public boolean isMobChipAvailable() {
