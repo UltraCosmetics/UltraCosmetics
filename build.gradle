@@ -141,8 +141,8 @@ boolean isDependencyInstalled(String version) {
 
 def getAllDependencies() {
     def deps = [] as Set
-    subprojects.findAll(it -> it.hasProperty("remapMcVersion")).each { proj ->
-        deps << new Tuple2(proj.property("remapMcVersion") + "-R0.1-SNAPSHOT", proj.property("javaVersion"))
+    subprojects.findAll(it -> it.hasProperty("requiresMinecraft")).each { proj ->
+        deps << new Tuple2(proj.property("requiresMinecraft") + "-R0.1-SNAPSHOT", proj.property("javaVersion"))
     }
     return deps
 }
