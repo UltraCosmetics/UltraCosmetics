@@ -22,7 +22,7 @@ allprojects {
     java {
         toolchain {
             // minimum Java version to compile all subprojects
-            languageVersion = JavaLanguageVersion.of(21)
+            languageVersion = JavaLanguageVersion.of(25)
         }
     }
 
@@ -112,6 +112,8 @@ subprojects { subproj ->
         maven { url = 'https://repo.olziedev.com' }
         // WorldGuard
         maven { url = 'https://maven.enginehub.org/repo' }
+        // CoinsEngine
+        maven { url = 'https://repo.nightexpressdev.com/releases' }
         // Vault, PEconomy, MobChipLite, FoliaLib
         maven { url = 'https://jitpack.io' }
         // Paper API

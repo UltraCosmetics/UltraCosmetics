@@ -4,5 +4,5 @@ import be.isach.ultracosmetics.UltraCosmetics;
 
 @FunctionalInterface
 public interface EconomyHookLoader {
-    public EconomyHook load(UltraCosmetics ultraCosmetics, String currency);
+    public EconomyHook load(UltraCosmetics ultraCosmetics, String currency) throws ReflectiveOperationException;
 }

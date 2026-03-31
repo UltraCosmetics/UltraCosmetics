@@ -8,4 +8,4 @@ pluginManagement {
     }
 }
 rootProject.name = 'UltraCosmetics'
-include 'v1_21_R7', 'core', 'legacy-events', 'nms', 'paper-support'
+include 'v1_21_R7', 'core', 'java-21', 'legacy-events', 'nms', 'paper-support'

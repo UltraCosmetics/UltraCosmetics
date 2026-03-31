@@ -8,6 +8,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -31,7 +32,15 @@ public class EconomyHandler {
         economies.put("vault", (uc, currency) -> new VaultHook());
         economies.put("playerpoints", (uc, currency) -> new PlayerPointsHook());
         economies.put("peconomy", (uc, currency) -> new PEconomyHook(uc, currency));
-        economies.put("coinsengine", (uc, currency) -> new CoinsEngineHook(uc, currency));
+        // TODO: remove this once ExcellentEconomy has been around for a
+        economies.put("coinsengine", (uc, currency) -> {
+            try {
+                return loadByReflection(uc, currency, "ExcellentEconomyHook");
+            } catch (NoClassDefFoundError err) {
+                return new CoinsEngineHook(uc, currency);
+            }
+        });
+        economies.put("excellenteconomy", (uc, currency) -> loadByReflection(uc, currency, "ExcellentEconomyHook"));
     }
 
     private final UltraCosmetics ultraCosmetics;
@@ -80,8 +89,9 @@ public class EconomyHandler {
     private void loadHook(EconomyHookLoader loader) {
         try {
             economyHook = loader.load(ultraCosmetics, currency);
-        } catch (IllegalStateException | IllegalArgumentException | UnsupportedClassVersionError e) {
-            ultraCosmetics.getSmartLogger().write(SmartLogger.LogLevel.ERROR, e.getMessage());
+        } catch (IllegalStateException | IllegalArgumentException | UnsupportedClassVersionError |
+                 ReflectiveOperationException e) {
+            ultraCosmetics.getSmartLogger().write(SmartLogger.LogLevel.ERROR, e.getClass().getName() + ": " + e.getMessage());
             ultraCosmetics.getSmartLogger().write(SmartLogger.LogLevel.WARNING, "Economy features will be disabled.");
             return;
         } catch (Exception e) {
@@ -126,5 +136,18 @@ public class EconomyHandler {
 
     public boolean isUsingEconomy() {
         return usingEconomy;
+    }
+
+    private static EconomyHook loadByReflection(UltraCosmetics ultraCosmetics, String currency, String className) throws ReflectiveOperationException {
+        Class<?> clazz = Class.forName("be.isach.ultracosmetics.economy." + className);
+        try {
+            return (EconomyHook) clazz.getConstructor(UltraCosmetics.class, String.class).newInstance(ultraCosmetics, currency);
+        } catch (InvocationTargetException e) {
+            // Unwrap the exception if it's an IllegalArgumentException, those are expected
+            if (e.getCause() instanceof IllegalArgumentException) {
+                throw (IllegalArgumentException) e.getCause();
+            }
+            throw e;
+        }
     }
 }

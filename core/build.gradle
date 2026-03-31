@@ -97,7 +97,7 @@ bukkit {
     authors = ['datatags']
     main = 'be.isach.ultracosmetics.UltraCosmetics'
     apiVersion = '1.17'
-    softDepend = ['LibsDisguises', 'Vault', 'PlaceholderAPI', 'PlayerPoints', 'WorldGuard', 'Essentials', 'LuckPerms', 'DiscordSRV', 'ChestSort', 'Towny', 'PEconomy', 'PlayerAuctions', 'CoinsEngine', 'Treasury']
+    softDepend = ['LibsDisguises', 'Vault', 'PlaceholderAPI', 'PlayerPoints', 'WorldGuard', 'Essentials', 'LuckPerms', 'DiscordSRV', 'ChestSort', 'Towny', 'PEconomy', 'PlayerAuctions', 'CoinsEngine', 'Treasury', 'ExcellentEconomy']
     commands {
         ultracosmetics {
             aliases = ['uc', 'cosmetics']
