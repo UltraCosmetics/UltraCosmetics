@@ -32,6 +32,8 @@ jobs:
           pull_request_assignees: datatags
           pull_request_title: "New translations"
           pull_request_body: "New translations are available via [Crowdin](https://crowdin.com/project/ultracosmetics)!"
+          # For some reason scheduled actions fail if this is `false`
+          skip_ref_checkout: true
         env:
           # A classic GitHub Personal Access Token with the 'repo' scope selected (the user should have write access to the repository).
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
