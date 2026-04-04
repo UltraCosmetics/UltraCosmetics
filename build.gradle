@@ -92,8 +92,6 @@ subprojects { subproj ->
 
         // AnvilGUI, Treasury
         maven { url = 'https://repo.codemc.io/repository/maven-snapshots' }
-        // Lib's Disguises
-        maven { url = 'https://repo.md-5.net/content/groups/public' }
         // WorldEdit
         maven { url = 'https://repo.aikar.co/nexus/content/groups/aikar' }
         // BungeeCord
@@ -116,6 +114,8 @@ subprojects { subproj ->
         maven { url = 'https://repo.nightexpressdev.com/releases' }
         // Vault, PEconomy, MobChipLite, FoliaLib
         maven { url = 'https://jitpack.io' }
+        // Lib's Disguises
+        maven { url = 'https://mvn.lib.co.nz/public' }
         // Paper API
         maven { url = 'https://repo.papermc.io/repository/maven-public' }
         // Mojang Authlib
