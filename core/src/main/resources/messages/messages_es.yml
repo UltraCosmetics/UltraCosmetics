@@ -555,10 +555,10 @@ Particle-Effects:
       Deja un rastro de
       humo al caminar.
   SuperVillain:
-    name: <bold><dark_purple>Super Villain
+    name: <bold><dark_purple>Super Villano
     Description: |-
-      Become Batman... or whoever is
-      more evil than Superman!
+      ¡Conviértete en Batman... o quienquiera que sea
+      más mal que Superman!
   Notes:
     name: <bold><gold>Notas musicales
     Description: Notas musicales sobre tu cabeza.

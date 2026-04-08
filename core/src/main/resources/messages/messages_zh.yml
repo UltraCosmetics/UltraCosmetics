@@ -1875,12 +1875,12 @@ Use-Rename-Pet-Command: <prefix> <red>请输入命令 <yellow>/uc rename</yellow
 Commands-Disabled-During-Chest: <prefix> <bold><red>打开箱子时你不能使用命令!
 No-Buy-Key-Permission: <prefix> <red><bold>你没有权限购买宝藏钥匙!
 Particles-Minimal-In-Client: <yellow>检测到你的客户端将粒子效果设置为了“最小”，你可能无法看见粒子效果。
-Cosmetics-Toggled-Off: <prefix> <blue>Cosmetics toggled off
-Cosmetics-Toggled-On: <prefix> <blue>Cosmetics toggled on
-Invalid-Category: <prefix> <bold><red>Invalid Category!
-Invalid-Cosmetic: <prefix> <bold><red>Invalid Cosmetic!
-Invalid-Player: '<prefix> <bold><red>Invalid Player!'
-Must-Specify-Player: <prefix> <bold><red>You must specify a player!
-Invalid-Number: '<prefix> <bold><red>Invalid number: <value>'
+Cosmetics-Toggled-Off: <prefix><blue>已关闭装饰
+Cosmetics-Toggled-On: <prefix><blue>已打开装饰
+Invalid-Category: <prefix><bold><red>该类别无效！
+Invalid-Cosmetic: <prefix><bold><red>该装饰无效！
+Invalid-Player: '<prefix><bold><red>该玩家无效！'
+Must-Specify-Player: <prefix><bold><red>您必须指定一名玩家！
+Invalid-Number: '<prefix><bold><red>数字无效：<value>'
 Treasure-Keys-Given: <green><keys> keys given to <playername>
 Ammo-Given: <green><ammo> <gadgetname> ammo given to <playername>
