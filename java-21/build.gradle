@@ -3,5 +3,5 @@ dependencies {
     compileOnly 'org.spigotmc:spigot-api:1.21.11-R0.1-SNAPSHOT'
     compileOnly 'su.nightexpress.coinsengine:CoinsEngine:2.7.0'
     // for some reason it doesn't compile without declaring this
-    compileOnly 'su.nightexpress.nightcore:main:2.15.0'
+    compileOnly 'su.nightexpress.nightcore:main:2.15.1'
 }
