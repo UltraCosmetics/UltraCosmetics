@@ -35,7 +35,10 @@ public class PetDog extends Pet {
         Wolf wolf = (Wolf) entity;
         fixedColor = enumCustomize(DyeColor.class, parts[0], wolf::setCollarColor);
         if (fixedColor && parts.length > 1) {
-            fixedColor = oldEnumCustomize(Wolf.Variant.class, parts[1].toUpperCase(Locale.ROOT), wolf::setVariant);
+            try {
+                fixedColor = oldEnumCustomize(Wolf.Variant.class, parts[1].toUpperCase(Locale.ROOT), wolf::setVariant);
+            } catch (NoClassDefFoundError ignored) {
+            }
         }
         return fixedColor;
     }

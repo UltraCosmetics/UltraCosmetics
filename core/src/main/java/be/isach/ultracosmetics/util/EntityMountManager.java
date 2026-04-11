@@ -11,7 +11,7 @@ public class EntityMountManager implements Listener {
 
     private static boolean bypass = false;
 
-    @EventHandler(priority = EventPriority.MONITOR)
+    @EventHandler(priority = EventPriority.HIGHEST)
     public void onEntityMountEvent(EntityMountEvent event) {
         if (bypass) {
             event.setCancelled(false);

@@ -61,6 +61,7 @@ import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.entity.Player;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityMountEvent;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -548,7 +549,13 @@ public class UltraCosmetics extends JavaPlugin {
         pluginManager.registerEvents(new PlayerListener(this), this);
         pluginManager.registerEvents(new MainListener(), this);
         pluginManager.registerEvents(new EntitySpawningManager(), this);
-        pluginManager.registerEvents(new EntityMountManager(), this);
+        try {
+            // EntityMountEvent moved from org.spigotmc to org.bukkit during 1.20.4. This won't prevent the plugin from
+            // starting but it does avoid a bothersome error message.
+            EntityMountEvent.class.getName();
+            pluginManager.registerEvents(new EntityMountManager(), this);
+        } catch (NoClassDefFoundError ignored) {
+        }
         unmovableItemListener = new UnmovableItemListener(this);
         pluginManager.registerEvents(unmovableItemListener, this);
         // No need to register this one, it doesn't have any event handlers of its own
