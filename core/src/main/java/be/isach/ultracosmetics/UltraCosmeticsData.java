@@ -128,9 +128,20 @@ public class UltraCosmeticsData {
             // If we're forcing NMS and we don't know the version, assume we're on the latest version.
             serverVersion = ServerVersion.latest();
         }
+
+        int major;
+        int minor;
+        if (XReflection.MAJOR_NUMBER == 1) {
+            major = XReflection.MINOR_NUMBER;
+            minor = XReflection.PATCH_NUMBER;
+        } else {
+            major = XReflection.MAJOR_NUMBER;
+            minor = XReflection.MINOR_NUMBER;
+        }
+
         if (useNMS.equalsIgnoreCase("no")) {
             logger.write("NMS support has been disabled in the config, will run without it.");
-        } else if (isNmsDowngrade || (serverVersion.isNmsSupported() && ServerVersion.getMinecraftVersion().equals(serverVersion.getName()))) {
+        } else if (isNmsDowngrade || serverVersion.isNmsSupportedOn(major, minor)) {
             if (startNMS()) return true;
         } else {
             logger.write("Loading NMS-less mode...");

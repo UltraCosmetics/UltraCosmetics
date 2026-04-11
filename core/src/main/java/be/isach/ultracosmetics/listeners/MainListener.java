@@ -2,6 +2,7 @@ package be.isach.ultracosmetics.listeners;
 
 import be.isach.ultracosmetics.UltraCosmeticsData;
 import be.isach.ultracosmetics.config.SettingsManager;
+import be.isach.ultracosmetics.util.CancelLeashDrop;
 import com.cryptomorin.xseries.particles.ParticleDisplay;
 import com.cryptomorin.xseries.particles.XParticle;
 import org.bukkit.NamespacedKey;
@@ -101,7 +102,7 @@ public class MainListener implements Listener {
             LivingEntity entity = (LivingEntity) event.getEntity();
             Entity holder = entity.getLeashHolder();
             UltraCosmeticsData.get().getPlugin().getScheduler().teleportAsync(entity, holder.getLocation());
-            entity.setLeashHolder(null);
+            CancelLeashDrop.apply(event);
         }
     }
 

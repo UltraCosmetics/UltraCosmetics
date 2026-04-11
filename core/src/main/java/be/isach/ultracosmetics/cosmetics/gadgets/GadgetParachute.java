@@ -7,6 +7,7 @@ import be.isach.ultracosmetics.cosmetics.type.GadgetType;
 import be.isach.ultracosmetics.player.UltraPlayer;
 import be.isach.ultracosmetics.util.Area;
 import be.isach.ultracosmetics.util.BlockUtils;
+import be.isach.ultracosmetics.util.CancelLeashDrop;
 import be.isach.ultracosmetics.util.EntitySpawner;
 import be.isach.ultracosmetics.util.MathUtils;
 import org.bukkit.Location;
@@ -76,9 +77,8 @@ public class GadgetParachute extends Gadget implements Updatable {
     @EventHandler
     public void onChickenUnleash(EntityUnleashEvent event) {
         if (chickens == null) return;
-        // can't cancel this either, but setting the leash holder to null prevents the lead from dropping
         if (chickens.contains(event.getEntity())) {
-            ((Chicken) event.getEntity()).setLeashHolder(null);
+            CancelLeashDrop.apply(event);
             chickens.removeEntity(event.getEntity());
         }
     }

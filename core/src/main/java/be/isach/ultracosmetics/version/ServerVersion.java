@@ -14,7 +14,13 @@ public enum ServerVersion {
     v1_19(19, 4),
     v1_20(20, 6),
     v1_21(21, 11, "v1_21_R7"),
-    NMS("26+", "nms"),
+    NMS("26+", "nms") {
+        @Override
+        public boolean isNmsSupportedOn(int major, int minor) {
+            // optimism
+            return major >= 26;
+        }
+    },
     NEW("???"),
     ;
 
@@ -63,6 +69,18 @@ public enum ServerVersion {
         return minorVer;
     }
 
+    public boolean isNmsSupportedOn(int major, int minor) {
+        return isNmsSupported() && majorVer == major && minorVer == minor;
+    }
+
+    public boolean isNmsSupported() {
+        return module != null;
+    }
+
+    public String getModule() {
+        return module;
+    }
+
     public static ServerVersion earliest() {
         return values()[0];
     }
@@ -83,14 +101,6 @@ public enum ServerVersion {
             }
         }
         return ServerVersion.NEW;
-    }
-
-    public boolean isNmsSupported() {
-        return module != null;
-    }
-
-    public String getModule() {
-        return module;
     }
 
     /**
