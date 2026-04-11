@@ -555,10 +555,10 @@ Particle-Effects:
       Laisse une trace de
       fumée derrière.
   SuperVillain:
-    name: <bold><dark_purple>Super Villain
+    name: <bold><dark_purple>Super Méchant
     Description: |-
-      Become Batman... or whoever is
-      more evil than Superman!
+      Devenez Batman... ou quiconque est
+      plus méchant que Superman !
   Notes:
     name: <bold><gold>Notes
     Description: Notes au-dessus de votre tête.
@@ -584,8 +584,8 @@ Particle-Effects:
       Laisse une trace de
       snow derrière.
   CherryFairy:
-    name: '<bold><#DE3163>Cherry Fairy'
-    Description: Protector of the cherry grove.
+    name: '<bold><#DE3163>Fée cerise'
+    Description: Protecteur du cerisier.
 Pets:
   Piggy:
     menu-name: <bold><light_purple>Cochonnet
@@ -1853,14 +1853,14 @@ Death-Effects:
     Description: Disparaître dans une bouffée de fumée !
     name: <bold><gray>Bouffée de fumée
   DragonBreath:
-    name: <bold><gray>Dragon Breath
-    Description: Disintegrate into the dragon mist.
+    name: <bold><gray>Souffle du Dragon
+    Description: Se désintégrer dans la brume du dragon.
   Flames:
     name: <bold><gold>Flames
-    Description: Explode into bursts of fire and sparks!
+    Description: Explosez en éclats de feu et d'étincelles !
   ItemExplode:
-    name: <bold><light_purple>Candy Explode
-    Description: ALL OUR (SWEET) FOOD KEEPS BLOWING UP
+    name: <bold><light_purple>Explosion de bonbons
+    Description: TOUTE NOTRE (DOUCE) NOURRITURE CONTINUE D’EXPLOSER
 Enabled-SelfMorphView: <prefix> <blue>Vous avez activé l'auto-affichage pour les morphes !
 Disabled-SelfMorphView: <prefix> <blue>Vous avez désactivé l'auto-affichage pour les morphes !
 Enabled-Gadgets: <prefix> <blue>Vous avez activé les gadgets !

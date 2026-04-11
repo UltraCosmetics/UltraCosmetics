@@ -556,10 +556,10 @@ Particle-Effects:
       Залишає за собою
       sслід диму.
   SuperVillain:
-    name: <bold><dark_purple>Super Villain
+    name: <bold><dark_purple>Суперлиходій
     Description: |-
-      Become Batman... or whoever is
-      more evil than Superman!
+      Стати Бетменом... або кимось, хто
+      зліший за Супермена!
   Notes:
     name: <bold><gold>Ноти
     Description: Ноти над головою.
@@ -585,8 +585,8 @@ Particle-Effects:
       Залишає по собі слід
       снігу за собою.
   CherryFairy:
-    name: '<bold><#DE3163>Cherry Fairy'
-    Description: Protector of the cherry grove.
+    name: '<bold><#DE3163>Вишнева фея'
+    Description: Охорона вишневого гаю.
 Pets:
   Piggy:
     menu-name: <bold><light_purple>Свинка
@@ -1854,14 +1854,14 @@ Death-Effects:
     Description: Зникнення в хмарі диму!
     name: <bold><gray>Хмара диму
   DragonBreath:
-    name: <bold><gray>Dragon Breath
-    Description: Disintegrate into the dragon mist.
+    name: <bold><gray>Подих дракона
+    Description: Розчинитися в драконячому тумані.
   Flames:
-    name: <bold><gold>Flames
-    Description: Explode into bursts of fire and sparks!
+    name: <bold><gold>Вогні
+    Description: Вибухніть спалахами вогню та іскор!
   ItemExplode:
-    name: <bold><light_purple>Candy Explode
-    Description: ALL OUR (SWEET) FOOD KEEPS BLOWING UP
+    name: <bold><light_purple>Цукерковий вибух
+    Description: УСІ НАШІ (СОЛОДКІ) СТРАВИ ПРОСТО ВИБУХАЮТЬ
 Enabled-SelfMorphView: <prefix> <blue>Ви увімкнули самоперегляд для морфів!
 Disabled-SelfMorphView: <prefix> <blue>Ви вимкнули самоперегляд для морфів!
 Enabled-Gadgets: <prefix> <blue>Ви увімкнули гаджети!
@@ -1888,12 +1888,12 @@ Use-Rename-Pet-Command: <prefix> <red>використовувати <yellow>/uc
 Commands-Disabled-During-Chest: <prefix> <bold><red>Ви не можете використовувати команди з відкритою скринею!
 No-Buy-Key-Permission: <prefix> <red><bold>Ви не маєте дозволу на придбання ключів скарбів!
 Particles-Minimal-In-Client: <yellow>У налаштуваннях клієнту частинки встановлено на "мінімальне" значення, тож Ви не зможете їх бачити.
-Cosmetics-Toggled-Off: <prefix> <blue>Cosmetics toggled off
-Cosmetics-Toggled-On: <prefix> <blue>Cosmetics toggled on
-Invalid-Category: <prefix> <bold><red>Invalid Category!
-Invalid-Cosmetic: <prefix> <bold><red>Invalid Cosmetic!
-Invalid-Player: '<prefix> <bold><red>Invalid Player!'
-Must-Specify-Player: <prefix> <bold><red>You must specify a player!
-Invalid-Number: '<prefix> <bold><red>Invalid number: <value>'
-Treasure-Keys-Given: <green><keys> keys given to <playername>
-Ammo-Given: <green><ammo> <gadgetname> ammo given to <playername>
+Cosmetics-Toggled-Off: <prefix> <blue>Косметика вимкнена
+Cosmetics-Toggled-On: <prefix> <blue>Косметика увімкнена
+Invalid-Category: <prefix> <bold><red>Неправильна категорія!
+Invalid-Cosmetic: <prefix> <bold><red>Неправильна косметика!
+Invalid-Player: '<prefix> <bold><red>Неправильний гравець!'
+Must-Specify-Player: <prefix> <bold><red>Ви повинні вказати гравця!
+Invalid-Number: '<prefix> <bold><red>Невірний номер: <value>'
+Treasure-Keys-Given: <green><keys> ключів видано <playername>
+Ammo-Given: <green><ammo> <gadgetname> одиниць видано <playername>
