@@ -3,7 +3,6 @@ api_token_env: CROWDIN_PERSONAL_TOKEN
 preserve_hierarchy: true
 crowdin_branch_name: l10n_main
 localization_branch_name: l10n_main
-commit_message: "[ci skip]"
 files:
   - source: /core/src/main/resources/messages/messages_en.yml
     translation: /core/src/main/resources/messages/messages_%two_letters_code%.yml
