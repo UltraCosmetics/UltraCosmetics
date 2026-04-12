@@ -196,11 +196,13 @@ public abstract class ArmorCosmetic<T extends CosmeticType<?>> extends Cosmetic<
             return true;
         }
         try {
-            EquippableComponent equip = item.getItemMeta().getEquippable();
-            return equip.isSwappable() && equip.getSlot() == slot;
+            if (item.getItemMeta().hasEquippable()) {
+                EquippableComponent equip = item.getItemMeta().getEquippable();
+                return equip.isSwappable() && equip.getSlot() == slot;
+            }
         } catch (NoSuchMethodError ignored) {
-            return false;
         }
+        return false;
     }
 
     private void handleDrop() {
