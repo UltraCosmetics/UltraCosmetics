@@ -1,0 +1,1898 @@
+Prefix: <italic><bold>Cosmétiques >
+No-Permission: <bold><red>Tu n'as pas la permission !
+Cosmetic-Disabled: <prefix> <bold><red>Ce cosmétique est désactivé !
+Invalid-Gadget: <prefix> <bold><red>Gadget invalide !
+Invalid-Pet: <prefix> <bold><red>Familier invalide !
+Invalid-Mount: <prefix> <bold><red>Monture invalide !
+Invalid-Effect: <prefix> <bold><red>Effet invalide !
+Invalid-Morph: <prefix> <bold><red>Transformation invalide !
+Invalid-Hat: <prefix> <bold><red>Chapeau invalide !
+Invalid-Suit: <prefix> <bold><red>Costume invalide !
+Invalid-Emote: <prefix> <bold><red>Émote Invalide !
+Invalid-Menu: <prefix> <bold><red>Menu invalide !
+Ammo: '<gray>Vos munitions: </gray><yellow><ammo>'
+Purchase: <bold><green>ACHETER
+Cancel: <bold><red>ANNULER
+Buy-Ammo-Description: <bold><yellow>Acheter <amount> recharges de <gadgetname> </yellow></bold><bold><yellow>pour <price>$
+Buy-Cosmetic-Description: <bold><yellow>Acheter <gadgetname> </yellow></bold><bold><yellow>pour <price>$
+Right-Click-Buy-Ammo: <gray>Clic droit pour acheter des munitions
+Click-To-Purchase: <yellow>Clic pour acheter pour <price>$
+Not-Enough-Money: <prefix> <bold><red>Tu n'as pas assez d'argent !
+Successful-Purchase: <prefix> <bold><green>Achat réussi !
+Buy-Treasure-Key: <bold>Acheter une clé de coffre aux trésors
+Treasure-Keys: <bold><gray>Clés de coffre aux trésors
+Treasure-Chests: <bold><gold>Coffres aux trésors
+Dont-Have-Key: <bold><dark_red>Tu as besoin d'une clé !
+Click-Open-Chest: <green>Clic pour ouvrir un coffre
+Click-Buy-Key: <green>Clic pour acheter une clé
+Left-Click-Open-Chest: <green>Clic gauche pour ouvrir un coffre
+Right-Click-Simple: <green>Clic droit pour juste obtenir des cosmétiques
+Your-Keys: '<italic><gray>Vos clés : </gray></italic><bold><white><keys>'
+Buy-Treasure-Key-ItemName: <bold><yellow>1 </yellow></bold><bold><gray>Clé de Coffre </gray></bold><bold><yellow>pour <price>$
+You-Won-Treasure-Chests: '<prefix> <bold><white>Tu as gagné : <name> !'
+Treasure-Chest-Occupied: <prefix> <bold><red>Pas d'endroits disponibles pour ouvrir un coffre, patiente un peu puis réessaye
+No-Ammo: <prefix> <bold><red>Vous n'avez pas de munitions pour ce gadget!
+Cannot-Sell-Item: <prefix> <bold><red>Vous ne pouvez pas vendre cet objet !
+Structure-Chests-Disabled: <prefix> <bold><red>Les coffres de structure sont désactivés !
+Clear:
+  Cosmetics: <bold><red>Retirer les cosmétiques
+  Gadgets: <bold><red>Retirer le gadget actuel
+  Pets: <bold><red>Retirer le familier actuel
+  Mounts: <bold><red>Retirer la monture actuel
+  Particle-Effects: <bold><red>Retirer l'effet actuel
+  Morphs: <bold><red>Retirer la transformation actuel
+  Hats: <bold><red>Retirer le chapeau actuel
+  Suits: <bold><red>Retirer le costume actuel
+  Emotes: <bold><red>Retirer l'emote actuel
+  Projectile-Effects: <bold><red>Retirer l'effet de projectile actuel
+  Death-Effects: <bold><red>Retirer l'effet de mort actuel
+Menu:
+  Purchase-Rename:
+    Button:
+      Showcase: <bold><red>Renommer le familier en </red></bold><bold><white><name> </white></bold><bold><red>pour </red></bold><bold><yellow><price>$
+    Title: <bold>Renommer le familier de compagnie
+  Purchase-Cosmetic:
+    Title: <bold>Achat <cosmetic>
+  Rename-Pet:
+    Button:
+      Name: '<bold><red>Clic pour renommer : <petname>'
+    Placeholder: Nom du familier
+    Title: Renommer le familier
+  Main:
+    Title: <bold>Menu Principal
+    Button:
+      Name: <bold><red>Menu Principal
+  Pets:
+    Title: <bold>Familiers
+    Button:
+      Name: <bold><green>Familiers
+      Lore: '<gray>Déverouillé: </gray><white><unlocked>'
+      Tooltip-Equip: <bold><aqua>Spawn
+      Tooltip-Unequip: <bold><red>Despawn
+  Gadgets:
+    Title: <bold>Gadgets
+    Button:
+      Name: <bold><blue>Gadgets
+      Lore: '<gray>Déverouillé: </gray><white><unlocked>'
+      Tooltip-Equip: <bold><aqua>Activer
+      Tooltip-Unequip: <bold><red>Désactiver
+  Mounts:
+    Title: <bold>Montures
+    Button:
+      Name: <bold><gold>Montures
+      Lore: '<gray>Déverouillé: </gray><white><unlocked>'
+      Tooltip-Equip: <bold><aqua>Spawn
+      Tooltip-Unequip: <bold><red>Despawn
+  Morphs:
+    Title: <bold>Transformations
+    Button:
+      Name: <bold><dark_green>Transformations
+      Lore: '<gray>Déverouillé: </gray><white><unlocked>'
+      Tooltip-Equip: <bold><aqua>Transformer en
+      Tooltip-Unequip: <bold><red>Retransformer depuis
+  Hats:
+    Title: <bold>Chapeaux
+    Button:
+      Name: <bold><light_purple>Chapeaux
+      Lore: '<gray>Déverouillé: </gray><white><unlocked>'
+      Tooltip-Equip: <bold><aqua>l'Équiper
+      Tooltip-Unequip: <bold><red>Déséquiper
+  Particle-Effects:
+    Title: <bold>Effets de particules
+    Button:
+      Name: <bold><aqua>Effets de particules
+      Lore: '<gray>Déverouillé: </gray><white><unlocked>'
+      Tooltip-Equip: <bold><aqua>Invoquer
+      Tooltip-Unequip: <bold><red>Faire disparaître
+  Suits:
+    Title: <bold>Costumes
+    Button:
+      Name: <bold><dark_aqua>Costumes
+      Lore: '<gray>Déverouillé: </gray><white><unlocked>'
+      Tooltip-Equip: <bold><aqua>l'Équiper
+      Tooltip-Unequip: <bold><red>Déséquiper
+  Emotes:
+    Title: <bold>Émotes
+    Button:
+      Name: <bold><yellow>Émotes
+      Lore: '<gray>Déverouillé: </gray><white><unlocked>'
+      Tooltip-Equip: <bold><aqua>l'Équiper
+      Tooltip-Unequip: <bold><red>Déséquiper
+  Projectile-Effects:
+    Title: <bold>Effets de projectiles
+    Button:
+      Name: <bold><dark_purple>Effets de projectiles
+      Lore: '<gray>Déverouillé: </gray><white><unlocked>'
+      Tooltip-Equip: <bold><aqua>l'Équiper
+      Tooltip-Unequip: <bold><red>Déséquiper
+  Death-Effects:
+    Title: <bold>Effets de Mort
+    Button:
+      Name: <bold><red>Effets de Mort
+      Lore: '<gray>Déverouillé: </gray><white><unlocked>'
+      Tooltip-Equip: <bold><aqua>l'Équiper
+      Tooltip-Unequip: <bold><red>Déséquiper
+  Buy-Ammo:
+    Title: <bold>Acheter des munitions
+  Misc:
+    Button:
+      Previous-Page: <bold><red>Page précédente
+      Next-Page: <bold><green>Page suivante
+  Disabled-Button: <red>DESACTIVER
+Chest-Location:
+  Not-Enough-Space: <prefix> <bold><red>Il n'y a pas assez de place pour un coffre au trésor !
+  Region-Disabled: <prefix> <bold><red>Tu ne peux pas ouvrir un coffre ici !
+  Invalid: <prefix> <bold><red>Ce n'est pas un emplacement valide.
+  In-Air: <prefix> <bold><red>Cet emplacement n'est pas au sol !
+  In-Ground: <prefix> <bold><red>Cet emplacement est au sol !
+  Suggestion: <prefix> <green>Tu voulais peut-être dire <location> ?
+  Dismount-First: <prefix> <bold><red>Vous devez démonter votre véhicule avant d'ouvrir un coffre.
+  Too-Close-To-Entity: <prefix> <bold><red>Tu es trop proche d'une autre entité !
+Active-Pet-Needed: <bold><red>Tu dois faire apparaître un familier pour le renommer
+Treasure-Chests-Loot:
+  Ammo: |-
+    <blue>Munitions
+    <ammo> <cosmetic>
+  Money: |-
+    <yellow>Argents
+    <bold><yellow><money>$
+  Nothing: <bold><red>Rien
+  Pets: |-
+    <green>Animal de compagnie:
+    <cosmetic>
+  Mounts: |-
+    <gold>Monture
+    <cosmetic>
+  Particle-Effects: |-
+    <aqua>Effet des particules
+    <cosmetic>
+  Morphs: |-
+    <dark_green>Métamorphose
+    <cosmetic>
+  Hats: |-
+    <light_purple>Chapeau
+    <cosmetic>
+  Gadgets: |-
+    <blue>Gadget 
+    <cosmetic>
+  Suits: |-
+    <dark_aqua>Costume
+    <cosmetic>
+  Emotes: |-
+    <yellow>Émote
+    <cosmetic>
+  Death-Effects: |-
+    <red>Effet de mort
+    <cosmetic>
+  Projectile-Effects: |-
+    <dark_purple>Effet de projectile
+    <cosmetic>
+Treasure-Chests-Loot-Messages:
+  Ammo: <prefix> <bold><gold><name>à trouvé <ammo> <cosmetic> munitions
+  Money: <prefix> <bold><gold><name> a trouvé <money>$
+  Pets: <prefix> <bold><gold><name> a trouvé <cosmetic> rare
+  Mounts: <prefix> <bold><gold><name> a trouvé <cosmetic> rare
+  Particle-Effects: <prefix> <bold><gold><name> a trouvé <cosmetic> légendaire
+  Morphs: <prefix> <bold><gold><name> a trouvé <cosmetic> légendaire
+  Hats: <prefix> <bold><gold><name> a trouvé <cosmetic> rare
+  Gadgets: <prefix> <bold><gold><name> a trouvé <cosmetic> gadget
+  Suits: <prefix> <bold><gold><name> a trouvé <cosmetic> rare
+  Emotes: <prefix> <bold><gold><name> a trouvé <cosmetic> rare
+  Death-Effects: <prefix> <bold><gold><name> a trouvé <cosmetic> rare
+  Projectile-Effects: <prefix> <bold><gold><name> a trouvé <cosmetic> rare
+Permission-Lore:
+  Showroom: '<gray>Permission : </gray><gold>Utilisable en showroom'
+  Permission-No: '<gray>Permission : </gray><bold><dark_red>Non !'
+  Permission-Yes: '<gray>Permission : </gray><bold><green>Oui !'
+Disable-Gadgets: <bold><red>Désactiver les gadgets
+Disable-Gadgets-Lore: <red>Désactive l'utilisation des gadgets et leurs effets sur toi
+Enable-Gadgets: <bold><green>Activer les gadgets
+Enable-Gadgets-Lore: <red>Active l'utilisation des gadgets et leurs effets sur toi
+Disable-Third-Person-View: <bold><red>Désactiver la vue de la troisième personne
+Enable-Third-Person-View: <bold><green>Activer la vue de la troisième personne
+Disable-Filter-By-Owned: <bold><red>Changer pour tout afficher
+Enable-Filter-By-Owned: <bold><red>Passer à Filtrer par propriétaire
+Disable-Treasure-Notification: <bold><red>Notifications de coffres désactivées
+Enable-Treasure-Notification: <bold><red>Notifications de coffres activées
+Gadgets-Enabled-Needed: <prefix> <bold><red>Tu dois activer les gadgets !
+Gadgets:
+  Equip: <prefix> <blue>Tu as équipé <gadgetname>
+  Unequip: <prefix> <blue>Tu as déséquipé <gadgetname>
+  Countdown-Message: <prefix> <bold><red>Tu ne peux pas utiliser <gadgetname> </red></bold><bold><red>pendant <time>s !
+  PaintballGun:
+    name: <bold><aqua>Pistolet Paintball
+    Description: PAN PAN PAN !!!
+  BatBlaster:
+    name: <bold><gray>Chauve-Souris Blaster
+    Description: |-
+      Lancer des vagues de chauves-souris
+      sur les personnes que tu n'aimes pas !
+  MelonThrower:
+    name: <bold><green>Lanceur de Melon
+    Wait-For-Finish: <prefix> <bold><red>Attends que ton melon précédent finisse d'exploser !
+    Description: Délicieusement fun !
+  EtherealPearl:
+    name: <bold><dark_purple>Perle éthérée
+    Description: |-
+      Faites un tour dans les cieux
+      sur votre propre Perle Éthérée !
+  FleshHook:
+    name: <bold><gray>Crochet de chair
+    Description: |-
+      Fais-toi de nouveaux amis en leur lançant un crochet
+      dans leur face et en les ramenant
+      vers toi !
+  DiscoBall:
+    name: <bold><light_purple>Boule Disco
+    Already-Active: <bold><red>Il y a déjà une boule disco activée !
+    Not-Space-Above: <bold><red>Il n'y a pas assez de place au-dessus de toi !
+    Description: Danse !
+  ColorBomb:
+    name: <bold><light_purple>Bombe de couleur
+    Description: Une bombe colorée !
+  Chickenator:
+    name: <bold><white>Lanceur de poulets
+    Description: 1. Tire ! 2. Boom ! 3. KFC !
+  PortalGun:
+    name: <bold><red>Pistolet </red></bold><bold><blue>Portail
+    No-Block-Range: <prefix> <bold><red>Aucun BLOCS à portée !
+    Different-Worlds: <prefix> <bold><red>Les portails doivent être dans le même monde !
+    Description: Le gâteau est un mensonge !
+  BlizzardBlaster:
+    name: <bold><aqua>Blizzard Blaster
+    Description: Qu'il neige !
+  ThorHammer:
+    name: <bold><white>Marteau de Thor
+    Description: Obtiens le vrai Mjölnir !
+  SmashDown:
+    name: <bold><red>SmashDown
+    Description: AND HIS NAME IS... JOHN CENA!
+  ExplosiveSheep:
+    name: <bold><dark_red>Mouton explosif
+    Already-Active: <bold><red>Il y a déjà un mouton explosif actif !
+    Description: |-
+      Est-ce que t'es sûr que
+      c'est sensé scintiller comme ça ?
+  AntiGravity:
+    name: <bold><light_purple>Anti Gravité
+    Description: |-
+      Tu n'aimes pas la gravité ?
+      Alors, ce gadget est fait pour toi !
+  Tsunami:
+    name: <bold><blue>Tsunami
+    Description: |-
+      TSUNAMI !
+      Sauve qui peut !
+  Rocket:
+    name: <bold><dark_red>Fusée
+    Not-Enough-Space: <prefix> <bold><red>Pas assez de place autour et au-dessus de toi !
+    Not-On-Ground: <prefix> <bold><red>Tu dois être au sol !
+    Takeoff: <bold><dark_red>DÉCOLLAGE !!
+    LaunchAborted: <bold><red>Lancement interrompu !
+    Description: Houston, on a un problème...
+  BlackHole:
+    name: <bold><dark_blue>Trou Noir
+    Description: Ne te fais pas prendre !
+  TNT:
+    name: <bold><dark_red>T</dark_red></bold><bold><white>N</white></bold><bold><dark_red>T
+    Description: |-
+      Fais sauter quelques personnes !
+      Boum !
+  FunGun:
+    name: <bold><gold>Fun Gun
+    Description: Woow ! Tant de fun dans un gun !
+  Parachute:
+    name: <bold><white>Parachute
+    Description: GERONIMOOO !
+  QuakeGun:
+    name: <bold><dark_purple>Quake </dark_purple></bold><bold><light_purple>Gun
+    Description: |-
+      Obtiens un véritable Rail Gun
+      et tire sur les joueurs et les mobs !
+  GhostParty:
+    name: <bold><white>Fête fantôme
+    Description: |-
+      Qui vas-tu appeler ?
+      LE CHASSEUR DE FANTÔMES !
+  Firework:
+    name: <bold><red>Feu d'artifice
+    Description: |-
+      Envie de célébrer ?
+      Utilise des feux d'artifice !
+  ChristmasTree:
+    name: <bold><dark_green>Arbre de Noël
+    Click-On-Block: <prefix> <bold><red>Clique sur un bloc !
+    Description: |-
+      Voici un arbre de Noël
+      pour toi !
+  FreezeCannon:
+    name: <bold><aqua>Canon à glace
+    Description: Transformez le sol en une patinoire !
+  Snowball:
+    name: <bold><white>Boule de neige
+    Description: |-
+      Joins-toi à la fête en
+      jetant de la neige sur les gens !
+  PartyPopper:
+    name: <bold><yellow>Canon à confettis
+    Description: |-
+      Célèbre en lançant des confettis
+      dans les airs !
+  Trampoline:
+    name: <bold><blue>Trampoline
+    Description: |-
+      Construis un trampoline
+      qui t'envoie toi et tes
+      amis dans les airs !
+  Gadget-Ready-ActionBar: <gadgetname> <bold><white>est prêt !
+  Lore: <blue>Gadget
+Mounts:
+  DruggedHorse:
+    menu-name: <bold><dark_green>Cheval dopé
+    entity-displayname: <bold>Cheval dopé de <playername>
+    Description: C'est vraiment abusé !
+  InfernalHorror:
+    menu-name: <bold><dark_red>Horreur infernale
+    entity-displayname: <bold>Horreur infernale de <playername>
+    Description: Cette monture vient directement de... l'enfer !
+  GlacialSteed:
+    menu-name: <bold><aqua>Coursier glacial
+    entity-displayname: <bold>Coursier glacial de <playername>
+    Description: Cette monture vient du pôle Nord !
+  WalkingDead:
+    menu-name: <bold><dark_green>Mort-vivant
+    entity-displayname: <bold>Mort-vivant de <playername>
+    Description: Graaaaw...
+  MountOfFire:
+    menu-name: <bold><red>Monture du Feu
+    entity-displayname: <bold>Monture du Feu de <playername>
+    Description: La monture d'Hadès !
+  MountOfWater:
+    menu-name: <bold><blue>Monture de l'Eau
+    entity-displayname: <bold>Monture de l'Eau de <playername>
+    Description: La monture de Poséidon !
+  EcologistHorse:
+    menu-name: <bold><green>Cheval écolo
+    entity-displayname: <bold>Cheval écolo de <playername>
+    Description: Devient écolo !
+  NyanSheep:
+    menu-name: <bold><green>Mo</green></bold><bold><aqua>ut</aqua></bold><bold><light_purple>on </light_purple></bold><bold><dark_red>Ny</dark_red></bold><bold><gold>a</gold></bold><bold><yellow>n
+    entity-displayname: <bold>Mouton Nyan de <playername>
+    Description: |-
+      <bold><dark_red>Nyan </dark_red></bold><bold><gold>nyan </gold></bold><bold><yellow>nyan
+      <bold><green>nyan </green></bold><bold><dark_aqua>nyan </dark_aqua></bold><bold><blue>nyan
+  Snake:
+    menu-name: <bold><gold>Serpent
+    entity-displayname: <bold>Serpent de <playername>
+    Description: Attention ! Il peut mordre...
+  Dragon:
+    menu-name: <bold><dark_purple>Dragon
+    entity-displayname: <bold>Dragon de <playername>
+    Description: Deviens un chevaucheur de dragon !
+  HypeCart:
+    menu-name: <bold><gray>HypeCart
+    entity-displayname: <bold>HypeCart de <playername>
+    Description: |-
+      Tu as déjà voulu conduire une F1 ?
+      Maintenant tu peux !
+  Slime:
+    menu-name: <bold><green>Slime
+    entity-displayname: <bold>Slime de <playername>
+    Description: Splat ! Splat !
+  Spider:
+    menu-name: <bold><dark_gray>Araignée
+    entity-displayname: <bold>Araignée de <playername>
+    Description: Tu es le chevaucheur d'araignée !
+  Rudolph:
+    menu-name: <bold><white>Rudolp</white></bold><bold><dark_red>h
+    entity-displayname: <bold>Rudolph de <playername>
+    Description: |-
+      Que serait Noël
+      sans Rudolph le Renne ?
+  MoltenSnake:
+    menu-name: <bold><red>Serpent Fondu
+    entity-displayname: <bold>Serpent de <playername>
+    Description: |-
+      En profondeur, sous la surface de la Terre,
+      il existe une espèce mythique de serpents
+      en fusion. Celui-ci te servira éternellement.
+  Strider:
+    menu-name: <bold><red>Arpenteur
+    entity-displayname: <bold>Arpenteur de <playername>
+    Description: |-
+      Une créature mystérieuse en forme de cube
+      capable de marcher directement au-dessus de la lave.
+    Held-Item-Lore: <italic><gray>Nourriture d'Arpenteur sur un bâton !
+  Horse:
+    menu-name: <bold><gray>Cheval
+    entity-displayname: <bold>Cheval de <playername>
+    Description: Votre cheval, tous les jours
+  Donkey:
+    menu-name: <bold><dark_gray>Ane
+    entity-displayname: <bold>Âne de <playername>
+    Description: Votre banale, âne de toujours
+  Mule:
+    menu-name: <bold><dark_gray>Mule
+    entity-displayname: <bold>Mule de <playername>
+    Description: Votre banal, mulet de toujours
+  Pig:
+    menu-name: <bold><light_purple>Cochon
+    entity-displayname: <bold>Cochonnet de <playername>
+    Description: Oink !
+    Held-Item-Lore: <italic><gray>Nourriture de cochons sur un bâton!
+  SlimeSnake:
+    menu-name: <bold><red>Serpent visqueux
+    entity-displayname: <bold>Serpent visqueux de <playername>
+    Description: |-
+      Ce type de serpent vient tout droit des "marais secrets de Sliminess".
+      Celui-ci vous servira éternellement.
+  Camel:
+    menu-name: <bold><gold>Chameau
+    entity-displayname: <bold>Chameau de <playername>
+    Description: Votre chameau banal de tous les jours
+  Equip: <prefix> <blue>Tu as fait apparaître <mountname>
+  Unequip: <prefix> <blue>Tu as fait disparaître <mountname>
+  Cant-Spawn: <prefix> <bold><red>Les monstres ne peuvent pas apparaître dans des mondes paisibles !
+  Not-Enough-Room: <prefix> <bold><red>Pas assez de place pour une monture ici !
+Particle-Effects:
+  Equip: <prefix> <blue>Tu as invoqué <effectname>
+  Unequip: <prefix> <blue>Tu as retiré <effectname>
+  RainCloud:
+    name: <bold><blue>Nuage de Pluie
+    Description: |-
+      Les prévisions météo
+      m'indiquent qu'il va pleuvoir.
+  SnowCloud:
+    name: <bold><white>Nuage de Neige
+    Description: |-
+      Les prévisions météo
+      m'indiquent qu'il va neiger.
+  BloodHelix:
+    name: <bold><dark_red>Hélix de Sang
+    Description: |-
+      Une légende ancienne dit que cette magie
+      rend le sang de son utilisateur puissant,
+      lui donnant des pouvoirs divins...
+  FrostLord:
+    name: <bold><aqua>Seigneur des Glaces
+    Description: Je suis le tout-puissant Seigneur des Glaces !
+  FlameRings:
+    name: <bold><red>Anneaux de flammes
+    Description: Attention ! Ils sont chauds !
+  GreenSparks:
+    name: <bold><green>Étincelles vertes
+    Description: Petites étincelles vertes étincelantes !
+  InLove:
+    name: <bold><red>Amoureux
+    Description: OMG wow je suis amoureux !
+  FrozenWalk:
+    name: <bold><aqua>Marche gelée
+    Description: Mes pieds sont si froids !
+  Enchanted:
+    name: <bold><gray>Enchanté
+    Description: Deviens un enchanteur tout-puissant !
+  Music:
+    name: <bold><blue>Musique
+    Description: Beaucoup de musique !
+  Inferno:
+    name: <bold><dark_red>Infernal
+    Description: Effet créé par Satan lui-même !
+  AngelWings:
+    name: <bold><white>Ailes d'Ange
+    Description: Deviens un ange !
+  RainbowWings:
+    name: <bold>Ailes <rainbow>arc-en-ciel</rainbow>
+    Description: Des ailes, mais de pleins de couleurs!
+  SuperHero:
+    name: <bold><dark_red>Super Héros
+    Description: Deviens Superman !
+  SantaHat:
+    name: <bold><white>Chapeau du </white></bold><bold><dark_red>Père Noël
+    Description: Deviens le Père Noël!
+  CrushedCandyCane:
+    name: <bold><dark_red>Sucre </dark_red></bold>d'Orge <bold><dark_red>écrasé
+    Description: |-
+      Il n'y a jamais assez de
+      confiseries de Noël. N'écoute pas
+      ton dentiste.
+  EnderAura:
+    name: <bold><light_purple>Ender Aura
+    Description: |-
+      Ces particules mystiques s'attachent
+      seulement aux joueurs les plus légendaires !
+  FlameFairy:
+    name: <bold><gold>Fée des flammes
+    Description: HEY!!
+  MagicalRods:
+    name: <bold><dark_gray>Barres magiques
+    Description: Puisse ces barres magiques te protéger !
+  FireWaves:
+    name: <bold><yellow>Vagues de feu
+    Description: Certains disent que ces vagues de feu agissent comme un bouclier...
+  CursedHalo:
+    name: <bold><dark_purple>Halo maudit
+    Description: |-
+      Il apporte un grand malheur à
+      toute personne qui ose le porter.
+  VolcanicHalo:
+    name: <bold><red>Halo volcanique
+    Description: |-
+      Un halo composé de
+      flammes eternal.
+  CursedFootprints:
+    name: <bold><dark_purple>Empreintes maudites
+    Description: |-
+      Laisse une trace de
+      énergie sombre derrière.
+  SpringFootprints:
+    name: <bold><green>Empreintes maudites
+    Description: |-
+      Laisse une trace de
+      particules vertes derrière.
+  ShadowFootprints:
+    name: <bold><gray>Empreintes fantômes
+    Description: |-
+      Laisse une trace de
+      fumée derrière.
+  SuperVillain:
+    name: <bold><dark_purple>Super Méchant
+    Description: |-
+      Devenez Batman... ou quiconque est
+      plus méchant que Superman !
+  Notes:
+    name: <bold><gold>Notes
+    Description: Notes au-dessus de votre tête.
+  Hearts:
+    name: <bold><red>Coeurs
+    Description: Cœurs au-dessus de votre tête.
+  EnderFootprints:
+    name: <bold><light_purple>Empreintes de L'end
+    Description: |-
+      Laisse une trace de
+      Souffle de dragon derrière.
+  ArcaneFlame:
+    name: <bold><aqua>Flamme arcanique
+    Description: Flamme bleue au-dessus de votre tête.
+  DivineHalo:
+    name: <bold><yellow>Halo Divin
+    Description: |-
+      Un halo composé de
+      lumiere.
+  SnowFootprints:
+    name: <bold><white>Empreintes de neige
+    Description: |-
+      Laisse une trace de
+      snow derrière.
+  CherryFairy:
+    name: '<bold><#DE3163>Fée cerise'
+    Description: Protecteur du cerisier.
+Pets:
+  Piggy:
+    menu-name: <bold><light_purple>Cochonnet
+    entity-displayname: <bold>Cochonnet de <playername>
+    Description: Grouin ! Groin !
+  Sheep:
+    menu-name: <bold><white>Mouton
+    entity-displayname: <bold>Mouton de <playername>
+    Description: Bêêêêêh
+  EasterBunny:
+    menu-name: <bold><gold>Lapin de Pâques
+    entity-displayname: <bold>Lapin de Pâques de <playername>
+    Description: C'est déjà Pâques ?
+  Cow:
+    menu-name: <bold><red>Vache
+    entity-displayname: <bold>Vache de <playername>
+    Description: Meuuuuh !
+  Kitty:
+    menu-name: <bold><blue>Chaton
+    entity-displayname: <bold>Chaton de <playername>
+    Description: Miaouuuu
+  Dog:
+    menu-name: <bold><gray>Chien
+    entity-displayname: <bold>Chien de <playername>
+    Description: Wouaf !
+  Chick:
+    menu-name: <bold><yellow>Poussin
+    entity-displayname: <bold>Poussin de <playername>
+    Description: Cot cot !!
+  Wither:
+    menu-name: <bold><dark_gray>Wither
+    entity-displayname: <bold>Wither de <playername>
+    Description: Faites attention à moi...
+  Pumpling:
+    menu-name: <bold><gold>Citrouille
+    entity-displayname: <bold>Citrouille de <playername>
+    Description: Une petite citrouille flottante
+  ChristmasElf:
+    menu-name: <bold><green>Elfe de Noël
+    entity-displayname: <bold>Elfe de Noël de <playername>
+    Description: Je peux te faire des cadeaux !
+  Mooshroom:
+    menu-name: <bold><dark_red>Champimeuh
+    entity-displayname: <bold>Champimeuh de <playername>
+    Description: Meuuuuh !
+  IronGolem:
+    menu-name: <bold><gray>Golem de fer
+    entity-displayname: <bold>Golem de fer de <playername>
+    Description: J'aime les fleurs
+  Snowman:
+    menu-name: <bold><white>Bonhomme de neige
+    entity-displayname: <bold>Bonhomme de neige de <playername>
+    Description: Pan pan pan
+  Villager:
+    menu-name: <bold><green>Villageois
+    entity-displayname: <bold>Villageois de <playername>
+    Description: Hmmmmmmmmm
+  Bat:
+    menu-name: <bold><dark_gray>Chauves-Souris
+    entity-displayname: <bold>Chauves-Souris de <playername>
+    Description: Je préfère les endroits sombres
+  PolarBear:
+    menu-name: <bold><aqua>Ours polaire
+    entity-displayname: <bold>Ours polaire de <playername>
+    Description: Je préfère les endroits froids
+  Llama:
+    menu-name: <bold><gray>Lama
+    entity-displayname: <bold>Lama de <playername>
+    Description: Besoin de moi pour transporter quoi que ce soit ?
+  Parrot:
+    menu-name: <bold><green>Perroquet
+    entity-displayname: <bold>Perroquet de <playername>
+    Description: Un biscuit ?
+  Vex:
+    menu-name: <bold><gray>Vex
+    entity-displayname: <bold>Vex de <playername>
+    Description: YAAHH Ehehhehe!
+  Panda:
+    menu-name: <bold><green>Panda
+    entity-displayname: <bold>Panda de <playername>
+    Description: Aime les bambous !
+  Fox:
+    menu-name: <bold><light_purple>Renard
+    entity-displayname: <bold>Renard de <playername>
+    Description: Que dit le renard ?
+  Axolotl:
+    menu-name: <bold><dark_purple>Axolotl
+    entity-displayname: <bold>Axolotl de <playername>
+    Description: Siii mignon !
+  Piglin:
+    menu-name: <bold><gold>Marchand d'or
+    entity-displayname: <bold>Marchand d'or de <playername>
+    Description: Des affaires en or !
+  Slime:
+    menu-name: <bold><green>Slime
+    entity-displayname: <bold>Slime de <playername>
+    Description: Plop...
+  Bee:
+    menu-name: <bold><yellow>Abeille
+    entity-displayname: <bold>Abeille de <playername>
+    Description: '*bzzzz* *bzzzz*'
+  Goat:
+    menu-name: <bold><white>Chèvre
+    entity-displayname: <bold>Chèvre de <playername>
+    Description: Mêêêêêh !
+  Silverfish:
+    menu-name: <bold><gray>Poisson d'argent
+    entity-displayname: <bold>Poisson d'argent de <playername>
+    Description: Tapi dans les murs...
+  Horse:
+    menu-name: <bold><green>Cheval
+    entity-displayname: <bold>Cheval de <playername>
+    Description: 'Tagada-tagada'
+  Blaze:
+    menu-name: <bold><red>Blaze
+    entity-displayname: <bold>Blaze de <playername>
+    Description: Volant et chaud !
+  Creeper:
+    menu-name: <bold><green>Creeper
+    entity-displayname: <bold>Creeper de <playername>
+    Description: Il aime exploser ton stuff préféré...
+  Enderman:
+    menu-name: <bold><dark_purple>Enderman
+    entity-displayname: <bold>Enderman de <playername>
+    Description: Ne le regarde pas ou il te chassera !
+  Skeleton:
+    menu-name: <bold><white>Squelette
+    entity-displayname: <bold>Squelette de <playername>
+    Description: Attention, il va essayer de te tirer dessus !
+  Zombie:
+    menu-name: <bold><dark_green>Zombie
+    entity-displayname: <bold>Zombie de <playername>
+    Description: Vite ! Cache tes villageois !
+  Frog:
+    menu-name: <bold><dark_green>Grenouille
+    entity-displayname: <bold>Grenouille de <playername>
+    Description: N'aime pas les lucioles !
+  Warden:
+    menu-name: <bold><dark_aqua>Warden
+    entity-displayname: <bold>Warden de <playername>
+    Description: Le mob le plus effrayant de Minecraft !
+  Allay:
+    menu-name: <bold><green>Allay
+    entity-displayname: <bold>Allay de <playername>
+    Description: Un nouvel ami !
+  Cod:
+    menu-name: <bold><gray>Morue
+    entity-displayname: <bold>Morue de <playername>
+    Description: Préfère l'eau à la terre!
+  Donkey:
+    menu-name: <bold><gray>Âne
+    entity-displayname: <bold>Âne de <playername>
+    Description: Peut transporter toutes vos affaires!
+  GlowSquid:
+    menu-name: <bold><dark_aqua>Poulpe Lumineux
+    entity-displayname: <bold> Poulpe Lumineux de <playername>
+    Description: C'est lumineux!
+  Mule:
+    menu-name: <bold><gray>Mule
+    entity-displayname: <bold>Mule de <playername>
+    Description: Fondamentalement un âne!
+  Pufferfish:
+    menu-name: <bold><yellow>Poisson-globe
+    entity-displayname: <bold>Poisson-globe de <playername>
+    Description: N'aime pas être touché !
+  Ocelot:
+    menu-name: <bold><yellow>Ocelot
+    entity-displayname: <bold>Ocelot de <playername>
+    Description: Attention ! Il est vraiment mignon !
+  Salmon:
+    menu-name: <bold><red>Saumon
+    entity-displayname: <bold>Saumon de <playername>
+    Description: Ils ont l'air vraiment bon !
+  SkeletonHorse:
+    menu-name: <bold><white>Cheval Squelette
+    entity-displayname: <bold>Cheval Squelette de <playername>
+    Description: Attention aux coups de foudre !
+  Squid:
+    menu-name: <bold><black>Poulpe
+    entity-displayname: <bold>Poulpe de <playername>
+    Description: Ne l'effrayez pas ou l'eau devient noire!
+  Strider:
+    menu-name: <bold><red>Arpenteur
+    entity-displayname: <bold>Arpenteur de <playername>
+    Description: Marche sur la lave !
+  Tadpole:
+    menu-name: <bold><dark_gray>Têtard
+    entity-displayname: <bold>Têtard de <playername>
+    Description: Se transforme en grenouille !
+  TropicalFish:
+    menu-name: <bold><yellow>Poissons tropicaux
+    entity-displayname: <bold>Poisson Tropical de <playername>
+    Description: Une bombe colorée !
+  Turtle:
+    menu-name: <bold><dark_green>Tortue
+    entity-displayname: <bold>Tortue de <playername>
+    Description: La plupart d'entre eux ont plus de 150 ans !
+  WanderingTrader:
+    menu-name: <bold><dark_blue>Marchand errant
+    entity-displayname: <bold>Marchand errant de <playername>
+    Description: Il se balade partout en essayant de vendre ses affaires !
+  CaveSpider:
+    menu-name: <bold><dark_green>Araignée des cavernes
+    entity-displayname: <bold>Araignée venimeuse de <playername>
+    Description: Une araignée, mais toxique!
+  Dolphin:
+    menu-name: <bold><aqua>Dauphin
+    entity-displayname: <bold>Dauphin de <playername>
+    Description: La créature la plus heureuse de la mer!
+  Spider:
+    menu-name: <bold><dark_gray>Araignée
+    entity-displayname: <bold>Araignée de <playername>
+    Description: Votre araignée de quartier amicale !
+  ZombifiedPiglin:
+    menu-name: <bold><light_purple>Cochon Zombifié
+    entity-displayname: <bold>Cochon Zombifié de <playername>
+    Description: Attaquez-le et tous seront après vous !
+  Drowned:
+    menu-name: <bold><dark_aqua>Noyé
+    entity-displayname: <bold>Noyé de <playername>
+    Description: Un zombie noyé !
+  ElderGuardian:
+    menu-name: <bold><dark_aqua>Grand Gardien
+    entity-displayname: <bold>Grand Gardien de <playername>
+    Description: Gardes les anciens temples !
+  Endermite:
+    menu-name: <bold><dark_purple>Endermite
+    entity-displayname: <bold>Endermite de <playername>
+    Description: Attire les Endermen !
+  Evoker:
+    menu-name: <bold><gray>Évocateur
+    entity-displayname: <bold>Évocateur de <playername>
+    Description: Invoque des Vexes pour vivre!
+  Ghast:
+    menu-name: <bold><white>Ghast
+    entity-displayname: <bold>Ghast de <playername>
+    Description: '*Cri démoniaque*'
+  Guardian:
+    menu-name: <bold><dark_aqua>Gardien
+    entity-displayname: <bold>Warden de <playername>
+    Description: Hait les poulpes !
+  Hoglin:
+    menu-name: <bold><red>Hoglin
+    entity-displayname: <bold>Hoglin de <playername>
+    Description: Un cochon, mais en colère.
+  Husk:
+    menu-name: <bold><yellow>Zombie Momifié
+    entity-displayname: <bold>Zombie momifié de <playername>
+    Description: Un zombie, mais momifié.
+  MagmaCube:
+    menu-name: <bold><dark_red>Magma Cube
+    entity-displayname: <bold>Magma cube de <playername>
+    Description: Un cube très chaud !
+  Phantom:
+    menu-name: <bold><dark_blue>Fantôme
+    entity-displayname: <bold>Phantom de <playername>
+    Description: Hait les joueurs qui ne dorment pas!
+  PiglinBrute:
+    menu-name: <bold><gold>Piglin Brute
+    entity-displayname: <bold>Piglin Brute de <playername>
+    Description: Un joli cochon !
+  Pillager:
+    menu-name: <bold><gray>Pilleur
+    entity-displayname: <bold>Pillard de <playername>
+    Description: Aime piller des villages !
+  Ravager:
+    menu-name: <bold><dark_gray>Ravageur
+    entity-displayname: <bold>Ravageur de <playername>
+    Description: Le compagnon préféré du Pillard!
+  Shulker:
+    menu-name: <bold><dark_purple>Shulker
+    entity-displayname: <bold>Shulker de <playername>
+    Description: Aime se cacher !
+  Stray:
+    menu-name: <bold><dark_gray>Vagabond
+    entity-displayname: <bold>Vagabon de <playername>
+    Description: Un squelette glacial !
+  Vindicator:
+    menu-name: <bold><gray>Vindicateur
+    entity-displayname: <bold>Vindicateur de <playername>
+    Description: Ne sous-estimez pas leurs forces !
+  Witch:
+    menu-name: <bold><dark_purple>Sorcière
+    entity-displayname: <bold>Sorcière de <playername>
+    Description: Aime les chats noirs !
+  WitherSkeleton:
+    menu-name: <bold><dark_gray>Squelette Wither
+    entity-displayname: <bold>Squelette Wither de <playername>
+    Description: La raison pour laquelle il existe un butin.
+  Zoglin:
+    menu-name: <bold><red>Zoglin
+    entity-displayname: <bold>Zoglin de <playername>
+    Description: Un Hoglin zombifié !
+  ZombieVillager:
+    menu-name: <bold><dark_green>Villageois Zombie
+    entity-displayname: <bold>Zombie villageois de <playername>
+    Description: Rêve du commerçant villageois !
+  ZombieHorse:
+    menu-name: <bold><dark_green>Cheval Zombie
+    entity-displayname: <bold>Cheval zombie de <playername>
+    Description: Le cheval le plus rare de Minecraft !
+  Illusioner:
+    menu-name: <bold><dark_blue>Illusionniste
+    entity-displayname: <bold>L'Illusionniste de <playername>
+    Description: Ne peut apparaître qu'avec des commandes !
+  Sniffer:
+    menu-name: <bold><green>Renifleur
+    entity-displayname: <bold>Renifleur de <playername>
+    Description: Ça sent la poterie !
+  Equip: <prefix> <blue>Tu as fait apparaître <petname>
+  Unequip: <prefix> <blue>Tu as fait disparaître <petname>
+  Armadillo:
+    menu-name: <bold><gold>Armadillo
+    entity-displayname: <bold>Armadillo de <playername>
+    Description: |-
+      Ne m'effrayez pas,
+      ou je vais rouler dans une balle !
+Morphs:
+  Blaze:
+    name: <bold><gold>Blaze
+    skill: '<yellow>Sneak</yellow><gray> pour : </gray><green>Voler'
+    Description: Il fait peut être chaud là-bas...
+  Chicken:
+    name: <bold><white>Poulet
+    skill: '<yellow>Sneak</yellow><gray> pour : </gray><green>Pondre de oeufs'
+    Description: Deviens un poulet !
+  Slime:
+    name: <bold><green>Slime
+    skill: '<yellow>Sneak</yellow><gray> pour : </gray><green>Rebondir'
+    Description: Splat splat !
+  Pig:
+    name: <bold><light_purple>Cochon
+    skill: '<yellow>Collision </yellow><gray>vers: </gray><green>Rebondir les joueurs'
+    Description: Doit tenir votre carotte !
+  Enderman:
+    name: <bold><dark_purple>Enderman
+    skill: '<yellow>Double saut </yellow><gray>vers: </gray><green>Téléporter'
+    Description: |-
+      Je passe de là à
+      là, puis vous m'avez perdu...
+  Bat:
+    name: <bold><dark_gray>Chauves-Souris
+    skill: '<yellow>Double saut </yellow><gray>vers : </gray><green>Battre des ailes'
+    Description: Devenez une chauve-souris !
+  Creeper:
+    name: <bold><green>Creeper
+    skill: '<yellow>S''accroupir </yellow><gray>pour: </gray><green>Exploser'
+    charging: '<bold><green>En cours de chargement: <chargelevel>/100'
+    release-to-explode: <bold><white>Relâchez pour exploser !
+    Description: Hey quoi de neuf ?
+  Snowman:
+    name: <bold><white>Bonhomme de neige
+    skill: '<yellow>Clic-Gauche </yellow><gray>pour : </gray><green> Lancer une boule de neige'
+    Description: Devenez Olaf !
+  Equip: <prefix> <blue>Vous vous êtes transformé en <morphname>
+  Unequip: <prefix> <blue>Vous êtes revenu en <morphname>
+  WitherSkeleton:
+    name: <bold><dark_gray>Squelette Wither
+    skill: '<yellow>S''accroupir </yellow><gray>pour : </gray><green>Bombe d''os'
+    Description: |-
+      Juste un squelette ordinaire...
+      mais qui vient du Nether !
+  ElderGuardian:
+    name: <bold><dark_gray>Grand gardien
+    skill: '<yellow>Clic-Gauche</yellow><gray> pour : </gray><green>Laser'
+    Description: Deviens un Grand gardien !!
+  Cow:
+    name: <bold><dark_gray>Vache
+    skill: '<yellow>Clic-Gauche </yellow><gray>pour : </gray><green>Meuh'
+    Description: Meuuuuh !
+  Sheep:
+    name: <bold><white>Mouton
+    skill: '<yellow>Clic-Gauche</yellow><gray>pour : </gray><green>Changer les couleurs'
+    Description: Bêêêêêh
+  Mooshroom:
+    name: <bold><red>Champimeuh
+    skill: '<yellow>Sneak </yellow><gray>pour : </gray><green>Lancer de soupe'
+    Description: Meuuuuh !
+  Villager:
+    name: <bold><green>Villageois
+    skill: '<yellow>Clic-Gauche</yellow><gray> pour : </gray><green>Lancer une émeraude'
+    Description: Hmmmmmmmmm
+  Witch:
+    name: <bold><dark_purple>Sorcière
+    skill: '<yellow>Clic-Gauche</yellow><gray>pour : </gray><green>Lancer des potions'
+    Description: Muahahahahaha
+  PolarBear:
+    name: <bold><white>Ours polaire
+    skill: '<yellow>Clic-Gauche</yellow><gray> pour : </gray><green>Blizzard'
+    Description: Je préfère les endroits froids
+  Llama:
+    name: <bold><dark_aqua>Lama
+    skill: '<yellow>Clic-Gauche</yellow><gray> pour : </gray><green>Cracher'
+    Description: Besoin de moi pour transporter quoi que ce soit ?
+  Parrot:
+    name: <bold><green>Perroquet
+    skill: '<yellow>Double saut </yellow><gray>vers : </gray><green>Battre des ailes'
+    Description: Un biscuit ?
+  Allay:
+    name: <bold><green>Allay
+    skill: '<yellow>Double saut </yellow><gray>vers : </gray><green>Battre des ailes'
+    Description: Un nouvel ami !
+  Axolotl:
+    name: <bold><dark_purple>Axolotl
+    skill: <yellow>Clic-Gauche </yellow><gray>pour les sons mignons
+    Description: Siii mignon !
+  Bee:
+    name: <bold><yellow>Abeille
+    skill: '<yellow>Double saut </yellow><gray>vers : </gray><green>Battre des ailes'
+    Description: '*bzzzz* *bzzzz*'
+  Cat:
+    name: <bold><yellow>Chat
+    skill: '<yellow>Clic-Gauche</yellow><gray> pour : </gray><green>Meow'
+    Description: Basiquement un petit tigre
+  CaveSpider:
+    name: <bold><yellow>Araignée Venimeuse
+    skill: '<yellow>Clic-Gauche</yellow><gray> pour : </gray><green>À Faire'
+    Description: Une araignée, mais toxique!
+  Cod:
+    name: <bold><yellow>Morue
+    skill: '<yellow>Clic-Gauche</yellow><gray> pour : </gray><green>À Faire'
+    Description: Préfère l'eau à la terre!
+  Dolphin:
+    name: <bold><yellow>Dauphin
+    skill: '<yellow>Clic-Gauche</yellow><gray> pour : </gray><green>À Faire'
+    Description: La créature la plus heureuse de la mer!
+  Donkey:
+    name: <bold><gray>Âne
+    skill: '<yellow>Clic-Gauche</yellow><gray> pour : </gray><green>À Faire'
+    Description: Peut transporter toutes vos affaires!
+  Drowned:
+    name: <bold><dark_aqua>Noyé
+    skill: '<yellow>Clic-Gauche</yellow><gray> pour : </gray><green>À Faire'
+    Description: Un zombie noyé !
+  Endermite:
+    name: <bold><dark_purple>Endermite
+    skill: '<yellow>Clic-Gauche</yellow><gray> pour : </gray><green>À Faire'
+    Description: Attire les Endermen !
+  Evoker:
+    name: <bold><gray>Évocateur
+    skill: '<yellow>Clic-Gauche</yellow><gray> pour : </gray><green>À Faire'
+    Description: Invoque des Vexes pour vivre!
+  Frog:
+    name: <bold><dark_green>Grenouille
+    skill: '<yellow>Clic-Gauche</yellow><gray> pour : </gray><green>À Faire'
+    Description: N'aime pas les lucioles !
+  Fox:
+    name: <bold><light_purple>Renard
+    skill: '<yellow>Clic-Gauche</yellow><gray> pour : </gray><green>À Faire'
+    Description: Que dit le renard ?
+  GlowSquid:
+    name: <bold><dark_aqua>Poulpe Lumineux
+    skill: '<yellow>Clic-Gauche</yellow><gray> pour : </gray><green>À Faire'
+    Description: C'est lumineux!
+  Goat:
+    name: <bold><white>Chèvre
+    skill: '<yellow>Clic-Gauche</yellow><gray> pour : </gray><green>À Faire'
+    Description: Mêêêêêh !
+  Guardian:
+    name: <bold><dark_aqua>Gardien
+    skill: '<yellow>Clic-Gauche</yellow><gray> pour : </gray><green>À Faire'
+    Description: Hait les poulpes !
+  Wolf:
+    name: <bold><gray>Loup
+    Description: Wouaf !
+  IronGolem:
+    name: <bold><gray>Golem de fer
+    Description: Déteste les zombies !
+  Wither:
+    name: <bold><dark_gray>Wither
+    Description: Faites attention à moi...
+  Skeleton:
+    name: <bold><gray>Squelette
+    Description: Très bon archer !
+  Zombie:
+    name: <bold><dark_green>Zombie
+    Description: Cerveaux !!!
+  Squid:
+    name: <bold><light_purple>Poulpe
+    Description: Bloop Bloop !
+  Spider:
+    name: <bold><dark_gray>Araignée
+    Description: HISS...
+  Ghast:
+    name: <bold><white>Ghast
+    Description: '*Cri fort*'
+  MagmaCube:
+    name: <bold><red>Magma Cube
+    Description: Un cube très chaud !
+  Horse:
+    name: <bold><green>Cheval
+    Description: 'Tagada-tagada'
+  Warden:
+    name: <bold><dark_aqua>Warden
+    Description: Être silencieux...
+  Tadpole:
+    name: <bold><dark_gray>Têtard
+    Description: Se transforme en grenouille !
+  Piglin:
+    name: <bold><gold>Piglin
+    Description: Des affaires en OR !
+  Strider:
+    name: <bold><red>Arpenteur
+    Description: Je déteste l'eau !
+  Hoglin:
+    name: <bold><red>Hoglin
+    Description: Un cochon, mais en colère.
+  PiglinBrute:
+    name: <bold><gold>Piglin Brute
+    Description: Un joli cochon !
+  Zoglin:
+    name: <bold><red>Zoglin
+    Description: Un Hoglin zombifié !
+  ZombifiedPiglin:
+    name: <bold><light_purple>Cochon Zombifié
+    Description: Attaquez-le et tous seront après vous !
+  Panda:
+    name: <bold><green>Panda
+    Description: Aime le bambou !
+  Ocelot:
+    name: <bold><yellow>Ocelot
+    Description: Roi de la jungle
+  WanderingTrader:
+    name: <bold><dark_blue>Marchand errant
+    Description: Il se balade partout en essayant de vendre ses affaires !
+  Pillager:
+    name: <bold><gray>Pilleur
+    Description: Aime piller des villages !
+  Ravager:
+    name: <bold><dark_gray>Ravageur
+    Description: Le compagnon préféré du Pillard!
+  Pufferfish:
+    name: <bold><yellow>Poisson-globe
+    Description: N'aime pas être touché !
+  Salmon:
+    name: <bold><red>Saumon
+    Description: Ils ont l'air vraiment bon !
+  TropicalFish:
+    name: <bold><yellow>Poissons tropicaux
+    Description: Une bombe colorée !
+  Turtle:
+    name: <bold><green>Tortue
+    Description: Prenez votre temps.
+  Phantom:
+    name: <bold><dark_blue>Fantôme
+    Description: Hait les joueurs qui ne dorment pas!
+  Illusioner:
+    name: <bold><dark_blue>Illusionniste
+    Description: Ne peut apparaître qu'avec des commandes !
+  Vex:
+    name: <bold><gray>Vex
+    Description: YAAHH Ehehhehe!
+  Vindicator:
+    name: <bold><gray>Vindicateur
+    Description: Ne sous-estimez pas leurs forces !
+  Mule:
+    name: <bold><dark_gray>Mule
+    Description: Votre banal, mulet de toujours
+  SkeletonHorse:
+    name: <bold><white>Cheval Squelette
+    Description: Attention aux coups de foudre !
+  ZombieHorse:
+    name: <bold><dark_green>Cheval Zombie
+    Description: Le cheval le plus rare de Minecraft !
+  Shulker:
+    name: <bold><dark_purple>Shulker
+    Description: Aime se cacher !
+  Sniffer:
+    name: <bold><green>Renifleur
+    Description: '*renifle renifle*'
+Hats:
+  Equip: <prefix> <blue>Tu as équipé <hatname> !
+  Unequip: <prefix> <blue>Tu as déséquipé <hatname> !
+  Astronaut:
+    Name: <bold><gray>Astronaute
+    Description: Houston, on a un problème...
+  Scared:
+    Name: <bold><dark_red>Effrayé
+    Description: Oh dieu, ça m'a fait peur !
+  Angel:
+    Name: <bold><white>Ange
+    Description: Cela a-t-il fait mal quand vous êtes tombé du paradis ?
+  Embarassed:
+    Name: <bold><gray>Embarassé
+    Description: Je suis un peu embarrassé par cela.
+  Kissy:
+    Name: <bold><red>Kissy
+    Description: Vous voulez un bisou ?
+  Sad:
+    Name: <bold><blue>Triste
+    Description: <gray>Je suis tellement triste.
+  Cool:
+    Name: <bold><gold>Cool
+    Description: Je suis un gars tellement cool.
+  Surprised:
+    Name: <bold><dark_red>Surprise
+    Description: Waouh, je ne m'attendais pas à ça !
+  Dead:
+    Name: <bold><dark_gray>Mort
+    Description: A été tué
+  Crying:
+    Name: <bold><blue>lpleurs
+    Description: Je pleur tout l'temp
+  BigSmile:
+    Name: <bold><gold>Grand sourire
+    Description: Parce que je suis tellement heureux !
+  Wink:
+    Name: <bold><yellow>Clin d'œil
+    Description: Vous savez ce que je veux dire ;)
+  Derp:
+    Name: <bold><dark_aqua>Derp
+    Description: Derp Derp Derp
+  Smile:
+    Name: <bold><yellow>Sourire
+    Description: Parce que je suis heureux
+  Iron:
+    Name: <bold><gray>Fer
+    Description: Aussi dur que le fer !
+  Gold:
+    Name: <bold><yellow>OR
+    Description: Mon précieux !
+  Diamond:
+    Name: <bold><aqua>Diamant
+    Description: C'est vraiment fort !
+  CommandBlock:
+    Name: <bold><gray>Bloc de commandes
+    Description: Contrôlez le monde avec !
+  Music:
+    Name: <bold><blue>Musique
+    Description: Vous êtes tellement musical.
+  Squid:
+    Name: <bold><dark_aqua>Poulpe
+    Description: Bloop Bloop !
+  GlowSquid:
+    Name: <bold><aqua>Poulpe Brillant
+    Description: Allumez l'océan !
+  Chicken:
+    Name: <bold><white>Poulet
+    Description: Cooooottt !
+  Blaze:
+    Name: <bold><gold>Blaze
+    Description: Attention au feu !
+  Piston:
+    Name: <bold><gray>Piston
+    Description: Avez-vous de la redstone ?
+  Sheep:
+    Name: <bold><white>Mouton
+    Description: Bêêêêêh
+  Pig:
+    Name: <bold><light_purple>Cochon
+    Description: Grouin Grouin !
+  Cow:
+    Name: <bold><green>Vache
+    Description: Meuuuuh !
+  Mooshroom:
+    Name: <bold><red>Champimeuh
+    Description: Meuuuuh !
+  BrownMooshroom:
+    Name: <bold><aqua>Champimeuh marron
+    Description: Meuuuuh !
+  Moobloom:
+    Name: <bold><yellow>Moobloom
+    Description: Vache très rare !
+  ChestnutHorse:
+    Name: <bold><dark_green>Cheval alezan
+    Description: N'oubliez pas la selle !
+  Golem:
+    Name: <bold><gray>Golem
+    Description: Je suis votre garde.
+  CopperGolem:
+    Name: <bold><gold>Golem de cuivre
+    Description: Fabriqué à partir de 100% de cuivre.
+  Enderman:
+    Name: <bold><dark_purple>Enderman
+    Description: Maintenant je suis là, maintenant je suis là !
+  EndermanKing:
+    Name: <bold><light_purple>Enderman King
+    Description: Roi des Endermans
+  Slime:
+    Name: <bold><green>Slime
+    Description: Très visqueux
+  Creeper:
+    Name: <bold><dark_green>Creeper
+    Description: Effrayez vos amis !
+  Skeleton:
+    Name: <bold><gray>Squelette
+    Description: Très bon archer !
+  Zombie:
+    Name: <bold><dark_green>Zombie
+    Description: Cerveaux !!!
+  Drowned:
+    Name: <bold><dark_aqua>Noyé
+    Description: Zombie sous-marin
+  Strider:
+    Name: <bold><red>Arpenteur
+    Description: Je déteste l'eau !
+  WitherSkeleton:
+    Name: <bold><gray>Squelette Wither
+    Description: Gardien de la forteresse du Nether
+  Ghast:
+    Name: <bold><white>Ghast
+    Description: '*Cri fort*'
+  Warden:
+    Name: <bold><dark_aqua>Warden
+    Description: Être silencieux...
+  Witch:
+    Name: <bold><dark_purple>Sorcière
+    Description: Essayez ma potion s'il te plaît !
+  Guardian:
+    Name: <bold><dark_aqua>Gardien
+    Description: Protégez les monuments de l'océan !
+  ShepherdVillager:
+    Name: <bold><yellow>Villageois de bergers
+    Description: Le Berger Solitaire
+  FletcherVillager:
+    Name: <bold><green>Villageois Bergers
+    Description: Je fais des flèches.
+  LibrarianVillager:
+    Name: <bold><gold>Villageois bibliothécaires
+    Description: La connaissance est la puissance.
+  Bee:
+    Name: <bold><yellow>Abeille
+    Description: Fait attention !
+  Fox:
+    Name: <bold><light_purple>Renard
+    Description: Rapide et intelligent !
+  SnowFox:
+    Name: <bold><white>Renard de neige
+    Description: Les biomes enneigés sont ma maison.
+  Ocelot:
+    Name: <bold><yellow>Ocelot
+    Description: Roi de la jungle
+  Frog:
+    Name: <bold><dark_green>Grenouille
+    Description: Mange tout ce qui le dérange.
+  AxolotlPink:
+    Name: <bold><light_purple>Axolot rose
+    Description: Le Prédateur le plus mignon
+  AxolotlBlue:
+    Name: <bold><blue>Axolotl bleu
+    Description: Le Prédateur le plus mignon
+  Turtle:
+    Name: <bold><green>Tortue
+    Description: Prenez votre temps.
+  Clownfish:
+    Name: <bold><gold>Poisson clown
+    Description: Vous l'avez trouvé !
+  BlackCat:
+    Name: <bold><dark_green>Chat Noir
+    Description: Le meilleur ami d'une sorcière.
+  Allay:
+    Name: <bold><aqua>Allay
+    Description: Le petit assistant
+  Bat:
+    Name: <bold><dark_purple>Chauves-Souris
+    Description: Profitez de la vie nocturne.
+  Glare:
+    Name: <bold><dark_green>Glare
+    Description: Il déteste l'obscurité.
+  Rana:
+    Name: <bold><green>Rana
+    Description: Chapeau Grenouille !
+  MCD-Steve:
+    Name: <bold><blue>Steve
+    Description: La meilleure peau
+  MCD-Alex:
+    Name: <bold><gold>Alex
+    Description: L'ami de Steve
+  MCD-QuestGiver:
+    Name: <bold><dark_purple>Donneur de quête
+    Description: J'ai une quête pour vous.
+  MCD-LuxuryMerchant:
+    Name: <bold><gold>Marchand de luxe
+    Description: Je vend des gemmes.
+  MCD-Necromancer:
+    Name: <bold><aqua>Nécromancienne
+    Description: Invoquez les morts-vivants !
+  MCD-NamelessOne:
+    Name: <bold><dark_green>Un sans nom
+    Description: Nécromancien puissant
+  MCD-StrayKnight:
+    Name: <bold><gray>Chevalier Égaré
+    Description: Un chevalier solitaire...
+  MCD-AncientGuardian:
+    Name: <bold><dark_purple>Ancien gardien
+    Description: Le plus ancien gardien
+  MCD-KeyGolem:
+    Name: <bold><gold>Golem clé
+    Description: Déverrouillez toutes les portes !
+  MCD-ArchIllager:
+    Name: <bold><dark_aqua>Arch-Illageois
+    Description: Chef des Illagers
+  MCD-SunkenSkeleton:
+    Name: <bold><dark_green>Squelette coulé
+    Description: Squelette sous-marin
+  MCD-TheWildfire:
+    Name: <bold><dark_red>Le feu de forêt
+    Description: Brasier planant
+  Mario:
+    Name: <bold><dark_red>Mario
+    Description: It's-a me! Mario!
+  Luigi:
+    Name: <bold><dark_green>Luigi
+    Description: Luigi time!
+  Batman:
+    Name: <bold><dark_gray>Batman
+    Description: Je suis Batman !
+  Chest:
+    Name: <bold><gold>Coffre
+    Description: Ouvrir, et fermer
+  Skull:
+    Name: <bold><white>Crâne
+    Description: Qui est sans tête maintenant ?
+  JackOLantern:
+    Name: <bold><gold>Citrouille d'Halloween
+    Description: Une petite citrouille
+  Ghost:
+    Name: <bold><white>Fantôme
+    Description: 2spooky4u
+  ScaryClown:
+    Name: <bold><dark_red>Clown effrayant
+    Description: J'espère que vous n'avez pas peur des clowns.
+  Santa:
+    Name: <bold><dark_red>Père Noël
+    Description: Ho ho ho ! Joyeux noël !
+  Snowman:
+    Name: <bold><white>Bonhomme de neige
+    Description: Je n'ai pas de crâne... ni d'os
+  Present:
+    Name: <bold><red>Cadeau
+    Description: Du Père Noël, à vous !
+  Elf:
+    Name: <bold><green>Elfe
+    Description: Je travaille pour le Père Noël !
+  Bedrock:
+    Name: <bold><dark_gray>Bedrock
+    Description: Incassable !
+  RedCrewmate:
+    Name: <bold><dark_red>Coéquipier rouge
+    Description: Sus rouge !
+  BlueCrewmate:
+    Name: <bold><dark_red>Coéquipier bleu
+    Description: Sus bleu !
+  GreenCrewmate:
+    Name: <bold><dark_green>Coéquipier vert
+    Description: Sus vert !
+  CyanCrewmate:
+    Name: <bold><aqua>Coéquipier cyan
+    Description: Sus cyan !
+  LimeCrewmate:
+    Name: <bold><green>Coéquipier lime
+    Description: Sus lime !
+  YellowCrewmate:
+    Name: <bold><yellow>Coéquipier jaune
+    Description: Sus jaune !
+  OrangeCrewmate:
+    Name: <bold><gold>Coéquipier orange
+    Description: Sus orange !
+  PurpleCrewmate:
+    Name: <bold><dark_purple>Coéquipier violet
+    Description: Sus violet !
+  BlackCrewmate:
+    Name: <bold><black>Coéquipier noir
+    Description: Sus noir !
+  WhiteCrewmate:
+    Name: <bold><white>Coéquipier blanc
+    Description: Sus blanc !
+  PinkCrewmate:
+    Name: <bold><light_purple>Coéquipier rose
+    Description: Sus rose !
+  BrownCrewmate:
+    Name: <bold><dark_gray>Coéquipier marron
+    Description: Sus marron !
+  FrogPrince:
+    Name: <bold><dark_green>Prince grenouille
+    Description: Embrasse-moi !
+  Notch:
+    Name: <bold><white>Notch
+    Description: Créateur de Minecraft
+  KitsuneMask:
+    Name: <bold><red>Masque Kitsune
+    Description: Masque de renard blanc
+  Goblin:
+    Name: <bold><blue>Goblin
+    Description: Sournois !
+  Unicorn:
+    Name: <bold><light_purple>Licorne
+    Description: Soyez magique !
+  Ogre:
+    Name: <bold><dark_green>Ogre
+    Description: J'ai faim.
+  GreenDragon:
+    Name: <bold><green>Dragon vert
+    Description: Soyez un dragon.
+  GigaChad:
+    Name: <bold><gray>GigaChad
+    Description: Adoptez la masculinité !
+  Anubis:
+    Name: <bold><gold>Anubis
+    Description: Dieu égyptien antique
+  Bread:
+    Name: <bold><white>Pain
+    Description: Fraîchement cuit
+  Cheese:
+    Name: <bold><yellow>Fromage
+    Description: Dites "cheese" !
+  Pancakes:
+    Name: <bold><white>Crêpes
+    Description: C'est mieux avec du sirop !
+  Cake:
+    Name: <bold><red>Gâteau
+    Description: Mmmm, gâteau.
+  Cookie:
+    Name: <bold><gold>Cookie
+    Description: Pépites de chocolat incluses !
+  CandyCane:
+    Name: <bold><red>Bonbon </red></bold><bold><white>Cane
+    Description: Un peu casse dents
+  Chocolate:
+    Name: <bold><green>Chocolat
+    Description: Ne nourrissez pas votre chien avec ça !
+  WhiteChocolate:
+    Name: <bold><white>Chocolat blanc
+    Description: Un peu plus crémeux
+  Apple:
+    Name: <bold><dark_red>Pomme
+    Description: Pas la société
+  Melon:
+    Name: <bold><green>Melon
+    Description: Ne l'écrasez pas avec votre tête
+  CarvedPumpkin:
+    Name: <bold><gold>Citrouille sculptée
+    Description: Qui a éteint ce truc ?
+  Strawberry:
+    Name: <bold><red>Fraise
+    Description: Est-ce que ceux-ci poussent sur les arbres ?
+  Coconut:
+    Name: <bold><white>Noix de coco
+    Description: Paradis
+  Taco:
+    Name: <bold><yellow>Taco
+    Description: Allons-y pour des tacos !
+  Bacon:
+    Name: <bold><white>Bacon
+    Description: Tout est meilleur avec du bacon.
+  Fries:
+    Name: <bold><gold>Frites
+    Description: Le meilleur ami du hamburger
+  Hamburger:
+    Name: <bold><gold>Hamburger
+    Description: Le fast-food classique !
+  Popcorn:
+    Name: <bold><gold>Popcorn
+    Description: Le goûter classique du cinéma !
+  WhiteDonut:
+    Name: <bold><white>Beignet blanc
+    Description: Comme un beignet, mais en blanc !
+  PinkDonut:
+    Name: <bold><light_purple>Beignet rose
+    Description: Les favoris d'Homer
+  ChocolateDonut:
+    Name: <bold><green>Beignet au chocolat
+    Description: Un meilleur beignet !
+  Pie:
+    Name: <bold><dark_red>Tarte
+    Description: J'aime les tartes
+  A:
+    Name: <bold><gold>A
+    Description: La première lettre de l'alphabet !
+  B:
+    Name: <bold><dark_red>B
+    Description: La deuxième lettre de l'alphabet !
+  C:
+    Name: <bold><dark_green>C
+    Description: La troisième lettre de l'alphabet !
+  D:
+    Name: <bold><aqua>D
+    Description: La quatrième lettre de l'alphabet !
+  E:
+    Name: <bold><yellow>E
+    Description: La cinquième lettre de l'alphabet !
+  F:
+    Name: <bold><dark_purple>F
+    Description: La sixième lettre de l'alphabet !
+  G:
+    Name: <bold><light_purple>G
+    Description: La septième lettre de l'alphabet !
+  H:
+    Name: <bold><green>H
+    Description: La huitième lettre de l'alphabet !
+  I:
+    Name: <bold><gold>I
+    Description: La neuvième lettre de l'alphabet !
+  J:
+    Name: <bold><dark_red>J
+    Description: La dixième lettre de l'alphabet !
+  K:
+    Name: <bold><dark_green>K
+    Description: La onzième lettre de l'alphabet !
+  L:
+    Name: <bold><aqua>L
+    Description: La douzième lettre de l'alphabet !
+  M:
+    Name: <bold><yellow>M
+    Description: La treizième lettre de l'alphabet !
+  N:
+    Name: <bold><dark_purple>N
+    Description: La quatorzième lettre de l'alphabet !
+  O:
+    Name: <bold><light_purple>O
+    Description: La quinzième lettre de l'alphabet !
+  P:
+    Name: <bold><green>P
+    Description: La seizième lettre de l'alphabet !
+  Q:
+    Name: <bold><gold>Q
+    Description: La dix-septième lettre de l'alphabet !
+  R:
+    Name: <bold><dark_red>R
+    Description: La dix-huitième lettre de l'alphabet !
+  S:
+    Name: <bold><dark_green>S
+    Description: La dix-neuvième lettre de l'alphabet !
+  T:
+    Name: <bold><aqua>T
+    Description: La vingtième lettre de l'alphabet !
+  U:
+    Name: <bold><yellow>U
+    Description: La vingt-première lettre de l'alphabet !
+  V:
+    Name: <bold><dark_purple>V
+    Description: La vingt-deuxième lettre de l'alphabet !
+  W:
+    Name: <bold><light_purple>W
+    Description: La vingt-troisième lettre de l'alphabet !
+  X:
+    Name: <bold><green>X
+    Description: La vingt-quatrième lettre de l'alphabet !
+  Y:
+    Name: <bold><gold>Y
+    Description: La vingt-cinquième lettre de l'alphabet !
+  Z:
+    Name: <bold><dark_red>Z
+    Description: La vingt-sixième lettre de l'alphabet !
+Suits:
+  Rave:
+    whole-equip: <bold><white>Costume </white></bold><bold><aqua>R</aqua></bold><bold><green>a</green></bold><bold><yellow>v</yellow></bold><bold><gold>e </gold></bold><bold><white>en entier
+    helmet-name: <bold><aqua>R</aqua></bold><bold><green>a</green></bold><bold><yellow>v</yellow></bold><bold><gold>e </gold></bold><bold><white>Casque
+    chestplate-name: <bold><aqua>R</aqua></bold><bold><green>a</green></bold><bold><yellow>v</yellow></bold><bold><gold>e </gold></bold><bold><white>Plastron
+    leggings-name: <bold><aqua>R</aqua></bold><bold><green>a</green></bold><bold><yellow>v</yellow></bold><bold><gold>e </gold></bold><bold><white>Jambières
+    boots-name: <bold><aqua>R</aqua></bold><bold><green>a</green></bold><bold><yellow>v</yellow></bold><bold><gold>e </gold></bold><bold><white>Bottes
+    Description: Des couleurs incroyables !
+  Astronaut:
+    whole-equip: <bold><white>Costume </white></bold><bold><white>d'Astronaute </white></bold><bold><white>en entier
+    helmet-name: <bold><white>Casque </white></bold><bold><white>d'Astronaute
+    chestplate-name: <bold><white>Plastron </white></bold><bold><white>d'Astronaute
+    leggings-name: <bold><white>Jambière </white></bold><bold><white>d'Astronaute
+    boots-name: <bold><white>Bottes </white></bold><bold><white>d'Astronaute
+    Description: Houston ?
+  Diamond:
+    whole-equip: <bold><white>Costume </white></bold><bold><aqua>en Diamant </aqua></bold><bold><white>en entier
+    helmet-name: <bold><aqua>Casque </aqua></bold><bold><white>en diamant
+    chestplate-name: <bold><aqua>Plastron </aqua></bold><bold><white>en diamant
+    leggings-name: <bold><aqua>Jambière </aqua></bold><bold><white>en diamant
+    boots-name: <bold><aqua>Bottes </aqua></bold><bold><white>en diamant
+    Description: |-
+      Montrez vos compétences minières
+      avec cette superbe tenue !
+  Santa:
+    whole-equip: <bold><white>Costume </white></bold><bold><dark_red>de Père Noël </dark_red></bold><bold><white>en entier
+    helmet-name: <bold><dark_red>Casque </dark_red></bold><bold><white>du Père Noël
+    chestplate-name: <bold><dark_red>Plastron </dark_red></bold><bold><white>du Père Nöel
+    leggings-name: <bold><dark_red>Jambière </dark_red></bold><bold><white>du Père Noël
+    boots-name: <bold><dark_red>Bottes </dark_red></bold><bold><white>du Père Noël
+    Description: Devenez le Père Noël et offrez des cadeaux !
+  Frozen:
+    whole-equip: <bold><white>Costume </white></bold><bold><aqua>glacé </aqua></bold><bold><white>en entier
+    helmet-name: <bold><aqua>Casque </aqua></bold><bold><white>glacé
+    chestplate-name: <bold><aqua>Plastron </aqua></bold><bold><white>glacé
+    leggings-name: <bold><aqua>Jambière </aqua></bold><bold><white>glacé
+    boots-name: <bold><aqua>Bottes </aqua></bold><bold><white>glacé
+    Description: |-
+      Ce costume appartient au
+      seigneur des terres gelées !
+  Cursed:
+    whole-equip: <bold><white>Costume </white></bold><bold><dark_purple>maudit </dark_purple></bold><bold><white>en entier
+    helmet-name: <bold><dark_purple>Casque </dark_purple></bold><bold><white>maudit
+    chestplate-name: <bold><dark_purple>Plastron </dark_purple></bold><bold><white>maudit
+    leggings-name: <bold><dark_purple>Jambière </dark_purple></bold><bold><white>maudite
+    boots-name: <bold><dark_purple>Bottes </dark_purple></bold><bold><white>maudites
+    Description: Mystérieux et effrayant.
+  Slime:
+    whole-equip: <bold><white>Costume </white></bold><bold><green>visqueux </green></bold><bold><white>en entier
+    helmet-name: <bold><green>Casque </green></bold><bold><white>visqueux
+    chestplate-name: <bold><green>Plastron </green></bold><bold><white>visqueux
+    leggings-name: <bold><green>Jambière </green></bold><bold><white>visqueuse
+    boots-name: <bold><green>Bottes </green></bold><bold><white>visqueuses
+    Description: |-
+      Costume vert visqueux.
+      Les slimes vont adorer !
+  Equip: <prefix> <blue>Tu as équipé <suitname> !
+  Unequip: <prefix> <blue>Tu as déséquipé <suitname> !
+  Suit-Part-Lore: <blue>Pièce de costumes
+  Whole-Equip-Lore: <italic><gray>Équipez l'ensemble du costume !
+  Must-Remove: [ ]
+Emotes:
+  Equip: <prefix> <blue>Tu as équipé <emotename>
+  Unequip: <prefix> <blue>Tu as déséquipé <emotename>
+  Cry:
+    Name: <bold><blue>Pleure
+    Description: Es-tu vraiment triste ? :(
+  Angry:
+    Name: <bold><red>Furieux
+    Description: Montrez votre rage aux autres joueurs !
+  Happy:
+    Name: <bold><yellow>Heureux
+    Description: Ne vous inquiétez pas, soyez heureux !
+  Cheeky:
+    Name: <bold><gold>Effrontée
+    Description: Vous aimez être culotté ? Eh bien, cette émote est pour vous !
+  Love:
+    Name: <bold><dark_red>Amour
+    Description: Tu as de beaux yeux, tu le sais ?
+  DealWithIt:
+    Name: <bold><gray>Faites avec
+    Description: Envie de vous montrer ? Cette emote est pour vous !
+  Cool:
+    Name: <bold><blue>Cool
+    Description: Reste cool mec !
+  Surprised:
+    Name: <bold><gold>Surprise
+    Description: OH SEIGNEUR !!!
+  Wink:
+    Name: <bold><green>Clin d'œil
+    Description: Vous vous amusez ? Faites savoir à quelqu'un que vous êtes dans la plaisanterie !
+  RaiseEyebrows:
+    Name: <bold><dark_aqua>Lever les sourcils
+    Description: Surpris ?
+  ScaryCandle:
+    Name: <bold><dark_purple>Bougie effrayante
+    Description: Joyeux Halloween !
+  GlowingPumpkin:
+    Name: <bold><gold>Citrouille rayonnante
+    Description: Jack O'Slime
+  LovestruckAllay:
+    Name: <bold><aqua>Lovestruck Allay
+    Description: Sommes-nous en train de tomber amoureux ?
+Projectile-Effects:
+  Equip: <prefix> <blue>Tu as équipé <projectile-effectname>
+  Unequip: <prefix> <blue>Tu as déséquipé <projectile-effectname>
+  Rainbow:
+    name: <bold><rainbow>Arc-en-Ciel
+    Description: Particules de couleur arc-en-ciel
+  Christmas:
+    name: <bold><dark_red>No</dark_red></bold><bold><white>ël
+    Description: Joyeux Noël !
+  RedstoneHelix:
+    name: <bold><dark_red>Hélice de redstone
+    Description: Rotations, particules rouges
+  FlameHelix:
+    name: <bold><red>Hélice de flamme
+    Description: Flammes en rotation
+  CursedHelix:
+    name: <bold><dark_purple>Hélice maudite
+    Description: Rotations, particules violettes
+  SoulFireHelix:
+    name: <bold><aqua>Hélice de feu de l'âme
+    Description: Rotations, flammes cyan
+  Spark:
+    name: <bold><white>Étincelle
+    Description: Étoiles blanches scintillantes
+  Redstone:
+    name: <bold><dark_red>Redstone
+    Description: Petits nuages rouges
+  Flame:
+    name: <bold><red>Flame
+    Description: Petites flammes
+  Water:
+    name: <bold><blue>Eau
+    Description: Gouttes d'eau bleues
+  Witch:
+    name: <bold><dark_purple>Sorcière
+    Description: Croix violettes
+  Emerald:
+    name: <bold><dark_green>Émeraude
+    Description: Etoiles vertes
+  Note:
+    name: <bold><yellow>Note
+    Description: Notes colorées
+  Love:
+    name: <bold><light_purple>Amour
+    Description: Cœurs rouges
+  Lava:
+    name: <bold><dark_red>Lave
+    Description: Bulles de lave
+  Snow:
+    name: <bold><white>Neige
+    Description: Particules de boule de neige
+  Slime:
+    name: <bold><green>Slime
+    Description: Particules de Slimeball
+  Crit:
+    name: <bold><gray>Crit
+    Description: Croix marron clair
+  MagicCrit:
+    name: <bold><dark_aqua>Critique magique
+    Description: Étoiles cyan
+  Explosion:
+    name: <bold><dark_red>Explosion
+    Description: BOOM !
+  Cloud:
+    name: <bold><white>Nuage
+    Description: Nuages blancs
+  Smoke:
+    name: <bold><gray>Fumée
+    Description: Petits nuages gris
+  Portal:
+    name: <bold><dark_purple>Portail
+    Description: Petits, nuages violets
+  DragonBreath:
+    name: <bold><light_purple>Souffle du Dragon
+    Description: Petits, nuages violets
+  SquidInk:
+    name: <bold><blue>Encre de poulpe
+    Description: Nuages noirs
+  SoulFireFlame:
+    name: <bold><aqua>Feu de feu lÂme
+    Description: Petit, flammes cyanes
+  Snowflake:
+    name: <bold><white>Flocon de neige
+    Description: Petits, nuages violets
+  GlowSquid:
+    name: <bold><dark_aqua>Poulpe Lumineux
+    Description: Etoiles turbulentes
+  GlowSquidInk:
+    name: <bold><dark_aqua>Encre de Poulpe Lumineux
+    Description: Nuages Aquamarine
+  Scrape:
+    name: <bold><dark_green>Rayer
+    Description: Etoiles turbulentes
+  WaxOff:
+    name: <bold><white>Wax désactivé
+    Description: Étoiles blanches
+  WaxOn:
+    name: <bold><gold>Wax activé
+    Description: Étoiles Orange
+  SculkSoul:
+    name: <bold><aqua>Âme de lSculk
+    Description: Âmes cyan
+Death-Effects:
+  Equip: <prefix> <blue>Tu as équipé <death-effectname>
+  Unequip: <prefix> <blue>Tu as déséquipé <death-effectname>
+  Explosion:
+    name: <bold><dark_red>Explosion
+    Description: BOOM !
+  Firework:
+    name: <bold><gray>Fusée d'artifice
+    Description: |-
+      Félicitations !
+      Vous... êtes mort?
+  Lightning:
+    name: <bold><white>Foudre
+    Description: '⚡ ZAP!'
+  PuffOfSmoke:
+    Description: Disparaître dans une bouffée de fumée !
+    name: <bold><gray>Bouffée de fumée
+  DragonBreath:
+    name: <bold><gray>Souffle du Dragon
+    Description: Se désintégrer dans la brume du dragon.
+  Flames:
+    name: <bold><gold>Flames
+    Description: Explosez en éclats de feu et d'étincelles !
+  ItemExplode:
+    name: <bold><light_purple>Explosion de bonbons
+    Description: TOUTE NOTRE (DOUCE) NOURRITURE CONTINUE D’EXPLOSER
+Enabled-SelfMorphView: <prefix> <blue>Vous avez activé l'auto-affichage pour les morphes !
+Disabled-SelfMorphView: <prefix> <blue>Vous avez désactivé l'auto-affichage pour les morphes !
+Enabled-Gadgets: <prefix> <blue>Vous avez activé les gadgets !
+Disabled-Gadgets: <prefix> <blue>Vous avez désactivé les gadgets !
+Not-Allowed-From-Console: <bold><red>Ceci ne peut pas être exécuté à partir de la console !
+World-Disabled: <prefix> <bold><red>Les cosmétiques sont désactivés dans ce monde !
+Region-Disabled: <prefix> <bold><red>Les cosmétiques sont désactivés dans cette zone !
+Region-Disabled-Category: <prefix> <bold><red>Les cosmétiques <category> sont désactivés dans cette zone !
+Disabled-Command-Message: <prefix> <bold><red>Vous ne pouvez pas utiliser cette commande lorsque les cosmétiques sont équipés !
+Not-Allowed-In-Vanish: <prefix> <bold><red>Vous ne pouvez pas utiliser de cosmétiques lorsque vous êtes en vanish !
+Too-Long: Trop long, réessayez
+Cannot-Disable-Gadgets: <prefix> <bold><red>Tu dois activer les gadgets.
+Must-Remove:
+  Hats: <prefix> <bold><red>Vous devez retirer votre casque pour équiper une emote !
+  Suits:
+    HELMET: <prefix> <bold><red>Vous devez retirer votre casque pour équiper une emote !
+    CHESTPLATE: <prefix> <bold><red>Vous devez retirer votre casque pour équiper une emote !
+    LEGGINGS: <prefix> <bold><red>Vous devez retirer votre casque pour équiper une emote !
+    BOOTS: <prefix> <bold><red>Vous devez retirer votre casque pour équiper une emote !
+  Emotes: <prefix> <bold><red>Vous devez retirer votre casque pour équiper une emote !
+  Gadgets: <prefix> <bold><red>Vous devez effacer l'emplacement de la barre d'action <slot> pour équiper un gadget !
+  Mounts: <prefix> <bold><red>Vous devez effacer l'emplacement de la barre d'action <slot> pour équiper cette monture !
+Use-Rename-Pet-Command: <prefix> <red>Utiliser <yellow>/uc rename</yellow> pour renommer
+Commands-Disabled-During-Chest: <prefix> <bold><red>Vous ne pouvez pas utiliser de commandes lorsque vous ouvrez un coffre !
+No-Buy-Key-Permission: <prefix><red><bold>Tu n'as pas la permission d'acheter des clés !
+Particles-Minimal-In-Client: <yellow>Vous avez défini les particules sur « minimum » dans les paramètres de votre client et vous ne pourrez donc pas voir les particules.
+Cosmetics-Toggled-Off: <prefix> <blue>Cosmétiques désactivés
+Cosmetics-Toggled-On: <prefix> <blue>Cosmétiques activés
+Invalid-Category: <prefix> <bold><red>Catégorie invalide !
+Invalid-Cosmetic: <prefix> <bold><red>Cosmétiques invalide !
+Invalid-Player: '<prefix> <bold><red>Joueur invalide !'
+Must-Specify-Player: <prefix> <bold><red>Vous devez spécifier un joueur !
+Invalid-Number: '<prefix> <bold><red>Nombre invalide : <value>'
+Treasure-Keys-Given: <green><keys> clés données à <playername>
+Ammo-Given: <green><ammo> <gadgetname> munitions données à <playername>

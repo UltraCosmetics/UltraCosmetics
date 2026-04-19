@@ -1,0 +1,1898 @@
+Prefix: <italic><bold>Украшения >
+No-Permission: <bold><red>У вас нет прав!
+Cosmetic-Disabled: <prefix> <bold><red>Это украшение отключено!
+Invalid-Gadget: <prefix> <bold><red>Недействительный гаджет!
+Invalid-Pet: <prefix> <bold><red>Недействительное животное!
+Invalid-Mount: <prefix> <bold><red>Недействительный транспорт!
+Invalid-Effect: <prefix> <bold><red>Недействительный эффект!
+Invalid-Morph: <prefix> <bold><red>Недействительное превращение!
+Invalid-Hat: <prefix> <bold><red>Недействительный головной убор!
+Invalid-Suit: <prefix> <bold><red>Недействительный костюм!
+Invalid-Emote: <prefix> <bold><red>Недействительная эмоция!
+Invalid-Menu: <prefix> <bold><red>Недействительное меню!
+Ammo: '<gray>Ваши заряды: </gray><yellow><ammo>'
+Purchase: <bold><green>Купить
+Cancel: <bold><red>Отменить
+Buy-Ammo-Description: <bold><yellow>Купить <amount> <gadgetname> заряд </yellow></bold><bold><yellow>За $<price>
+Buy-Cosmetic-Description: <bold><yellow>Купить <gadgetname> </yellow></bold><bold><yellow>за $<price>
+Right-Click-Buy-Ammo: <gray>ПКМ для покупки боеприпасов
+Click-To-Purchase: <yellow>Нажмите, чтобы купить за $<price>
+Not-Enough-Money: <prefix> <bold><red>У вас недостаточно средств!
+Successful-Purchase: <prefix> <bold><green>Успешно куплено!
+Buy-Treasure-Key: <bold>Купить ключ от сундука сокровищ
+Treasure-Keys: <bold><gray>Ключи от сундука сокровищ
+Treasure-Chests: <bold><gold>Сундуки сокровищ
+Dont-Have-Key: <bold><dark_red>Вам нужен ключ!
+Click-Open-Chest: <green>Кликните, чтобы открыть сундук
+Click-Buy-Key: <green>Кликните, чтобы купить ключ
+Left-Click-Open-Chest: <green>ЛКМ чтобы открыть сундук
+Right-Click-Simple: <green>ПКМ чтобы получить косметику
+Your-Keys: '<italic><gray>Ваши ключи: </gray></italic><bold><white><keys>'
+Buy-Treasure-Key-ItemName: <bold><yellow>1 </yellow></bold><bold><gray>Ключ от сундука с сокровищами </gray></bold><bold><yellow>за $<price>
+You-Won-Treasure-Chests: '<prefix> <bold><white>Вы выиграли: <name>!'
+Treasure-Chest-Occupied: <prefix> <bold><red>Все локации с сокровищами заняты, пожалуйста, попробуйте позже
+No-Ammo: <prefix> <bold><red>в вашем распоряжении нет боеприпасов для этого гаджета!
+Cannot-Sell-Item: <prefix> <bold><red>Вы не можете продать этот предмет!
+Structure-Chests-Disabled: <prefix> <bold><red>Сундуки со структурами отключены!
+Clear:
+  Cosmetics: <bold><red>Очистить используемую косметику
+  Gadgets: <bold><red>Очистить выбранный гаджет
+  Pets: <bold><red>Очистить выбранного питомца
+  Mounts: <bold><red>Очистить выбраннй транспорт
+  Particle-Effects: <bold><red>Очистить выбранный эффект
+  Morphs: <bold><red>Очистить выбранное превращение
+  Hats: <bold><red>Очистить выбранную шляпу
+  Suits: <bold><red>Очистить выбранный костюм
+  Emotes: <bold><red>Очистить выбранную эмоцию
+  Projectile-Effects: <bold><red>Очистка текущего эффекта снаряда
+  Death-Effects: <bold><red>Очистить текущий эффект смерти
+Menu:
+  Purchase-Rename:
+    Button:
+      Showcase: <bold><red>Переименовать питомца на </red></bold><bold><white><name> </white></bold><bold><red>за </red></bold><bold><yellow>$<price>
+    Title: <bold>Переименовать питомца
+  Purchase-Cosmetic:
+    Title: <bold>Покупка <cosmetic>
+  Rename-Pet:
+    Button:
+      Name: '<bold><red>Нажмите, чтобы переименовать: <petname>'
+    Placeholder: Имя питомца
+    Title: Переименовать питомца
+  Main:
+    Title: <bold><red>Главное меню
+    Button:
+      Name: <bold><red>Главное меню
+  Pets:
+    Title: <bold>Питомцы
+    Button:
+      Name: <bold><green>Питомцы
+      Lore: '<gray>Разблокировано: </gray><white><unlocked>'
+      Tooltip-Equip: <bold><aqua>Заспавнить
+      Tooltip-Unequip: <bold><red>Респавн
+  Gadgets:
+    Title: <bold>Гаджеты
+    Button:
+      Name: <bold><blue>Гаджеты
+      Lore: '<gray>Разблокировано: </gray><white><unlocked>'
+      Tooltip-Equip: <bold><aqua>Активировать
+      Tooltip-Unequip: <bold><red>Деактивировать
+  Mounts:
+    Title: <bold><gold>Транспорт
+    Button:
+      Name: <bold><gold>Транспорт
+      Lore: '<gray>Разблокировано: </gray><white><unlocked>'
+      Tooltip-Equip: <bold><aqua>Заспавнить
+      Tooltip-Unequip: <bold><red>Респавн
+  Morphs:
+    Title: <bold>Превращения
+    Button:
+      Name: <bold><dark_green>Превращения
+      Lore: '<gray>Разблокировано: </gray><white><unlocked>'
+      Tooltip-Equip: <bold><aqua>Превратиться в
+      Tooltip-Unequip: <bold><red>Перевоплотиться из
+  Hats:
+    Title: <bold>Шляпы
+    Button:
+      Name: <bold><light_purple>Шляпы
+      Lore: '<gray>Разблокировано: </gray><white><unlocked>'
+      Tooltip-Equip: <bold><aqua>Одеть
+      Tooltip-Unequip: <bold><red>Снять
+  Particle-Effects:
+    Title: <bold><aqua>Эффект частиц
+    Button:
+      Name: <bold><aqua>Эффекты частиц
+      Lore: '<gray>Разблокировано: </gray><white><unlocked>'
+      Tooltip-Equip: <bold><aqua>Показать
+      Tooltip-Unequip: <bold><red>Скрыть
+  Suits:
+    Title: <bold>Костюмы
+    Button:
+      Name: <bold><dark_aqua>Костюм
+      Lore: '<gray>Разблокировано: </gray><white><unlocked>'
+      Tooltip-Equip: <bold><aqua>Одеть
+      Tooltip-Unequip: <bold><red>Снять
+  Emotes:
+    Title: <bold>Эмоции
+    Button:
+      Name: <bold><yellow>Эмоции
+      Lore: '<gray>Разблокировано: </gray><white><unlocked>'
+      Tooltip-Equip: <bold><aqua>Одеть
+      Tooltip-Unequip: <bold><red>Снять
+  Projectile-Effects:
+    Title: <bold>Эффекты снаряда
+    Button:
+      Name: <bold><dark_purple>Эффекты снаряда
+      Lore: '<gray>Разблокировано: </gray><white><unlocked>'
+      Tooltip-Equip: <bold><aqua>Одеть
+      Tooltip-Unequip: <bold><red>Снять
+  Death-Effects:
+    Title: <bold>Эффекты смерти
+    Button:
+      Name: <bold><red>Эффекты смерти
+      Lore: '<gray>Разблокировано: </gray><white><unlocked>'
+      Tooltip-Equip: <bold><aqua>Одеть
+      Tooltip-Unequip: <bold><red>Снять
+  Buy-Ammo:
+    Title: <bold>Купить заряды
+  Misc:
+    Button:
+      Previous-Page: <bold><red>Предыдущая страница
+      Next-Page: <bold><green>Следующая страница
+  Disabled-Button: <red>ОТКЛЮЧЕНО
+Chest-Location:
+  Not-Enough-Space: <prefix> <bold><red>Недостаточно места в инвентаре для сундука с сокровищами!
+  Region-Disabled: <prefix> <bold><red>Ты не можешь открыть сундук с сокровищами в данном месте
+  Invalid: <prefix> <bold><red>Мистический сундук не может быть расположен в данном месте.
+  In-Air: <prefix> <bold><red>Местоположение магического сундука находится в воздухе, расположите его на земле.
+  In-Ground: <prefix> <bold><red>Местоположение магического сундука находится в воздухе, расположите его на земле.
+  Suggestion: <prefix> <green>Может быть, ты имел в виду <location>?
+  Dismount-First: <prefix> <bold><red>Ты должен призвать транспорт для взаимодействия инвентаря.
+  Too-Close-To-Entity: <prefix> <bold><red>Ты слишком близко к другому сундуку с сокровищами!
+Active-Pet-Needed: <bold><red>Вам нужно создать питомца, чтобы переименовать его.
+Treasure-Chests-Loot:
+  Ammo: |-
+    <blue>Боеприпасы
+    <ammo> <cosmetic>
+  Money: |-
+    <yellow>Деньги
+    <bold><yellow>$<money>
+  Nothing: <bold><red>Ничего
+  Pets: |-
+    <green>Питание
+    <cosmetic>
+  Mounts: |-
+    <gold>Ездовой питомец
+    <cosmetic>
+  Particle-Effects: |-
+    <aqua>Эффект частиц
+    <cosmetic>
+  Morphs: |-
+    <dark_green>Превращение
+    <cosmetic>
+  Hats: |-
+    <light_purple>Головной убор
+    <cosmetic>
+  Gadgets: |-
+    <blue>Гаджет
+    <cosmetic>
+  Suits: |-
+    <dark_aqua>Костюм
+    <cosmetic>
+  Emotes: |-
+    <yellow>Эмоция
+    <cosmetic>
+  Death-Effects: |-
+    <red>Эффект смерти
+    <cosmetic>
+  Projectile-Effects: |-
+    <dark_purple>Эффект снаряда
+    <cosmetic>
+Treasure-Chests-Loot-Messages:
+  Ammo: <prefix> <bold><gold><name> найдено <ammo> <cosmetic> боеприпасов
+  Money: <prefix> <bold><gold><name> найдено $<money>
+  Pets: <prefix> <bold><gold><name> найден редкий <cosmetic>
+  Mounts: <prefix> <bold><gold><name> найден редкий <cosmetic>
+  Particle-Effects: <prefix> <bold><gold><name> найден легендарный <cosmetic>
+  Morphs: <prefix> <bold><gold><name> найден легендарный <cosmetic>
+  Hats: <prefix> <bold><gold><name> найден редкий <cosmetic>
+  Gadgets: <prefix> <bold><gold><name> найден гаджет <cosmetic>
+  Suits: <prefix> <bold><gold><name> найден редкий <cosmetic>
+  Emotes: <prefix> <bold><gold><name> найден редкий <cosmetic>
+  Death-Effects: <prefix> <bold><gold><name> найден редкий <cosmetic>
+  Projectile-Effects: <prefix> <bold><gold><name> найден редкий <cosmetic>
+Permission-Lore:
+  Showroom: '<gray>Разрешение: </gray><gold>Доступно для демонстрации'
+  Permission-No: '<gray>Разрешение: </gray><bold><dark_red>Нет!'
+  Permission-Yes: '<gray>Разрешение: </gray><bold><green>Да!'
+Disable-Gadgets: <bold><red>Отключить гаджеты
+Disable-Gadgets-Lore: <red>Возможности использования гаджетов и их влияние на вас
+Enable-Gadgets: <bold><green>Включить гаджеты
+Enable-Gadgets-Lore: <green>Возможное использование гаджетов и их влияние на вас
+Disable-Third-Person-View: <bold><red>Отключить видимость перевоплощения от третьего лица
+Enable-Third-Person-View: <bold><green>Включить видимость перевоплощения от третьего лица
+Disable-Filter-By-Owned: <bold><red>Сменить для показа всем
+Enable-Filter-By-Owned: <bold><red>Сменить для показа мне
+Disable-Treasure-Notification: <bold><red>Уведомления о сбое отключены
+Enable-Treasure-Notification: <bold><red>Уведомления о сбое включены
+Gadgets-Enabled-Needed: <prefix> <bold><red>Вам нужно включить гаджеты!
+Gadgets:
+  Equip: <prefix> <blue>Вы одели <gadgetname>
+  Unequip: <prefix> <blue>Вы сняли <gadgetname>
+  Countdown-Message: <prefix> <bold><red>Вы не можете использовать <gadgetname> </red></bold><bold><red>в течении <time>s!
+  PaintballGun:
+    name: <bold><aqua>Пневматический пистолет
+    Description: ПАУ-ПАУ-ПАУ!!!
+  BatBlaster:
+    name: <bold><gray>Зловещий бластер
+    Description: |-
+      Запускайте волны летучих мышей
+      на людей, которые вам не нравятся!
+  MelonThrower:
+    name: <bold><green>Арбузный метатель
+    Wait-For-Finish: <prefix> <bold><red>Подождите вашего предыдущего арбуза, чтобы завершить взрыв!
+    Description: Вкусно и весело!
+  EtherealPearl:
+    name: <bold><dark_purple>Жемчужина
+    Description: |-
+      Прокатитесь по небу
+      на вашей собственной жемчужине!
+  FleshHook:
+    name: <bold><gray>Крюк плоти
+    Description: |-
+      Заведите новых друзей, бросив крючок
+      на танет их к вам!
+  DiscoBall:
+    name: <bold><light_purple>Диско-шар
+    Already-Active: <bold><red>Диско шар уже активирован!
+    Not-Space-Above: <bold><red>Недостаточно места над Вами!
+    Description: Танцуйте!
+  ColorBomb:
+    name: <bold><light_purple>Цветная бомба
+    Description: Разноцветная бомба!
+  Chickenator:
+    name: <bold><white>Куриценатор
+    Description: 1.Выстрел! 2.Взрыв! 3.КФС!
+  PortalGun:
+    name: <bold><red>Портальная </red></bold><bold><blue>пушка
+    No-Block-Range: <prefix> <bold><red>Нет БЛОКОВ в диапазоне!
+    Different-Worlds: <prefix> <bold><red>Порталы должны быть в одном мире!
+    Description: Торт - ложь!
+  BlizzardBlaster:
+    name: <bold><aqua>Бластер снежной бури
+    Description: Пусть пойдет снег!
+  ThorHammer:
+    name: <bold><white>Молот Тора
+    Description: Получите настоящий Мьёльнир!
+  SmashDown:
+    name: <bold><red>Сокрушительный удар
+    Description: ЕГО ЗОВУТ...ДЖОН СИНА!
+  ExplosiveSheep:
+    name: <bold><dark_red>Взрывоопасная Овца
+    Already-Active: <bold><red>У вас уже есть активная взрывоопасная овца!
+    Description: |-
+      Ты уверен, что это
+      должно так мерцать?
+  AntiGravity:
+    name: <bold><light_purple>Анти-гравитация
+    Description: |-
+      Вам не нравиться гравитация?
+      Тогда этот гаджет как раз для Вас!
+  Tsunami:
+    name: <bold><blue>Цунами
+    Description: |-
+      ЦУНАМИ!
+      Бегите, чтобы спасти себе жизнь!
+  Rocket:
+    name: <bold><light_purple>Ракета
+    Not-Enough-Space: <prefix> <bold><red>Недостаточно места вокруг и над Вами!
+    Not-On-Ground: <prefix> <bold><red>Вы должны быть на земле!
+    Takeoff: <bold><dark_red>ВЗЛЕТАЕМ!!
+    LaunchAborted: <bold><red>Запуск прерван!
+    Description: Хьюстон, у нас проблема...
+  BlackHole:
+    name: <bold><dark_blue>Черная дыра
+    Description: Вы не должны попасться внутрь!
+  TNT:
+    name: <bold><dark_red>Т</dark_red></bold><bold><white>Н</white></bold><bold><dark_red>Т
+    Description: |-
+      Взорвите несколько блоков!
+      БАБАХ!
+  FunGun:
+    name: <bold><gold>Забавный пистолет
+    Description: Вау! Столько веселья!
+  Parachute:
+    name: <bold><white>Парашют
+    Description: ДЖЕРОНИМООО!
+  QuakeGun:
+    name: <bold><dark_purple>Сейсмическая </dark_purple></bold><bold><light_purple>пушка
+    Description: |-
+      Получите настоящую рельсовую пушку
+      и бейте всех вокруг!
+  GhostParty:
+    name: <bold><white>Призрачная вечеринка
+    Description: |-
+      Кому Вы хотите позвонить?
+      Охотникам за приведениями!
+  Firework:
+    name: <bold><red>Фейерверк
+    Description: |-
+      Хотите что-то отпраздновать?
+      Используйте фейерверк!
+  ChristmasTree:
+    name: <bold><dark_green>Новогодняя Ёлка
+    Click-On-Block: <prefix> <bold><red>Пожалуйста, нажмите на блок!
+    Description: |-
+      Держите вашу Новогоднюю
+      Ёлку!
+  FreezeCannon:
+    name: <bold><aqua>Замораживающая пушка
+    Description: Превратите пол в каток!
+  Snowball:
+    name: <bold><white>Снежок
+    Description: |-
+      Присоединяйтесь к праздничному веселью,
+      бросать снег в людей!
+  PartyPopper:
+    name: <bold><yellow>Поппер для вечеринок
+    Description: |-
+      Празднуйте, взрывая конфетти в
+      воздух!
+  Trampoline:
+    name: <bold><blue>Батут
+    Description: |-
+      Сооружает батут
+      это посылает вам и вашему
+      друзья, в воздух!
+  Gadget-Ready-ActionBar: <gadgetname> <bold><white>готов к применению!
+  Lore: <blue>Гаджет
+Mounts:
+  DruggedHorse:
+    menu-name: <bold><dark_green>Одурманенная лошадь
+    entity-displayname: <bold><playername>' Одурманенная лошадь
+    Description: Это просто слишком жестоко!
+  InfernalHorror:
+    menu-name: <bold><dark_red>Адский ужас
+    entity-displayname: <bold><playername>' Адский ужас
+    Description: Это существо пришло прямо из... ада!
+  GlacialSteed:
+    menu-name: <bold><aqua>Ледяной скакун
+    entity-displayname: <bold><playername>' Ледяной скакун
+    Description: Эта гора родом с Северного полюса!
+  WalkingDead:
+    menu-name: <bold><dark_green>Ходячие мертвецы
+    entity-displayname: <bold><playername>' Ходячие мертвецы
+    Description: Граааав...
+  MountOfFire:
+    menu-name: <bold><red>Огненная лошать
+    entity-displayname: <bold><playername>' Огненная лошать
+    Description: Адская температура
+  MountOfWater:
+    menu-name: <bold><blue>Ледяная лошадь
+    entity-displayname: <bold><playername>' Ледяная лошадь
+    Description: Все во льду!
+  EcologistHorse:
+    menu-name: <bold><green>Лошадь эколога
+    entity-displayname: <bold><playername>' Лошадь эколога
+    Description: Станьте экологом!
+  NyanSheep:
+    menu-name: <bold><dark_red>Ня</dark_red></bold><bold><gold>шн</gold></bold><bold><yellow>ые </yellow></bold><bold><green>ов</green></bold><bold><aqua>еч</aqua></bold><bold><light_purple>ки!
+    entity-displayname: <bold><playername>' Няшные овцы
+    Description: |-
+      <bold><dark_red>Няшн</dark_red></bold><bold><gold>ные </gold></bold><bold><yellow>уии
+      <bold><dark_red>Няшн</dark_red></bold><bold><gold>ные </gold></bold><bold><yellow>уии
+  Snake:
+    menu-name: <bold><gold>Змея
+    entity-displayname: <bold><playername>' Змея
+    Description: Осторожно! Может укусить...
+  Dragon:
+    menu-name: <bold><dark_purple>Дракон
+    entity-displayname: <bold><playername>'s Дракон
+    Description: Прокатитесь на драконе!
+  HypeCart:
+    menu-name: <bold><gray>Гипер-Вагонетка
+    entity-displayname: <bold><playername>'s Гипер-Вагонетка
+    Description: |-
+      Когда то хотели прокатиться на Formula 1?
+      Теперь Вы можете!
+  Slime:
+    menu-name: <bold><green>Слизень
+    entity-displayname: <bold><playername>' Слизень
+    Description: Шлепок! Шлепок!
+  Spider:
+    menu-name: <bold><dark_gray>Паук
+    entity-displayname: <bold><playername>'s Паук
+    Description: ВЫ паучий наездник!
+  Rudolph:
+    menu-name: <bold><white>Рудоль</white></bold><bold><dark_red>ф
+    entity-displayname: <bold><playername>'s Рудольф
+    Description: |-
+      Каким бы был Новый Год
+      Без оленя Рудольфа?
+  MoltenSnake:
+    menu-name: <bold><red>Расплавленная змея
+    entity-displayname: <bold><playername>' Расплавленная змея
+    Description: |-
+      Глубоко под поверхностью Земли есть
+      существует мифический вид расплавленного
+      Змеи. Этот будет служить вам вечно.
+  Strider:
+    menu-name: <bold><red>Бродяга
+    entity-displayname: <bold><playername>' Бродяга
+    Description: |-
+      Таинственная толпа в форме куба
+      способный ходить прямо по лаве.
+    Held-Item-Lore: <italic><gray>Еда для страйдеров на палочке!
+  Horse:
+    menu-name: <bold><gray>Лошадь
+    entity-displayname: <bold><playername>' Лошадь
+    Description: Ваша стандартная, повседневная лошадь
+  Donkey:
+    menu-name: <bold><dark_gray>Осел
+    entity-displayname: <bold><playername>' Осел
+    Description: Ваш стандартный, повседневный осел
+  Mule:
+    menu-name: <bold><dark_gray>Мул
+    entity-displayname: <bold><playername>' Мул
+    Description: Ваш стандартный, повседневный мул
+  Pig:
+    menu-name: <bold><light_purple>Свинья
+    entity-displayname: <bold><playername>'s свинья
+    Description: Хрюк!
+    Held-Item-Lore: <italic><gray>Корм для свиней на палочке!
+  SlimeSnake:
+    menu-name: <bold><red>Змея из Слизи
+    entity-displayname: <bold>Змея из Слизи игрока <playername>
+    Description: |-
+      Этот тип змеи появляется прямо из 
+      скрытых "Секретных Болот Слизи". 
+      Эта будет служить вам вечно.
+  Camel:
+    menu-name: <bold><gold>Верблюд
+    entity-displayname: <bold>Верблюд игрока <playername>
+    Description: Ваш стандартный, повседневный верблюд
+  Equip: <prefix> <blue>Вы заспавнили <mountname>
+  Unequip: <prefix> <blue>Вы зареспавнили <mountname>
+  Cant-Spawn: <prefix> <bold><red>Монстры не могут появляться в мирных мирах!
+  Not-Enough-Room: <prefix> <bold><red>Здесь недостаточно места!
+Particle-Effects:
+  Equip: <prefix> <blue>Использовано <effectname>
+  Unequip: <prefix> <blue>Скрыто <effectname>
+  RainCloud:
+    name: <bold><blue>Дождевое облако
+    Description: |-
+      Прогноз погоды
+      сообщает мне, что сейчас дождь.
+  SnowCloud:
+    name: <bold><white>Снежное облако
+    Description: |-
+      Прогноз погоды
+      говорит мне, сейчас идет снег.
+  BloodHelix:
+    name: <bold><dark_red>Спираль крови
+    Description: |-
+      Древняя легенда гласит, что это волшебство
+      усиливает кровь своего пользователя,
+      наделяя их божественными силами...
+  FrostLord:
+    name: <bold><aqua>Морозный лорд
+    Description: Я всемогущий морозный владыка!
+  FlameRings:
+    name: <bold><red>Кольца пламени
+    Description: Осторожно! Они горячие!
+  GreenSparks:
+    name: <bold><green>Зеленые искры
+    Description: Маленькие и зеленые искрящиеся искорки!
+  InLove:
+    name: <bold><red>Влюблен
+    Description: ВАУ я влюблен!
+  FrozenWalk:
+    name: <bold><aqua>Морозная походка
+    Description: Мои ноги очень холодные!
+  Enchanted:
+    name: <bold><gray>Зачарованный
+    Description: Станьте всемогущим чародеем!
+  Music:
+    name: <bold><blue>Музыка
+    Description: Много музыки!
+  Inferno:
+    name: <bold><dark_red>Преисподняя
+    Description: Эффект создан самим Сатаной!
+  AngelWings:
+    name: <bold><white>Ангельские крылья
+    Description: Станьте ангелом!
+  RainbowWings:
+    name: <bold><dark_red>R</dark_red></bold><bold><gold>a</gold></bold><bold><yellow>i</yellow></bold><bold><green>n</green></bold><bold><aqua>b</aqua></bold><bold><blue>o</blue></bold><bold><dark_purple>w </dark_purple></bold><bold><white>Крылья
+    Description: Крылья, но они полны красок!
+  SuperHero:
+    name: <bold><dark_red>Супер герой
+    Description: Стань Суперменом!
+  SantaHat:
+    name: <bold><dark_red>Шапка </dark_red></bold><bold><white>Санты
+    Description: Стань Сантой!
+  CrushedCandyCane:
+    name: <bold><dark_red>Измельченный </dark_red></bold><bold><white>Сахарный </white></bold><bold><dark_red>Тростник
+    Description: |-
+      Нет такой вещи, как слишком много
+      Рождественских конфет. Не идите
+      к вашему дантисту.
+  EnderAura:
+    name: <bold><light_purple>Аура Эндера
+    Description: |-
+      Эти мистические частицы присущи
+      только самым легендарным игрокам!
+  FlameFairy:
+    name: <bold><gold>Огненная фея
+    Description: Хей!!
+  MagicalRods:
+    name: <bold><dark_gray>Магические жезлы
+    Description: Пусть эти волшебные жезлы защитят вас!
+  FireWaves:
+    name: <bold><yellow>Огненные волны
+    Description: Некоторые говорят, что эти волны огня действуют как щит...
+  CursedHalo:
+    name: <bold><dark_purple>Проклятое сияние
+    Description: |-
+      Это приносит большое несчастье тому,
+      кто осмелится его надеть.
+  VolcanicHalo:
+    name: <bold><red>Вулканическое сияние
+    Description: |-
+      Сияние, состоящие из
+      вечного огоня.
+  CursedFootprints:
+    name: <bold><dark_purple>Проклятые следы
+    Description: |-
+      Оставляет за собой след из
+      темной энергии.
+  SpringFootprints:
+    name: <bold><green>Весенние следы
+    Description: |-
+      Оставляет за собой шлейф из
+      зеленых частиц.
+  ShadowFootprints:
+    name: <bold><gray>Теневые следы
+    Description: |-
+      Оставляет за собой шлейф
+      дыма.
+  SuperVillain:
+    name: <bold><dark_purple>Super Villain
+    Description: |-
+      Become Batman... or whoever is
+      more evil than Superman!
+  Notes:
+    name: <bold><gold>Ноты
+    Description: Ноты над твоей головой.
+  Hearts:
+    name: <bold><red>Сердца
+    Description: Сердца над твоей головой.
+  EnderFootprints:
+    name: <bold><light_purple>Следы эндера
+    Description: |-
+      Оставляет за собой шлейф
+      дыхания дракона.
+  ArcaneFlame:
+    name: <bold><aqua>Чародейское пламя
+    Description: Синее пламя над головой.
+  DivineHalo:
+    name: <bold><yellow>Божественный ореол
+    Description: |-
+      Осияние, состоящее из
+      сияющего света.
+  SnowFootprints:
+    name: <bold><white>Снежный след
+    Description: |-
+      Оставляет за собой шлейф из
+      снега.
+  CherryFairy:
+    name: '<bold><#DE3163>Cherry Fairy'
+    Description: Protector of the cherry grove.
+Pets:
+  Piggy:
+    menu-name: <bold><light_purple>Поросенок
+    entity-displayname: <bold><playername>' Поросенок
+    Description: Хрю! Хрю!
+  Sheep:
+    menu-name: <bold><white>Овца
+    entity-displayname: <bold><playername>' Овца
+    Description: Баааа, баа
+  EasterBunny:
+    menu-name: <bold><gold>Пасхальный кролик
+    entity-displayname: <bold><playername>' Пасхальный кролик
+    Description: Уже наступила Пасха?
+  Cow:
+    menu-name: <bold><red>Корова
+    entity-displayname: <bold><playername>' Корова
+    Description: МУуу!
+  Kitty:
+    menu-name: <bold><blue>Котенок
+    entity-displayname: <bold><playername>' Котенок
+    Description: Мяооооу
+  Dog:
+    menu-name: <bold><gray>Собака
+    entity-displayname: <bold><playername>' Собака
+    Description: Гав!
+  Chick:
+    menu-name: <bold><yellow>Птенец
+    entity-displayname: <bold><playername>' Птенец
+    Description: Бвааааааак!!
+  Wither:
+    menu-name: <bold><dark_gray>Визер
+    entity-displayname: <bold><playername>' Визер
+    Description: Присматривай за мной...
+  Pumpling:
+    menu-name: <bold><gold>Тыква
+    entity-displayname: <bold><playername>' Тыква
+    Description: Просто маленькая плавающая тыква
+  ChristmasElf:
+    menu-name: <bold><green>Новогодний Эльф
+    entity-displayname: <bold><playername>'s Новогодний Эльф
+    Description: Я могу сделать тебе подарок!
+  Mooshroom:
+    menu-name: <bold><dark_red>Муухомор
+    entity-displayname: <bold><playername>' Муухомор
+    Description: МУуу!
+  IronGolem:
+    menu-name: <bold><gray>Железный Голем
+    entity-displayname: <bold><playername>' Железный Голем
+    Description: Я люблю цветочки
+  Snowman:
+    menu-name: <bold><white>Снеговик
+    entity-displayname: <bold><playername>' Снеговик
+    Description: Пиу пиу пиу
+  Villager:
+    menu-name: <bold><green>Житель
+    entity-displayname: <bold><playername>' Житель
+    Description: Хмммммммм
+  Bat:
+    menu-name: <bold><dark_gray>Летающая мышь
+    entity-displayname: <bold><playername>' Летающая мышь
+    Description: Я предпочитаю темные места
+  PolarBear:
+    menu-name: <bold><aqua>Полярный медведь
+    entity-displayname: <bold><playername>' Полярный медведь
+    Description: Я предпочитаю холодные места
+  Llama:
+    menu-name: <bold><gray>Лама
+    entity-displayname: <bold><playername>' Лама
+    Description: Нужно, чтобы я что-нибудь нес?
+  Parrot:
+    menu-name: <bold><green>Попугай
+    entity-displayname: <bold><playername>' Попугай
+    Description: Полли, хочешь крекер?
+  Vex:
+    menu-name: <bold><gray>Вех
+    entity-displayname: <bold><playername>' Вех
+    Description: ДА, Хехехехе!
+  Panda:
+    menu-name: <bold><green>Панда
+    entity-displayname: <bold><playername>' Панда
+    Description: Любит бамбук!
+  Fox:
+    menu-name: <bold><light_purple>Лисица
+    entity-displayname: <bold><playername>' Лисица
+    Description: Что говорит лиса?
+  Axolotl:
+    menu-name: <bold><dark_purple>Аксолотль
+    entity-displayname: <bold><playername>' Аксолотль
+    Description: Такоой милый!
+  Piglin:
+    menu-name: <bold><gold>Дилер золота
+    entity-displayname: <bold><playername>' Дилер золота
+    Description: Занимается золотом!
+  Slime:
+    menu-name: <bold><green>Слизень
+    entity-displayname: <bold><playername>' Слизень
+    Description: Хлюп...
+  Bee:
+    menu-name: <bold><yellow>Пчела
+    entity-displayname: <bold><playername>' Пчела
+    Description: '*бзззз* *бзззз*'
+  Goat:
+    menu-name: <bold><white>Коза
+    entity-displayname: <bold><playername>' Коза
+    Description: Беее!
+  Silverfish:
+    menu-name: <bold><gray>Серебряная рыба
+    entity-displayname: <bold><playername>' Серебряная рыба
+    Description: Скрывающаяся в толщах воды...
+  Horse:
+    menu-name: <bold><green>Лошадь
+    entity-displayname: <bold><playername>' Лошадь
+    Description: '*фхррррхх*'
+  Blaze:
+    menu-name: <bold><red>Эфрит
+    entity-displayname: <bold><playername>' Эфрит
+    Description: Летящий и горячий!
+  Creeper:
+    menu-name: <bold><green>Крипер
+    entity-displayname: <bold><playername>' Крипер
+    Description: Любит взрывать твои любимые вещи...
+  Enderman:
+    menu-name: <bold><dark_purple>Эндермен
+    entity-displayname: <bold><playername>' Эндермен
+    Description: Не смотри на него, или он будет охотиться на тебя!
+  Skeleton:
+    menu-name: <bold><white>Скелет
+    entity-displayname: <bold><playername>' Скелет
+    Description: Берегись, он попытается застрелить тебя!
+  Zombie:
+    menu-name: <bold><dark_green>Зомби
+    entity-displayname: <bold><playername>' Зомби
+    Description: Быстро! Спрячьте своих жителей по домам!
+  Frog:
+    menu-name: <bold><dark_green>Лягушка
+    entity-displayname: <bold><playername>' Лягушка
+    Description: Не любит светлячков!
+  Warden:
+    menu-name: <bold><dark_aqua>Надзиратель
+    entity-displayname: <bold><playername>' Надзиратель
+    Description: Самая страшная толпа!
+  Allay:
+    menu-name: <bold><green>Аллай
+    entity-displayname: <bold><playername>' Аллай
+    Description: Новый друг!
+  Cod:
+    menu-name: <bold><gray>Треска
+    entity-displayname: <bold><playername>' Треска
+    Description: Предпочитает воду суше!
+  Donkey:
+    menu-name: <bold><gray>Осел
+    entity-displayname: <bold><playername>' Осел
+    Description: Могу унести все ваши вещи!
+  GlowSquid:
+    menu-name: <bold><dark_aqua>Светящийся кальмар
+    entity-displayname: <bold><playername>' Светящийся кальмар
+    Description: Он светится!
+  Mule:
+    menu-name: <bold><gray>Мул
+    entity-displayname: <bold><playername>' Мул
+    Description: По сути, осел!
+  Pufferfish:
+    menu-name: <bold><yellow>Рыба-фугу
+    entity-displayname: <bold><playername>' Рыба-фугу
+    Description: Не любит, когда к нему прикасаются!
+  Ocelot:
+    menu-name: <bold><yellow>Оцелот
+    entity-displayname: <bold><playername>' Оцелот
+    Description: Берегись... они довольно застенчивые!
+  Salmon:
+    menu-name: <bold><red>Лосось
+    entity-displayname: <bold><playername>' Лосось
+    Description: Они очень вкусные!
+  SkeletonHorse:
+    menu-name: <bold><white>Скелет лошадь
+    entity-displayname: <bold><playername>' Скелет лошадь
+    Description: Остерегайтесь ударов молнии!
+  Squid:
+    menu-name: <bold><black>Кальмар
+    entity-displayname: <bold><playername>' Кальмар
+    Description: Не пугайте его, иначе вода почернеет!
+  Strider:
+    menu-name: <bold><red>Бродяга
+    entity-displayname: <bold><playername>' Бродяга
+    Description: Ходит по лаве!
+  Tadpole:
+    menu-name: <bold><dark_gray>Головастик
+    entity-displayname: <bold><playername>' Головастик
+    Description: Вырастет в лягушку!
+  TropicalFish:
+    menu-name: <bold><yellow>Тропическая рыба
+    entity-displayname: <bold><playername>' Тропическая рыба
+    Description: Разноцветная рыбка!
+  Turtle:
+    menu-name: <bold><dark_green>Черепаха
+    entity-displayname: <bold><playername>' Черепаха
+    Description: Некоторым из них больше 150 лет!
+  WanderingTrader:
+    menu-name: <bold><dark_blue>Бродячий торговец
+    entity-displayname: <bold><playername>' Бродячий торговец
+    Description: Бродит повсюду, пытаясь продать свои вещи!
+  CaveSpider:
+    menu-name: <bold><dark_green>Пещерный паук
+    entity-displayname: <bold><playername>' Пещерный паук
+    Description: Паук, но ядовитый!
+  Dolphin:
+    menu-name: <bold><aqua>Дельфин
+    entity-displayname: <bold><playername>' Дельфин
+    Description: Самое счастливое создание морей!
+  Spider:
+    menu-name: <bold><dark_gray>Паук
+    entity-displayname: <bold><playername>'s Паук
+    Description: Ваш дружелюбный соседский паук!
+  ZombifiedPiglin:
+    menu-name: <bold><light_purple>Зомбированный поросенок
+    entity-displayname: <bold><playername>' Зомбированный поросенок
+    Description: Атакуйте его, и все они будут преследовать вас!
+  Drowned:
+    menu-name: <bold><dark_aqua>Подводный зомби!
+    entity-displayname: <bold><playername>'Подводный зомби!
+    Description: Подводный зомби, охотится на вас в воде!
+  ElderGuardian:
+    menu-name: <bold><dark_aqua>Старший хранитель
+    entity-displayname: <bold><playername>' Старший хранитель
+    Description: Охраняет древние храмы!
+  Endermite:
+    menu-name: <bold><dark_purple>Эндермит
+    entity-displayname: <bold><playername>' Эндермит
+    Description: Привлекает Эндерменов!
+  Evoker:
+    menu-name: <bold><gray>Вызыватель
+    entity-displayname: <bold><playername>' Вызыватель
+    Description: Зарабатывает на жизнь призывом вексов!
+  Ghast:
+    menu-name: <bold><white>Вурдалак
+    entity-displayname: <bold><playername>' Гаст
+    Description: '*Демонический крик*'
+  Guardian:
+    menu-name: <bold><dark_aqua>Опекун
+    entity-displayname: <bold><playername>' Опекун
+    Description: Ненавидит кальмаров!
+  Hoglin:
+    menu-name: <bold><red>Хоглин
+    entity-displayname: <bold><playername>' Хоглин
+    Description: Свинья, но в гневе.
+  Husk:
+    menu-name: <bold><yellow>Пустынный зомби
+    entity-displayname: <bold><playername>' Пустынный зомби
+    Description: Зомби, но в пустыне.
+  MagmaCube:
+    menu-name: <bold><dark_red>Лавовый слизень
+    entity-displayname: <bold><playername>' Лавовый слизень
+    Description: Очень горячий кубик!
+  Phantom:
+    menu-name: <bold><dark_blue>Призрак
+    entity-displayname: <bold><playername>' Призрак
+    Description: Ненавидит игроков, которые не спят!
+  PiglinBrute:
+    menu-name: <bold><gold>Пиглин Брут
+    entity-displayname: <bold><playername>' Пиглин Брут
+    Description: Симпатичный пиглин!
+  Pillager:
+    menu-name: <bold><gray>Грабитель
+    entity-displayname: <bold><playername>' Грабитель
+    Description: Любит грабить деревни!
+  Ravager:
+    menu-name: <bold><dark_gray>Опустошитель
+    entity-displayname: <bold><playername>' Опустошитель
+    Description: Любимый компаньон грабителя!
+  Shulker:
+    menu-name: <bold><dark_purple>Шалкер
+    entity-displayname: <bold><playername>' Шалкер
+    Description: Любит прятаться!
+  Stray:
+    menu-name: <bold><dark_gray>Бродяга
+    entity-displayname: <bold><playername>' Бродяга
+    Description: Ледяной холодный скелет!
+  Vindicator:
+    menu-name: <bold><gray>Воздаятель
+    entity-displayname: <bold><playername>' Воздаятель
+    Description: Не стоит недооценивать их силу!
+  Witch:
+    menu-name: <bold><dark_purple>Ведьма
+    entity-displayname: <bold><playername>' Ведьма
+    Description: Любит черных кошек!
+  WitherSkeleton:
+    menu-name: <bold><dark_gray>Скелет-Иссушитель
+    entity-displayname: <bold><playername>' Скелет-иссушитель
+    Description: Причина, по которой существует мародерство.
+  Zoglin:
+    menu-name: <bold><red>Хоглин
+    entity-displayname: <bold><playername>' Хоглин
+    Description: Зомбированный Хоглин!
+  ZombieVillager:
+    menu-name: <bold><dark_green>Зомби-житель
+    entity-displayname: <bold><playername>' Зомби-житель
+    Description: Мечта деревенского торговца!
+  ZombieHorse:
+    menu-name: <bold><dark_green>Зомби Лошадь
+    entity-displayname: <bold><playername>' Зомби Лошадь
+    Description: Самая редкая лошадь в майнкрафте!
+  Illusioner:
+    menu-name: <bold><dark_blue>Иллюзионист
+    entity-displayname: <bold><playername>' Иллюзионист
+    Description: Только с помощью команд!
+  Sniffer:
+    menu-name: <bold><green>Нюхач
+    entity-displayname: <bold>Нюхач игрока <playername>
+    Description: Чувствует запах керамики!
+  Equip: <prefix> <blue>Показали <petname>
+  Unequip: <prefix> <blue>Скрыли <petname>
+  Armadillo:
+    menu-name: <bold><gold>Броненосец
+    entity-displayname: <bold>Броненосец <playername>а
+    Description: |-
+      Не пугай меня,
+      иначе я превращусь в шар!
+Morphs:
+  Blaze:
+    name: <bold><gold>Блейз
+    skill: '<yellow>Крадись </yellow><gray>для того чтобы: </gray><green>Летать!'
+    Description: Там может быть жарко...
+  Chicken:
+    name: <bold><white>Курица
+    skill: '<yellow>Крадись </yellow><gray>ждя того чтобы: </gray><green>Откладывать яйца'
+    Description: Стань цыпленком!
+  Slime:
+    name: <bold><green>Слизень
+    skill: '<yellow>Крадись </yellow><gray>ждя того чтобы: </gray><green>Подпрыгивать'
+    Description: Шлепок, шлепок!
+  Pig:
+    name: <bold><light_purple>Свинья
+    skill: '<yellow>Оседлайте и управляйте </yellow><gray>для того чтобы: </gray><green>Кататься!'
+    Description: Должен держать свою морковку!
+  Enderman:
+    name: <bold><dark_purple>Эндермен
+    skill: '<yellow>Двойной прыжок</yellow><gray>: </gray><green>Телепортация'
+    Description: |-
+      Я иду оттуда в
+      там, потом ты потерял меня...
+  Bat:
+    name: <bold><dark_gray>Летающая мышь
+    skill: '<yellow>Двойной прыжок </yellow><gray>для того чтобы: </gray><green>Парить'
+    Description: Станьте летучей мышью!
+  Creeper:
+    name: <bold><green>Крипер
+    skill: '<yellow>Крадись </yellow><gray>ждя того чтобы:: </gray><green>Взорваться'
+    charging: '<bold><green>Зарядка: <chargelevel>/100'
+    release-to-explode: <bold><white>Отпустите, чтобы взорвать!
+    Description: Эй, как-ссссс дела-сссс?
+  Snowman:
+    name: <bold><white>Снеговик
+    skill: '<yellow>Левая кнопка мыши </yellow><gray>для того чтобы: </gray><green>Кинуть Снежок'
+    Description: Стань Олафом!
+  Equip: <prefix> <blue>Вы превратились в <morphname>
+  Unequip: <prefix> <blue>Вы превратились обратно из <morphname>
+  WitherSkeleton:
+    name: <bold><dark_gray>Скелет-Иссушитель
+    skill: '<yellow>Sneak</yellow><gray> to: </gray><green>Bone Bomb'
+    Description: |-
+      Самый обычный скелет...
+      но из Ада!
+  ElderGuardian:
+    name: <bold><dark_gray>Старший хранитель
+    skill: '<yellow>Левая кнопка мыши </yellow><gray>для того чтобы: </gray><green>Стрелять лазером'
+    Description: Станьте Старшим Стражем!!
+  Cow:
+    name: <bold><dark_gray>Корова
+    skill: '<yellow>Левый клик </yellow><gray>для того чтобы: </gray><green>МУУу!'
+    Description: МУуу!
+  Sheep:
+    name: <bold><white>Овца
+    skill: '<yellow>Левый клик </yellow><gray>для того чтобы: </gray><green>Поменять цвета'
+    Description: Баааа, баа
+  Mooshroom:
+    name: <bold><red>Муухомор
+    skill: '<yellow>Крадись </yellow><gray>ждя того чтобы: </gray><green>Разбросать тарелки с супом'
+    Description: МУуу!
+  Villager:
+    name: <bold><green>Житель
+    skill: '<yellow>Левый клик </yellow><gray>для того чтобы: </gray><green>Разбросать изумруды'
+    Description: Хмммммммм
+  Witch:
+    name: <bold><dark_purple>Ведьма
+    skill: '<yellow>Левый клик </yellow><gray>для того чтобы: </gray><green>Кинуть зелье'
+    Description: Муахахахаха
+  PolarBear:
+    name: <bold><white>Полярный медведь
+    skill: '<yellow>Левый клик </yellow><gray>для того чтобы: </gray><green>Метать огонь'
+    Description: Я предпочитаю холодные места
+  Llama:
+    name: <bold><dark_aqua>Лама
+    skill: '<yellow>Левый клик </yellow><gray>для того чтобы: </gray><green>Плюнуть'
+    Description: Нужно, чтобы я что-нибудь нес?
+  Parrot:
+    name: <bold><green>Попугай
+    skill: '<yellow>Двойной прыжок </yellow><gray>для того чтобы: </gray><green>Парить'
+    Description: Полли, хочешь крекер?
+  Allay:
+    name: <bold><green>Аллай
+    skill: '<yellow>Двойной прыжок </yellow><gray>для того чтобы: </gray><green>Парить'
+    Description: Новый друг!
+  Axolotl:
+    name: <bold><dark_purple>Аксолотль
+    skill: <yellow>Левое нажатие</yellow><gray> для милых звуков
+    Description: Такоой милый!
+  Bee:
+    name: <bold><yellow>Пчела
+    skill: '<yellow>Двойной прыжок </yellow><gray>для того чтобы: </gray><green>Парить'
+    Description: '*бзззз* *бзззз*'
+  Cat:
+    name: <bold><yellow>Котик
+    skill: '<yellow>Щелкните левой кнопкой мыши</yellow><gray>, чтобы: </gray><green>Мяукнуть'
+    Description: По сути, крошечный тигр
+  CaveSpider:
+    name: <bold><yellow>Пещерный паук
+    skill: '<yellow>Щелкните левой кнопкой мыши</yellow><gray>, чтобы: </gray><green>выполнить задачу'
+    Description: Паук, но ядовитый!
+  Cod:
+    name: <bold><yellow>Треска
+    skill: '<yellow>Щелкните левой кнопкой мыши</yellow><gray>, чтобы: </gray><green>выполнить задачу'
+    Description: Предпочитает воду суше!
+  Dolphin:
+    name: <bold><yellow>Дельфин
+    skill: '<yellow>Щелкните левой кнопкой мыши</yellow><gray>, чтобы: </gray><green>выполнить задачу'
+    Description: Самое счастливое создание морей!
+  Donkey:
+    name: <bold><gray>Осел
+    skill: '<yellow>Щелкните левой кнопкой мыши</yellow><gray>, чтобы: </gray><green>выполнить задачу'
+    Description: Могу унести все ваши вещи!
+  Drowned:
+    name: <bold><dark_aqua>Подводный зомби!
+    skill: '<yellow>Щелкните левой кнопкой мыши</yellow><gray>, чтобы: </gray><green>выполнить задачу'
+    Description: Подводный зомби, охотится на вас в воде!
+  Endermite:
+    name: <bold><dark_purple>Эндермит
+    skill: '<yellow>Щелкните левой кнопкой мыши</yellow><gray>, чтобы: </gray><green>выполнить задачу'
+    Description: Привлекает Эндерменов!
+  Evoker:
+    name: <bold><gray>Вызыватель
+    skill: '<yellow>Щелкните левой кнопкой мыши</yellow><gray>, чтобы: </gray><green>выполнить задачу'
+    Description: Зарабатывает на жизнь призывом вексов!
+  Frog:
+    name: <bold><dark_green>Лягушка
+    skill: '<yellow>Щелкните левой кнопкой мыши</yellow><gray>, чтобы: </gray><green>выполнить задачу'
+    Description: Не любит светлячков!
+  Fox:
+    name: <bold><light_purple>Лисица
+    skill: '<yellow>Щелкните левой кнопкой мыши</yellow><gray>, чтобы: </gray><green>выполнить задачу'
+    Description: Что говорит лиса?
+  GlowSquid:
+    name: <bold><dark_aqua>Светящийся кальмар
+    skill: '<yellow>Щелкните левой кнопкой мыши</yellow><gray>, чтобы: </gray><green>выполнить задачу'
+    Description: Он светится!
+  Goat:
+    name: <bold><white>Коза
+    skill: '<yellow>Щелкните левой кнопкой мыши</yellow><gray>, чтобы: </gray><green>выполнить задачу'
+    Description: Беее!
+  Guardian:
+    name: <bold><dark_aqua>Опекун
+    skill: '<yellow>Щелкните левой кнопкой мыши</yellow><gray>, чтобы: </gray><green>выполнить задачу'
+    Description: Ненавидит кальмаров!
+  Wolf:
+    name: <bold><gray>Волк
+    Description: Гав!
+  IronGolem:
+    name: <bold><gray>Железный Голем
+    Description: Ненавидит зомби!
+  Wither:
+    name: <bold><dark_gray>Визер
+    Description: Присматривай за мной...
+  Skeleton:
+    name: <bold><gray>Скелет
+    Description: Очень хороший лучник!
+  Zombie:
+    name: <bold><dark_green>Зомби
+    Description: Мозги!!!
+  Squid:
+    name: <bold><light_purple>Кальмар
+    Description: Бла-бла-бла!
+  Spider:
+    name: <bold><dark_gray>Паук
+    Description: ХИИИСССС...
+  Ghast:
+    name: <bold><white>Вурдалак
+    Description: '*пронзительный крик*'
+  MagmaCube:
+    name: <bold><red>Магмовый куб
+    Description: Очень горячий кубик!
+  Horse:
+    name: <bold><green>Лошадь
+    Description: '*фхррррхх*'
+  Warden:
+    name: <bold><dark_aqua>Надзиратель
+    Description: Быть тихим...
+  Tadpole:
+    name: <bold><dark_gray>Головастик
+    Description: Вырастет в лягушку!
+  Piglin:
+    name: <bold><gold>Пиглин
+    Description: Сделки за золото!
+  Strider:
+    name: <bold><red>Бродяга
+    Description: Я ненавижу воду!
+  Hoglin:
+    name: <bold><red>Хоглин
+    Description: Свинья, но в гневе.
+  PiglinBrute:
+    name: <bold><gold>Пиглин Брут
+    Description: Симпатичный пиглин!
+  Zoglin:
+    name: <bold><red>Хоглин
+    Description: Зомбированный Хоглин!
+  ZombifiedPiglin:
+    name: <bold><light_purple>Зомбированный поросенок
+    Description: Атакуйте его, и все они будут преследовать вас!
+  Panda:
+    name: <bold><green>Панда
+    Description: Любит бамбук!
+  Ocelot:
+    name: <bold><yellow>Оцелот
+    Description: Король джунглей
+  WanderingTrader:
+    name: <bold><dark_blue>Бродячий торговец
+    Description: Бродит повсюду, пытаясь продать свои вещи!
+  Pillager:
+    name: <bold><gray>Грабитель
+    Description: Любит грабить деревни!
+  Ravager:
+    name: <bold><dark_gray>Опустошитель
+    Description: Любимый компаньон грабителя!
+  Pufferfish:
+    name: <bold><yellow>Рыба-фугу
+    Description: Не любит, когда к нему прикасаются!
+  Salmon:
+    name: <bold><red>Лосось
+    Description: Они очень вкусные!
+  TropicalFish:
+    name: <bold><yellow>Тропическая рыба
+    Description: Разноцветная рыбка!
+  Turtle:
+    name: <bold><green>Черепаха
+    Description: Не торопитесь.
+  Phantom:
+    name: <bold><dark_blue>Призрак
+    Description: Ненавидит игроков, которые не спят!
+  Illusioner:
+    name: <bold><dark_blue>Иллюзионист
+    Description: Только с помощью команд!
+  Vex:
+    name: <bold><gray>Вех
+    Description: ДА, Хехехехе!
+  Vindicator:
+    name: <bold><gray>Воздаятель
+    Description: Не стоит недооценивать их силу!
+  Mule:
+    name: <bold><dark_gray>Мул
+    Description: Ваш стандартный, повседневный мул
+  SkeletonHorse:
+    name: <bold><white>Скелет лошадь
+    Description: Остерегайтесь ударов молнии!
+  ZombieHorse:
+    name: <bold><dark_green>Зомби Лошадь
+    Description: Самая редкая лошадь в майнкрафте!
+  Shulker:
+    name: <bold><dark_purple>Шалкер
+    Description: Любит прятаться!
+  Sniffer:
+    name: <bold><green>Нюхач
+    Description: '*нюх нюх*'
+Hats:
+  Equip: <prefix> <blue>Вы экипированы <hatname> </blue><blue>шапку!
+  Unequip: <prefix> <blue>Вы сняли <hatname> </blue><blue>шапку!
+  Astronaut:
+    Name: <bold><gray>Астронавт
+    Description: Хьюстон, у нас проблема...
+  Scared:
+    Name: <bold><dark_red>Напуганный
+    Description: О боже, это напугало меня!
+  Angel:
+    Name: <bold><white>Ангел
+    Description: Было ли больно, когда ты упал с небес?
+  Embarassed:
+    Name: <bold><gray>Смущенный
+    Description: Меня это немного смущает.
+  Kissy:
+    Name: <bold><red>Поцелуй
+    Description: Хочешь поцеловаться?
+  Sad:
+    Name: <bold><blue>Печальный
+    Description: Мне так грустно.
+  Cool:
+    Name: <bold><gold>Спокойный
+    Description: Я такой классный парень.
+  Surprised:
+    Name: <bold><dark_red>Удивленный
+    Description: Ух ты, не ожидал такого!
+  Dead:
+    Name: <bold><dark_gray>Мертвый
+    Description: Получил рект
+  Crying:
+    Name: <bold><blue>Плачущий
+    Description: Я критикую эвритием
+  BigSmile:
+    Name: <bold><gold>Широкая улыбка
+    Description: Потому что я действительно счастлива!
+  Wink:
+    Name: <bold><yellow>Подмигивающий
+    Description: Ты знаешь, что я имею в виду ;)
+  Derp:
+    Name: <bold><dark_aqua>Сумасшедший
+    Description: Сумасшедший-Сумасшедший-сумасшедший
+  Smile:
+    Name: <bold><yellow>Улыбка
+    Description: Потому что я счастлива
+  Iron:
+    Name: <bold><gray>Железо
+    Description: Крепкий, как железо!
+  Gold:
+    Name: <bold><yellow>Золото
+    Description: Моя драгоценность!
+  Diamond:
+    Name: <bold><aqua>Алмаз
+    Description: Это действительно сильно!
+  CommandBlock:
+    Name: <bold><gray>Командный блок
+    Description: Управляйте миром с его помощью!
+  Music:
+    Name: <bold><blue>Музыка
+    Description: Ты такой музыкальный.
+  Squid:
+    Name: <bold><dark_aqua>Кальмар
+    Description: Бла-бла-бла!
+  GlowSquid:
+    Name: <bold><aqua>Светящийся кальмар
+    Description: Освети океан!
+  Chicken:
+    Name: <bold><white>Курица
+    Description: Бввааааааааааааккккк!
+  Blaze:
+    Name: <bold><gold>Блейз
+    Description: Берегись огня!
+  Piston:
+    Name: <bold><gray>Поршень
+    Description: У тебя есть редстоун?
+  Sheep:
+    Name: <bold><white>Овца
+    Description: Баааа, баа
+  Pig:
+    Name: <bold><light_purple>Свинья
+    Description: Хрю-хрю!
+  Cow:
+    Name: <bold><green>Корова
+    Description: МУуу!
+  Mooshroom:
+    Name: <bold><red>Муухомор
+    Description: МУуу!
+  BrownMooshroom:
+    Name: <bold><aqua>Темная грибная корова
+    Description: МУуу!
+  Moobloom:
+    Name: <bold><yellow>Желтая грибная корова
+    Description: Очень редкая корова!
+  ChestnutHorse:
+    Name: <bold><dark_green>Гнедая лошадь
+    Description: Не забудь седло!
+  Golem:
+    Name: <bold><gray>Голем
+    Description: Я твой охранник.
+  CopperGolem:
+    Name: <bold><gold>Медный голем
+    Description: Изготовлен из 100% меди.
+  Enderman:
+    Name: <bold><dark_purple>Эндермен
+    Description: Теперь я здесь, теперь я там!
+  EndermanKing:
+    Name: <bold><light_purple>Король Эндерменов
+    Description: Король эндерменов
+  Slime:
+    Name: <bold><green>Слизень
+    Description: Очень скользкий
+  Creeper:
+    Name: <bold><dark_green>Крипер
+    Description: Напугай своих друзей!
+  Skeleton:
+    Name: <bold><gray>Скелет
+    Description: Очень хороший лучник!
+  Zombie:
+    Name: <bold><dark_green>Зомби
+    Description: Мозги!!!
+  Drowned:
+    Name: <bold><dark_aqua>Подводный зомби!
+    Description: Подводный зомби
+  Strider:
+    Name: <bold><red>Бродяга
+    Description: Я ненавижу воду!
+  WitherSkeleton:
+    Name: <bold><gray>Увядающий скелет
+    Description: Страж подземной крепости
+  Ghast:
+    Name: <bold><white>Вурдалак
+    Description: '*пронзительный крик*'
+  Warden:
+    Name: <bold><dark_aqua>Надзиратель
+    Description: Быть тихим...
+  Witch:
+    Name: <bold><dark_purple>Ведьма
+    Description: Пожалуйста, попробуйте мое зелье!
+  Guardian:
+    Name: <bold><dark_aqua>Опекун
+    Description: Защитник океанских памятников!
+  ShepherdVillager:
+    Name: <bold><yellow>Сельский пастух
+    Description: Одинокий пастух
+  FletcherVillager:
+    Name: <bold><green>Житель деревни Флетчер
+    Description: Я делаю стрелы.
+  LibrarianVillager:
+    Name: <bold><gold>Библиотекарь, житель деревни
+    Description: Знание - это сила.
+  Bee:
+    Name: <bold><yellow>Пчела
+    Description: Будь осторожен!
+  Fox:
+    Name: <bold><gold>Лиса
+    Description: Быстрый и умный!
+  SnowFox:
+    Name: <bold><white>Снежный лис
+    Description: Снежные биомы - мой дом.
+  Ocelot:
+    Name: <bold><yellow>Оцелот
+    Description: Король джунглей
+  Frog:
+    Name: <bold><dark_green>Лягушка
+    Description: Ест все, что его раздражает.
+  AxolotlPink:
+    Name: <bold><light_purple>Розовый аксолотль
+    Description: Самый симпатичный хищник
+  AxolotlBlue:
+    Name: <bold><blue>Голубой аксолотль
+    Description: Самый симпатичный хищник
+  Turtle:
+    Name: <bold><green>Черепаха
+    Description: Не торопитесь.
+  Clownfish:
+    Name: <bold><gold>Рыба-клоун
+    Description: Ты нашел его!
+  BlackCat:
+    Name: <bold><dark_green>Черный кот
+    Description: Лучший друг ведьмы.
+  Allay:
+    Name: <bold><aqua>Аллай
+    Description: Маленький помощник
+  Bat:
+    Name: <bold><dark_purple>Летучая мышь
+    Description: Наслаждайтесь ночной жизнью.
+  Glare:
+    Name: <bold><dark_green>Яркий свет
+    Description: Он ненавидит темноту.
+  Rana:
+    Name: <bold><green>Рана
+    Description: Лягушачья шляпа!
+  MCD-Steve:
+    Name: <bold><blue>Steve
+    Description: Лучшая внешность
+  MCD-Alex:
+    Name: <bold><gold>Алекс
+    Description: Друг Стива
+  MCD-QuestGiver:
+    Name: <bold><dark_purple>Дающий задание
+    Description: У меня есть задание для тебя.
+  MCD-LuxuryMerchant:
+    Name: <bold><gold>Торговец роскошью
+    Description: Я продаю драгоценные камни.
+  MCD-Necromancer:
+    Name: <bold><aqua>Некромант
+    Description: Призовите нежить!
+  MCD-NamelessOne:
+    Name: <bold><dark_green>Безымянный Один
+    Description: Могущественный некромант
+  MCD-StrayKnight:
+    Name: <bold><gray>Бродячий рыцарь
+    Description: Одинокий рыцарь...
+  MCD-AncientGuardian:
+    Name: <bold><dark_purple>Древний Страж
+    Description: Старейший страж
+  MCD-KeyGolem:
+    Name: <bold><gold>Ключевой голем
+    Description: Открой все двери!
+  MCD-ArchIllager:
+    Name: <bold><dark_aqua>Архи-Иллагер
+    Description: Лидер иллагеров
+  MCD-SunkenSkeleton:
+    Name: <bold><dark_green>Затонувший скелет
+    Description: Подводный скелет
+  MCD-TheWildfire:
+    Name: <bold><dark_red>Лесной пожар
+    Description: Возвышающийся ад...
+  Mario:
+    Name: <bold><dark_red>Марио
+    Description: Это "то же самое! Марио!
+  Luigi:
+    Name: <bold><dark_green>Луиджи
+    Description: Я Бэтмен!
+  Batman:
+    Name: <bold><dark_gray>Бэтмен
+    Description: Я Бэтмен!
+  Chest:
+    Name: <bold><gold>Сундук
+    Description: Открывайте и закрывайте
+  Skull:
+    Name: <bold><white>Череп
+    Description: Кто сейчас безголовый?
+  JackOLantern:
+    Name: <bold><gold>Джек-О"-Фонарь
+    Description: Маленькая тыква
+  Ghost:
+    Name: <bold><white>Привидение
+    Description: Привидение
+  ScaryClown:
+    Name: <bold><dark_red>Страшный клоун
+    Description: Надеюсь, вы не боитесь клоунов.
+  Santa:
+    Name: <bold><dark_red>Санта
+    Description: Хо-хо-хо! счастливого Рождества!
+  Snowman:
+    Name: <bold><white>Снеговик
+    Description: У меня нет черепа... или костей
+  Present:
+    Name: <bold><red>Подарок
+    Description: От Санты, тебе!
+  Elf:
+    Name: <bold><green>Эльф
+    Description: Я работаю на Санту!
+  Bedrock:
+    Name: <bold><dark_gray>Коренная порода
+    Description: Нерушимый!
+  RedCrewmate:
+    Name: <bold><dark_red>Красный слизень
+    Description: Красный сус!
+  BlueCrewmate:
+    Name: <bold><dark_blue>Голубой слизень
+    Description: Голубоый суфии!
+  GreenCrewmate:
+    Name: <bold><dark_green>Зеленый слизень
+    Description: Зеленый суфии!
+  CyanCrewmate:
+    Name: <bold><aqua>Голубой слизень
+    Description: Голубой сус!
+  LimeCrewmate:
+    Name: <bold><green>Лаймовый слизень
+    Description: Лаймовый суп!
+  YellowCrewmate:
+    Name: <bold><yellow>Желтый слизень
+    Description: Желтые суфии!
+  OrangeCrewmate:
+    Name: <bold><gold>Оранжевый слизень
+    Description: Апельсиновый сок!
+  PurpleCrewmate:
+    Name: <bold><dark_purple>Фиолетовый слизень
+    Description: Пурпурные суфии!
+  BlackCrewmate:
+    Name: <bold><black>Чернокожий слизень
+    Description: Черные суфии!
+  WhiteCrewmate:
+    Name: <bold><white>Белый слизень
+    Description: Белые суфии!
+  PinkCrewmate:
+    Name: <bold><light_purple>Розовый слизень
+    Description: Розовые су!
+  BrownCrewmate:
+    Name: <bold><dark_gray>Коричневый слизень
+    Description: Коричневые суки!
+  FrogPrince:
+    Name: <bold><dark_green>Принц-лягушка
+    Description: Поцелуй меня!
+  Notch:
+    Name: <bold><white>Notch
+    Description: Создатель Minecraft
+  KitsuneMask:
+    Name: <bold><red>Маска Кицунэ
+    Description: Маска белой лисы
+  Goblin:
+    Name: <bold><blue>Гоблин
+    Description: Подлый!
+  Unicorn:
+    Name: <bold><light_purple>Единорог
+    Description: Я голоден.
+  Ogre:
+    Name: <bold><dark_green>Великан-людоед
+    Description: Будь драконом.
+  GreenDragon:
+    Name: <bold><green>Зеленый дракон
+    Description: Будь драконом.
+  GigaChad:
+    Name: <bold><gray>Гигачад
+    Description: Примите мужественность!
+  Anubis:
+    Name: <bold><gold>Анубис
+    Description: Древнеегипетский бог
+  Bread:
+    Name: <bold><white>Хлеб
+    Description: Свежеиспеченный
+  Cheese:
+    Name: <bold><yellow>Сыр
+    Description: Скажи "сыр"!
+  Pancakes:
+    Name: <bold><white>Блины
+    Description: Лучше с сиропом!
+  Cake:
+    Name: <bold><red>Торт
+    Description: Мммм, торт.
+  Cookie:
+    Name: <bold><gold>Печенье
+    Description: Шоколадная стружка в комплекте!
+  CandyCane:
+    Name: <bold><red>Карамельная </red></bold><bold><white>Палочка
+    Description: Немного ломать зубы
+  Chocolate:
+    Name: <bold><green>Шоколад
+    Description: Не кормите этим свою собаку!
+  WhiteChocolate:
+    Name: <bold><white>Белый шоколад
+    Description: Немного более сливочный
+  Apple:
+    Name: <bold><dark_red>Яблоко
+    Description: Не компания
+  Melon:
+    Name: <bold><green>Дыня
+    Description: Не разбивай его своей головой
+  CarvedPumpkin:
+    Name: <bold><gold>Вырезанная тыква
+    Description: Кто выключил эту штуку?
+  Strawberry:
+    Name: <bold><red>Клубника
+    Description: Они растут на деревьях?
+  Coconut:
+    Name: <bold><white>Кокосовый орех
+    Description: Рай
+  Taco:
+    Name: <bold><yellow>Тако
+    Description: Давайте поедим немного тако!
+  Bacon:
+    Name: <bold><white>Бекон
+    Description: С беконом все вкуснее.
+  Fries:
+    Name: <bold><gold>Картофель фри
+    Description: Лучший друг гамбургера
+  Hamburger:
+    Name: <bold><gold>Гамбургер
+    Description: Классический фаст-фуд!
+  Popcorn:
+    Name: <bold><gold>Попкорн
+    Description: Классическая закуска к фильму!
+  WhiteDonut:
+    Name: <bold><white>Белый пончик
+    Description: Как пончик, но в белом цвете!
+  PinkDonut:
+    Name: <bold><light_purple>Розовый пончик
+    Description: Избранное Гомера
+  ChocolateDonut:
+    Name: <bold><green>Шоколадный пончик
+    Description: Пончик получше!
+  Pie:
+    Name: <bold><dark_red>Пирог
+    Description: Я люблю пирог
+  A:
+    Name: <bold><gold>A
+    Description: 1 в алфавите!
+  B:
+    Name: <bold><dark_red>B
+    Description: 2 буква в алфавите!
+  C:
+    Name: <bold><dark_green>C
+    Description: 3 буква в алфавите!
+  D:
+    Name: <bold><aqua>D
+    Description: 4 буква в алфавите!
+  E:
+    Name: <bold><yellow>E
+    Description: 5 буква в алфавите!
+  F:
+    Name: <bold><dark_purple>F
+    Description: 6 буква в алфавите!
+  G:
+    Name: <bold><light_purple>G
+    Description: 7 буква в алфавите!
+  H:
+    Name: <bold><green>H
+    Description: 8 буква в алфавите!
+  I:
+    Name: <bold><gold>I
+    Description: 9 буква в алфавите!
+  J:
+    Name: <bold><dark_red>J
+    Description: 10 буква в алфавите!
+  K:
+    Name: <bold><dark_green>K
+    Description: 11 буква в алфавите!
+  L:
+    Name: <bold><aqua>L
+    Description: 12 буква в алфавите!
+  M:
+    Name: <bold><yellow>M
+    Description: 13 буква в алфавите!
+  N:
+    Name: <bold><dark_purple>N
+    Description: 14 буква в алфавите!
+  O:
+    Name: <bold><light_purple>O
+    Description: 15 буква в алфавите!
+  P:
+    Name: <bold><green>P
+    Description: 16 буква в алфавите!
+  Q:
+    Name: <bold><gold>Q
+    Description: 17 буква в алфавите!
+  R:
+    Name: <bold><dark_red>R
+    Description: 18 буква в алфавите!
+  S:
+    Name: <bold><dark_green>S
+    Description: 19 буква в алфавите!
+  T:
+    Name: <bold><aqua>T
+    Description: 20 буква в алфавите!
+  U:
+    Name: <bold><yellow>U
+    Description: 21 буква в алфавите!
+  V:
+    Name: <bold><dark_purple>V
+    Description: 22 буква в алфавите!
+  W:
+    Name: <bold><light_purple>W
+    Description: 23 буква в алфавите!
+  X:
+    Name: <bold><green>X
+    Description: 24 буква в алфавите!
+  Y:
+    Name: <bold><gold>Y
+    Description: 25 буква в алфавите!
+  Z:
+    Name: <bold><dark_red>Z
+    Description: 26 буква в алфавите!
+Suits:
+  Rave:
+    whole-equip: <bold><white>whole </white></bold><bold><aqua>R</aqua></bold><bold><green>a</green></bold><bold><yellow>v</yellow></bold><bold><gold>e </gold></bold><bold><white>suit
+    helmet-name: <bold><aqua>R</aqua></bold><bold><green>a</green></bold><bold><yellow>v</yellow></bold><bold><gold>e </gold></bold><bold><white>Helmet
+    chestplate-name: <bold><aqua>R</aqua></bold><bold><green>a</green></bold><bold><yellow>v</yellow></bold><bold><gold>e </gold></bold><bold><white>Chestplate
+    leggings-name: <bold><aqua>R</aqua></bold><bold><green>a</green></bold><bold><yellow>v</yellow></bold><bold><gold>e </gold></bold><bold><white>Leggings
+    boots-name: <bold><aqua>R</aqua></bold><bold><green>a</green></bold><bold><yellow>v</yellow></bold><bold><gold>e </gold></bold><bold><white>Boots
+    Description: Такие замечательные цвета!
+  Astronaut:
+    whole-equip: <bold><white>whole </white></bold><bold><white>Astronaut </white></bold><bold><white>suit
+    helmet-name: <bold><white>Astronaut </white></bold><bold><white>Helmet
+    chestplate-name: <bold><white>Astronaut </white></bold><bold><white>Chestplate
+    leggings-name: <bold><white>Astronaut </white></bold><bold><white>Leggings
+    boots-name: <bold><white>Astronaut </white></bold><bold><white>Boots
+    Description: Хьюстон?
+  Diamond:
+    whole-equip: <bold><white>whole </white></bold><bold><aqua>Diamond </aqua></bold><bold><white>suit
+    helmet-name: <bold><aqua>Diamond </aqua></bold><bold><white>Helmet
+    chestplate-name: <bold><aqua>Diamond </aqua></bold><bold><white>Chestplate
+    leggings-name: <bold><aqua>Diamond </aqua></bold><bold><white>Leggings
+    boots-name: <bold><aqua>Diamond </aqua></bold><bold><white>Boots
+    Description: |-
+      Покажите свое мастерство в шахтерском деле
+      с этим удивительным нарядом!
+  Santa:
+    whole-equip: <bold><white>whole </white></bold><bold><dark_red>Santa </dark_red></bold><bold><white>suit
+    helmet-name: <bold><dark_red>Santa </dark_red></bold><bold><white>Helmet
+    chestplate-name: <bold><dark_red>Santa </dark_red></bold><bold><white>Chestplate
+    leggings-name: <bold><dark_red>Santa </dark_red></bold><bold><white>Leggings
+    boots-name: <bold><dark_red>Santa </dark_red></bold><bold><white>Boots
+    Description: Стань Сантой и доставь подарки!
+  Frozen:
+    whole-equip: <bold><white>whole </white></bold><bold><aqua>Frozen </aqua></bold><bold><white>suit
+    helmet-name: <bold><aqua>Frozen </aqua></bold><bold><white>Helmet
+    chestplate-name: <bold><aqua>Frozen </aqua></bold><bold><white>Chestplate
+    leggings-name: <bold><aqua>Frozen </aqua></bold><bold><white>Leggings
+    boots-name: <bold><aqua>Frozen </aqua></bold><bold><white>Boots
+    Description: |-
+      Этот костюм принадлежит
+      Лорду Замерзших земель!
+  Cursed:
+    whole-equip: <bold><white>Весь </white></bold><bold><dark_purple>Проклятый </dark_purple></bold><bold><white>подходит
+    helmet-name: <bold><dark_purple>Проклятый </dark_purple></bold><bold><white>шлем
+    chestplate-name: <bold><dark_purple>Проклятый </dark_purple></bold><bold><white>нагрудник
+    leggings-name: <bold><dark_purple>Проклятые </dark_purple></bold><bold><white>поножи
+    boots-name: <bold><dark_purple>Проклятые </dark_purple></bold><bold><white>Сапоги
+    Description: Таинственные и жуткие.
+  Slime:
+    whole-equip: <bold><white>Весь </white><green>слайм </green><white>подходит
+    helmet-name: <bold><green>Слизневый </green></bold><bold><white>шлем
+    chestplate-name: <bold><green>Слизневый </green></bold><bold><white>нагрудник
+    leggings-name: <bold><green>Слизневые </green></bold><bold><white>поножи
+    boots-name: <bold><green>Слизневые </green></bold><bold><white>сапоги
+    Description: |-
+      Зелёный костюм для Слима.
+      Слаймы полюбят его!
+  Equip: <prefix> <blue>Вы экипированы <suitname>!
+  Unequip: <prefix> <blue>Вы сняти экипировку <suitname>!
+  Suit-Part-Lore: <blue>Часть костюмов
+  Whole-Equip-Lore: <italic><gray>Экипируйте весь костюм целиком!
+  Must-Remove: [ ]
+Emotes:
+  Equip: <prefix> <blue>Вы показываете <emotename>
+  Unequip: <prefix> <blue>Вы не показываете <emotename>
+  Cry:
+    Name: <bold><blue>Плач
+    Description: Тебе действительно грустно? :(
+  Angry:
+    Name: <bold><red>Сердить
+    Description: Покажите свою ярость другим игрокам!
+  Happy:
+    Name: <bold><yellow>Счастлив
+    Description: Не волнуйся, будь счастлив!
+  Cheeky:
+    Name: <bold><gold>Нахальл
+    Description: Тебе нравится быть дерзким? Что ж, эта эмоция для вас!
+  Love:
+    Name: <bold><dark_red>Любовь
+    Description: У тебя красивые глаза, ты знаешь это?
+  DealWithIt:
+    Name: <bold><gray>Трудно
+    Description: Тебе хочется покрасоваться? Эта эмоция для вас!
+  Cool:
+    Name: <bold><blue>Спокойствие
+    Description: Сохраняй хладнокровие, чувак!
+  Surprised:
+    Name: <bold><gold>Удивление
+    Description: О ГОСПОДИ!!!
+  Wink:
+    Name: <bold><green>Подмигивающий
+    Description: Веселишься? Дайте кому-нибудь знать, что вы в курсе шутки!
+  RaiseEyebrows:
+    Name: <bold><dark_aqua>Увеличить брови
+    Description: Сюрприз?
+  ScaryCandle:
+    Name: <bold><dark_purple>СТРАШНАЯ Свеча
+    Description: Счастливого Хэллоуина!
+  GlowingPumpkin:
+    Name: <bold><gold>Светящаяся тыква
+    Description: Джек O'слизь
+  LovestruckAllay:
+    Name: <bold><aqua>Успокоение от влюбленности
+    Description: Мы влюбленны?
+Projectile-Effects:
+  Equip: <prefix> <blue>Вы одели <projectile-effectname>
+  Unequip: <prefix> <blue>Вы сняли <projectile-effectname>
+  Rainbow:
+    name: <bold><rainbow>Радуга
+    Description: Радужные частицы
+  Christmas:
+    name: <bold><dark_red>Рожде</dark_red></bold><bold><white>ство
+    Description: C Рождеством!
+  RedstoneHelix:
+    name: <bold><dark_red>Спираль из редстоуна
+    Description: Вращающиеся, красные частицы
+  FlameHelix:
+    name: <bold><red>Огненная спираль
+    Description: Вращающееся пламя
+  CursedHelix:
+    name: <bold><dark_purple>Проклятая спираль
+    Description: Вращающиеся, фиолетовые частицы
+  SoulFireHelix:
+    name: <bold><aqua>Спираль из пламени душ
+    Description: Вращающееся, циановое пламя
+  Spark:
+    name: <bold><white>Искра
+    Description: сверкающие белые звезды
+  Redstone:
+    name: <bold><dark_red>Редстоун
+    Description: Небольшие, красные облака
+  Flame:
+    name: <bold><red>Пламя
+    Description: Малое пламя
+  Water:
+    name: <bold><blue>Вода
+    Description: Синие водопады
+  Witch:
+    name: <bold><dark_purple>Ведьма
+    Description: <gray>Пурпурные крестики
+  Emerald:
+    name: <bold><dark_green>Изумруд
+    Description: Зеленые звезды
+  Note:
+    name: <bold><yellow>Нота
+    Description: Разноцветные ноты
+  Love:
+    name: <bold><light_purple>Любовь
+    Description: Красные сердца
+  Lava:
+    name: <bold><dark_red>Лава
+    Description: Лавовые пузыри
+  Snow:
+    name: <bold><white>Снег
+    Description: Снежные частицы
+  Slime:
+    name: <bold><green>Слизень
+    Description: Липкие частицы
+  Crit:
+    name: <bold><gray>Критический удар
+    Description: Светло-коричневые крестики
+  MagicCrit:
+    name: <bold><dark_aqua>Волшебный критический удар
+    Description: Циановые звезды
+  Explosion:
+    name: <bold><dark_red>Взрыв
+    Description: БУУУУМ!
+  Cloud:
+    name: <bold><white>Облако
+    Description: Белые облака
+  Smoke:
+    name: <bold><gray>Дым
+    Description: Небольшие, серые облака
+  Portal:
+    name: <bold><dark_purple>Портал
+    Description: Небольшие, фиолетовые облака
+  DragonBreath:
+    name: <bold><light_purple>Дыхание дракона
+    Description: Небольшие, фиолетовые облака
+  SquidInk:
+    name: <bold><blue>Чернила спрута
+    Description: Чёрные облака
+  SoulFireFlame:
+    name: <bold><aqua>Пламя факела душ
+    Description: Малое, циановое пламя
+  Snowflake:
+    name: <bold><white>Снежинка
+    Description: Небольшие, белые облака
+  GlowSquid:
+    name: <bold><dark_aqua>Светящийся кальмар
+    Description: Бирюзовые звезды
+  GlowSquidInk:
+    name: <bold><dark_aqua>Чернила Светящегося спрута
+    Description: Аквамариновые облака
+  Scrape:
+    name: <bold><dark_green>Царапина
+    Description: Бирюзовые звезды
+  WaxOff:
+    name: <bold><white>Воск выключен
+    Description: Белые звезды
+  WaxOn:
+    name: <bold><white>Воск включен
+    Description: Оранжевые звёзды
+  SculkSoul:
+    name: <bold><aqua>Скалковые души
+    Description: Циановые души
+Death-Effects:
+  Equip: <prefix> <blue>Вы одели <death-effectname>
+  Unequip: <prefix> <blue>Вы сняли <death-effectname>
+  Explosion:
+    name: <bold><dark_red>Взрыв
+    Description: БУУУУМ!
+  Firework:
+    name: <bold><gray>Фейерверк
+    Description: |-
+      Поздравляем!
+      Вы... умерли?
+  Lightning:
+    name: <bold><white>Молния
+    Description: '⚡ БАЦ!'
+  PuffOfSmoke:
+    Description: Исчезнет в кусочке дыма!
+    name: <bold><gray>Облачко дыма
+  DragonBreath:
+    name: <bold><gray>Dragon Breath
+    Description: Disintegrate into the dragon mist.
+  Flames:
+    name: <bold><gold>Flames
+    Description: Explode into bursts of fire and sparks!
+  ItemExplode:
+    name: <bold><light_purple>Candy Explode
+    Description: ALL OUR (SWEET) FOOD KEEPS BLOWING UP
+Enabled-SelfMorphView: <prefix> <blue>Вы включили просмотр себя для превращений!
+Disabled-SelfMorphView: <prefix> <blue>Вы отключили просмотр себя для превращений!
+Enabled-Gadgets: <prefix> <blue>Вы включили гаджеты!
+Disabled-Gadgets: <prefix> <blue>Вы отключили гаджеты!
+Not-Allowed-From-Console: <bold><red>Косметика в этом мире отключена!
+World-Disabled: <prefix> <bold><red>Косметика в этом мире отключена!
+Region-Disabled: <prefix> <bold><red>косметика в этой области отключена!
+Region-Disabled-Category: <prefix> <bold><red><category> косметика в этой области отключена!
+Disabled-Command-Message: <prefix> <bold><red>Вы не можете использовать эту команду, пока косметика укомплектована!
+Not-Allowed-In-Vanish: <prefix> <bold><red>Вы не можете пользоваться косметикой, находясь в невидимости!
+Too-Long: Слишком долго, попробуйте еще раз
+Cannot-Disable-Gadgets: <prefix> <bold><red>Вы не можете отключить гаджеты.
+Must-Remove:
+  Hats: <prefix> <bold><red>Вы должны снять головной убор, чтобы надеть шляпу!
+  Suits:
+    HELMET: <prefix> <bold><red>Вы должны снять шлем, чтобы надеть шлем скафандра!
+    CHESTPLATE: <prefix> <bold><red>Вы должны снять нагрудную пластину, чтобы надеть нагрудный скафандра!
+    LEGGINGS: <prefix> <bold><red>Вы должны снять свои штаны, чтобы надеть штаны костюма!
+    BOOTS: <prefix> <bold><red>Вы должны снять свои ботинки, чтобы надеть ботинки костюма!
+  Emotes: <prefix> <bold><red>Вы должны снять шлем, чтобы экипировать эмоцию!
+  Gadgets: <prefix> <bold><red>Вы должны очистить слот панели быстрого доступа <slot>, чтобы использовать гаджет!
+  Mounts: <prefix> <bold><red>Вы должны очистить слот панели быстрого доступа <slot>, чтобы экипировать этот транспорт!
+Use-Rename-Pet-Command: <prefix> <red>Используйте <yellow>/uc rename</yellow> для переименования
+Commands-Disabled-During-Chest: <prefix> <bold><red>Вы не можете использовать команды во время открытия сундука!
+No-Buy-Key-Permission: <prefix> <red><bold>Вы не имеете разрешения на покупку ключей сокровища!
+Particles-Minimal-In-Client: <yellow>В настройках клиента для частиц установлено значение "минимально" и вы не сможете видеть частицы.
+Cosmetics-Toggled-Off: <prefix> <blue>Косметика была выключена
+Cosmetics-Toggled-On: <prefix> <blue>Косметика была включена
+Invalid-Category: <prefix> <bold><red>Недопустимая категория!
+Invalid-Cosmetic: <prefix> <bold><red>Недействительная косметика!
+Invalid-Player: '<prefix> <bold><red>Недопустимый игрок!'
+Must-Specify-Player: <prefix> <bold><red>Вы должны указать игрока!
+Invalid-Number: '<prefix> <bold><red>Неверный номер: <value>'
+Treasure-Keys-Given: <green><keys> Ключи, переданные <playername>
+Ammo-Given: <green><ammo> <gadgetname> Боеприпасы, выданные <playername>
