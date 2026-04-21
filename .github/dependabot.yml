@@ -23,3 +23,6 @@ updates:
       - dependency-name: "net.wesjd:anvilgui"
       - dependency-name: "com.palmergames.bukkit.towny:towny"
       - dependency-name: "com.sk89q.worldguard:worldguard-bukkit"
+      - dependency-name: "net.kyori:adventure-text-minimessage"
+      - dependency-name: "net.kyori:adventure-text-serializer-plain"
+      - dependency-name: "net.kyori:adventure-api"
