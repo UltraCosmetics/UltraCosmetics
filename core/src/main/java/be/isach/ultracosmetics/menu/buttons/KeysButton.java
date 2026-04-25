@@ -13,7 +13,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.inventory.ItemStack;
 
 public class KeysButton extends TreasureButton {
-    private static final XMaterial KEY_ITEM;
+    private static ItemStack KEY_ITEM;
 
     static {
         XMaterial chosen = XMaterial.TRIPWIRE_HOOK;
@@ -27,7 +27,7 @@ public class KeysButton extends TreasureButton {
                 chosen = XMaterial.TRIAL_KEY;
             }
         }
-        KEY_ITEM = chosen;
+        KEY_ITEM = chosen.parseItem();
     }
 
     private final String itemName = MessageManager.getLegacyMessage("Treasure-Keys");
@@ -40,8 +40,13 @@ public class KeysButton extends TreasureButton {
         noKeysSound = XSound.BLOCK_ANVIL_LAND.record().withVolume(0.2f).withPitch(1.2f).soundPlayer();
     }
 
-    public static XMaterial getKeyItem() {
-        return KEY_ITEM;
+    public static ItemStack getKeyItem() {
+        return KEY_ITEM.clone();
+    }
+
+    // used by UC GUI addon
+    public static void setKeyItem(ItemStack stack) {
+        KEY_ITEM = stack;
     }
 
     @Override
@@ -49,7 +54,7 @@ public class KeysButton extends TreasureButton {
         Component yourKeysMessage = MessageManager.getMessage("Your-Keys",
                 Placeholder.unparsed("keys", String.valueOf(ultraPlayer.getKeys()))
         );
-        return ItemFactory.create(KEY_ITEM, itemName, "", MessageManager.toLegacy(yourKeysMessage), buyKeyMessage);
+        return ItemFactory.rename(KEY_ITEM, itemName, "", MessageManager.toLegacy(yourKeysMessage), buyKeyMessage);
     }
 
     @Override
