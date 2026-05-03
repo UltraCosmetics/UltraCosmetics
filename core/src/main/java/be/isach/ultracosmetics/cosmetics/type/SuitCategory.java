@@ -5,15 +5,7 @@ import be.isach.ultracosmetics.config.CustomConfiguration;
 import be.isach.ultracosmetics.config.MessageManager;
 import be.isach.ultracosmetics.config.SettingsManager;
 import be.isach.ultracosmetics.cosmetics.Category;
-import be.isach.ultracosmetics.cosmetics.suits.ArmorSlot;
-import be.isach.ultracosmetics.cosmetics.suits.Suit;
-import be.isach.ultracosmetics.cosmetics.suits.SuitAstronaut;
-import be.isach.ultracosmetics.cosmetics.suits.SuitCursed;
-import be.isach.ultracosmetics.cosmetics.suits.SuitDiamond;
-import be.isach.ultracosmetics.cosmetics.suits.SuitFrozen;
-import be.isach.ultracosmetics.cosmetics.suits.SuitRave;
-import be.isach.ultracosmetics.cosmetics.suits.SuitSanta;
-import be.isach.ultracosmetics.cosmetics.suits.SuitSlime;
+import be.isach.ultracosmetics.cosmetics.suits.*;
 import be.isach.ultracosmetics.util.ItemFactory;
 import be.isach.ultracosmetics.util.MathUtils;
 import be.isach.ultracosmetics.util.SmartLogger;
@@ -33,9 +25,11 @@ public class SuitCategory {
 
     public static void register() {
         new SuitCategory("Rave",
-                XMaterial.LEATHER_HELMET, XMaterial.LEATHER_CHESTPLATE, XMaterial.LEATHER_LEGGINGS, XMaterial.LEATHER_BOOTS,
+                XMaterial.LEATHER_HELMET, XMaterial.LEATHER_CHESTPLATE, XMaterial.LEATHER_LEGGINGS,
+                XMaterial.LEATHER_BOOTS,
                 // MathUtils.random(int) is inclusive
-                s -> Color.fromRGB(MathUtils.random(255), MathUtils.random(255), MathUtils.random(255)), SuitRave.class) {
+                s -> Color.fromRGB(MathUtils.random(255), MathUtils.random(255), MathUtils.random(255)),
+                SuitRave.class) {
             @Override
             public void setupConfig(CustomConfiguration config, String path) {
                 config.addDefault(path + ".Update-Delay-In-Creative", 10,
@@ -46,7 +40,8 @@ public class SuitCategory {
             }
         };
         new SuitCategory("Astronaut",
-                XMaterial.GLASS, XMaterial.GOLDEN_CHESTPLATE, XMaterial.GOLDEN_LEGGINGS, XMaterial.GOLDEN_BOOTS, s -> null, SuitAstronaut.class) {
+                XMaterial.GLASS, XMaterial.GOLDEN_CHESTPLATE, XMaterial.GOLDEN_LEGGINGS, XMaterial.GOLDEN_BOOTS,
+                s -> null, SuitAstronaut.class) {
             @Override
             public void setupConfig(CustomConfiguration config, String path) {
                 config.addDefault(path + ".Antigravity", true,
@@ -55,17 +50,21 @@ public class SuitCategory {
             }
         };
         new SuitCategoryTrail("Diamond",
-                XMaterial.DIAMOND_HELMET, XMaterial.DIAMOND_CHESTPLATE, XMaterial.DIAMOND_LEGGINGS, XMaterial.DIAMOND_BOOTS, s -> null, SuitDiamond.class);
+                XMaterial.DIAMOND_HELMET, XMaterial.DIAMOND_CHESTPLATE, XMaterial.DIAMOND_LEGGINGS,
+                XMaterial.DIAMOND_BOOTS, s -> null, SuitDiamond.class);
         new SuitCategoryTrail("Santa",
-                XMaterial.LEATHER_HELMET, XMaterial.LEATHER_CHESTPLATE, XMaterial.LEATHER_LEGGINGS, XMaterial.LEATHER_BOOTS, s -> Color.RED, SuitSanta.class);
+                XMaterial.LEATHER_HELMET, XMaterial.LEATHER_CHESTPLATE, XMaterial.LEATHER_LEGGINGS,
+                XMaterial.LEATHER_BOOTS, s -> Color.RED, SuitSanta.class);
         new SuitCategoryTrail("Frozen",
                 XMaterial.PACKED_ICE, XMaterial.LEATHER_CHESTPLATE, XMaterial.LEATHER_LEGGINGS, XMaterial.LEATHER_BOOTS,
                 s -> (s == ArmorSlot.HELMET ? null : Color.AQUA), SuitFrozen.class);
         new SuitCategoryTrail("Cursed",
-                XMaterial.JACK_O_LANTERN, XMaterial.LEATHER_CHESTPLATE, XMaterial.LEATHER_LEGGINGS, XMaterial.LEATHER_BOOTS,
+                XMaterial.JACK_O_LANTERN, XMaterial.LEATHER_CHESTPLATE, XMaterial.LEATHER_LEGGINGS,
+                XMaterial.LEATHER_BOOTS,
                 s -> (s == ArmorSlot.HELMET ? null : Color.fromRGB(35, 30, 42)), SuitCursed.class);
         new SuitCategory("Slime",
-                XMaterial.SLIME_BLOCK, XMaterial.LEATHER_CHESTPLATE, XMaterial.LEATHER_LEGGINGS, XMaterial.LEATHER_BOOTS,
+                XMaterial.SLIME_BLOCK, XMaterial.LEATHER_CHESTPLATE, XMaterial.LEATHER_LEGGINGS,
+                XMaterial.LEATHER_BOOTS,
                 s -> (s == ArmorSlot.HELMET ? null : Color.fromRGB(128, 241, 95)), SuitSlime.class) {
             @Override
             public void setupConfig(CustomConfiguration config, String path) {
@@ -82,7 +81,9 @@ public class SuitCategory {
     private static void loadCustom(ConfigurationSection custom) {
         SmartLogger log = UltraCosmeticsData.get().getPlugin().getSmartLogger();
         for (String key : custom.getKeys(false)) {
-            if (!custom.isConfigurationSection(key)) continue;
+            if (!custom.isConfigurationSection(key)) {
+                continue;
+            }
             ConfigurationSection section = custom.getConfigurationSection(key);
             ItemStack helmetItem = loadPart(section, "Helmet");
             ItemStack chestplateItem = loadPart(section, "Chestplate");
@@ -99,10 +100,11 @@ public class SuitCategory {
     }
 
     private static ItemStack loadPart(ConfigurationSection section, String key) {
-        if (!section.isConfigurationSection(key)) {
+        ConfigurationSection item = section.getConfigurationSection(key);
+        if (item == null) {
             return null;
         }
-        return ItemFactory.getItemDeserializer().fromConfig(section).deserialize();
+        return ItemFactory.getItemDeserializer().fromConfig(item).deserialize();
     }
 
     private static void addDefaultStrings(String key) {
@@ -128,7 +130,8 @@ public class SuitCategory {
     private final Class<? extends Suit> clazz;
 
     private SuitCategory(String configName, XMaterial helmet, XMaterial chestplate,
-                         XMaterial leggings, XMaterial boots, Function<ArmorSlot, Color> colorFunc, Class<? extends Suit> clazz) {
+                         XMaterial leggings, XMaterial boots, Function<ArmorSlot, Color> colorFunc,
+                         Class<? extends Suit> clazz) {
         this.configName = configName;
         this.clazz = clazz;
         this.helmetItem = colorize(helmet.parseItem(), colorFunc.apply(ArmorSlot.HELMET));
@@ -138,7 +141,8 @@ public class SuitCategory {
         VALUES.add(this);
     }
 
-    private SuitCategory(String configName, ItemStack helmet, ItemStack chestplate, ItemStack leggings, ItemStack boots, Class<? extends Suit> clazz) {
+    private SuitCategory(String configName, ItemStack helmet, ItemStack chestplate, ItemStack leggings, ItemStack boots,
+                         Class<? extends Suit> clazz) {
         this.configName = configName;
         this.clazz = clazz;
         this.helmetItem = helmet;
@@ -239,7 +243,8 @@ public class SuitCategory {
     }
 
     private static class SuitCategoryTrail extends SuitCategory {
-        private SuitCategoryTrail(String configName, XMaterial helmet, XMaterial chestplate, XMaterial leggings, XMaterial boots, Function<ArmorSlot, Color> colorFunc, Class<? extends Suit> clazz) {
+        private SuitCategoryTrail(String configName, XMaterial helmet, XMaterial chestplate, XMaterial leggings,
+                                  XMaterial boots, Function<ArmorSlot, Color> colorFunc, Class<? extends Suit> clazz) {
             super(configName, helmet, chestplate, leggings, boots, colorFunc, clazz);
         }
 
