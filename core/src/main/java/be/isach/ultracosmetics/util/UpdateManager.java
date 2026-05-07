@@ -5,6 +5,8 @@ import be.isach.ultracosmetics.UltraCosmeticsData;
 import be.isach.ultracosmetics.config.SettingsManager;
 import be.isach.ultracosmetics.task.UltraTask;
 import be.isach.ultracosmetics.util.SmartLogger.LogLevel;
+import be.isach.ultracosmetics.version.ServerVersion;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -13,8 +15,16 @@ import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.*;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.Base64;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
 import java.util.logging.Level;
 
 /**
@@ -26,35 +36,50 @@ import java.util.logging.Level;
  * Project: UltraCosmetics
  */
 public class UpdateManager extends UltraTask {
-
-    private static final String RESOURCE_URL = "https://api.spiget.org/v2/resources/10905/";
-    // String starts with a space on purpose, because that's what's returned from the API for some reason.
-    private static final String VERSIONS_PREFIX = " Supported versions: ";
+    private static final String RESOURCE_URL = "https://api.modrinth.com/v2/project/ultracosmetics/";
+    private final UltraCosmetics ultraCosmetics;
     /**
      * Current UC version.
      */
     private final Version currentVersion;
+    private final String userAgent;
+    private final String serverBrand;
+
+    private boolean apiGone = false;
 
     /**
-     * Last Version published on spigotmc.org.
+     * Best available version available on modrinth
      */
-    private Version spigotVersion;
-
-    private final UltraCosmetics ultraCosmetics;
+    private Version modrinthVersion;
+    private String modrinthSHA512;
+    private String updateUrl;
+    private String updateFilename;
 
     /**
      * Whether the plugin is outdated or not.
      */
     private boolean outdated = false;
 
-    private String status;
+    private String status = "no update check performed";
 
     public UpdateManager(UltraCosmetics ultraCosmetics) {
         this.ultraCosmetics = ultraCosmetics;
         Reader reader = UltraCosmeticsData.get().getPlugin().getFileReader("build_info.yml");
         YamlConfiguration buildInfo = YamlConfiguration.loadConfiguration(reader);
         String gitHash = buildInfo.getString("git-hash");
-        this.currentVersion = new Version(ultraCosmetics.getDescription().getVersion(), gitHash);
+        this.currentVersion = new Version("0.0"/*ultraCosmetics.getDescription().getVersion()*/, gitHash);
+        // email broken up to hopefully confuse dumb scrapers
+        this.userAgent = "UltraCosmetics/UltraCosmetics/" + currentVersion + " (adm" + "in@ult" + "racosmetics.net)";
+
+        switch (Bukkit.getName()) {
+            case "Spigot":
+            case "Paper":
+            case "Folia":
+                this.serverBrand = Bukkit.getName().toLowerCase(Locale.ROOT);
+                break;
+            default:
+                this.serverBrand = "spigot";
+        }
     }
 
     /**
@@ -62,7 +87,7 @@ public class UpdateManager extends UltraTask {
      */
     @Override
     public void run() {
-        determineStatus();
+        status = fetchModrinthVersion();
         ultraCosmetics.getSmartLogger().write(status);
         if (outdated && SettingsManager.getConfig().getBoolean("Auto-Update")) {
             update();
@@ -72,30 +97,6 @@ public class UpdateManager extends UltraTask {
     @Override
     public void schedule() {
         task = getScheduler().runLaterAsync(this::run, 1);
-    }
-
-    private void determineStatus() {
-        String spigotVersionString = fetchSpigotVersion();
-        if (spigotVersionString == null) {
-            status = "Cannot update, unknown version";
-            return;
-        }
-        spigotVersion = new Version(spigotVersionString);
-        if (currentVersion.compareTo(spigotVersion) == 0) {
-            status = "You are running the latest version on Spigot.";
-            return;
-        }
-        if (currentVersion.compareTo(spigotVersion) > 0) {
-            status = "You are running a version newer than the latest one on Spigot.";
-            return;
-        }
-        if (!checkMinecraftVersion()) {
-            status = "A new version is available on Spigot, but it doesn't support this server version.";
-            return;
-        }
-
-        outdated = true;
-        status = "New version available on Spigot: " + spigotVersion.numbersOnly();
     }
 
     public boolean update() {
@@ -110,144 +111,165 @@ public class UpdateManager extends UltraTask {
     }
 
     /**
-     * Fetches latest version published on Spigot.
+     * Get the latest version info from Modrinth
      *
-     * @return latest version published on Spigot.
+     * @return Information about the update status (error, update available, etc.)
      */
-    private String fetchSpigotVersion() {
-        JsonObject jsonVersion = (JsonObject) apiRequest("versions/latest");
-        if (jsonVersion == null) {
-            return null;
+    private String fetchModrinthVersion() {
+        Map<String, String> params = new HashMap<>();
+        params.put("loaders", "[\"" + serverBrand + "\"]");
+        params.put("game_versions", "[\"" + ServerVersion.getMinecraftVersion(true) + "\"]");
+        params.put("include_changelog", "false");
+        JsonElement element = apiRequest("version", params);
+        if (element == null || !element.isJsonArray()) {
+            return "Failed to check for updates: invalid or no response from API";
         }
-        String version = jsonVersion.get("name").getAsString();
-        return version;
+        JsonArray versions = element.getAsJsonArray();
+        JsonObject version = null;
+        for (JsonElement el : versions) {
+            // Filter for release versions. Could also make this configurable
+            if ("release".equals(el.getAsJsonObject().get("version_type").getAsString())) {
+                version = el.getAsJsonObject();
+                break;
+            }
+        }
+        if (version == null) {
+            return "No updates available";
+        }
+        String versionString = version.get("version_number").getAsString();
+        if (versionString == null) {
+            return "Cannot update, unknown version";
+        }
+        modrinthVersion = new Version(versionString);
+        if (currentVersion.compareTo(modrinthVersion) == 0) {
+            return "You are running the latest stable version available on Modrinth for this server version.";
+        }
+        if (currentVersion.compareTo(modrinthVersion) > 0) {
+            return "You are running a version newer than the latest stable one on Modrinth for this server version.";
+        }
+
+        // We have a candidate for the update, now get the information we'd need to perform the update
+        updateFilename = null;
+        JsonElement el = version.get("files");
+        if (el != null && el.isJsonArray()) {
+            JsonArray files = el.getAsJsonArray();
+            for (JsonElement fileEl : files) {
+                JsonObject file = fileEl.getAsJsonObject();
+                if (file != null && file.get("primary").getAsBoolean()) {
+                    updateFilename = file.get("filename").getAsString();
+                    updateUrl = file.get("url").getAsString();
+                    JsonObject hashes = file.getAsJsonObject("hashes");
+                    modrinthSHA512 = hashes.get("sha512").getAsString();
+                    break;
+                }
+            }
+        }
+        if (updateFilename == null) {
+            return "Cannot update, no download available through Modrinth";
+        }
+
+        outdated = true;
+        return "New version available on Modrinth: " + modrinthVersion.versionWithClassifier();
     }
 
-    public Version getSpigotVersion() {
-        return spigotVersion;
+    public Version getModrinthVersion() {
+        return modrinthVersion;
     }
 
     public Version getCurrentVersion() {
         return currentVersion;
     }
 
-    private JsonElement apiRequest(String suffix) {
-        InputStreamReader reader = null;
+    private JsonElement apiRequest(String path, Map<String, String> queryParams) {
+        if (apiGone) {
+            return null;
+        }
+        StringBuilder builder = new StringBuilder(path);
+        boolean first = true;
+        for (Map.Entry<String, String> entry : queryParams.entrySet()) {
+            builder.append(first ? '?' : '&');
+            first = false;
+            builder.append(entry.getKey()).append('=')
+                    .append(URLEncoder.encode(entry.getValue(), StandardCharsets.UTF_8));
+        }
+        URL url = null;
         try {
-            URL url = new URL(RESOURCE_URL + suffix);
+            url = new URL(RESOURCE_URL + builder);
+        } catch (MalformedURLException e) {
+            throw new RuntimeException(e);
+        }
 
+        try {
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.addRequestProperty("User-Agent", "UltraCosmetics Update Checker"); // Sets the user-agent
+            connection.addRequestProperty("User-Agent", userAgent);
+            if (connection.getResponseCode() == 410) {
+                // no further contact with API if it returns 410
+                apiGone = true;
+                return null;
+            }
 
             InputStream inputStream = connection.getInputStream();
-            reader = new InputStreamReader(inputStream);
-
-            // Earlier versions of GSON don't have the static
-            // parsing methods present in recent versions.
-            @SuppressWarnings("deprecation")
-            JsonElement response = new JsonParser().parse(reader);
-            return response;
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            ultraCosmetics.getSmartLogger().write(LogLevel.ERROR, "Failed to check for an update on spigot.");
-        } finally {
-            if (reader != null) {
-                try {
-                    reader.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+            try (InputStreamReader reader = new InputStreamReader(inputStream)) {
+                // Earlier versions of GSON don't have the static
+                // parsing methods present in recent versions.
+                @SuppressWarnings("deprecation")
+                JsonElement response = new JsonParser().parse(reader);
+                return response;
             }
+        } catch (Exception ignored) {
         }
         return null;
+    }
+
+    private static byte[] hexStringToByteArray(String s) {
+        // https://stackoverflow.com/a/19119453
+        int len = s.length();
+        byte[] data = new byte[len / 2];
+        for (int i = 0; i < len; i += 2) {
+            data[i / 2] = (byte) ((Character.digit(s.charAt(i), 16) << 4)
+                    + Character.digit(s.charAt(i + 1), 16));
+        }
+        return data;
     }
 
     /**
      * Downloads the file
      * <p>
-     * Borrowed from <a href="https://github.com/Stipess1/AutoUpdater/blob/master/src/main/java/com/stipess1/updater/Updater.java">AutoUpdater</a>
+     * Adapted from <a href="https://github.com/Stipess1/AutoUpdater/blob/master/src/main/java/com/stipess1/updater/Updater.java">AutoUpdater</a>
      */
     private boolean download() {
-        BufferedInputStream in = null;
-        FileOutputStream fout = null;
-
+        URL url;
+        MessageDigest hash;
         try {
-            URL url = new URL(RESOURCE_URL + "download");
-            in = new BufferedInputStream(url.openStream());
-            File outputFile = new File(Bukkit.getUpdateFolderFile(), "UltraCosmetics-" + spigotVersion.numbersOnly() + "-RELEASE.jar");
-            outputFile.getParentFile().mkdirs();
-            fout = new FileOutputStream(outputFile);
+            url = new URL(updateUrl);
+            hash = MessageDigest.getInstance("SHA-512");
+        } catch (MalformedURLException | NoSuchAlgorithmException e) {
+            // should not happen
+            throw new RuntimeException(e);
+        }
+        File outputFile = new File(Bukkit.getUpdateFolderFile(), updateFilename);
+        outputFile.getParentFile().mkdirs();
+
+        try (BufferedInputStream in = new BufferedInputStream(url.openStream());
+             FileOutputStream fout = new FileOutputStream(outputFile)) {
 
             final byte[] data = new byte[4096];
             int count;
             while ((count = in.read(data, 0, 4096)) != -1) {
                 fout.write(data, 0, count);
+                hash.update(data, 0, count);
             }
-            return true;
         } catch (Exception e) {
             ultraCosmetics.getLogger().log(Level.SEVERE, null, e);
             return false;
-        } finally {
-            try {
-                if (in != null) {
-                    in.close();
-                }
-            } catch (final IOException e) {
-                ultraCosmetics.getLogger().log(Level.SEVERE, null, e);
-                e.printStackTrace();
-            }
-            try {
-                if (fout != null) {
-                    fout.close();
-                }
-            } catch (final IOException e) {
-                ultraCosmetics.getLogger().log(Level.SEVERE, null, e);
-                e.printStackTrace();
-            }
         }
-    }
-
-    private boolean checkMinecraftVersion() {
-        JsonObject update = (JsonObject) apiRequest("updates/latest");
-        // Gets the property "description" of the returned JSON object,
-        // base64-decodes it, and stores it in `description`.
-        String description = new String(Base64.getDecoder().decode(update.get("description").getAsString()));
-
-        // Basically the way this works, is each update description has a line at the end like this:
-        // "Supported versions: 1.8.8, 1.12.2, 1.16.5, 1.17.1, 1.18.2"
-        // So we need to parse it and find out if this server's MC version is in this list
-        String[] lines = description.split("\\<br\\>");
-        String supportedVersionsLine = lines[lines.length - 1];
-
-        if (!supportedVersionsLine.startsWith(VERSIONS_PREFIX)) {
-            ultraCosmetics.getSmartLogger().write(LogLevel.WARNING, "Can't read supported versions line:");
-            ultraCosmetics.getSmartLogger().write(LogLevel.WARNING, supportedVersionsLine);
-            return false;
-        }
-        supportedVersionsLine = supportedVersionsLine.substring(VERSIONS_PREFIX.length());
-        String[] supportedVersions = supportedVersionsLine.split(", ");
-        // Returns a string like "1.18.2-R0.1-SNAPSHOT"
-        String thisMinecraftVersion = Bukkit.getBukkitVersion();
-        // Cuts the string to something like "1.18.2"
-        thisMinecraftVersion = thisMinecraftVersion.substring(0, thisMinecraftVersion.indexOf('-'));
-
-        // Since 3.0, the range of supported versions is wide enough we can just check if
-        // the server's version is less than or equal to the highest version listed supported.
-        String[] tmvParts = thisMinecraftVersion.split("\\.");
-        String[] supportedParts = supportedVersions[supportedVersions.length - 1].split("\\.");
-        for (int i = 0; i < tmvParts.length; i++) {
-            if (i >= supportedParts.length) {
-                // If the server's version has more parts than the highest supported version, it's not supported.
+        if (modrinthSHA512 != null) {
+            if (!Arrays.equals(hexStringToByteArray(modrinthSHA512), hash.digest())) {
+                ultraCosmetics.getSmartLogger().write(LogLevel.ERROR, "Hash check failed, discarding update!");
+                outputFile.delete();
                 return false;
             }
-            int tmvPart = Integer.parseInt(tmvParts[i]);
-            int supportedPart = Integer.parseInt(supportedParts[i]);
-            // For the first non-equal parts, if the new version is greater than this version, new version wins
-            if (supportedPart > tmvPart) return true;
-            // Or, if the new version is less than this version (??), this version wins.
-            if (supportedPart < tmvPart) return false;
         }
-        // If all parts are equal, new version wins.
         return true;
     }
 

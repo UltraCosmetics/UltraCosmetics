@@ -22,13 +22,7 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityPickupItemEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
-import org.bukkit.event.player.PlayerChangedWorldEvent;
-import org.bukkit.event.player.PlayerCommandPreprocessEvent;
-import org.bukkit.event.player.PlayerItemDamageEvent;
-import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
-import org.bukkit.event.player.PlayerRespawnEvent;
-import org.bukkit.event.player.PlayerTeleportEvent;
+import org.bukkit.event.player.*;
 
 import java.util.Arrays;
 import java.util.Locale;
@@ -48,8 +42,10 @@ public class PlayerListener implements Listener {
     private final int menuItemSlot = SettingsManager.getConfig().getInt("Menu-Item.Slot");
     private final long joinItemDelay = SettingsManager.getConfig().getLong("Item-Delay.Join", 1);
     private final long respawnItemDelay = SettingsManager.getConfig().getLong("Item-Delay.World-Change-Or-Respawn", 0);
-    private final boolean updateOnWorldChange = SettingsManager.getConfig().getBoolean("Always-Update-Cosmetics-On-World-Change", false);
-    private final boolean preventCommandsDuringChests = SettingsManager.getConfig().getBoolean("TreasureChests.Prevent-Commands-While-Opening", false);
+    private final boolean updateOnWorldChange =
+            SettingsManager.getConfig().getBoolean("Always-Update-Cosmetics-On-World-Change", false);
+    private final boolean preventCommandsDuringChests =
+            SettingsManager.getConfig().getBoolean("TreasureChests.Prevent-Commands-While-Opening", false);
 
     public PlayerListener(UltraCosmetics ultraCosmetics) {
         this.ultraCosmetics = ultraCosmetics;
@@ -62,14 +58,18 @@ public class PlayerListener implements Listener {
 
     @EventHandler(priority = EventPriority.LOWEST)
     public void onPreJoin(final PlayerJoinEvent event) {
-        if (isNPC(event.getPlayer())) return;
+        if (isNPC(event.getPlayer())) {
+            return;
+        }
         // Ready UltraPlayer as early as possible so it can be ready for other plugins that might also run code on join
         pm.createUltraPlayer(event.getPlayer().getUniqueId());
     }
 
     @EventHandler
     public void onJoin(final PlayerJoinEvent event) {
-        if (isNPC(event.getPlayer())) return;
+        if (isNPC(event.getPlayer())) {
+            return;
+        }
         UltraPlayer ultraPlayer = pm.getUltraPlayer(event.getPlayer());
         if (SettingsManager.isAllowedWorld(event.getPlayer().getWorld())) {
             runWhenValid(event.getPlayer(), joinItemDelay, ultraPlayer::load);
@@ -78,11 +78,14 @@ public class PlayerListener implements Listener {
         if (ultraCosmetics.getUpdateChecker() != null && ultraCosmetics.getUpdateChecker().isOutdated()) {
             if (event.getPlayer().hasPermission("ultracosmetics.updatenotify")) {
                 Component prefix = MessageManager.getMessage("Prefix");
-                ultraPlayer.sendMessage(Component.empty().append(prefix).append(Component.text("An update is available: "
-                        + ultraCosmetics.getUpdateChecker().getSpigotVersion(), NamedTextColor.RED, TextDecoration.BOLD)));
+                ultraPlayer.sendMessage(
+                        Component.empty().append(prefix).append(Component.text("An update is available: "
+                                        + ultraCosmetics.getUpdateChecker().getModrinthVersion(), NamedTextColor.RED,
+                                TextDecoration.BOLD)));
                 Component use = Component.text("Use ", NamedTextColor.RED, TextDecoration.BOLD);
                 Component command = Component.text("/uc update", NamedTextColor.YELLOW);
-                Component toInstall = Component.text(" to install the update.", NamedTextColor.RED, TextDecoration.BOLD);
+                Component toInstall =
+                        Component.text(" to install the update.", NamedTextColor.RED, TextDecoration.BOLD);
                 ultraPlayer.sendMessage(Component.empty().append(prefix).append(use).append(command).append(toInstall));
             }
         }
@@ -90,8 +93,12 @@ public class PlayerListener implements Listener {
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onWorldChange(final PlayerChangedWorldEvent event) {
-        if (isNPC(event.getPlayer())) return;
-        if (!SettingsManager.isAllowedWorld(event.getPlayer().getWorld())) return;
+        if (isNPC(event.getPlayer())) {
+            return;
+        }
+        if (!SettingsManager.isAllowedWorld(event.getPlayer().getWorld())) {
+            return;
+        }
         UltraPlayer up = pm.getUltraPlayer(event.getPlayer());
         if (menuItemEnabled && event.getPlayer().hasPermission("ultracosmetics.receivechest")) {
             ultraCosmetics.getScheduler().runAtEntityLater(event.getPlayer(), up::giveMenuItem, respawnItemDelay);
@@ -99,12 +106,15 @@ public class PlayerListener implements Listener {
         // If the player joined an allowed world from a non-allowed world
         // or we need to update their cosmetics for another reason, re-equip their cosmetics.
         if (!SettingsManager.isAllowedWorld(event.getFrom()) || updateOnWorldChange) {
-            ultraCosmetics.getScheduler().runAtEntityLater(event.getPlayer(), () -> up.getProfile().equip(), respawnItemDelay);
+            ultraCosmetics.getScheduler()
+                    .runAtEntityLater(event.getPlayer(), () -> up.getProfile().equip(), respawnItemDelay);
         }
     }
 
     private void clearCosmeticsForWorldChange(Player player) {
-        if (isNPC(player)) return;
+        if (isNPC(player)) {
+            return;
+        }
         boolean goingToBadWorld = !SettingsManager.isAllowedWorld(player.getWorld());
         if (!goingToBadWorld && !updateOnWorldChange) {
             return;
@@ -137,11 +147,15 @@ public class PlayerListener implements Listener {
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onRespawn(PlayerRespawnEvent event) {
-        if (isNPC(event.getPlayer())) return;
+        if (isNPC(event.getPlayer())) {
+            return;
+        }
         // When PlayerRespawnEvent is being called, the player may or may not be at
         // the final respawn location, so wait one tick before re-equipping.
         runWhenValid(event.getPlayer(), Math.max(1, respawnItemDelay), () -> {
-            if (!SettingsManager.isAllowedWorld(event.getPlayer().getWorld())) return;
+            if (!SettingsManager.isAllowedWorld(event.getPlayer().getWorld())) {
+                return;
+            }
             UltraPlayer ultraPlayer = pm.getUltraPlayer(event.getPlayer());
             if (menuItemEnabled) {
                 ultraPlayer.giveMenuItem();
@@ -163,7 +177,9 @@ public class PlayerListener implements Listener {
     @EventHandler(priority = EventPriority.LOWEST)
     public void onDeath(PlayerDeathEvent event) {
         // Ignore NPC deaths as per iSach#467
-        if (isNPC(event.getEntity())) return;
+        if (isNPC(event.getEntity())) {
+            return;
+        }
         if (MenuItemHandler.isMenuItem(event.getEntity().getInventory().getItem(menuItemSlot))) {
             event.getDrops().remove(event.getEntity().getInventory().getItem(menuItemSlot));
             event.getEntity().getInventory().setItem(menuItemSlot, null);
@@ -172,7 +188,9 @@ public class PlayerListener implements Listener {
         if (ultraPlayer.getCurrentGadget() != null) {
             event.getDrops().remove(ultraPlayer.getCurrentGadget().getItemStack());
         }
-        if (ultraPlayer.getCurrentHat() != null) event.getDrops().remove(ultraPlayer.getCurrentHat().getItemStack());
+        if (ultraPlayer.getCurrentHat() != null) {
+            event.getDrops().remove(ultraPlayer.getCurrentHat().getItemStack());
+        }
         Arrays.asList(ArmorSlot.values()).forEach(armorSlot -> {
             if (ultraPlayer.getCurrentSuit(armorSlot) != null) {
                 event.getDrops().remove(ultraPlayer.getCurrentSuit(armorSlot).getItemStack());
@@ -193,7 +211,8 @@ public class PlayerListener implements Listener {
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onEntityDamage(EntityDamageEvent event) {
-        if (event.getCause() == EntityDamageEvent.DamageCause.FALL && FallDamageManager.shouldBeProtected(event.getEntity())) {
+        if (event.getCause() == EntityDamageEvent.DamageCause.FALL &&
+                FallDamageManager.shouldBeProtected(event.getEntity())) {
             event.setCancelled(true);
         }
     }
@@ -215,7 +234,9 @@ public class PlayerListener implements Listener {
 
     @EventHandler
     public void onCommand(PlayerCommandPreprocessEvent event) {
-        if (event.getPlayer().hasPermission("ultracosmetics.bypass.disabledcommands")) return;
+        if (event.getPlayer().hasPermission("ultracosmetics.bypass.disabledcommands")) {
+            return;
+        }
         UltraPlayer player = pm.getUltraPlayer(event.getPlayer());
         if (preventCommandsDuringChests && player.getCurrentTreasureChest() != null) {
             event.setCancelled(true);
@@ -223,7 +244,9 @@ public class PlayerListener implements Listener {
             return;
         }
         String strippedCommand = event.getMessage().split(" ")[0].replace("/", "").toLowerCase(Locale.ROOT);
-        if (!SettingsManager.getConfig().getList("Disabled-Commands").contains(strippedCommand)) return;
+        if (!SettingsManager.getConfig().getList("Disabled-Commands").contains(strippedCommand)) {
+            return;
+        }
         if (player.hasCosmeticsEquipped()) {
             event.setCancelled(true);
             MessageManager.send(event.getPlayer(), "Disabled-Command-Message");
@@ -233,7 +256,8 @@ public class PlayerListener implements Listener {
     @EventHandler
     public void onItemDamage(PlayerItemDamageEvent event) {
         UltraPlayer ultraPlayer = pm.getUltraPlayer(event.getPlayer());
-        if (ultraPlayer.getCurrentGadget() != null && ultraPlayer.getCurrentGadget().getItemStack().equals(event.getItem())) {
+        if (ultraPlayer.getCurrentGadget() != null &&
+                ultraPlayer.getCurrentGadget().getItemStack().equals(event.getItem())) {
             event.setCancelled(true);
             return;
         }

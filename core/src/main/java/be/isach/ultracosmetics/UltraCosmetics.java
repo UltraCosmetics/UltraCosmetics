@@ -1,26 +1,12 @@
 package be.isach.ultracosmetics;
 
 import be.isach.ultracosmetics.command.CommandManager;
-import be.isach.ultracosmetics.config.AutoCommentConfiguration;
-import be.isach.ultracosmetics.config.CustomConfiguration;
-import be.isach.ultracosmetics.config.FunctionalConfigLoader;
-import be.isach.ultracosmetics.config.ManualCommentConfiguration;
-import be.isach.ultracosmetics.config.MessageManager;
-import be.isach.ultracosmetics.config.SettingsManager;
+import be.isach.ultracosmetics.config.*;
 import be.isach.ultracosmetics.cosmetics.Category;
 import be.isach.ultracosmetics.cosmetics.type.CosmeticType;
 import be.isach.ultracosmetics.economy.EconomyHandler;
-import be.isach.ultracosmetics.hook.ChestSortHook;
-import be.isach.ultracosmetics.hook.DiscordSRVHook;
-import be.isach.ultracosmetics.hook.PlaceholderHook;
-import be.isach.ultracosmetics.hook.PlayerAuctionsHook;
-import be.isach.ultracosmetics.hook.TownyHook;
-import be.isach.ultracosmetics.listeners.ClientBrandListener;
-import be.isach.ultracosmetics.listeners.EntityDismountListener;
-import be.isach.ultracosmetics.listeners.MainListener;
-import be.isach.ultracosmetics.listeners.PlayerListener;
-import be.isach.ultracosmetics.listeners.PriorityListener;
-import be.isach.ultracosmetics.listeners.UnmovableItemListener;
+import be.isach.ultracosmetics.hook.*;
+import be.isach.ultracosmetics.listeners.*;
 import be.isach.ultracosmetics.menu.CosmeticsInventoryHolder;
 import be.isach.ultracosmetics.menu.Menus;
 import be.isach.ultracosmetics.menu.menus.CustomMainMenu;
@@ -33,16 +19,8 @@ import be.isach.ultracosmetics.run.FallDamageManager;
 import be.isach.ultracosmetics.run.InvalidWorldChecker;
 import be.isach.ultracosmetics.run.VanishChecker;
 import be.isach.ultracosmetics.treasurechests.TreasureChestManager;
-import be.isach.ultracosmetics.util.EntityMountManager;
-import be.isach.ultracosmetics.util.EntitySpawningManager;
-import be.isach.ultracosmetics.util.InventoryViewHelper;
-import be.isach.ultracosmetics.util.PermissionPrinter;
-import be.isach.ultracosmetics.util.PlayerUtils;
-import be.isach.ultracosmetics.util.Problem;
-import be.isach.ultracosmetics.util.ProblemSeverity;
-import be.isach.ultracosmetics.util.SmartLogger;
+import be.isach.ultracosmetics.util.*;
 import be.isach.ultracosmetics.util.SmartLogger.LogLevel;
-import be.isach.ultracosmetics.util.UpdateManager;
 import be.isach.ultracosmetics.version.ServerVersion;
 import be.isach.ultracosmetics.worldguard.WorldGuardManager;
 import com.cryptomorin.xseries.XMaterial;
@@ -66,20 +44,10 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.Reader;
+import java.io.*;
 import java.net.URL;
 import java.nio.file.Files;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.function.Supplier;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -217,7 +185,9 @@ public class UltraCosmetics extends JavaPlugin {
             ZipInputStream zip = new ZipInputStream(jar.openStream());
             while (true) {
                 ZipEntry e = zip.getNextEntry();
-                if (e == null) break;
+                if (e == null) {
+                    break;
+                }
                 String path = e.getName();
                 if (path.startsWith(pathPrefix)) {
                     // Start string at end of prefix, end string two characters later
@@ -265,7 +235,8 @@ public class UltraCosmetics extends JavaPlugin {
 
         // if early loading failed...
         if (UltraCosmeticsData.get().getServerVersion() == null) {
-            getSmartLogger().write(LogLevel.ERROR, "Plugin load has failed, please check earlier in the log for details.");
+            getSmartLogger().write(LogLevel.ERROR,
+                    "Plugin load has failed, please check earlier in the log for details.");
             return;
         }
 
@@ -295,13 +266,16 @@ public class UltraCosmetics extends JavaPlugin {
 
         // Beginning of boot log. basic informations.
         getSmartLogger().write("-------------------------------------------------------------------");
-        getSmartLogger().write("Thanks for using UltraCosmetics! Version: " + updateChecker.getCurrentVersion().versionClassifierCommit());
+        getSmartLogger().write("Thanks for using UltraCosmetics! Version: " +
+                updateChecker.getCurrentVersion().versionClassifierCommit());
         getSmartLogger().write("Plugin by Datatags. Original Author: iSach");
         getSmartLogger().write("Link: https://bit.ly/UltraCosmetics");
 
         if (activeProblems.contains(Problem.BAD_MC_VERSION)) {
             getSmartLogger().write();
-            getSmartLogger().write(LogLevel.WARNING, "This server version is unknown (" + ServerVersion.getMinecraftVersion() + "), but UltraCosmetics will try to continue running.");
+            getSmartLogger().write(LogLevel.WARNING,
+                    "This server version is unknown (" + ServerVersion.getMinecraftVersion() +
+                            "), but UltraCosmetics will try to continue running.");
         }
 
         // Initialize NMS Module
@@ -336,14 +310,16 @@ public class UltraCosmetics extends JavaPlugin {
         if (SettingsManager.getConfig().getBoolean("Categories-Enabled." + Category.MORPHS.getConfigPath())) {
             if (!Bukkit.getPluginManager().isPluginEnabled("LibsDisguises")) {
                 getSmartLogger().write();
-                getSmartLogger().write(LogLevel.WARNING, "Morphs require Lib's Disguises, but it is not installed. Morphs will be disabled.");
+                getSmartLogger().write(LogLevel.WARNING,
+                        "Morphs require Lib's Disguises, but it is not installed. Morphs will be disabled.");
                 // TODO: make this a Problem?
             } else {
                 try {
                     // Option is not present on older versions of LibsDisguises, added in commit af492c2
                     if (!DisguiseConfig.isTallSelfDisguises()) {
                         getSmartLogger().write();
-                        getSmartLogger().write(LogLevel.WARNING, "You have TallSelfDisguises disabled in LibsDisguises's players.yml. Self view of morphs may not work as expected.");
+                        getSmartLogger().write(LogLevel.WARNING,
+                                "You have TallSelfDisguises disabled in LibsDisguises's players.yml. Self view of morphs may not work as expected.");
                         activeProblems.add(Problem.TALL_DISGUISES_DISABLED);
                     }
                 } catch (NoSuchMethodError | NoClassDefFoundError ignored) {
@@ -434,7 +410,8 @@ public class UltraCosmetics extends JavaPlugin {
 
         // Ended well :v
         getSmartLogger().write();
-        getSmartLogger().write("UltraCosmetics successfully finished loading in " + (System.currentTimeMillis() - startTime) + "ms!");
+        getSmartLogger().write(
+                "UltraCosmetics successfully finished loading in " + (System.currentTimeMillis() - startTime) + "ms!");
         getSmartLogger().write("-------------------------------------------------------------------");
         enableFinished = true;
     }
@@ -445,7 +422,9 @@ public class UltraCosmetics extends JavaPlugin {
             return false;
         }
         try {
-            paperSupport = Class.forName("be.isach.ultracosmetics.paper.PaperSupportImpl").asSubclass(PaperSupport.class).getDeclaredConstructor().newInstance();
+            paperSupport =
+                    Class.forName("be.isach.ultracosmetics.paper.PaperSupportImpl").asSubclass(PaperSupport.class)
+                            .getDeclaredConstructor().newInstance();
             getSmartLogger().write("Paper-specific features enabled");
             return true;
         } catch (ReflectiveOperationException | UnsupportedClassVersionError | IllegalArgumentException e) {
@@ -471,7 +450,9 @@ public class UltraCosmetics extends JavaPlugin {
         getScheduler().cancelAllTasks();
 
         // when the plugin is disabled from onEnable, skip cleanup
-        if (!enableFinished) return;
+        if (!enableFinished) {
+            return;
+        }
 
         for (Player player : Bukkit.getOnlinePlayers()) {
             if (InventoryViewHelper.getTopInventory(player).getHolder() instanceof CosmeticsInventoryHolder) {
@@ -531,7 +512,8 @@ public class UltraCosmetics extends JavaPlugin {
         if (matcher.find()) {
             float version = Float.parseFloat(matcher.group());
             if (version < requiredVersion) {
-                getSmartLogger().write(LogLevel.WARNING, pluginName + " " + requiredVersion + " or later is required for UC to hook it.");
+                getSmartLogger().write(LogLevel.WARNING,
+                        pluginName + " " + requiredVersion + " or later is required for UC to hook it.");
                 return null;
             }
         } else {
@@ -594,7 +576,8 @@ public class UltraCosmetics extends JavaPlugin {
             map.put(version, entry);
             return map;
         }));
-        metrics.addCustomChart(new SimplePie("mysql_enabled", () -> String.valueOf(getConfig().getBoolean("MySQL.Enabled"))));
+        metrics.addCustomChart(
+                new SimplePie("mysql_enabled", () -> String.valueOf(getConfig().getBoolean("MySQL.Enabled"))));
     }
 
     private boolean setUpConfig() {
@@ -603,35 +586,47 @@ public class UltraCosmetics extends JavaPlugin {
             saveResource("config.yml", false);
         }
         config = loadConfiguration(c -> c.load(file));
-        if (config == null) return false;
+        if (config == null) {
+            return false;
+        }
 
         Reader reader = UltraCosmeticsData.get().getPlugin().getFileReader("config.yml");
         CustomConfiguration defaults = loadConfiguration(c -> c.load(reader));
-        if (defaults == null) return false;
+        if (defaults == null) {
+            return false;
+        }
 
         configMigration();
         boolean lootCommandsPresent = config.isConfigurationSection("TreasureChests.Loots.Commands");
-        boolean designsPresent = config.isConfigurationSection("TreasureChests.Designs") && !config.getConfigurationSection("TreasureChests.Designs").getKeys(false).isEmpty();
+        boolean designsPresent = config.isConfigurationSection("TreasureChests.Designs") &&
+                !config.getConfigurationSection("TreasureChests.Designs").getKeys(false).isEmpty();
 
         for (String key : defaults.getKeys(true)) {
             if (key.startsWith("TreasureChests.Loots.Commands.") && lootCommandsPresent
                     && !key.endsWith("Overall-Chance")) {
                 continue;
             }
-            if (key.startsWith("TreasureChests.Locations.default")) continue;
-            if (key.startsWith("TreasureChests.Designs") && designsPresent) continue;
+            if (key.startsWith("TreasureChests.Locations.default")) {
+                continue;
+            }
+            if (key.startsWith("TreasureChests.Designs") && designsPresent) {
+                continue;
+            }
             config.addDefault(key, defaults.get(key), defaults.comments(key));
         }
         for (String key : defaults.getConfigurationSection("TreasureChests.Loots").getKeys(false)) {
             String path = "TreasureChests.Loots." + key + ".Message.message";
-            if (!config.isString(path)) continue;
+            if (!config.isString(path)) {
+                continue;
+            }
             String msg = config.getString(path);
             config.set(path, msg.replaceAll("%(?!ammo|name|prefix|money)[\\w-]+%", "%cosmetic%"));
         }
         config.set("Disabled-Items", null);
         config.set("Menu-Item.Data", null);
 
-        config.set("Supported-Languages", supportedLanguages, "Languages supported by this version of UltraCosmetics.", "This is not a configurable list, just informative.");
+        config.set("Supported-Languages", supportedLanguages, "Languages supported by this version of UltraCosmetics.",
+                "This is not a configurable list, just informative.");
 
         try {
             config.save(file);
@@ -643,7 +638,8 @@ public class UltraCosmetics extends JavaPlugin {
     }
 
     private void configMigration() {
-        ConfigurationSection oldSQL = SettingsManager.getConfig().getConfigurationSection("Ammo-System-For-Gadgets.MySQL");
+        ConfigurationSection oldSQL =
+                SettingsManager.getConfig().getConfigurationSection("Ammo-System-For-Gadgets.MySQL");
         if (oldSQL != null) {
             SettingsManager.getConfig().set("MySQL", oldSQL);
             SettingsManager.getConfig().set("Ammo-System-For-Gadgets.MySQL", null);
@@ -657,18 +653,22 @@ public class UltraCosmetics extends JavaPlugin {
             config.set("MySQL.table", null);
             if (config.getBoolean("MySQL.Enabled")) {
                 config.set("MySQL.Enabled", false);
-                config.set("MySQL.Legacy", true, "To remove the warning about how the SQL config options", "have changed, delete this key.");
+                config.set("MySQL.Legacy", true, "To remove the warning about how the SQL config options",
+                        "have changed, delete this key.");
             }
         }
         if (config.getBoolean("MySQL.Legacy")) {
             getSmartLogger().write(LogLevel.WARNING, "SQL config options have changed, please check they are correct.");
-            getSmartLogger().write(LogLevel.WARNING, "Remove the 'Legacy' key in the MySQL block to remove this message.");
+            getSmartLogger().write(LogLevel.WARNING,
+                    "Remove the 'Legacy' key in the MySQL block to remove this message.");
             addProblem(Problem.SQL_MIGRATION_REQUIRED);
         }
 
         if (config.isBoolean("Auto-Equip-Cosmetics.is-enabled")) {
             boolean autoEquip = config.getBoolean("Auto-Equip-Cosmetics.is-enabled");
-            config.set("Auto-Equip-Cosmetics", autoEquip, "Allows for players to auto-equip on join cosmetics they had before disconnecting.", "Supports both flatfile and SQL, choosing SQL when possible.");
+            config.set("Auto-Equip-Cosmetics", autoEquip,
+                    "Allows for players to auto-equip on join cosmetics they had before disconnecting.",
+                    "Supports both flatfile and SQL, choosing SQL when possible.");
         }
 
         if (config.isBoolean("Menu-Item.Give-On-Join")) {
@@ -707,7 +707,9 @@ public class UltraCosmetics extends JavaPlugin {
         } else {
             return;
         }
-        if (!raw.contains("&")) return;
+        if (!raw.contains("&")) {
+            return;
+        }
         MiniMessage mm = MessageManager.getMiniMessage();
         LegacyComponentSerializer deserializer = MessageManager.legacySerializer();
         String[] parts = raw.split("\n");
@@ -727,7 +729,8 @@ public class UltraCosmetics extends JavaPlugin {
         try {
             customMenu = new CustomMainMenu(this);
         } catch (IllegalArgumentException e) {
-            getSmartLogger().write(SmartLogger.LogLevel.WARNING, "Failed to load custom main menu, please run it through a YAML checker");
+            getSmartLogger().write(SmartLogger.LogLevel.WARNING,
+                    "Failed to load custom main menu, please run it through a YAML checker");
         }
         if (customMenu.isEnabled()) {
             menus.setMainMenu(customMenu);
@@ -918,7 +921,8 @@ public class UltraCosmetics extends JavaPlugin {
         upgradeKeyToMaterial("TreasureChests.Designs.Modern.around-center", "159:11", XMaterial.BLUE_TERRACOTTA);
         upgradeKeyToMaterial("TreasureChests.Designs.Modern.third-blocks", "155:0", XMaterial.WHITE_TERRACOTTA);
         upgradeKeyToMaterial("TreasureChests.Designs.Modern.below-chests", "159:11", XMaterial.BLUE_TERRACOTTA);
-        upgradeKeyToMaterial("TreasureChests.Designs.Modern.barriers", "160:3", XMaterial.LIGHT_BLUE_STAINED_GLASS_PANE);
+        upgradeKeyToMaterial("TreasureChests.Designs.Modern.barriers", "160:3",
+                XMaterial.LIGHT_BLUE_STAINED_GLASS_PANE);
 
         upgradeKeyToMaterial("TreasureChests.Designs.Nether.center-block", "89:0", XMaterial.GLOWSTONE);
         upgradeKeyToMaterial("TreasureChests.Designs.Nether.around-center", "88:0", XMaterial.SOUL_SAND);
@@ -932,15 +936,19 @@ public class UltraCosmetics extends JavaPlugin {
     private void upgradeKeyToMaterial(String key, String oldValue, XMaterial newValue) {
         if (oldValue.equals(config.getString(key))) {
             if (!legacyMessagePrinted) {
-                getSmartLogger().write(LogLevel.WARNING, "You seem to still have numeric IDs in your config, which UC no longer supports.");
-                getSmartLogger().write(LogLevel.WARNING, "I'll attempt to upgrade them, but only if the values haven't been touched.");
+                getSmartLogger().write(LogLevel.WARNING,
+                        "You seem to still have numeric IDs in your config, which UC no longer supports.");
+                getSmartLogger().write(LogLevel.WARNING,
+                        "I'll attempt to upgrade them, but only if the values haven't been touched.");
                 legacyMessagePrinted = true;
             }
             config.set(key, newValue.toString());
-            getSmartLogger().write(LogLevel.INFO, "Successfully upgraded key '" + key + "' from '" + oldValue + "' to '" + newValue + "'!");
+            getSmartLogger().write(LogLevel.INFO,
+                    "Successfully upgraded key '" + key + "' from '" + oldValue + "' to '" + newValue + "'!");
             // this code runs on every startup so don't print "failed to upgrade" message unless there's an actual issue
         } else if (legacyMessagePrinted) {
-            getSmartLogger().write(LogLevel.WARNING, "Couldn't upgrade key '" + key + "' because it has been changed. Please upgrade it manually.");
+            getSmartLogger().write(LogLevel.WARNING,
+                    "Couldn't upgrade key '" + key + "' because it has been changed. Please upgrade it manually.");
         }
     }
 

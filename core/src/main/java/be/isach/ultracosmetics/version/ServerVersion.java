@@ -104,13 +104,15 @@ public enum ServerVersion {
     }
 
     /**
-     * Get the Minecraft version, without the leading "1.", if present.
+     * Get the Minecraft version, optionally without the leading "1.", if present.
      *
+     * @param canonical Whether to get the canonical representation, i.e. including the "1.". If false, a leading "1."
+     *                  will be dropped.
      * @return The minecraft version, like 17.1 or 26.1
      */
-    public static String getMinecraftVersion() {
+    public static String getMinecraftVersion(boolean canonical) {
         StringBuilder builder = new StringBuilder();
-        if (XReflection.MAJOR_NUMBER != 1) {
+        if (canonical || XReflection.MAJOR_NUMBER != 1) {
             builder.append(XReflection.MAJOR_NUMBER).append('.');
         }
         builder.append(XReflection.MINOR_NUMBER);
@@ -118,6 +120,10 @@ public enum ServerVersion {
             builder.append('.').append(XReflection.PATCH_NUMBER);
         }
         return builder.toString();
+    }
+
+    public static String getMinecraftVersion() {
+        return getMinecraftVersion(false);
     }
 
     public static boolean isMobchipEdgeCase() {
