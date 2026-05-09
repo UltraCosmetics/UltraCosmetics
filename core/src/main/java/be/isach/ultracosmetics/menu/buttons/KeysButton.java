@@ -54,7 +54,7 @@ public class KeysButton extends TreasureButton {
         Component yourKeysMessage = MessageManager.getMessage("Your-Keys",
                 Placeholder.unparsed("keys", String.valueOf(ultraPlayer.getKeys()))
         );
-        return ItemFactory.rename(KEY_ITEM, itemName, "", MessageManager.toLegacy(yourKeysMessage), buyKeyMessage);
+        return ItemFactory.rename(getKeyItem(), itemName, "", MessageManager.toLegacy(yourKeysMessage), buyKeyMessage);
     }
 
     @Override
