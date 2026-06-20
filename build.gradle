@@ -110,7 +110,7 @@ subprojects { subproj ->
         maven { url = 'https://repo.olziedev.com' }
         // WorldGuard
         maven { url = 'https://maven.enginehub.org/repo' }
-        // CoinsEngine
+        // ExcellentEconomy
         maven { url = 'https://repo.nightexpressdev.com/releases' }
         // Vault, PEconomy, MobChipLite, FoliaLib
         maven { url = 'https://jitpack.io' }

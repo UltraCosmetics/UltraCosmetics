@@ -76,7 +76,7 @@ Categories:
     Enabled: false
     Command: cc open custommenu.yml {player}
 
-# The economy that should be used. Supports 'Vault', 'PlayerPoints', 'Treasury', 'PEconomy', or 'CoinsEngine'.
+# The economy that should be used. Supports 'Vault', 'PlayerPoints', 'Treasury', 'PEconomy', or 'ExcellentEconomy'.
 Economy: 'Vault'
 
 # If the economy above supports multiple currencies, you can pick a specific currency here.

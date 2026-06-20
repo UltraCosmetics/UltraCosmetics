@@ -67,8 +67,6 @@ dependencies {
     // https://www.spigotmc.org/resources/%E2%AD%90-player-auctions-%E2%AD%90-%E2%9E%A2-let-your-players-sell-items-1-7-1-20-4.83073
     compileOnly 'com.olziedev:playerauctions-api:1.34.0-pre1'
 
-    compileOnly files('libs/CoinsEngine-2.1.1.jar')
-    compileOnly files('libs/NexEngine.jar')
     compileOnly files('libs/ChestSortAPI-13.0.0-SNAPSHOT.jar')
     // Shaded by root project
     compileOnly(project(':legacy-events'))
@@ -97,7 +95,7 @@ bukkit {
     authors = ['datatags']
     main = 'be.isach.ultracosmetics.UltraCosmetics'
     apiVersion = '1.17'
-    softDepend = ['LibsDisguises', 'Vault', 'PlaceholderAPI', 'PlayerPoints', 'WorldGuard', 'Essentials', 'LuckPerms', 'DiscordSRV', 'ChestSort', 'Towny', 'PEconomy', 'PlayerAuctions', 'CoinsEngine', 'Treasury', 'ExcellentEconomy']
+    softDepend = ['LibsDisguises', 'Vault', 'PlaceholderAPI', 'PlayerPoints', 'WorldGuard', 'Essentials', 'LuckPerms', 'DiscordSRV', 'ChestSort', 'Towny', 'PEconomy', 'PlayerAuctions', 'Treasury', 'ExcellentEconomy']
     commands {
         ultracosmetics {
             aliases = ['uc', 'cosmetics']
