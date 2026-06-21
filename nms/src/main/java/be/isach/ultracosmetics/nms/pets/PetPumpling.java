@@ -4,7 +4,6 @@ import be.isach.ultracosmetics.UltraCosmetics;
 import be.isach.ultracosmetics.cosmetics.type.PetType;
 import be.isach.ultracosmetics.nms.customentities.Pumpling;
 import be.isach.ultracosmetics.player.UltraPlayer;
-import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -23,7 +22,7 @@ public class PetPumpling extends CustomEntityPet {
 
     @Override
     public LivingEntity getNewEntity() {
-        return new Pumpling(EntityType.ZOMBIE, ((CraftPlayer) getPlayer()).getHandle().level());
+        return new Pumpling(((CraftPlayer) getPlayer()).getHandle().level());
     }
 
     @Override

@@ -7,7 +7,7 @@ import be.isach.ultracosmetics.util.SmartLogger.LogLevel;
 import be.isach.ultracosmetics.version.ServerVersion;
 import be.isach.ultracosmetics.version.VersionManager;
 import com.cryptomorin.xseries.reflection.XReflection;
-import me.gamercoder215.mobchip.abstraction.ChipUtil;
+import me.gamercoder215.mobchip.abstraction.ChipUtilFactory;
 
 /**
  * This class is only for cleaning main class a bit.
@@ -119,7 +119,8 @@ public class UltraCosmeticsData {
 
     protected boolean initModule() {
         SmartLogger logger = ultraCosmetics.getSmartLogger();
-        logger.write("Initializing module " + serverVersion + " (expected version: " + serverVersion.canonicalName() + ")");
+        logger.write(
+                "Initializing module " + serverVersion + " (expected version: " + serverVersion.canonicalName() + ")");
 
         // If NMS is force enabled and we don't know what version we're on, don't use strict version checking.
         boolean isNmsDowngrade = false;
@@ -142,7 +143,9 @@ public class UltraCosmeticsData {
         if (useNMS.equalsIgnoreCase("no")) {
             logger.write("NMS support has been disabled in the config, will run without it.");
         } else if (isNmsDowngrade || serverVersion.isNmsSupportedOn(major, minor)) {
-            if (startNMS()) return true;
+            if (startNMS()) {
+                return true;
+            }
         } else {
             logger.write("Loading NMS-less mode...");
         }
@@ -211,7 +214,7 @@ public class UltraCosmeticsData {
         }
 
         try {
-            ChipUtil.getWrapper();
+            ChipUtilFactory.getChipUtil();
             return true;
         } catch (IllegalStateException | NoClassDefFoundError e) {
             // NoClassDefFoundError can happen if we're on paper without remapping
@@ -227,8 +230,11 @@ public class UltraCosmeticsData {
         this.placeHolderColor = SettingsManager.getConfig().getBoolean("Chat-Cosmetic-PlaceHolder-Color");
         this.ammoEnabled = SettingsManager.getConfig().getBoolean("Ammo-System-For-Gadgets.Enabled");
         this.cooldownInBar = SettingsManager.getConfig().getBoolean("Categories.Gadgets.Cooldown-In-ActionBar");
-        this.customCommandBackArrow = ultraCosmetics.getConfig().getBoolean("Categories.Back-To-Main-Menu-Custom-Command.Enabled");
-        this.customBackMenuCommand = ultraCosmetics.getConfig().getString("Categories.Back-To-Main-Menu-Custom-Command.Command").replace("/", "");
+        this.customCommandBackArrow =
+                ultraCosmetics.getConfig().getBoolean("Categories.Back-To-Main-Menu-Custom-Command.Enabled");
+        this.customBackMenuCommand =
+                ultraCosmetics.getConfig().getString("Categories.Back-To-Main-Menu-Custom-Command.Command")
+                        .replace("/", "");
         this.closeAfterSelect = ultraCosmetics.getConfig().getBoolean("Categories.Close-GUI-After-Select");
         this.cosmeticsProfilesEnabled = ultraCosmetics.getConfig().getBoolean("Auto-Equip-Cosmetics");
         this.language = SettingsManager.getConfig().getString("Language");
@@ -236,7 +242,9 @@ public class UltraCosmeticsData {
         this.cosmeticsAffectEntities = SettingsManager.getConfig().getBoolean("Cosmetics-Affect-Entities");
         this.useNMS = SettingsManager.getConfig().getString("Use-NMS", "auto");
         // I'm not sure why "no" is translated to "false", but this changes it back
-        if (useNMS.equalsIgnoreCase("false")) useNMS = "no";
+        if (useNMS.equalsIgnoreCase("false")) {
+            useNMS = "no";
+        }
     }
 
     public boolean isAmmoEnabled() {

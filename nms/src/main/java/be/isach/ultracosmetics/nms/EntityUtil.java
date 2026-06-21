@@ -6,13 +6,9 @@ import be.isach.ultracosmetics.version.IEntityUtil;
 import com.mojang.datafixers.util.Pair;
 import net.minecraft.core.Rotations;
 import net.minecraft.network.protocol.Packet;
-import net.minecraft.network.protocol.game.ClientboundAddEntityPacket;
-import net.minecraft.network.protocol.game.ClientboundRemoveEntitiesPacket;
-import net.minecraft.network.protocol.game.ClientboundSetEntityDataPacket;
-import net.minecraft.network.protocol.game.ClientboundSetEquipmentPacket;
-import net.minecraft.network.protocol.game.ClientboundTeleportEntityPacket;
+import net.minecraft.network.protocol.game.*;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EntityTypes;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.PositionMoveRotation;
 import net.minecraft.world.entity.decoration.ArmorStand;
@@ -27,13 +23,7 @@ import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 import java.util.function.Predicate;
 
 /**
@@ -47,11 +37,13 @@ public class EntityUtil implements IEntityUtil {
     private Map<Player, Set<org.bukkit.entity.Entity>> cooldownJumpMap = new HashMap<>();
 
     @Override
-    public void sendBlizzard(final Player player, Location loc, Predicate<org.bukkit.entity.Entity> canAffectFunc, Vector v) {
+    public void sendBlizzard(final Player player, Location loc, Predicate<org.bukkit.entity.Entity> canAffectFunc,
+                             Vector v) {
         final Set<ArmorStand> fakeArmorStands = fakeArmorStandsMap.computeIfAbsent(player, k -> new HashSet<>());
-        final Set<org.bukkit.entity.Entity> cooldownJump = cooldownJumpMap.computeIfAbsent(player, k -> new HashSet<>());
+        final Set<org.bukkit.entity.Entity> cooldownJump =
+                cooldownJumpMap.computeIfAbsent(player, k -> new HashSet<>());
 
-        final ArmorStand as = new ArmorStand(EntityType.ARMOR_STAND, ((CraftWorld) player.getWorld()).getHandle());
+        final ArmorStand as = new ArmorStand(EntityTypes.ARMOR_STAND, ((CraftWorld) player.getWorld()).getHandle());
         as.setInvisible(true);
         as.setSharedFlag(5, true);
         as.setSmall(true);
@@ -61,11 +53,15 @@ public class EntityUtil implements IEntityUtil {
         as.absSnapTo(loc.getX() + MathUtils.randomDouble(-1.5, 1.5), loc.getY() + MathUtils.randomDouble(0, 0.5) - 0.75,
                 loc.getZ() + MathUtils.randomDouble(-1.5, 1.5), 0, 0);
         fakeArmorStands.add(as);
-        ClientboundAddEntityPacket addPacket = new ClientboundAddEntityPacket(as.getId(), as.getUUID(), as.getX(), as.getY(), as.getZ(),
-                as.getXRot(), as.getYRot(), EntityType.ARMOR_STAND, 0, as.getDeltaMovement(), as.getYHeadRot());
-        ClientboundSetEntityDataPacket dataPacket = new ClientboundSetEntityDataPacket(as.getId(), as.getEntityData().packDirty());
+        ClientboundAddEntityPacket addPacket =
+                new ClientboundAddEntityPacket(as.getId(), as.getUUID(), as.getX(), as.getY(), as.getZ(),
+                        as.getXRot(), as.getYRot(), EntityTypes.ARMOR_STAND, 0, as.getDeltaMovement(),
+                        as.getYHeadRot());
+        ClientboundSetEntityDataPacket dataPacket =
+                new ClientboundSetEntityDataPacket(as.getId(), as.getEntityData().packDirty());
         List<Pair<EquipmentSlot, ItemStack>> equipment = new ArrayList<>();
-        equipment.add(new Pair<>(EquipmentSlot.HEAD, CraftItemStack.asNMSCopy(new org.bukkit.inventory.ItemStack(org.bukkit.Material.PACKED_ICE))));
+        equipment.add(new Pair<>(EquipmentSlot.HEAD,
+                CraftItemStack.asNMSCopy(new org.bukkit.inventory.ItemStack(org.bukkit.Material.PACKED_ICE))));
         ClientboundSetEquipmentPacket equipmentPacket = new ClientboundSetEquipmentPacket(as.getId(), equipment);
         for (Player loopPlayer : player.getWorld().getPlayers()) {
             sendPacket(loopPlayer, addPacket);
@@ -90,7 +86,9 @@ public class EntityUtil implements IEntityUtil {
 
     @Override
     public void clearBlizzard(Player player) {
-        if (!fakeArmorStandsMap.containsKey(player)) return;
+        if (!fakeArmorStandsMap.containsKey(player)) {
+            return;
+        }
 
         for (ArmorStand as : fakeArmorStandsMap.get(player)) {
             if (as == null) {

@@ -12,7 +12,7 @@ import be.isach.ultracosmetics.nms.mount.MountSpider;
 import be.isach.ultracosmetics.nms.pets.PetPumpling;
 import be.isach.ultracosmetics.version.IModule;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EntityTypes;
 import org.bukkit.FireworkEffect;
 import org.bukkit.Location;
 import org.bukkit.craftbukkit.CraftWorld;
@@ -47,7 +47,8 @@ public class VersionModule implements IModule {
 
     @Override
     public org.bukkit.entity.Entity spawnCustomMinecart(Location location) {
-        return CustomEntities.spawnEntity(new CustomMinecart(EntityType.MINECART, ((CraftWorld) location.getWorld()).getHandle()), location);
+        return CustomEntities.spawnEntity(
+                new CustomMinecart(EntityTypes.MINECART, ((CraftWorld) location.getWorld()).getHandle()), location);
     }
 
     @Override
@@ -61,7 +62,8 @@ public class VersionModule implements IModule {
     }
 
     public static void spawnFirework_(Location location, FireworkEffect effect, Player... players) {
-        CustomEntityFirework firework = new CustomEntityFirework(((CraftWorld) location.getWorld()).getHandle(), players);
+        CustomEntityFirework firework =
+                new CustomEntityFirework(((CraftWorld) location.getWorld()).getHandle(), players);
         FireworkMeta meta = ((Firework) firework.getBukkitEntity()).getFireworkMeta();
         meta.addEffect(effect);
         ((Firework) firework.getBukkitEntity()).setFireworkMeta(meta);

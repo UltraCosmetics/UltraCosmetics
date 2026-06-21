@@ -6,7 +6,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.monster.zombie.Zombie;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
@@ -16,8 +15,8 @@ import net.minecraft.world.level.block.state.BlockState;
  */
 public class Pumpling extends Zombie {
 
-    public Pumpling(EntityType<? extends Zombie> entitytypes, Level world) {
-        super(entitytypes, world);
+    public Pumpling(Level world) {
+        super(world);
     }
 
     @Override
@@ -59,7 +58,9 @@ public class Pumpling extends Zombie {
 
     @Override
     protected void playStepSound(BlockPos blockposition, BlockState iblockdata) {
-        if (isCustomEntity()) return;
+        if (isCustomEntity()) {
+            return;
+        }
         super.playStepSound(blockposition, iblockdata);
     }
 

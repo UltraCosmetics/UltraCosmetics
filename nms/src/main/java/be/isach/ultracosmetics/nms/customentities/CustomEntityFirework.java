@@ -2,7 +2,7 @@ package be.isach.ultracosmetics.nms.customentities;
 
 import net.minecraft.network.protocol.game.ClientboundEntityEventPacket;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.EntityTypes;
 import net.minecraft.world.entity.projectile.FireworkRocketEntity;
 import net.minecraft.world.level.Level;
 import org.bukkit.craftbukkit.entity.CraftPlayer;
@@ -12,11 +12,11 @@ import org.bukkit.entity.Player;
  * @author RadBuilder
  */
 public class CustomEntityFirework extends FireworkRocketEntity {
-    private Player[] players = null;
+    private final Player[] players;
     private boolean gone = false;
 
     public CustomEntityFirework(Level world, Player... p) {
-        super(EntityType.FIREWORK_ROCKET, world);
+        super(EntityTypes.FIREWORK_ROCKET, world);
         players = p;
     }
 
@@ -26,19 +26,18 @@ public class CustomEntityFirework extends FireworkRocketEntity {
             return;
         }
 
-        if (!this.level().isClientSide()) {
-            gone = true;
+        gone = true;
 
-            if (players != null) {
-                if (players.length > 0) {
-                    for (Player player : players) {
-                        (((CraftPlayer) player).getHandle()).connection.send(new ClientboundEntityEventPacket(this, (byte) 17));
-                    }
-                } else {
-                    level().broadcastEntityEvent(this, (byte) 17);
+        if (players != null) {
+            if (players.length > 0) {
+                for (Player player : players) {
+                    (((CraftPlayer) player).getHandle()).connection.send(
+                            new ClientboundEntityEventPacket(this, (byte) 17));
                 }
+            } else {
+                level().broadcastEntityEvent(this, (byte) 17);
             }
-            ((Entity) this).discard();
         }
+        ((Entity) this).discard();
     }
 }
