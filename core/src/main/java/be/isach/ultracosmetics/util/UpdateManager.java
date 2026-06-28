@@ -67,7 +67,7 @@ public class UpdateManager extends UltraTask {
         Reader reader = UltraCosmeticsData.get().getPlugin().getFileReader("build_info.yml");
         YamlConfiguration buildInfo = YamlConfiguration.loadConfiguration(reader);
         String gitHash = buildInfo.getString("git-hash");
-        this.currentVersion = new Version("0.0"/*ultraCosmetics.getDescription().getVersion()*/, gitHash);
+        this.currentVersion = new Version(ultraCosmetics.getDescription().getVersion(), gitHash);
         // email broken up to hopefully confuse dumb scrapers
         this.userAgent = "UltraCosmetics/UltraCosmetics/" + currentVersion + " (adm" + "in@ult" + "racosmetics.net)";
 
