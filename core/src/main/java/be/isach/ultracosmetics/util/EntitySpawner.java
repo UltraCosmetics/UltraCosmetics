@@ -6,11 +6,7 @@ import be.isach.ultracosmetics.config.SettingsManager;
 import be.isach.ultracosmetics.task.UltraTask;
 import com.cryptomorin.xseries.XEntityType;
 import com.cryptomorin.xseries.XMaterial;
-import org.bukkit.Bukkit;
-import org.bukkit.Color;
-import org.bukkit.FireworkEffect;
-import org.bukkit.Location;
-import org.bukkit.Material;
+import org.bukkit.*;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Firework;
@@ -33,7 +29,8 @@ public class EntitySpawner<T extends Entity> extends UltraTask {
     private final Set<T> entities = new HashSet<>();
     private boolean scheduled = false;
 
-    public EntitySpawner(EntityType type, Location loc, int amount, boolean spread, Consumer<T> func, UltraCosmetics ultraCosmetics) {
+    public EntitySpawner(EntityType type, Location loc, int amount, boolean spread, Consumer<T> func,
+                         UltraCosmetics ultraCosmetics) {
         this.type = type;
         this.loc = loc;
         this.remaining = amount;
@@ -92,14 +89,21 @@ public class EntitySpawner<T extends Entity> extends UltraTask {
     }
 
     public void removeEntity(Entity entity) {
-        entity.remove();
+        killEntity(entity);
         entities.remove(entity);
     }
 
-    public void removeEntities() {
-        for (T entity : entities) {
+    private void killEntity(Entity entity) {
+        UltraCosmetics plugin = UltraCosmeticsData.get().getPlugin();
+        if (plugin.getFoliaLib().isFolia()) {
+            plugin.getScheduler().runAtEntity(entity, t -> entity.remove());
+        } else {
             entity.remove();
         }
+    }
+
+    public void removeEntities() {
+        entities.forEach(this::killEntity);
         entities.clear();
         try {
             cancel();

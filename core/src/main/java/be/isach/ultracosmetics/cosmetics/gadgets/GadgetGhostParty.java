@@ -13,6 +13,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Bat;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
@@ -32,8 +33,11 @@ import java.util.Set;
  */
 public class GadgetGhostParty extends Gadget implements Updatable {
 
-    private static final ItemStack GHOST_HEAD = ItemFactory.createSkull("68d2183640218ab330ac56d2aab7e29a9790a545f691619e38578ea4a69ae0b6", ChatColor.DARK_GRAY + "" + ChatColor.ITALIC + "Ghost");
-    private static final ItemStack GHOST_CHESTPLATE = ItemFactory.createColouredLeather(XMaterial.LEATHER_CHESTPLATE.get(), 255, 255, 255);
+    private static final ItemStack GHOST_HEAD =
+            ItemFactory.createSkull("68d2183640218ab330ac56d2aab7e29a9790a545f691619e38578ea4a69ae0b6",
+                    ChatColor.DARK_GRAY + "" + ChatColor.ITALIC + "Ghost");
+    private static final ItemStack GHOST_CHESTPLATE =
+            ItemFactory.createColouredLeather(XMaterial.LEATHER_CHESTPLATE.get(), 255, 255, 255);
     private static final ItemStack DIAMOND_HOE = XMaterial.DIAMOND_HOE.parseItem();
     private static final ParticleDisplay CLOUD = ParticleDisplay.of(XParticle.CLOUD).offset(0.05);
     private EntitySpawner<Bat> bats = EntitySpawner.empty();
@@ -60,7 +64,7 @@ public class GadgetGhostParty extends Gadget implements Updatable {
             bat.addPassenger(ghost);
         }, getUltraCosmetics());
 
-        getUltraCosmetics().getScheduler().runAtLocationLater(loc, this::killBats, 160);
+        getUltraCosmetics().getScheduler().runLater(this::killBats, 160);
     }
 
     @EventHandler
@@ -72,7 +76,16 @@ public class GadgetGhostParty extends Gadget implements Updatable {
     }
 
     private void killBats() {
-        ghosts.forEach(ArmorStand::remove);
+        if (getUltraCosmetics().getFoliaLib().isFolia()) {
+            for (ArmorStand ghost : ghosts) {
+                if (ghost.isValid()) {
+                    getUltraCosmetics().getScheduler().runAtEntity(ghost, t -> ghost.remove());
+                }
+            }
+        } else {
+            ghosts.forEach(Entity::remove);
+        }
+        ghosts.clear();
         bats.removeEntities();
     }
 
