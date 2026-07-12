@@ -32,8 +32,9 @@ public class SubCommandDebug extends SubCommand {
         List<? extends CosmeticType<?>> pets = Category.PETS.getEnabled();
         Iterator<? extends CosmeticType<?>> iter = pets.iterator();
         player.sendMessage("Starting now!");
+        ultraCosmetics.getSmartLogger().write("Pet debug task started for " + player.getName());
         final WrappedTask[] task = new WrappedTask[1];
-        final boolean[] first = new boolean[] {true};
+        final boolean[] first = new boolean[]{true};
         task[0] = ultraCosmetics.getScheduler().runAtEntityTimer(player, () -> {
             if (!first[0] && !ultraPlayer.hasCosmetic(Category.PETS)) {
                 player.sendMessage("Seems like an error occurred");
@@ -44,6 +45,7 @@ public class SubCommandDebug extends SubCommand {
             if (!iter.hasNext()) {
                 task[0].cancel();
                 player.sendMessage("Done!");
+                ultraCosmetics.getSmartLogger().write("Pet debug task finished for " + player.getName());
                 return;
             }
             iter.next().equip(ultraPlayer, ultraCosmetics);
