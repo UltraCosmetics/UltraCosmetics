@@ -98,7 +98,11 @@ public class SubCommandMenu extends SubCommand {
             error(sender, "That menu is disabled.");
             return;
         }
-        menus.getCategoryMenu(cat).open(ultraPlayer, page);
+        if (menus.isUnifiedMenuEnabled()) {
+            menus.getUnifiedMenu().open(ultraPlayer, cat, page);
+        } else {
+            menus.getCategoryMenu(cat).open(ultraPlayer, page);
+        }
     }
 
     private List<String> getMenus() {

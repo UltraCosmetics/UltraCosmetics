@@ -134,10 +134,17 @@ Menu:
       Tooltip-Unequip: <bold><red>Desequipar
   Buy-Ammo:
     Title: <bold>Comprar Municion
+  Unified:
+    Title: <bold>Cosmeticos
+    Description: |-
+      <gray>Click en una categoria de la izquierda
+      <gray>para ver sus cosmeticos aqui.
   Misc:
     Button:
       Previous-Page: <bold><red>Pagina Anterior
       Next-Page: <bold><green>Proxima Pagina
+      Scroll-Up-Categories: <bold><green>Categorias Anteriores
+      Scroll-Down-Categories: <bold><green>Mas Categorias
   Disabled-Button: <red>DESHABILITADO
 Chest-Location:
   Not-Enough-Space: <prefix> <bold><red>No hay suficiente espacio para poner el cofre!

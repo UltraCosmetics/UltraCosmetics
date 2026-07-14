@@ -75,6 +75,22 @@ Categories:
   Back-To-Main-Menu-Custom-Command:
     Enabled: false
     Command: cc open custommenu.yml {player}
+  # A single-window menu: categories are picked on the left column, and the
+  # active category's cosmetics show up on the right, instead of opening a
+  # separate menu per category. When disabled, the classic menu (main menu
+  # with a grid of categories, each opening its own submenu) is used instead.
+  Unified-Menu:
+    Enabled: false
+    # Item used for the currently selected category button.
+    Active-Category-Item: LIME_STAINED_GLASS_PANE
+    # Item used for the other, non-selected category buttons.
+    Inactive-Category-Item: BLACK_STAINED_GLASS_PANE
+    # Item used for the explanation placeholder at the top of the menu.
+    Description-Item: PAPER
+    # Items used for the category list scroll arrows, shown only when there
+    # are more categories than fit in the visible column at once.
+    Scroll-Up-Item: SPECTRAL_ARROW
+    Scroll-Down-Item: ARROW
 
 # The economy that should be used. Supports 'Vault', 'PlayerPoints', 'Treasury', 'PEconomy', or 'ExcellentEconomy'.
 Economy: 'Vault'
