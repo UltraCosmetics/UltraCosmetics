@@ -62,6 +62,10 @@ public class OpenCosmeticMenuButton implements Button {
     }
 
     protected String calculateUnlocked(Player player) {
+        return calculateUnlocked(pm, category, player);
+    }
+
+    static String calculateUnlocked(PermissionManager pm, Category category, Player player) {
         int unlocked = 0;
         int total;
         if (category.isSuits()) {

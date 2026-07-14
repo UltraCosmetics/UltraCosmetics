@@ -3,7 +3,6 @@ package be.isach.ultracosmetics.menu.buttons;
 import be.isach.ultracosmetics.UltraCosmetics;
 import be.isach.ultracosmetics.config.MessageManager;
 import be.isach.ultracosmetics.cosmetics.Category;
-import be.isach.ultracosmetics.cosmetics.type.SuitCategory;
 import be.isach.ultracosmetics.menu.Button;
 import be.isach.ultracosmetics.menu.ClickData;
 import be.isach.ultracosmetics.menu.menus.MenuUnified;
@@ -50,7 +49,7 @@ public class CategorySelectorButton implements Button {
         loreList.add("");
         Player player = ultraPlayer.getBukkitPlayer();
         String lore = MessageManager.getLegacyMessage("Menu." + category.getConfigPath() + ".Button.Lore",
-                TagResolver.resolver("unlocked", new LazyTag(() -> Component.text(calculateUnlocked(player))))
+                TagResolver.resolver("unlocked", new LazyTag(() -> Component.text(OpenCosmeticMenuButton.calculateUnlocked(pm, category, player))))
         );
         loreList.addAll(Arrays.asList(lore.split("\n")));
 
@@ -59,23 +58,6 @@ public class CategorySelectorButton implements Button {
         meta.setLore(loreList);
         stack.setItemMeta(meta);
         return stack;
-    }
-
-    private String calculateUnlocked(Player player) {
-        int unlocked;
-        int total;
-        if (category.isSuits()) {
-            unlocked = 0;
-            for (Category cat : Category.enabled()) {
-                if (!cat.isSuits()) continue;
-                unlocked += pm.getEnabledUnlocked(player, cat).size();
-            }
-            total = SuitCategory.enabled().size() * 4;
-        } else {
-            unlocked = pm.getEnabledUnlocked(player, category).size();
-            total = category.getEnabled().size();
-        }
-        return unlocked + "/" + total;
     }
 
     @Override

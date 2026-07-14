@@ -4,7 +4,6 @@ import be.isach.ultracosmetics.UltraCosmetics;
 import be.isach.ultracosmetics.UltraCosmeticsData;
 import be.isach.ultracosmetics.command.CommandManager;
 import be.isach.ultracosmetics.config.MessageManager;
-import be.isach.ultracosmetics.config.SettingsManager;
 import be.isach.ultracosmetics.cosmetics.Category;
 import be.isach.ultracosmetics.cosmetics.type.CosmeticType;
 import be.isach.ultracosmetics.cosmetics.type.SuitCategory;
@@ -60,7 +59,6 @@ public class MenuUnified extends Menu {
     private final Map<UUID, Category> activeCategory = new HashMap<>();
     private final Map<UUID, Integer> activePage = new HashMap<>();
     private final Map<UUID, Integer> categoryScrollOffset = new HashMap<>();
-    private final boolean hideNoPermissionItems = SettingsManager.getConfig().getBoolean("No-Permission.Dont-Show-Item");
     private final Component title = MessageManager.getMessage("Menu.Unified.Title");
 
     public MenuUnified(UltraCosmetics ultraCosmetics) {
@@ -123,6 +121,12 @@ public class MenuUnified extends Menu {
         int current = categoryScrollOffset.getOrDefault(player.getUUID(), 0);
         categoryScrollOffset.put(player.getUUID(), current + delta);
         refresh(player);
+    }
+
+    public void cleanupPlayer(UUID uuid) {
+        activeCategory.remove(uuid);
+        activePage.remove(uuid);
+        categoryScrollOffset.remove(uuid);
     }
 
     private List<Category> getVisibleCategories(Player player) {
@@ -203,18 +207,22 @@ public class MenuUnified extends Menu {
     }
 
     private void putSuitsContent(Inventory inventory, UltraPlayer player, int page) {
+        CosmeticMenu<?> suitsMenu = ultraCosmetics.getMenus().getCategoryMenu(Category.SUITS_HELMET);
         List<SuitCategory> enabled = SuitCategory.enabled();
         int from = (page - 1) * SUITS_PER_PAGE;
         int to = page * SUITS_PER_PAGE;
         for (int i = from; i < to && i < enabled.size(); i++) {
             SuitCategory suitCategory = enabled.get(i);
             int column = SUIT_COLUMNS[i % SUITS_PER_PAGE];
-            if (!hideNoPermissionItems || suitCategory.getPieces().stream().anyMatch(player::canEquip)) {
+            boolean anyVisible = suitCategory.getPieces().stream().anyMatch(t -> !suitsMenu.shouldHideItem(player, t));
+            if (anyVisible) {
                 putItem(inventory, column, new EquipWholeSuitButton(suitCategory, ultraCosmetics), player);
             }
             int row = 1;
             for (SuitType type : suitCategory.getPieces()) {
-                putItem(inventory, column + row * 9, CosmeticButton.fromType(type, player, ultraCosmetics), player);
+                if (!suitsMenu.shouldHideItem(player, type)) {
+                    putItem(inventory, column + row * 9, CosmeticButton.fromType(type, player, ultraCosmetics), player);
+                }
                 row++;
             }
         }
