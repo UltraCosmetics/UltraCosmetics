@@ -32,10 +32,10 @@ public class OpenCosmeticMenuButton implements Button {
     public OpenCosmeticMenuButton(UltraCosmetics ultraCosmetics, Category category) {
         this.ultraCosmetics = ultraCosmetics;
         this.category = category;
-        this.baseStack = category.getItemStack();
         this.pm = ultraCosmetics.getPermissionManager();
         this.menus = ultraCosmetics.getMenus();
         this.openPermission = menus.getCategoryMenu(category).getPermission();
+        this.baseStack = category.getItemStack();
     }
 
     @Override

@@ -58,6 +58,15 @@ allprojects {
 
 defaultTasks 'build'
 
+tasks.register('copyDevJar', Copy) {
+    dependsOn jar
+    from jar.archiveFile
+    into layout.buildDirectory.dir('libs')
+    rename { 'UltraCosmeticsDevelop.jar' }
+}
+
+build.finalizedBy 'copyDevJar'
+
 tasks {
     compileJava {
         subprojects.forEach {

@@ -8,4 +8,5 @@ pluginManagement {
     }
 }
 rootProject.name = 'UltraCosmetics'
-include 'v1_21_R7', 'core', 'java-21', 'legacy-events', 'nms', 'paper-support'
+// 'nms' excluded: requires spigot:26.1.2-R0.1-SNAPSHOT (future MC version, not yet available)
+include 'v1_21_R7', 'core', 'java-21', 'legacy-events', 'paper-support'
