@@ -39,18 +39,19 @@ import java.util.List;
  */
 public class GadgetRocket extends Gadget implements Updatable {
 
-    private static final BlockFace[] CARDINAL = new BlockFace[] {BlockFace.NORTH, BlockFace.SOUTH, BlockFace.EAST, BlockFace.WEST};
+    private static final BlockFace[] CARDINAL =
+            new BlockFace[]{BlockFace.NORTH, BlockFace.SOUTH, BlockFace.EAST, BlockFace.WEST};
     private static final Material FENCE = XMaterial.OAK_FENCE.get();
     private static final Material QUARTZ_BLOCK = XMaterial.QUARTZ_BLOCK.get();
     private static final ParticleDisplay EMITTER = ParticleDisplay.of(XParticle.EXPLOSION_EMITTER);
-    private final ParticleDisplay flame = ParticleDisplay.of(XParticle.FLAME).withCount(10).offset(0.3, 0.2, 0.3).withLocationCaller(() -> getPlayer().getLocation().subtract(0, 3, 0));
+    private final ParticleDisplay flame = ParticleDisplay.of(XParticle.FLAME).withCount(10).offset(0.3, 0.2, 0.3)
+            .withLocationCaller(() -> getPlayer().getLocation().subtract(0, 3, 0));
     private final ParticleDisplay lava = flame.copy().withParticle(XParticle.LAVA);
 
     private final StructureRollback rollback = new StructureRollback();
     private boolean stillEquipped = true;
     private boolean launching;
     private ArmorStand armorStand;
-    // key is used for easy access for contains() checks
     private final List<FallingBlock> fallingBlocks = new ArrayList<>();
     private Entity playerVehicle = null;
     private int height;
@@ -77,7 +78,9 @@ public class GadgetRocket extends Gadget implements Updatable {
         loc.setZ(loc.getBlockZ() + 0.5);
 
         getUltraCosmetics().getScheduler().runAtEntityLater(getPlayer(), () -> {
-            if (getOwner() == null || getOwner().getCurrentGadget() != this) return;
+            if (getOwner() == null || getOwner().getCurrentGadget() != this) {
+                return;
+            }
             for (int i = 0; i < 2; i++) {
                 Block center = loc.clone().add(0, i, 0).getBlock();
                 for (BlockFace face : CARDINAL) {
@@ -91,7 +94,9 @@ public class GadgetRocket extends Gadget implements Updatable {
         }, 10);
 
         getUltraCosmetics().getScheduler().runAtEntityLater(getPlayer(), () -> {
-            if (getOwner() == null || getOwner().getCurrentGadget() != this) return;
+            if (getOwner() == null || getOwner().getCurrentGadget() != this) {
+                return;
+            }
             playerVehicle = null;
             boolean success = EntityMountManager.withBypass(() -> armorStand.addPassenger(getPlayer()));
             if (!success) {
@@ -127,13 +132,19 @@ public class GadgetRocket extends Gadget implements Updatable {
                     sendTitle(MessageManager.getLegacyMessage("Gadgets.Rocket.Takeoff"));
                     liftoffSound.play();
 
-                    final FallingBlock top = BlockUtils.spawnFallingBlock(getPlayer().getLocation().add(0, 3, 0), QUARTZ_BLOCK);
-                    FallingBlock base = BlockUtils.spawnFallingBlock(getPlayer().getLocation().add(0, 2, 0), QUARTZ_BLOCK);
+                    final FallingBlock top =
+                            BlockUtils.spawnFallingBlock(getPlayer().getLocation().add(0, 3, 0), QUARTZ_BLOCK);
+                    FallingBlock base =
+                            BlockUtils.spawnFallingBlock(getPlayer().getLocation().add(0, 2, 0), QUARTZ_BLOCK);
                     for (int i = 0; i < 2; i++) {
-                        fallingBlocks.add(BlockUtils.spawnFallingBlock(getPlayer().getLocation().add(0, 1 + i, 1), FENCE));
-                        fallingBlocks.add(BlockUtils.spawnFallingBlock(getPlayer().getLocation().add(0, 1 + i, -1), FENCE));
-                        fallingBlocks.add(BlockUtils.spawnFallingBlock(getPlayer().getLocation().add(1, 1 + i, 0), FENCE));
-                        fallingBlocks.add(BlockUtils.spawnFallingBlock(getPlayer().getLocation().add(-1, 1 + i, 0), FENCE));
+                        fallingBlocks.add(
+                                BlockUtils.spawnFallingBlock(getPlayer().getLocation().add(0, 1 + i, 1), FENCE));
+                        fallingBlocks.add(
+                                BlockUtils.spawnFallingBlock(getPlayer().getLocation().add(0, 1 + i, -1), FENCE));
+                        fallingBlocks.add(
+                                BlockUtils.spawnFallingBlock(getPlayer().getLocation().add(1, 1 + i, 0), FENCE));
+                        fallingBlocks.add(
+                                BlockUtils.spawnFallingBlock(getPlayer().getLocation().add(-1, 1 + i, 0), FENCE));
                     }
 
                     fallingBlocks.add(top);
@@ -147,7 +158,9 @@ public class GadgetRocket extends Gadget implements Updatable {
                     activeTask = new RocketTask() {
                         @Override
                         public void run() {
-                            if (getPlayer().getLocation().getBlockY() < height - 10) return;
+                            if (getPlayer().getLocation().getBlockY() < height - 10) {
+                                return;
+                            }
                             playerVehicle = null;
                             if (!isStillCurrentGadget()) {
                                 task.cancel();
@@ -160,6 +173,7 @@ public class GadgetRocket extends Gadget implements Updatable {
 
                         @Override
                         public void stop() {
+                            playerVehicle = null; // disable dismount detector before removing mount
                             fallingBlocks.forEach(Entity::remove);
                             fallingBlocks.clear();
                             FallDamageManager.addNoFall(getPlayer());
@@ -189,7 +203,9 @@ public class GadgetRocket extends Gadget implements Updatable {
     @SuppressWarnings("deprecation")
     @Override
     protected boolean checkRequirements(PlayerInteractEvent event) {
-        if (activeTask != null) return false;
+        if (activeTask != null) {
+            return false;
+        }
         Location loc = getPlayer().getLocation();
         height = Area.findMaxY(loc, 1);
         if (height - loc.getBlockY() < 25) {
@@ -223,6 +239,10 @@ public class GadgetRocket extends Gadget implements Updatable {
     }
 
     protected void cleanup() {
+        if (activeTask != null) {
+            activeTask.stop();
+            activeTask = null;
+        }
         rollback.rollback();
         for (FallingBlock fallingBlock : fallingBlocks) {
             fallingBlock.remove();
@@ -237,9 +257,6 @@ public class GadgetRocket extends Gadget implements Updatable {
 
         if (getPlayer() != null) {
             sendTitle(" ");
-        }
-        if (activeTask != null) {
-            activeTask.cancel();
         }
     }
 
@@ -258,7 +275,9 @@ public class GadgetRocket extends Gadget implements Updatable {
     }
 
     public boolean onDismount(Entity who, Entity dismounted) {
-        if (who != getPlayer() || dismounted != playerVehicle) return false;
+        if (who != getPlayer() || dismounted != playerVehicle) {
+            return false;
+        }
         disableFlight();
         activeTask.cancel();
         if (activeTask != null) {
