@@ -31,7 +31,7 @@ public class CancelLeashDrop {
             return;
         }
         try {
-            setDropLeash.invoke(event, true);
+            setDropLeash.invoke(event, false);
         } catch (IllegalAccessException | InvocationTargetException e) {
             throw new RuntimeException(e);
         }
