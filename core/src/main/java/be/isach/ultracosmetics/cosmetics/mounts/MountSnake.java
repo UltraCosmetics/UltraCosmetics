@@ -3,10 +3,15 @@ package be.isach.ultracosmetics.cosmetics.mounts;
 import be.isach.ultracosmetics.UltraCosmetics;
 import be.isach.ultracosmetics.cosmetics.type.MountType;
 import be.isach.ultracosmetics.player.UltraPlayer;
+import be.isach.ultracosmetics.util.ItemFactory;
 import be.isach.ultracosmetics.util.MathUtils;
 import me.gamercoder215.mobchip.bukkit.BukkitBrain;
 import org.bukkit.DyeColor;
 import org.bukkit.Location;
+import org.bukkit.World;
+import org.bukkit.attribute.Attribute;
+import org.bukkit.attribute.AttributeInstance;
+import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.entity.Creature;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -25,21 +30,32 @@ import java.util.List;
  * @since 08-10-2015
  */
 public class MountSnake extends Mount {
-
     private final List<Creature> tail = new ArrayList<>();
-    private int color = 1;
+    private int color;
 
     public MountSnake(UltraPlayer owner, MountType type, UltraCosmetics ultraCosmetics) {
         super(owner, type, ultraCosmetics);
     }
 
-    @Override
-    public void setupEntity() {
-        color = MathUtils.randomRangeInt(0, 14);
+    private void setupSheep(Entity entity) {
         Sheep sheep = (Sheep) entity;
         sheep.setNoDamageTicks(Integer.MAX_VALUE);
         sheep.setColor(DyeColor.values()[color]);
+        sheep.setPersistent(false);
+        sheep.setRemoveWhenFarAway(false);
+        AttributeInstance speed = sheep.getAttribute(Attribute.MOVEMENT_SPEED);
+        // Make first sheep slower so the others can catch up
+        double speedVal = tail.isEmpty() ? 0.8 : 1.5;
+        speed.addModifier(
+                ItemFactory.createAttributeModifier("snake_speed", speedVal, AttributeModifier.Operation.ADD_SCALAR,
+                        null));
         tail.add(sheep);
+    }
+
+    @Override
+    public void setupEntity() {
+        color = MathUtils.randomRangeInt(0, 14);
+        setupSheep(entity);
         addSheepToTail(4);
     }
 
@@ -54,21 +70,31 @@ public class MountSnake extends Mount {
 
     @Override
     public void onUpdate() {
-        if (getPlayer() == null) return;
-        Vector vel = getPlayer().getLocation().getDirection().setY(0).normalize().multiply(16);
+        Player player = getPlayer();
+        if (player == null) {
+            return;
+        }
+
+        World world = player.getWorld();
+        Vector vel = player.getLocation().getDirection().setY(0).normalize().multiply(16);
 
         Creature before = null;
-        for (int i = 0; i < tail.size(); i++) {
-            Creature tailEnt = tail.get(i);
+        for (Creature tailEnt : tail) {
+            if (!tailEnt.isValid() || tailEnt.getWorld() != world) {
+                clear();
+                return;
+            }
             Location loc;
             if (before == null) {
                 loc = tailEnt.getLocation().add(vel);
             } else {
                 loc = before.getLocation();
-                Location tp = before.getLocation().add(traj(before, tailEnt).multiply(1.4D));
-                tp.setPitch(tailEnt.getLocation().getPitch());
-                tp.setYaw(tailEnt.getLocation().getYaw());
-                getUltraCosmetics().getScheduler().teleportAsync(tailEnt, tp);
+                if (before.getLocation().distanceSquared(tailEnt.getLocation()) > 6 * 6) {
+                    Location tp = before.getLocation().add(traj(before, tailEnt).multiply(1.4D));
+                    tp.setPitch(tailEnt.getLocation().getPitch());
+                    tp.setYaw(tailEnt.getLocation().getYaw());
+                    getUltraCosmetics().getScheduler().teleportAsync(tailEnt, tp);
+                }
             }
 
             BukkitBrain.getBrain(tailEnt).getController().moveTo(loc);
@@ -97,12 +123,7 @@ public class MountSnake extends Mount {
             } else {
                 loc.subtract(player.getLocation().getDirection().setY(0));
             }
-            Sheep tailEnt = loc.getWorld().spawn(loc, Sheep.class);
-            tailEnt.setNoDamageTicks(Integer.MAX_VALUE);
-            tailEnt.setRemoveWhenFarAway(false);
-            tail.add(tailEnt);
-            tailEnt.setColor(DyeColor.values()[color]);
-            tailEnt.setPersistent(false);
+            setupSheep(loc.getWorld().spawn(loc, Sheep.class));
         }
     }
 
