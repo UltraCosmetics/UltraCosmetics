@@ -2,14 +2,12 @@ package be.isach.ultracosmetics.nms;
 
 import be.isach.ultracosmetics.cosmetics.morphs.Morph;
 import be.isach.ultracosmetics.cosmetics.mounts.Mount;
-import be.isach.ultracosmetics.cosmetics.pets.Pet;
 import be.isach.ultracosmetics.nms.customentities.CustomEntities;
 import be.isach.ultracosmetics.nms.customentities.CustomEntityFirework;
 import be.isach.ultracosmetics.nms.customentities.CustomMinecart;
 import be.isach.ultracosmetics.nms.morphs.MorphElderGuardian;
 import be.isach.ultracosmetics.nms.mount.MountSlime;
 import be.isach.ultracosmetics.nms.mount.MountSpider;
-import be.isach.ultracosmetics.nms.pets.PetPumpling;
 import be.isach.ultracosmetics.version.IModule;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.Identifier;
@@ -40,11 +38,6 @@ public class VersionModule implements IModule {
             return null;
         }
         return MountSlime.class;
-    }
-
-    @Override
-    public Class<? extends Pet> getPumplingClass() {
-        return PetPumpling.class;
     }
 
     @Override

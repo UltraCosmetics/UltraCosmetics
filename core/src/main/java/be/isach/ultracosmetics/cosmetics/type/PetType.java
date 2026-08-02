@@ -214,11 +214,7 @@ public class PetType extends CosmeticEntType<Pet> {
         registerPet("Stray", XMaterial.ARROW, XEntityType.STRAY, PetStray.class);
         registerPet("PolarBear", XMaterial.SNOW_BLOCK, XEntityType.POLAR_BEAR, Pet.class);
         registerPet("Shulker", XMaterial.SHULKER_BOX, XEntityType.SHULKER, PetShulker.class);
-
-        Class<? extends Pet> pumpling = UltraCosmeticsData.get().getVersionManager().getModule().getPumplingClass();
-        if (pumpling != null) {
-            registerPet("Pumpling", XMaterial.PUMPKIN, XEntityType.ZOMBIE, pumpling);
-        }
+        registerPet("Pumpling", XMaterial.PUMPKIN, XEntityType.ZOMBIE, PetPumpling.class);
 
         ConfigurationSection pets = getCustomConfig(Category.PETS);
         if (pets == null) {

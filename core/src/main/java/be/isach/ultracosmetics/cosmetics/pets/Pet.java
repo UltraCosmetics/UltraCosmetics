@@ -166,7 +166,7 @@ public class Pet extends EntityCosmetic<PetType, Mob> implements Updatable {
     }
 
     public boolean useArmorStandNameTag() {
-        return isCustomEntity();
+        return false;
     }
 
     public boolean useMarkerArmorStand() {
@@ -206,7 +206,9 @@ public class Pet extends EntityCosmetic<PetType, Mob> implements Updatable {
 
     protected void doAirlift() {
         // If a mob can already fly, they don't need an airlift
-        if (!XEntityType.HAPPY_GHAST.isSupported() || entity.getAttribute(FLYING_SPEED) != null) return;
+        if (!XEntityType.HAPPY_GHAST.isSupported() || entity.getAttribute(FLYING_SPEED) != null) {
+            return;
+        }
         if (airlift != null) {
             if (!getPlayer().isFlying()) {
                 entity.setLeashHolder(null);
@@ -223,7 +225,9 @@ public class Pet extends EntityCosmetic<PetType, Mob> implements Updatable {
             return;
         }
 
-        if (!getPlayer().isFlying()) return;
+        if (!getPlayer().isFlying()) {
+            return;
+        }
 
         airlift = EntitySpawningManager.withBypass(() ->
                 (Mob) entity.getWorld().spawnEntity(entity.getLocation(), XEntityType.HAPPY_GHAST.get())
@@ -274,7 +278,9 @@ public class Pet extends EntityCosmetic<PetType, Mob> implements Updatable {
     }
 
     protected void setupNameTag() {
-        if (!showName) return;
+        if (!showName) {
+            return;
+        }
         if (!useArmorStandNameTag()) {
             getEntity().setCustomNameVisible(true);
             return;
@@ -291,7 +297,9 @@ public class Pet extends EntityCosmetic<PetType, Mob> implements Updatable {
     }
 
     public void updateName() {
-        if (!showName) return;
+        if (!showName) {
+            return;
+        }
         Entity rename;
         if (armorStand == null) {
             rename = entity;
@@ -331,7 +339,8 @@ public class Pet extends EntityCosmetic<PetType, Mob> implements Updatable {
     public void dropItem() {
         // Not using the ItemFactory variance method for this one
         // because we want to bump the Y velocity a bit between calcs.
-        Vector velocity = new Vector(RANDOM.nextDouble() - 0.5, RANDOM.nextDouble() / 2.0 + 0.3, RANDOM.nextDouble() - 0.5).multiply(0.4);
+        Vector velocity = new Vector(RANDOM.nextDouble() - 0.5, RANDOM.nextDouble() / 2.0 + 0.3,
+                RANDOM.nextDouble() - 0.5).multiply(0.4);
         final Item drop = ItemFactory.spawnUnpickableItem(dropItem, ((LivingEntity) entity).getEyeLocation(), velocity);
         items.add(drop);
         getUltraCosmetics().getScheduler().runAtEntityLater(drop, () -> {
@@ -343,7 +352,9 @@ public class Pet extends EntityCosmetic<PetType, Mob> implements Updatable {
     @EventHandler
     public void onEntityDamageByEntity(EntityDamageByEntityEvent event) {
         // Prevents (elder-)guardians from dealing damage to attacking players.
-        if (event.getDamager() == getEntity()) event.setCancelled(true);
+        if (event.getDamager() == getEntity()) {
+            event.setCancelled(true);
+        }
     }
 
     @EventHandler
@@ -365,19 +376,19 @@ public class Pet extends EntityCosmetic<PetType, Mob> implements Updatable {
 
     @EventHandler
     public void onCombust(EntityCombustEvent event) {
-        if (event.getEntity() == entity) event.setCancelled(true);
+        if (event.getEntity() == entity) {
+            event.setCancelled(true);
+        }
     }
 
     @Override
     protected Component appendActivateMessage(Component base) {
         Component name = getOwner().getPetName(getType());
-        if (name == null) return base;
+        if (name == null) {
+            return base;
+        }
         return Component.empty().append(base).append(Component.text(" (", NamedTextColor.GRAY))
                 .append(name).append(Component.text(")", NamedTextColor.GRAY));
-    }
-
-    public boolean isCustomEntity() {
-        return false;
     }
 
     public boolean setCustomization(String customization) {
@@ -444,7 +455,9 @@ public class Pet extends EntityCosmetic<PetType, Mob> implements Updatable {
     protected boolean customizeHeldItem(String customization) {
         String[] parts = customization.split(":", 2);
         Optional<XMaterial> mat = XMaterial.matchXMaterial(parts[0]);
-        if (!mat.isPresent() || !mat.get().get().isItem()) return false;
+        if (!mat.isPresent() || !mat.get().get().isItem()) {
+            return false;
+        }
         ItemStack stack = mat.get().parseItem();
         if (parts.length > 1) {
             int model;
