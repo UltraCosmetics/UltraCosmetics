@@ -1,8 +1,8 @@
 package be.isach.ultracosmetics.nms.customentities;
 
+import be.isach.ultracosmetics.nms.VersionModule;
 import net.minecraft.network.protocol.game.ClientboundEntityEventPacket;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityTypes;
 import net.minecraft.world.entity.projectile.FireworkRocketEntity;
 import net.minecraft.world.level.Level;
 import org.bukkit.craftbukkit.entity.CraftPlayer;
@@ -16,7 +16,7 @@ public class CustomEntityFirework extends FireworkRocketEntity {
     private boolean gone = false;
 
     public CustomEntityFirework(Level world, Player... p) {
-        super(EntityTypes.FIREWORK_ROCKET, world);
+        super(VersionModule.getEntityType("firework_rocket"), world);
         players = p;
     }
 

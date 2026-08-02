@@ -11,8 +11,10 @@ import be.isach.ultracosmetics.nms.mount.MountSlime;
 import be.isach.ultracosmetics.nms.mount.MountSpider;
 import be.isach.ultracosmetics.nms.pets.PetPumpling;
 import be.isach.ultracosmetics.version.IModule;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityTypes;
+import net.minecraft.world.entity.EntityType;
 import org.bukkit.FireworkEffect;
 import org.bukkit.Location;
 import org.bukkit.craftbukkit.CraftWorld;
@@ -32,6 +34,11 @@ public class VersionModule implements IModule {
 
     @Override
     public Class<? extends Mount> getSlimeClass() {
+        try {
+            Class.forName("net.minecraft.world.entity.monster.cubemob.Slime");
+        } catch (ClassNotFoundException e) {
+            return null;
+        }
         return MountSlime.class;
     }
 
@@ -48,7 +55,8 @@ public class VersionModule implements IModule {
     @Override
     public org.bukkit.entity.Entity spawnCustomMinecart(Location location) {
         return CustomEntities.spawnEntity(
-                new CustomMinecart(EntityTypes.MINECART, ((CraftWorld) location.getWorld()).getHandle()), location);
+                new CustomMinecart(VersionModule.getEntityType("minecart"),
+                        ((CraftWorld) location.getWorld()).getHandle()), location);
     }
 
     @Override
@@ -72,5 +80,10 @@ public class VersionModule implements IModule {
         if ((((CraftWorld) location.getWorld()).getHandle()).addFreshEntity(firework)) {
             ((Entity) firework).setInvisible(true);
         }
+    }
+
+    @SuppressWarnings("unchecked")
+    public static <T extends Entity> EntityType<T> getEntityType(String name) {
+        return (EntityType<T>) BuiltInRegistries.ENTITY_TYPE.getValue(Identifier.withDefaultNamespace(name));
     }
 }

@@ -13,7 +13,6 @@ import be.isach.ultracosmetics.task.UltraTask;
 import be.isach.ultracosmetics.util.EntitySpawningManager;
 import be.isach.ultracosmetics.util.MathUtils;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityTypes;
 import org.bukkit.Color;
 import org.bukkit.FireworkEffect;
 import org.bukkit.Location;
@@ -111,7 +110,8 @@ public class MorphElderGuardian extends Morph implements Updatable {
     protected void onEquip() {
         super.onEquip();
         customGuardian =
-                new CustomGuardian(EntityTypes.ELDER_GUARDIAN, ((CraftWorld) getPlayer().getWorld()).getHandle());
+                new CustomGuardian(VersionModule.getEntityType("elder_guardian"),
+                        ((CraftWorld) getPlayer().getWorld()).getHandle());
         EntitySpawningManager.withBypass(() -> CustomEntities.spawnEntity(customGuardian, getPlayer().getLocation()));
         getPlayer().addPassenger(customGuardian.getBukkitEntity());
         ((Entity) customGuardian).setInvisible(true);

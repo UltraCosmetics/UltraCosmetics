@@ -32,7 +32,8 @@ public class MountType extends CosmeticEntType<Mount> {
     private final double defaultSpeed;
     private final double movementSpeed;
 
-    private MountType(String configName, XMaterial material, XEntityType entityType, int repeatDelay, double defaultSpeed, Class<? extends Mount> mountClass, List<XMaterial> defaultBlocks) {
+    private MountType(String configName, XMaterial material, XEntityType entityType, int repeatDelay,
+                      double defaultSpeed, Class<? extends Mount> mountClass, List<XMaterial> defaultBlocks) {
         super(Category.MOUNTS, configName, material, entityType, mountClass);
         this.repeatDelay = repeatDelay;
         this.defaultBlocks = defaultBlocks;
@@ -45,7 +46,8 @@ public class MountType extends CosmeticEntType<Mount> {
         }
     }
 
-    private MountType(String configName, XMaterial material, XEntityType entityType, int repeatDelay, double defaultSpeed, Class<? extends Mount> mountClass) {
+    private MountType(String configName, XMaterial material, XEntityType entityType, int repeatDelay,
+                      double defaultSpeed, Class<? extends Mount> mountClass) {
         this(configName, material, entityType, repeatDelay, defaultSpeed, mountClass, null);
     }
 
@@ -82,24 +84,31 @@ public class MountType extends CosmeticEntType<Mount> {
 
     public void setupConfigLate(CustomConfiguration config, String path) {
         if (LivingEntity.class.isAssignableFrom(getEntityType().getEntityClass())) {
-            config.addDefault(path + ".Speed", getDefaultMovementSpeed(), "The movement speed of the mount, see:", "https://minecraft.fandom.com/wiki/Attribute#Attributes_available_on_all_living_entities");
+            config.addDefault(path + ".Speed", getDefaultMovementSpeed(), "The movement speed of the mount, see:",
+                    "https://minecraft.fandom.com/wiki/Attribute#Attributes_available_on_all_living_entities");
         }
         if (doesPlaceBlocks()) {
             // Don't use Stream#toList(), it doesn't exist in Java 8
-            config.addDefault(path + ".Blocks-To-Place", getDefaultBlocks().stream().map(Enum::name).collect(Collectors.toList()), "Blocks to choose from as this mount walks.");
+            config.addDefault(path + ".Blocks-To-Place",
+                    getDefaultBlocks().stream().map(Enum::name).collect(Collectors.toList()),
+                    "Blocks to choose from as this mount walks.");
         }
     }
 
     public static void register() {
         VersionManager vm = UltraCosmeticsData.get().getVersionManager();
         new MountType("DruggedHorse", XMaterial.SUGAR, XEntityType.HORSE, 2, 1.1, MountDruggedHorse.class);
-        new MountType("GlacialSteed", XMaterial.PACKED_ICE, XEntityType.HORSE, 2, 0.4, MountGlacialSteed.class, Collections.singletonList(XMaterial.SNOW_BLOCK));
-        new MountType("MountOfFire", XMaterial.BLAZE_POWDER, XEntityType.HORSE, 2, 0.4, MountOfFire.class, Arrays.asList(XMaterial.ORANGE_TERRACOTTA, XMaterial.YELLOW_TERRACOTTA, XMaterial.RED_TERRACOTTA));
+        new MountType("GlacialSteed", XMaterial.PACKED_ICE, XEntityType.HORSE, 2, 0.4, MountGlacialSteed.class,
+                Collections.singletonList(XMaterial.SNOW_BLOCK));
+        new MountType("MountOfFire", XMaterial.BLAZE_POWDER, XEntityType.HORSE, 2, 0.4, MountOfFire.class,
+                Arrays.asList(XMaterial.ORANGE_TERRACOTTA, XMaterial.YELLOW_TERRACOTTA, XMaterial.RED_TERRACOTTA));
         new MountType("Snake", XMaterial.WHEAT_SEEDS, XEntityType.SHEEP, 2, 0.3, MountSnake.class);
         new MountType("MoltenSnake", XMaterial.MAGMA_CREAM, XEntityType.MAGMA_CUBE, 1, 0.4, MountMoltenSnake.class);
         new MountType("SlimeSnake", XMaterial.SLIME_BLOCK, XEntityType.SLIME, 1, 0.4, MountSlimeSnake.class);
-        new MountType("MountOfWater", XMaterial.LIGHT_BLUE_DYE, XEntityType.HORSE, 2, 0.4, MountOfWater.class, Arrays.asList(XMaterial.LIGHT_BLUE_TERRACOTTA, XMaterial.CYAN_TERRACOTTA, XMaterial.BLUE_TERRACOTTA));
-        new MountType("EcologistHorse", XMaterial.GREEN_DYE, XEntityType.HORSE, 2, 0.4, MountEcologistHorse.class, Arrays.asList(XMaterial.LIME_TERRACOTTA, XMaterial.GREEN_TERRACOTTA));
+        new MountType("MountOfWater", XMaterial.LIGHT_BLUE_DYE, XEntityType.HORSE, 2, 0.4, MountOfWater.class,
+                Arrays.asList(XMaterial.LIGHT_BLUE_TERRACOTTA, XMaterial.CYAN_TERRACOTTA, XMaterial.BLUE_TERRACOTTA));
+        new MountType("EcologistHorse", XMaterial.GREEN_DYE, XEntityType.HORSE, 2, 0.4, MountEcologistHorse.class,
+                Arrays.asList(XMaterial.LIME_TERRACOTTA, XMaterial.GREEN_TERRACOTTA));
         new MountType("Rudolph", XMaterial.DEAD_BUSH, XEntityType.MULE, 1, 0.4, MountRudolph.class);
         new MountType("WalkingDead", XMaterial.ROTTEN_FLESH, XEntityType.ZOMBIE_HORSE, 2, 0.4, MountWalkingDead.class);
         new MountType("InfernalHorror", XMaterial.BONE, XEntityType.SKELETON_HORSE, 2, 0.4, MountInfernalHorror.class);
@@ -125,9 +134,15 @@ public class MountType extends CosmeticEntType<Mount> {
             new MountType("Camel", XMaterial.CACTUS, XEntityType.CAMEL, 0, 0.35, MountCamel.class);
         }
 
-        if (vm.isUsingNMS()) {
+        if (vm.getModule().getSlimeClass() != null) {
             new MountType("Slime", XMaterial.SLIME_BALL, XEntityType.SLIME, 2, 0.8, vm.getModule().getSlimeClass());
+        }
+
+        if (vm.getModule().getSpiderClass() != null) {
             new MountType("Spider", XMaterial.COBWEB, XEntityType.SPIDER, 2, 0.4, vm.getModule().getSpiderClass());
+        }
+
+        if (vm.isUsingNMS()) {
             new MountType("HypeCart", XMaterial.MINECART, XEntityType.MINECART, 1, 0, MountHypeCart.class);
         }
     }

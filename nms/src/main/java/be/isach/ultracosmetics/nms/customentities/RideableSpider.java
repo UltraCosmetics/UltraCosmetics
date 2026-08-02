@@ -1,9 +1,9 @@
 package be.isach.ultracosmetics.nms.customentities;
 
 import be.isach.ultracosmetics.nms.EntityBase;
+import be.isach.ultracosmetics.nms.VersionModule;
 import net.minecraft.locale.Language;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.monster.spider.Spider;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
@@ -14,8 +14,8 @@ import net.minecraft.world.phys.Vec3;
  */
 public class RideableSpider extends Spider implements EntityBase {
 
-    public RideableSpider(EntityType<? extends Spider> entitytypes, Level world) {
-        super(entitytypes, world);
+    public RideableSpider(Level world) {
+        super(VersionModule.getEntityType("spider"), world);
     }
 
     @Override

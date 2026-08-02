@@ -10,9 +10,9 @@ import org.bukkit.entity.Player;
 
 public interface IModule {
 
-    public Class<? extends Mount> getSpiderClass();
+    Class<? extends Mount> getSpiderClass();
 
-    public Class<? extends Mount> getSlimeClass();
+    Class<? extends Mount> getSlimeClass();
 
     Class<? extends Pet> getPumplingClass();
 
