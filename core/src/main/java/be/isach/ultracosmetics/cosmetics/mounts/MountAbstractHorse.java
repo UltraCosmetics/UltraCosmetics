@@ -7,9 +7,6 @@ import com.cryptomorin.xseries.XMaterial;
 import org.bukkit.entity.AbstractHorse;
 import org.bukkit.inventory.ItemStack;
 
-/**
- * Created by sacha on 11/01/17.
- */
 public abstract class MountAbstractHorse extends Mount {
     private static final ItemStack SADDLE = XMaterial.SADDLE.parseItem();
 

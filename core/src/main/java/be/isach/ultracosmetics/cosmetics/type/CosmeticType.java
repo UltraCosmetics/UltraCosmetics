@@ -26,18 +26,8 @@ import org.bukkit.persistence.PersistentDataType;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
+import java.util.*;
 
-/**
- * A cosmetic type.
- *
- * @author iSach
- * @since 07-05-2016
- */
 public abstract class CosmeticType<T extends Cosmetic<?>> {
     // For use when adding new cosmetics
     public static final boolean GENERATE_MISSING_MESSAGES = false;
@@ -64,13 +54,16 @@ public abstract class CosmeticType<T extends Cosmetic<?>> {
             }
             customConfig.load(configFile);
         } catch (InvalidConfigurationException | IOException e) {
-            UltraCosmeticsData.get().getPlugin().getSmartLogger().write(LogLevel.ERROR, "Failed to load custom cosmetics, they will be ignored.");
+            UltraCosmeticsData.get().getPlugin().getSmartLogger()
+                    .write(LogLevel.ERROR, "Failed to load custom cosmetics, they will be ignored.");
             e.printStackTrace();
         }
     }
 
     protected static ConfigurationSection getCustomConfig(Category cat) {
-        if (cat.isSuits()) return customConfig.getConfigurationSection("Suits");
+        if (cat.isSuits()) {
+            return customConfig.getConfigurationSection("Suits");
+        }
         return customConfig.getConfigurationSection(cat.getConfigPath());
     }
 
@@ -79,7 +72,8 @@ public abstract class CosmeticType<T extends Cosmetic<?>> {
             File configFile = new File(UltraCosmeticsData.get().getPlugin().getDataFolder(), "custom_cosmetics.yml");
             customConfig.save(configFile);
         } catch (IOException e) {
-            UltraCosmeticsData.get().getPlugin().getSmartLogger().write(LogLevel.ERROR, "Failed to load custom cosmetics, they will be ignored.");
+            UltraCosmeticsData.get().getPlugin().getSmartLogger()
+                    .write(LogLevel.ERROR, "Failed to load custom cosmetics, they will be ignored.");
             e.printStackTrace();
         }
     }
@@ -159,7 +153,8 @@ public abstract class CosmeticType<T extends Cosmetic<?>> {
         this(category, configName, material, clazz, true);
     }
 
-    public CosmeticType(Category category, String configName, XMaterial material, Class<? extends T> clazz, boolean registerPerm) {
+    public CosmeticType(Category category, String configName, XMaterial material, Class<? extends T> clazz,
+                        boolean registerPerm) {
         this.category = category;
         this.configName = configName;
         this.material = material;
@@ -169,8 +164,10 @@ public abstract class CosmeticType<T extends Cosmetic<?>> {
         if (GENERATE_MISSING_MESSAGES) {
             MessageManager.addMessage(getConfigPath() + ".Description", "Description");
         }
-        Component colors = MessageManager.getMiniMessage().deserialize(SettingsManager.getConfig().getString("Description-Style", ""));
-        this.description = MessageManager.getLore(getCategory().getConfigPath() + "." + configName + ".Description", colors.style());
+        Component colors = MessageManager.getMiniMessage()
+                .deserialize(SettingsManager.getConfig().getString("Description-Style", ""));
+        this.description = MessageManager.getLore(getCategory().getConfigPath() + "." + configName + ".Description",
+                colors.style());
         if (registerPerm) {
             registerPermission();
         }
@@ -188,7 +185,8 @@ public abstract class CosmeticType<T extends Cosmetic<?>> {
             if (selfClass.isAnonymousClass()) {
                 selfClass = selfClass.getSuperclass();
             }
-            cosmetic = getClazz().getDeclaredConstructor(UltraPlayer.class, selfClass, UltraCosmetics.class).newInstance(player, this, ultraCosmetics);
+            cosmetic = getClazz().getDeclaredConstructor(UltraPlayer.class, selfClass, UltraCosmetics.class)
+                    .newInstance(player, this, ultraCosmetics);
         } catch (ReflectiveOperationException e) {
             e.printStackTrace();
             return null;
@@ -234,7 +232,8 @@ public abstract class CosmeticType<T extends Cosmetic<?>> {
     }
 
     public ItemStack getItemStack() {
-        String skull = SettingsManager.getConfig().getString(category.getConfigPath() + "." + getConfigName() + ".Custom-Head");
+        String skull = SettingsManager.getConfig()
+                .getString(category.getConfigPath() + "." + getConfigName() + ".Custom-Head");
         ItemStack stack;
         if (skull == null) {
             stack = material.parseItem();
@@ -269,7 +268,8 @@ public abstract class CosmeticType<T extends Cosmetic<?>> {
      * @return {@code true} if it should show a description, otherwise {@code false}.
      */
     public boolean showsDescription() {
-        return SettingsManager.getConfig().getBoolean(category.getConfigPath() + "." + getConfigName() + ".Show-Description");
+        return SettingsManager.getConfig()
+                .getBoolean(category.getConfigPath() + "." + getConfigName() + ".Show-Description");
     }
 
     /**
@@ -288,7 +288,8 @@ public abstract class CosmeticType<T extends Cosmetic<?>> {
      * @return its weight
      */
     public int getChestWeight() {
-        return SettingsManager.getConfig().getInt(category.getConfigPath() + "." + getConfigName() + ".Treasure-Chest-Weight");
+        return SettingsManager.getConfig()
+                .getInt(category.getConfigPath() + "." + getConfigName() + ".Treasure-Chest-Weight");
     }
 
     /**
@@ -302,20 +303,23 @@ public abstract class CosmeticType<T extends Cosmetic<?>> {
     }
 
     protected void registerPermission() {
-        permission = registeredPermissions.computeIfAbsent(category.getPermission() + "." + getPermissionSuffix(), s -> {
-            Permission perm = new Permission(s);
-            try {
-                ALL_PERMISSION.getChildren().put(s, true);
-                Bukkit.getPluginManager().addPermission(perm);
-            } catch (IllegalArgumentException ignored) {
-            }
-            return perm;
-        });
-        purchasePermission = registeredPermissions.computeIfAbsent(category.getPurchasePermission() + "." + getPermissionSuffix(), s -> {
-            Permission perm = new Permission(s, PermissionDefault.TRUE);
-            Bukkit.getPluginManager().addPermission(perm);
-            return perm;
-        });
+        permission =
+                registeredPermissions.computeIfAbsent(category.getPermission() + "." + getPermissionSuffix(), s -> {
+                    Permission perm = new Permission(s);
+                    try {
+                        ALL_PERMISSION.getChildren().put(s, true);
+                        Bukkit.getPluginManager().addPermission(perm);
+                    } catch (IllegalArgumentException ignored) {
+                    }
+                    return perm;
+                });
+        purchasePermission =
+                registeredPermissions.computeIfAbsent(category.getPurchasePermission() + "." + getPermissionSuffix(),
+                        s -> {
+                            Permission perm = new Permission(s, PermissionDefault.TRUE);
+                            Bukkit.getPluginManager().addPermission(perm);
+                            return perm;
+                        });
     }
 
     protected String getPermissionSuffix() {
@@ -334,7 +338,10 @@ public abstract class CosmeticType<T extends Cosmetic<?>> {
             weight = config.getBoolean(findableKey) ? 1 : 0;
             config.set(findableKey, null);
         }
-        config.addDefault(path + ".Treasure-Chest-Weight", weight, "The higher the weight, the better the chance of", "finding this cosmetic when this category is picked.", "Fractional values are not allowed.", "Set to 0 to disable finding in chests.");
-        config.addDefault(path + ".Purchase-Price", 500, "Price to buy individually in GUI", "Only works if No-Permission.Allow-Purchase is true and this setting > 0");
+        config.addDefault(path + ".Treasure-Chest-Weight", weight, "The higher the weight, the better the chance of",
+                "finding this cosmetic when this category is picked.", "Fractional values are not allowed.",
+                "Set to 0 to disable finding in chests.");
+        config.addDefault(path + ".Purchase-Price", 500, "Price to buy individually in GUI",
+                "Only works if No-Permission.Allow-Purchase is true and this setting > 0");
     }
 }

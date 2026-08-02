@@ -8,9 +8,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-/**
- * Created by Sacha on 15/12/15.
- */
 public class FallDamageManager extends UltraTask {
     // Keys which map to this value have not started their countdown yet
     private static final int SENTINEL = Integer.MAX_VALUE;

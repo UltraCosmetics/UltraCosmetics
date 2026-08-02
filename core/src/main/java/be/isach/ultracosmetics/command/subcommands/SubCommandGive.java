@@ -16,21 +16,17 @@ import org.bukkit.entity.Player;
 import java.util.List;
 import java.util.Locale;
 
-/**
- * Give {@link be.isach.ultracosmetics.command.SubCommand SubCommand}.
- *
- * @author iSach
- * @since 12-21-2015
- */
 public class SubCommandGive extends SubCommand {
 
     public SubCommandGive(UltraCosmetics ultraCosmetics) {
-        super("give", "Gives Ammo/Keys", "key [amount] [player] OR /uc give ammo <type> <amount> [player]", ultraCosmetics);
+        super("give", "Gives Ammo/Keys", "key [amount] [player] OR /uc give ammo <type> <amount> [player]",
+                ultraCosmetics);
     }
 
     @Override
     protected void onExeAnyone(CommandSender sender, String[] args) {
-        if (args.length < 2 || (!args[1].toLowerCase(Locale.ROOT).startsWith("k") && !args[1].toLowerCase(Locale.ROOT).startsWith("a"))) {
+        if (args.length < 2 || (!args[1].toLowerCase(Locale.ROOT).startsWith("k") &&
+                !args[1].toLowerCase(Locale.ROOT).startsWith("a"))) {
             badUsage(sender);
             return;
         }
@@ -74,7 +70,8 @@ public class SubCommandGive extends SubCommand {
             addKeys(target, keys);
 
             MessageManager.send(sender, "Treasure-Keys-Given",
-                    Placeholder.unparsed("keys", String.valueOf(keys)), Placeholder.unparsed("playername", target.getName()));
+                    Placeholder.unparsed("keys", String.valueOf(keys)),
+                    Placeholder.unparsed("playername", target.getName()));
             sender.sendMessage(ChatColor.GREEN.toString() + keys + " treasure keys given to " + target.getName());
             return;
         }
@@ -107,7 +104,8 @@ public class SubCommandGive extends SubCommand {
 
         addAmmo(gadgetType, target, ammo);
         MessageManager.send(sender, "Ammo-Given", Placeholder.unparsed("ammo", String.valueOf(ammo)),
-                Placeholder.unparsed("gadgetname", gadgetType.toString()), Placeholder.unparsed("playername", target.getName()));
+                Placeholder.unparsed("gadgetname", gadgetType.toString()),
+                Placeholder.unparsed("playername", target.getName()));
     }
 
     private void addKeys(Player player, int amount) {

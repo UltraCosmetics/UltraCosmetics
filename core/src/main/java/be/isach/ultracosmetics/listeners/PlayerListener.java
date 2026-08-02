@@ -28,12 +28,6 @@ import java.util.Arrays;
 import java.util.Locale;
 import java.util.UUID;
 
-/**
- * Player listeners.
- *
- * @author iSach
- * @since 08-03-2015
- */
 public class PlayerListener implements Listener {
 
     private final UltraCosmetics ultraCosmetics;

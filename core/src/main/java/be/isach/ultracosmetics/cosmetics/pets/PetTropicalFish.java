@@ -9,12 +9,6 @@ import org.bukkit.entity.TropicalFish.Pattern;
 
 import java.util.Locale;
 
-/**
- * Represents an instance of a tropical fish pet summoned by a player.
- *
- * @author Chris6ix
- * @since 14-09-2022
- */
 public class PetTropicalFish extends Pet {
     public PetTropicalFish(UltraPlayer owner, PetType type, UltraCosmetics ultraCosmetics) {
         super(owner, type, ultraCosmetics);
@@ -26,7 +20,9 @@ public class PetTropicalFish extends Pet {
         DyeColor bodyColor;
         DyeColor patternColor;
         String[] parts = customization.toUpperCase(Locale.ROOT).split(":");
-        if (parts.length != 3) return false;
+        if (parts.length != 3) {
+            return false;
+        }
         try {
             pattern = Pattern.valueOf(parts[0]);
             bodyColor = DyeColor.valueOf(parts[1]);

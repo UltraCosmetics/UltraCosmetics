@@ -5,12 +5,6 @@ import be.isach.ultracosmetics.cosmetics.type.ParticleEffectType;
 import be.isach.ultracosmetics.player.UltraPlayer;
 import org.bukkit.Location;
 
-/**
- * Represents an instance of music particles summoned by a player.
- *
- * @author iSach
- * @since 10-12-2015
- */
 public class ParticleEffectMusic extends ParticleEffect {
 
     public ParticleEffectMusic(UltraPlayer owner, ParticleEffectType type, UltraCosmetics ultraCosmetics) {

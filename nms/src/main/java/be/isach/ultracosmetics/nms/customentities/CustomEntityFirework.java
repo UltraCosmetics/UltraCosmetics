@@ -8,9 +8,6 @@ import net.minecraft.world.level.Level;
 import org.bukkit.craftbukkit.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
-/**
- * @author RadBuilder
- */
 public class CustomEntityFirework extends FireworkRocketEntity {
     private final Player[] players;
     private boolean gone = false;

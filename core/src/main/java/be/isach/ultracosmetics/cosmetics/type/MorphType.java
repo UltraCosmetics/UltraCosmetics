@@ -12,12 +12,6 @@ import com.cryptomorin.xseries.XMaterial;
 import net.kyori.adventure.text.Component;
 import org.bukkit.entity.EntityType;
 
-/**
- * Morph types.
- *
- * @author iSach
- * @since 12-19-2015
- */
 public class MorphType extends CosmeticEntType<Morph> {
 
     private final boolean doesSkillExist;

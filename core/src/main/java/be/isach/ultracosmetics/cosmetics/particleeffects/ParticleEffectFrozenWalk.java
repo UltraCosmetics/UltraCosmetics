@@ -9,12 +9,6 @@ import org.bukkit.Location;
 import org.bukkit.Particle;
 import org.bukkit.util.Vector;
 
-/**
- * Represents an instance of frozen walk particles summoned by a player.
- *
- * @author iSach
- * @since 10-12-2015
- */
 public class ParticleEffectFrozenWalk extends ParticleEffect {
     private static final Particle ITEM_PARTICLE = XParticle.ITEM.get();
 

@@ -10,11 +10,6 @@ import be.isach.ultracosmetics.player.UltraPlayer;
 import net.kyori.adventure.text.Component;
 import org.bukkit.inventory.Inventory;
 
-/**
- * Created by sacha on 04/04/2017.
- * <p>
- * Standard implementation of MenuPurchase
- */
 public class StandardMenuPurchase extends MenuPurchase {
 
     public StandardMenuPurchase(UltraCosmetics ultraCosmetics, Component name, PurchaseData purchaseData) {
@@ -27,7 +22,8 @@ public class StandardMenuPurchase extends MenuPurchase {
         putItem(inventory, 13, new PurchaseShowcaseButton(purchaseData), player);
 
         // Purchase Item
-        PurchaseConfirmButton confirmButton = new PurchaseConfirmButton(purchaseData, ultraCosmetics.getEconomyHandler());
+        PurchaseConfirmButton confirmButton =
+                new PurchaseConfirmButton(purchaseData, ultraCosmetics.getEconomyHandler());
         for (int i = 27; i < 30; i++) {
             for (int j = i; j <= i + 18; j += 9) {
                 putItem(inventory, j, confirmButton, player);

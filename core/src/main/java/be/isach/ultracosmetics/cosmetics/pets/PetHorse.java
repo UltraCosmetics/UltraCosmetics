@@ -9,12 +9,6 @@ import org.bukkit.entity.Horse.Style;
 
 import java.util.Locale;
 
-/**
- * Represents an instance of a horse pet summoned by a player.
- *
- * @author Chris6ix
- * @since 06-04-2022
- */
 public class PetHorse extends Pet {
     public PetHorse(UltraPlayer owner, PetType type, UltraCosmetics ultraCosmetics) {
         super(owner, type, ultraCosmetics);

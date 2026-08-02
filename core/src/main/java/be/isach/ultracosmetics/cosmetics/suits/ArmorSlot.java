@@ -3,12 +3,6 @@ package be.isach.ultracosmetics.cosmetics.suits;
 import org.bukkit.ChatColor;
 import org.bukkit.inventory.EquipmentSlot;
 
-/**
- * Armor slot enum.
- *
- * @author iSach
- * @since 12-20-2015
- */
 public enum ArmorSlot {
     HELMET(EquipmentSlot.HEAD),
     CHESTPLATE(EquipmentSlot.CHEST),
@@ -27,7 +21,9 @@ public enum ArmorSlot {
 
     public static ArmorSlot getByName(String s) {
         for (ArmorSlot a : ArmorSlot.values()) {
-            if (a.toString().equalsIgnoreCase(ChatColor.stripColor(s))) return a;
+            if (a.toString().equalsIgnoreCase(ChatColor.stripColor(s))) {
+                return a;
+            }
         }
         return ArmorSlot.CHESTPLATE;
     }

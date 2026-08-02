@@ -10,12 +10,6 @@ import org.bukkit.plugin.RegisteredServiceProvider;
 
 import java.util.Locale;
 
-/**
- * Vault economy hook.
- *
- * @author RadBuilder
- * @since 2.5
- */
 public class VaultHook implements EconomyHook {
     private final Economy economy;
     private final boolean nonnegative;
@@ -27,10 +21,12 @@ public class VaultHook implements EconomyHook {
         }
         RegisteredServiceProvider<Economy> economyProvider = Bukkit.getServicesManager().getRegistration(Economy.class);
         if (economyProvider == null) {
-            throw new IllegalStateException("Found Vault but no economy, please check whether your economy plugin supports Vault.");
+            throw new IllegalStateException(
+                    "Found Vault but no economy, please check whether your economy plugin supports Vault.");
         }
         economy = economyProvider.getProvider();
-        String validation = SettingsManager.getConfig().getString("Vault-Balance-Validation", "delegate").toLowerCase(Locale.ROOT);
+        String validation =
+                SettingsManager.getConfig().getString("Vault-Balance-Validation", "delegate").toLowerCase(Locale.ROOT);
         nonnegative = validation.endsWith("nonnegative");
         ignoreResponse = validation.equals("force-nonnegative");
     }

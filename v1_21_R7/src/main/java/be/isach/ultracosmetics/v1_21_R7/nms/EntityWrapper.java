@@ -8,9 +8,6 @@ import org.bukkit.attribute.Attribute;
 
 import java.lang.reflect.Field;
 
-/**
- * @author RadBuilder
- */
 public class EntityWrapper {
 
     protected LivingEntity handle;
@@ -45,7 +42,8 @@ public class EntityWrapper {
     }
 
     public void setStepHeight(float stepHeight) {
-        ((org.bukkit.entity.LivingEntity) handle.getBukkitEntity()).getAttribute(Attribute.STEP_HEIGHT).setBaseValue(stepHeight);
+        ((org.bukkit.entity.LivingEntity) handle.getBukkitEntity()).getAttribute(Attribute.STEP_HEIGHT)
+                .setBaseValue(stepHeight);
     }
 
     public float getRotationYawHead() {

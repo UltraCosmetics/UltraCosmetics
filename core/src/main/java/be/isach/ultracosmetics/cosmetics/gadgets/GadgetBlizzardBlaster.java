@@ -12,14 +12,9 @@ import com.cryptomorin.xseries.particles.XParticle;
 import org.bukkit.Location;
 import org.bukkit.util.Vector;
 
-/**
- * Represents an instance of a blizzard blaster gadget summoned by a player.
- *
- * @author iSach
- * @since 08-08-2015
- */
 public class GadgetBlizzardBlaster extends Gadget implements PlayerAffectingCosmetic, Updatable {
-    private final ParticleDisplay display = ParticleDisplay.of(XParticle.CLOUD).withCount(6).offset(0.3, 0.1, 0.3).withExtra(0.4);
+    private final ParticleDisplay display =
+            ParticleDisplay.of(XParticle.CLOUD).withCount(6).offset(0.3, 0.1, 0.3).withExtra(0.4);
     private boolean active;
     private Location location;
     private Vector vector;
@@ -54,7 +49,8 @@ public class GadgetBlizzardBlaster extends Gadget implements PlayerAffectingCosm
             }
 
             for (int i = 0; i < 3; i++) {
-                UltraCosmeticsData.get().getVersionManager().getEntityUtil().sendBlizzard(getPlayer(), location, entity -> canAffect(entity, getPlayer()), vector);
+                UltraCosmeticsData.get().getVersionManager().getEntityUtil()
+                        .sendBlizzard(getPlayer(), location, entity -> canAffect(entity, getPlayer()), vector);
             }
             display.spawn(location.clone().subtract(0, 0.5, 0));
 

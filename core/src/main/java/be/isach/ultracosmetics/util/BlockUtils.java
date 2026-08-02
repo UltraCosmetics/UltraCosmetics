@@ -16,17 +16,9 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.FallingBlock;
 import org.bukkit.entity.Player;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
-import java.util.Optional;
-import java.util.Set;
 
-/**
- * Created by sacha on 03/08/15.
- */
 public class BlockUtils {
 
     /**
@@ -40,7 +32,8 @@ public class BlockUtils {
         for (String name : SettingsManager.getConfig().getStringList("Air-Materials")) {
             Optional<XMaterial> mat = XMaterial.matchXMaterial(name);
             if (!mat.isPresent()) {
-                UltraCosmeticsData.get().getPlugin().getSmartLogger().write(LogLevel.WARNING, "Failed to parse 'Air-Materials' item: " + name);
+                UltraCosmeticsData.get().getPlugin().getSmartLogger()
+                        .write(LogLevel.WARNING, "Failed to parse 'Air-Materials' item: " + name);
                 continue;
             }
             Material parsed = mat.get().get();
@@ -149,7 +142,9 @@ public class BlockUtils {
     public static void setToRestoreIgnoring(final Map<Block, XMaterial> blocks, final int tickDelay) {
         UltraCosmeticsData.get().getPlugin().getScheduler().runAsync(task -> {
             blocks.keySet().removeIf(BlockViewUpdater::isUpdating);
-            if (blocks.isEmpty()) return;
+            if (blocks.isEmpty()) {
+                return;
+            }
             World world = blocks.keySet().iterator().next().getWorld();
             for (Entry<Block, XMaterial> entry : blocks.entrySet()) {
                 BlockData data = Bukkit.createBlockData(entry.getValue().get());
@@ -168,7 +163,8 @@ public class BlockUtils {
 
     public static boolean canRestore(Block block) {
         if (badMaterials.contains(block.getType())
-                || SettingsManager.getConfig().getStringList("Gadgets.PaintballGun.BlackList").contains(block.getType().name())
+                || SettingsManager.getConfig().getStringList("Gadgets.PaintballGun.BlackList")
+                .contains(block.getType().name())
                 || isPortalBlock(block)
                 || StructureRollback.isBlockRollingBack(block)
                 || !block.getType().isSolid()

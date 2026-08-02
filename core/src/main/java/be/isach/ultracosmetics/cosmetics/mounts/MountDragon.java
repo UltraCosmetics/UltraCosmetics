@@ -16,16 +16,8 @@ import org.bukkit.entity.Mob;
 import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.util.Vector;
 
-import static java.lang.Math.cos;
-import static java.lang.Math.sin;
-import static java.lang.Math.toRadians;
+import static java.lang.Math.*;
 
-/**
- * Represents an instance of a enderdragon mount.
- *
- * @author iSach
- * @since 08-17-2015
- */
 public class MountDragon extends Mount {
     private EntityBrain brain;
     private Mob boost = null;
@@ -37,7 +29,8 @@ public class MountDragon extends Mount {
     @Override
     protected void setupEntity() {
         if (getOwner().isGeyserClient()) {
-            boost = EntitySpawningManager.withBypass(() -> (Mob) getPlayer().getWorld().spawnEntity(getPlayer().getLocation(), EntityType.GHAST));
+            boost = EntitySpawningManager.withBypass(
+                    () -> (Mob) getPlayer().getWorld().spawnEntity(getPlayer().getLocation(), EntityType.GHAST));
             boost.setInvisible(true);
             boost.setAware(false);
             boost.setPersistent(false);
@@ -58,7 +51,9 @@ public class MountDragon extends Mount {
             clear();
         }
         brain.getBody().setHurtTime(20);
-        if (SettingsManager.getConfig().getBoolean("Mounts." + getType().getConfigName() + ".Stationary")) return;
+        if (SettingsManager.getConfig().getBoolean("Mounts." + getType().getConfigName() + ".Stationary")) {
+            return;
+        }
 
         float yaw = getPlayer().getLocation().getYaw();
         brain.getBody().setPitch(getPlayer().getLocation().getPitch());

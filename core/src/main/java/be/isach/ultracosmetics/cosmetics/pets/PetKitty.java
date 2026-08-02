@@ -6,12 +6,6 @@ import be.isach.ultracosmetics.player.UltraPlayer;
 import org.bukkit.entity.Cat;
 import org.bukkit.entity.Cat.Type;
 
-/**
- * Represents an instance of a kitten pet summoned by a player.
- *
- * @author iSach
- * @since 08-12-2015
- */
 public class PetKitty extends Pet {
 
     public PetKitty(UltraPlayer owner, PetType type, UltraCosmetics ultraCosmetics) {

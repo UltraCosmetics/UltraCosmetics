@@ -6,12 +6,6 @@ import be.isach.ultracosmetics.player.UltraPlayer;
 import com.cryptomorin.xseries.particles.ParticleDisplay;
 import com.cryptomorin.xseries.particles.XParticle;
 
-/**
- * Represents an instance of rain cloud particles summoned by a player.
- *
- * @author iSach
- * @since 08-12-2015
- */
 public class ParticleEffectCloud extends ParticleEffect {
     private final ParticleDisplay secondary;
 

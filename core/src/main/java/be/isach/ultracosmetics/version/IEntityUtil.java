@@ -8,9 +8,6 @@ import org.bukkit.util.Vector;
 
 import java.util.function.Predicate;
 
-/**
- * Created by Sacha on 14/03/16.
- */
 public interface IEntityUtil {
 
     default void resetWitherSize(Wither wither) {

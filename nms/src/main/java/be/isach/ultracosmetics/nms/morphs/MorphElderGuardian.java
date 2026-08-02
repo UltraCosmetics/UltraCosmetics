@@ -26,9 +26,6 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.util.Vector;
 
-/**
- * @author RadBuilder
- */
 public class MorphElderGuardian extends Morph implements Updatable {
 
     private boolean cooldown;

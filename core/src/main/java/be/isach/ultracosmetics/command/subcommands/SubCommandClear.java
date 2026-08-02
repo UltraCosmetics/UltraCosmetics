@@ -11,12 +11,6 @@ import org.bukkit.entity.Player;
 
 import java.util.List;
 
-/**
- * Clear {@link be.isach.ultracosmetics.command.SubCommand SubCommand}.
- *
- * @author iSach
- * @since 12-22-2015
- */
 public class SubCommandClear extends SubCommand {
 
     public SubCommandClear(UltraCosmetics ultraCosmetics) {

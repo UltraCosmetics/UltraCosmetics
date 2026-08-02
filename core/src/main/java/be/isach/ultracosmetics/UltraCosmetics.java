@@ -81,50 +81,21 @@ public class UltraCosmetics extends JavaPlugin {
      */
     private File file;
 
-    /**
-     * Player Manager instance.
-     */
     private UltraPlayerManager playerManager;
-
-    /**
-     * Smart Logger Instance.
-     */
     private SmartLogger smartLogger;
-
-    /**
-     * MySql Manager.
-     */
     private MySqlConnectionManager mySqlConnectionManager;
-
-    /**
-     * Update Manager.
-     */
     private UpdateManager updateChecker;
-
-    /**
-     * Menus.
-     */
     private Menus menus;
-
     private EconomyHandler economyHandler;
-
     private PermissionManager permissionManager;
     private PlaceholderHook placeholderHook;
-
     private DiscordSRVHook discordHook;
-
     private ChestSortHook chestSortHook;
-
     private PlayerAuctionsHook playerAuctionsHook;
-
     private UnmovableItemListener unmovableItemListener;
     private TreasureChestManager treasureChestManager;
     private EntityDismountListener entityDismountListener;
     private PaperSupport paperSupport;
-
-    /**
-     * Manages WorldGuard flags.
-     */
     private final WorldGuardManager worldGuardManager = new WorldGuardManager(this);
 
     private boolean legacyMessagePrinted = false;

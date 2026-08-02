@@ -17,12 +17,6 @@ import org.bukkit.util.Vector;
 import java.awt.*;
 import java.util.UUID;
 
-/**
- * Represents an instance of a tsunami gadget summoned by a player.
- *
- * @author iSach
- * @since 08-08-2015
- */
 public class GadgetTsunami extends Gadget implements PlayerAffectingCosmetic {
     private static final ParticleDisplay POOF = ParticleDisplay.of(XParticle.POOF).offset(0.2);
     private static final ParticleDisplay DRIPPING_WATER =

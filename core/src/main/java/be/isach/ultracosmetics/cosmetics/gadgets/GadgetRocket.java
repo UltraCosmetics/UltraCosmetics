@@ -31,12 +31,6 @@ import org.bukkit.util.Vector;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Represents an instance of a rocket gadget summoned by a player.
- *
- * @author iSach
- * @since 08-17-2015
- */
 public class GadgetRocket extends Gadget implements Updatable {
 
     private static final BlockFace[] CARDINAL =

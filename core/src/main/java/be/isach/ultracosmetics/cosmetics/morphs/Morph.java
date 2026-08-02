@@ -9,12 +9,6 @@ import me.libraryaddict.disguise.disguisetypes.DisguiseType;
 import me.libraryaddict.disguise.disguisetypes.FlagWatcher;
 import me.libraryaddict.disguise.disguisetypes.MobDisguise;
 
-/**
- * Represents an instance of a morph summoned by a player.
- *
- * @author iSach
- * @since 08-03-2015
- */
 public abstract class Morph extends Cosmetic<MorphType> {
 
     /**

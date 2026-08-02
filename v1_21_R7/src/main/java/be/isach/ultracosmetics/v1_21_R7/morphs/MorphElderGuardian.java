@@ -27,9 +27,6 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.util.Vector;
 
-/**
- * @author RadBuilder
- */
 public class MorphElderGuardian extends Morph implements Updatable {
 
     private boolean cooldown;
@@ -59,7 +56,9 @@ public class MorphElderGuardian extends Morph implements Updatable {
     }
 
     private void shootLaser() {
-        if (customGuardian == null) return;
+        if (customGuardian == null) {
+            return;
+        }
 
         final Location FROM = customGuardian.getBukkitEntity().getLocation();
         final Location TO = FROM.clone().add(getPlayer().getLocation().getDirection().multiply(10));
@@ -99,14 +98,17 @@ public class MorphElderGuardian extends Morph implements Updatable {
 
     @Override
     public void onClear() {
-        if (customGuardian == null) return;
+        if (customGuardian == null) {
+            return;
+        }
         CustomEntities.removeCustomEntity(customGuardian);
     }
 
     @Override
     protected void onEquip() {
         super.onEquip();
-        customGuardian = new CustomGuardian(EntityType.ELDER_GUARDIAN, ((CraftWorld) getPlayer().getWorld()).getHandle());
+        customGuardian =
+                new CustomGuardian(EntityType.ELDER_GUARDIAN, ((CraftWorld) getPlayer().getWorld()).getHandle());
         EntitySpawningManager.withBypass(() -> CustomEntities.spawnEntity(customGuardian, getPlayer().getLocation()));
         getPlayer().addPassenger(customGuardian.getBukkitEntity());
         ((Entity) customGuardian).setInvisible(true);

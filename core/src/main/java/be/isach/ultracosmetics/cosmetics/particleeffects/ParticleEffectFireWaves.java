@@ -6,12 +6,6 @@ import be.isach.ultracosmetics.player.UltraPlayer;
 import org.bukkit.Location;
 import org.bukkit.util.Vector;
 
-/**
- * Represents an instance of green spark particles summoned by a player.
- *
- * @author iSach
- * @since 08-13-2015
- */
 public class ParticleEffectFireWaves extends ParticleEffect {
 
     private static final double RADIUS = 1.1; // radius between player and rods
@@ -19,8 +13,10 @@ public class ParticleEffectFireWaves extends ParticleEffect {
     private static final double MAX_HEIGHT_DIFF = 0.5; // Max height diff between columns
     private static final double HEIGHT_DIFF_STEP = 0.05; // Height diff step...
 
-    private boolean heightFactorDir; // Indicates whether the height diff between columns is going up or down (gives dynamism)
-    private double heightFactor = MAX_HEIGHT_DIFF; // Height diff between columns. Variates over time with hoveringDirectionUp.
+    private boolean heightFactorDir;
+            // Indicates whether the height diff between columns is going up or down (gives dynamism)
+    private double heightFactor = MAX_HEIGHT_DIFF;
+            // Height diff between columns. Variates over time with hoveringDirectionUp.
 
     public ParticleEffectFireWaves(UltraPlayer owner, ParticleEffectType type, UltraCosmetics ultraCosmetics) {
         super(owner, type, ultraCosmetics);

@@ -11,18 +11,13 @@ import com.cryptomorin.xseries.XMaterial;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Gadget types.
- *
- * @author iSach
- * @since 12-01-2015
- */
 public class GadgetType extends CosmeticType<Gadget> {
 
     private final double cooldown;
     private final int runTime;
 
-    private GadgetType(XMaterial material, double defaultCooldown, int runTime, String configName, Class<? extends Gadget> clazz) {
+    private GadgetType(XMaterial material, double defaultCooldown, int runTime, String configName,
+                       Class<? extends Gadget> clazz) {
         super(Category.GADGETS, configName, material, clazz);
 
         if (!SettingsManager.getConfig().isDouble("Gadgets." + configName + ".Cooldown")) {
@@ -90,7 +85,8 @@ public class GadgetType extends CosmeticType<Gadget> {
             @Override
             public void setupConfig(CustomConfiguration config, String path) {
                 super.setupConfig(config, path);
-                config.addDefault(path + ".Affects-Others", "true", "Whether the portals should affect players other than the owner.");
+                config.addDefault(path + ".Affects-Others", "true",
+                        "Whether the portals should affect players other than the owner.");
             }
         };
         new GadgetType(XMaterial.DIAMOND_HORSE_ARMOR, 0.5, 0, "PaintballGun", GadgetPaintballGun.class) {
@@ -99,16 +95,22 @@ public class GadgetType extends CosmeticType<Gadget> {
                 super.setupConfig(config, path);
                 // default "" so we don't have to deal with null
                 if (config.getString(path + ".Block-Type", "").equals("STAINED_CLAY")) {
-                    config.set(path + ".Block-Type", "_TERRACOTTA", "With what block will it paint?", "Uses all blocks that end with the supplied string. For values, see:", "https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Material.html");
+                    config.set(path + ".Block-Type", "_TERRACOTTA", "With what block will it paint?",
+                            "Uses all blocks that end with the supplied string. For values, see:",
+                            "https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Material.html");
                 }
-                config.addDefault(path + ".Block-Type", "_TERRACOTTA", "With what block will it paint?", "Uses all blocks that end with the supplied string. For values, see:", "https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Material.html");
+                config.addDefault(path + ".Block-Type", "_TERRACOTTA", "With what block will it paint?",
+                        "Uses all blocks that end with the supplied string. For values, see:",
+                        "https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Material.html");
                 config.addDefault(path + ".Particle.Enabled", false, "Should it display particles?");
-                config.addDefault(path + ".Particle.Effect", "FIREWORKS_SPARK", "what particles? (List: http://pastebin.com/CVKkufck)");
+                config.addDefault(path + ".Particle.Effect", "FIREWORKS_SPARK",
+                        "what particles? (List: http://pastebin.com/CVKkufck)");
                 config.addDefault(path + ".Particle.Count", 50, "How many particles should be displayed?");
                 config.addDefault(path + ".Radius", 2, "The radius of painting.");
                 List<String> blackListedBlocks = new ArrayList<>();
                 blackListedBlocks.add("REDSTONE_BLOCK");
-                config.addDefault(path + ".BlackList", blackListedBlocks, "A list of the BLOCKS that", "can't be painted.");
+                config.addDefault(path + ".BlackList", blackListedBlocks, "A list of the BLOCKS that",
+                        "can't be painted.");
             }
         };
         new GadgetType(XMaterial.IRON_AXE, 8, 0, "ThorHammer", GadgetThorHammer.class);

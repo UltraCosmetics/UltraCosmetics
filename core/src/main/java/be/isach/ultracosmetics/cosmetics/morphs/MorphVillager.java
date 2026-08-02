@@ -9,12 +9,6 @@ import com.cryptomorin.xseries.XSound;
 import org.bukkit.entity.Item;
 import org.bukkit.event.player.PlayerInteractEvent;
 
-/**
- * Represents an instance of a villager morph summoned by a player.
- *
- * @author RadBuilder
- * @since 07-03-2017
- */
 public class MorphVillager extends MorphLeftClickCooldown {
     private final XSound.SoundPlayer sound;
 

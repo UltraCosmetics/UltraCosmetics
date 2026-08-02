@@ -23,12 +23,6 @@ import org.bukkit.util.Vector;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Represents an instance of a snake mount.
- *
- * @author iSach
- * @since 08-10-2015
- */
 public class MountSnake extends Mount {
     private final List<Creature> tail = new ArrayList<>();
     private int color;

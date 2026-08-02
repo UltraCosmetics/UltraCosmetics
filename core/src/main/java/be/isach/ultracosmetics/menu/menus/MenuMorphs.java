@@ -8,12 +8,6 @@ import be.isach.ultracosmetics.menu.buttons.ToggleMorphSelfViewButton;
 import be.isach.ultracosmetics.player.UltraPlayer;
 import org.bukkit.inventory.Inventory;
 
-/**
- * Morph {@link be.isach.ultracosmetics.menu.Menu Menu}.
- *
- * @author iSach
- * @since 08-23-2016
- */
 public class MenuMorphs extends CosmeticMenu<MorphType> {
 
     public MenuMorphs(UltraCosmetics ultraCosmetics) {

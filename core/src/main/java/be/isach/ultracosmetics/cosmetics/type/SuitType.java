@@ -11,12 +11,6 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.Locale;
 
-/**
- * Suit types.
- *
- * @author iSach
- * @since 12-20-2015
- */
 public class SuitType extends CosmeticType<Suit> {
 
     private final ArmorSlot slot;
@@ -24,7 +18,8 @@ public class SuitType extends CosmeticType<Suit> {
     private final ItemStack item;
 
     protected SuitType(ItemStack stack, ArmorSlot slot, SuitCategory category) {
-        super(Category.suitsFromSlot(slot), category.getConfigName(), XMaterial.matchXMaterial(stack), category.getSuitClass(), false);
+        super(Category.suitsFromSlot(slot), category.getConfigName(), XMaterial.matchXMaterial(stack),
+                category.getSuitClass(), false);
         this.slot = slot;
         this.category = category;
         this.item = stack;
@@ -35,7 +30,8 @@ public class SuitType extends CosmeticType<Suit> {
 
     @Override
     public Component getName() {
-        return MessageManager.getMessage("Suits." + getConfigName() + "." + slot.toString().toLowerCase(Locale.ROOT) + "-name");
+        return MessageManager.getMessage(
+                "Suits." + getConfigName() + "." + slot.toString().toLowerCase(Locale.ROOT) + "-name");
     }
 
     @Override

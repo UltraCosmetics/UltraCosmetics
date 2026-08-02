@@ -20,12 +20,6 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
-/**
- * Represents an instance of a color bomb gadget summoned by a player.
- *
- * @author iSach
- * @since 08-03-2015
- */
 public class GadgetColorBomb extends Gadget implements PlayerAffectingCosmetic, Updatable {
 
     private Item bomb;
@@ -33,7 +27,8 @@ public class GadgetColorBomb extends Gadget implements PlayerAffectingCosmetic, 
     private boolean running = false;
     private final XSound.SoundPlayer sound = XSound.ENTITY_CHICKEN_EGG.record().withVolume(0.2f).soundPlayer();
     // Can't use withEntity directly because it requires that the entity not currently be null
-    private final ParticleDisplay particle = new ParticleDisplay().withLocationCaller(() -> bomb.getLocation()).withExtra(0.2);
+    private final ParticleDisplay particle =
+            new ParticleDisplay().withLocationCaller(() -> bomb.getLocation()).withExtra(0.2);
 
     public GadgetColorBomb(UltraPlayer owner, GadgetType type, UltraCosmetics ultraCosmetics) {
         super(owner, type, ultraCosmetics);
@@ -46,14 +41,18 @@ public class GadgetColorBomb extends Gadget implements PlayerAffectingCosmetic, 
 
     @Override
     public void onUpdate() {
-        if (bomb == null || !bomb.isValid()) return;
+        if (bomb == null || !bomb.isValid()) {
+            return;
+        }
         if (!running && bomb.isOnGround()) {
             running = true;
             bomb.setVelocity(new Vector(0, 0, 0));
             getUltraCosmetics().getScheduler().runAtEntityLater(bomb, this::onClear, 100);
         }
 
-        if (!running) return;
+        if (!running) {
+            return;
+        }
 
         switch (RANDOM.nextInt(5)) {
             default:
@@ -84,14 +83,16 @@ public class GadgetColorBomb extends Gadget implements PlayerAffectingCosmetic, 
             }
 
             Vector velocity = new Vector(0, 0.5, 0).add(MathUtils.getRandomCircleVector().multiply(0.1));
-            Item item = ItemFactory.spawnUnpickableItem(ItemFactory.randomItemFromTag(XTag.WOOL), bomb.getLocation().add(0, 0.15, 0), velocity);
+            Item item = ItemFactory.spawnUnpickableItem(ItemFactory.randomItemFromTag(XTag.WOOL),
+                    bomb.getLocation().add(0, 0.15, 0), velocity);
             items.add(item);
             sound.atLocation(item.getLocation()).play();
 
             Player player = getPlayer();
             for (Entity entity : bomb.getNearbyEntities(1.5, 1, 1.5)) {
                 if (entity instanceof Player && canAffect(entity, player)) {
-                    MathUtils.applyVelocity(entity, new Vector(0, 0.5, 0).add(MathUtils.getRandomCircleVector().multiply(0.1)));
+                    MathUtils.applyVelocity(entity,
+                            new Vector(0, 0.5, 0).add(MathUtils.getRandomCircleVector().multiply(0.1)));
                 }
             }
         });

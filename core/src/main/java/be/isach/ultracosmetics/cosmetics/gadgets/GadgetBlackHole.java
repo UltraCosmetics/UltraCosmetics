@@ -18,12 +18,6 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
 
-/**
- * Represents an instance of a blackhole gadget summoned by a player.
- *
- * @author iSach
- * @since 08-17-2015
- */
 public class GadgetBlackHole extends Gadget implements PlayerAffectingCosmetic, Updatable {
     private static final ParticleDisplay PARTICLES = ParticleDisplay.of(XParticle.LARGE_SMOKE);
     private Item item;
@@ -38,7 +32,8 @@ public class GadgetBlackHole extends Gadget implements PlayerAffectingCosmetic, 
             item.remove();
         }
 
-        item = ItemFactory.spawnUnpickableItem(XMaterial.BLACK_TERRACOTTA.parseItem(), getPlayer().getEyeLocation(), getPlayer().getEyeLocation().getDirection().multiply(1.3d));
+        item = ItemFactory.spawnUnpickableItem(XMaterial.BLACK_TERRACOTTA.parseItem(), getPlayer().getEyeLocation(),
+                getPlayer().getEyeLocation().getDirection().multiply(1.3d));
 
         getUltraCosmetics().getScheduler().runAtLocationLater(getPlayer().getLocation(), () -> {
             if (item != null) {
@@ -50,7 +45,9 @@ public class GadgetBlackHole extends Gadget implements PlayerAffectingCosmetic, 
 
     @Override
     public void onUpdate() {
-        if (item == null || !item.isOnGround()) return;
+        if (item == null || !item.isOnGround()) {
+            return;
+        }
         int strands = 6;
         int particles = 25;
         float radius = 5;
@@ -70,9 +67,13 @@ public class GadgetBlackHole extends Gadget implements PlayerAffectingCosmetic, 
             }
         }
 
-        if (!isAffectingPlayersEnabled()) return;
+        if (!isAffectingPlayersEnabled()) {
+            return;
+        }
         for (final Entity entity : item.getNearbyEntities(5, 3, 5)) {
-            if (!canAffect(entity, getPlayer())) continue;
+            if (!canAffect(entity, getPlayer())) {
+                continue;
+            }
             Vector vector = item.getLocation().toVector().subtract(entity.getLocation().toVector());
             MathUtils.applyVelocity(entity, vector);
             if (entity instanceof Player) {

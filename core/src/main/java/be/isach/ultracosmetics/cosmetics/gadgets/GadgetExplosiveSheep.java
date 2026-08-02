@@ -25,18 +25,14 @@ import org.bukkit.util.Vector;
 import java.util.HashSet;
 import java.util.Set;
 
-/**
- * Represents an instance of a explosive sheep gadget summoned by a player.
- *
- * @author iSach
- * @since 08-08-2015
- */
 public class GadgetExplosiveSheep extends Gadget {
 
     private final Set<Sheep> sheeps = new HashSet<>();
     private WrappedTask sheepRemovalRunnable = null;
-    private final XSound.SoundPlayer tickSound = XSound.BLOCK_NOTE_BLOCK_HAT.record().withVolume(1.4f).withPitch(1.5f).soundPlayer();
-    private final XSound.SoundPlayer explodeSound = XSound.ENTITY_GENERIC_EXPLODE.record().withVolume(1.4f).withPitch(1.5f).soundPlayer();
+    private final XSound.SoundPlayer tickSound =
+            XSound.BLOCK_NOTE_BLOCK_HAT.record().withVolume(1.4f).withPitch(1.5f).soundPlayer();
+    private final XSound.SoundPlayer explodeSound =
+            XSound.ENTITY_GENERIC_EXPLODE.record().withVolume(1.4f).withPitch(1.5f).soundPlayer();
     private final ParticleDisplay emitter = ParticleDisplay.of(XParticle.EXPLOSION_EMITTER);
     private final ParticleDisplay lava = ParticleDisplay.of(XParticle.LAVA).withCount(5);
 
@@ -120,7 +116,8 @@ public class GadgetExplosiveSheep extends Gadget {
             final Location spawnLoc = s.getLocation();
             EntitySpawner<Sheep> sheeps = new EntitySpawner<>(EntityType.SHEEP, spawnLoc, 50, sheep -> {
                 sheep.setColor(colors[RANDOM.nextInt(colors.length)]);
-                MathUtils.applyVelocity(sheep, new Vector(RANDOM.nextDouble() - 0.5, RANDOM.nextDouble() / 2, RANDOM.nextDouble() - 0.5).multiply(2).add(new Vector(0, 0.8, 0)));
+                MathUtils.applyVelocity(sheep, new Vector(RANDOM.nextDouble() - 0.5, RANDOM.nextDouble() / 2,
+                        RANDOM.nextDouble() - 0.5).multiply(2).add(new Vector(0, 0.8, 0)));
                 sheep.setBaby();
                 sheep.setAgeLock(true);
                 sheep.setNoDamageTicks(120);

@@ -18,12 +18,6 @@ import org.bukkit.util.Vector;
 
 import java.util.Iterator;
 
-/**
- * Represents an instance of a bat blaster gadget summoned by a player.
- *
- * @author iSach
- * @since 08-03-2015
- */
 public class GadgetBatBlaster extends Gadget implements PlayerAffectingCosmetic, Updatable {
     private static final ParticleDisplay PARTICLES = ParticleDisplay.of(XParticle.SMOKE);
     private boolean active = false;
@@ -54,7 +48,8 @@ public class GadgetBatBlaster extends Gadget implements PlayerAffectingCosmetic,
         }
 
         if (vecLength < 1.2) {
-            return (location.getY() > player.getLocation().getY()) && (location.getY() < player.getEyeLocation().getY());
+            return (location.getY() > player.getLocation().getY()) &&
+                    (location.getY() < player.getEyeLocation().getY());
         }
 
         return false;
@@ -63,7 +58,9 @@ public class GadgetBatBlaster extends Gadget implements PlayerAffectingCosmetic,
     @SuppressWarnings("deprecation")
     @Override
     public void onUpdate() {
-        if (bats == null || bats.isEmpty()) return;
+        if (bats == null || bats.isEmpty()) {
+            return;
+        }
 
         if (!active) {
             clean();

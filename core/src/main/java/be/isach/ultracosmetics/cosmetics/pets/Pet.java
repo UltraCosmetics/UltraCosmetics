@@ -43,12 +43,6 @@ import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
-/**
- * Represents an instance of a pet summoned by a player.
- *
- * @author iSach
- * @since 03-08-2015
- */
 public class Pet extends EntityCosmetic<PetType, Mob> implements Updatable {
     private static final Attribute FLYING_SPEED = XAttribute.FLYING_SPEED.get();
     private final ParticleDisplay AIRLIFT_POOF = ParticleDisplay.of(XParticle.POOF).withCount(10).offset(0.5, 0.5, 0.5);

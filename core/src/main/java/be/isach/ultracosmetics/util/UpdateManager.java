@@ -27,14 +27,6 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.logging.Level;
 
-/**
- * Manages update checking.
- * <p>
- * Package: be.isach.ultracosmetics.util
- * Created by: sachalewin
- * Date: 5/08/16
- * Project: UltraCosmetics
- */
 public class UpdateManager extends UltraTask {
     private static final String RESOURCE_URL = "https://api.modrinth.com/v2/project/ultracosmetics/";
     private final UltraCosmetics ultraCosmetics;

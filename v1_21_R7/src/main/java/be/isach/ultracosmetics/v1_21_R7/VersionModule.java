@@ -19,9 +19,6 @@ import org.bukkit.entity.Firework;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.meta.FireworkMeta;
 
-/**
- * @author RadBuilder
- */
 public class VersionModule implements IModule {
     @Override
     public Class<? extends Mount> getSpiderClass() {

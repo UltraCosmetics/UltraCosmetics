@@ -6,9 +6,6 @@ import be.isach.ultracosmetics.player.UltraPlayer;
 import com.cryptomorin.xseries.particles.ParticleDisplay;
 import com.cryptomorin.xseries.particles.XParticle;
 
-/**
- * Created by sacha on 1/03/17.
- */
 public class MountInfernalHorror extends MountAbstractHorse {
     private final ParticleDisplay display;
 

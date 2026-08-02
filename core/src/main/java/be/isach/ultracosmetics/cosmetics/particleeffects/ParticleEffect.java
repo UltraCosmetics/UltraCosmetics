@@ -10,12 +10,6 @@ import com.cryptomorin.xseries.particles.ParticleDisplay;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
-/**
- * Represents an instance of a particle effect summoned by a player.
- *
- * @author iSach
- * @since 08-03-2015
- */
 public abstract class ParticleEffect extends Cosmetic<ParticleEffectType> implements Updatable {
 
     /**
@@ -60,7 +54,9 @@ public abstract class ParticleEffect extends Cosmetic<ParticleEffectType> implem
     }
 
     protected boolean locEquals(Location a, Location b) {
-        if (a == null || b == null) return false;
+        if (a == null || b == null) {
+            return false;
+        }
         // Manual comparison so we don't take into account pitch and yaw
         return a.getX() == b.getX() && a.getY() == b.getY() && a.getZ() == b.getZ();
     }
@@ -93,7 +89,9 @@ public abstract class ParticleEffect extends Cosmetic<ParticleEffectType> implem
             return;
         }
         // If the player is moving:
-        if (!displayIfMoving) return;
+        if (!displayIfMoving) {
+            return;
+        }
 
         if (useAlternativeEffect) {
             // Display the alternative effect.

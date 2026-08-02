@@ -5,12 +5,6 @@ import org.black_ixx.playerpoints.PlayerPointsAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
-/**
- * PlayerPoints economy hook.
- *
- * @author RadBuilder
- * @since 2.5
- */
 public class PlayerPointsHook implements EconomyHook {
     private final PlayerPointsAPI playerPointsApi;
 

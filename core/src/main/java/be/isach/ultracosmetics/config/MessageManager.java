@@ -19,23 +19,14 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.Reader;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
 import java.util.regex.Pattern;
 
-/**
- * Message manager.
- *
- * @author iSach
- * @since 03-08-2015
- */
 public class MessageManager {
-    private static final LegacyComponentSerializer LEGACY_SERIALIZER = LegacyComponentSerializer.legacySection().toBuilder()
-            .hexColors().useUnusualXRepeatedCharacterHexFormat().build();
+    private static final LegacyComponentSerializer LEGACY_SERIALIZER =
+            LegacyComponentSerializer.legacySection().toBuilder()
+                    .hexColors().useUnusualXRepeatedCharacterHexFormat().build();
     private static MessageManager instance;
     private final SettingsManager messagesConfig;
     private final MiniMessage miniMessage;
@@ -173,7 +164,8 @@ public class MessageManager {
         for (Entry<Category, Map<String, String>> catMap : buttons.entrySet()) {
             messagesConfig.set("Menu." + catMap.getKey().getConfigPath() + ".Title", menuNames.get(catMap.getKey()));
             for (Entry<String, String> translation : catMap.getValue().entrySet()) {
-                messagesConfig.set("Menu." + catMap.getKey().getConfigPath() + ".Button." + translation.getKey(), translation.getValue());
+                messagesConfig.set("Menu." + catMap.getKey().getConfigPath() + ".Button." + translation.getKey(),
+                        translation.getValue());
             }
         }
         messagesConfig.set("Menu.Main.Button.Name", menuBlock.getString("Main-Menu"));
@@ -203,12 +195,16 @@ public class MessageManager {
     }
 
     public String getMessagesName(Category category) {
-        if (category.isSuits()) return "Suits";
+        if (category.isSuits()) {
+            return "Suits";
+        }
         // Like configPath but value is different for Category.EFFECTS
-        return category.name().charAt(0) + category.getConfigPath().substring(1).toLowerCase(Locale.ROOT).replace("_", "-");
+        return category.name().charAt(0) +
+                category.getConfigPath().substring(1).toLowerCase(Locale.ROOT).replace("_", "-");
     }
 
-    private void addButton(Map<Category, Map<String, String>> buttons, ConfigurationSection menuBlock, Category cat, String oldEquipKey, String oldUnequipKey) {
+    private void addButton(Map<Category, Map<String, String>> buttons, ConfigurationSection menuBlock, Category cat,
+                           String oldEquipKey, String oldUnequipKey) {
         buttons.get(cat).put("Tooltip-Equip", menuBlock.getString(oldEquipKey));
         buttons.get(cat).put("Tooltip-Unequip", menuBlock.getString(oldUnequipKey));
     }
@@ -233,16 +229,20 @@ public class MessageManager {
 
     private void minimessageMigration() {
         SmartLogger log = UltraCosmeticsData.get().getPlugin().getSmartLogger();
-        log.write(SmartLogger.LogLevel.WARNING, "Your messages file is using legacy color codes, it will be upgraded now");
+        log.write(SmartLogger.LogLevel.WARNING,
+                "Your messages file is using legacy color codes, it will be upgraded now");
         // Prefix hasn't been converted yet, so don't use it.
         migration(LEGACY_SERIALIZER, buildMinimessage(false));
     }
 
-    private void migration(ComponentSerializer<Component, ?, String> deserializer, ComponentSerializer<Component, ?, String> serializer) {
+    private void migration(ComponentSerializer<Component, ?, String> deserializer,
+                           ComponentSerializer<Component, ?, String> serializer) {
         ConfigurationSection config = messagesConfig.fileConfiguration;
         Pattern percentVarPattern = Pattern.compile("%([\\w-]+)%");
         for (String key : config.getKeys(true)) {
-            if (!config.isString(key)) continue;
+            if (!config.isString(key)) {
+                continue;
+            }
             // Doing it line by line prevents weird behavior like this:
             //    <italic><gray>TSUNAMI!
             //    </gray></italic><italic><gray>Run for your life!
@@ -256,7 +256,8 @@ public class MessageManager {
             config.set(key, percentVarPattern.matcher(String.join("\n", converted)).replaceAll("<$1>"));
         }
 
-        ConfigurationSection customItem = SettingsManager.getConfig().getConfigurationSection("No-Permission.Custom-Item");
+        ConfigurationSection customItem =
+                SettingsManager.getConfig().getConfigurationSection("No-Permission.Custom-Item");
         String name = customItem.getString("Name", "");
         String convertedName = serializer.serialize(deserializer.deserialize(name));
         customItem.set("Name", convertedName.replace("{cosmetic-name}", "<cosmetic>"));
@@ -268,7 +269,8 @@ public class MessageManager {
         migrateConfigStrings(serializer, deserializer);
     }
 
-    private void migrateConfigStrings(ComponentSerializer<Component, ?, String> serializer, ComponentSerializer<Component, ?, String> deserializer) {
+    private void migrateConfigStrings(ComponentSerializer<Component, ?, String> serializer,
+                                      ComponentSerializer<Component, ?, String> deserializer) {
         ConfigurationSection loots = SettingsManager.getConfig().getConfigurationSection("TreasureChests.Loots");
         for (String key : loots.getKeys(false)) {
             String path = key + ".Message.message";
@@ -280,14 +282,15 @@ public class MessageManager {
             }
         }
         ConfigurationSection noPermission = SettingsManager.getConfig().getConfigurationSection("No-Permission");
-        for (String key : new String[] {"Yes", "No", "Showroom"}) {
+        for (String key : new String[]{"Yes", "No", "Showroom"}) {
             String path = "Lore-Message-" + key;
             if (noPermission.isString(path)) {
                 String newKey = key;
                 if (!key.equals("Showroom")) {
                     newKey = "Permission-" + key;
                 }
-                messagesConfig.set("Permission-Lore." + newKey, serializer.serialize(deserializer.deserialize(noPermission.getString(path))));
+                messagesConfig.set("Permission-Lore." + newKey,
+                        serializer.serialize(deserializer.deserialize(noPermission.getString(path))));
                 noPermission.set(path, null);
             }
         }

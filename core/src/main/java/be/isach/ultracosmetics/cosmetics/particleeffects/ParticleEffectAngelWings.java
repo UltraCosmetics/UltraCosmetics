@@ -8,12 +8,6 @@ import org.bukkit.util.Vector;
 
 import java.awt.Color;
 
-/**
- * Represents an instance of angel wing particles summoned by a player.
- *
- * @author iSach
- * @since 11-11-2015
- */
 public class ParticleEffectAngelWings extends ParticleEffect {
     public static final boolean x = true;
     public static final boolean o = false;

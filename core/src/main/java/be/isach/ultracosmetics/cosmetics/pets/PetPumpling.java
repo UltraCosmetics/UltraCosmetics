@@ -9,9 +9,6 @@ import org.bukkit.Particle;
 import org.bukkit.entity.Zombie;
 import org.bukkit.inventory.ItemStack;
 
-/**
- * @author RadBuilder
- */
 public class PetPumpling extends Pet {
     public PetPumpling(UltraPlayer owner, PetType type, UltraCosmetics ultraCosmetics) {
         super(owner, type, ultraCosmetics);

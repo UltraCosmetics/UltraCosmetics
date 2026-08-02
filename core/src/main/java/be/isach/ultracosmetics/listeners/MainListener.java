@@ -33,15 +33,10 @@ import org.bukkit.persistence.PersistentDataType;
 
 import java.util.concurrent.ThreadLocalRandom;
 
-/**
- * Main listener
- *
- * @author iSach
- * @since 12-25-2015
- */
 public class MainListener implements Listener {
     private static final ParticleDisplay HEART_PARTICLES = ParticleDisplay.of(XParticle.HEART).withCount(4).offset(0.5);
-    private static final NamespacedKey PET_COOLDOWN = new NamespacedKey(UltraCosmeticsData.get().getPlugin(), "pet_cooldown");
+    private static final NamespacedKey PET_COOLDOWN =
+            new NamespacedKey(UltraCosmeticsData.get().getPlugin(), "pet_cooldown");
 
     @EventHandler
     public void onInteractAtEntity(PlayerInteractAtEntityEvent event) {
@@ -68,7 +63,8 @@ public class MainListener implements Listener {
                 yOffset = 1;
             }
             HEART_PARTICLES.spawn(event.getRightClicked().getLocation().add(0, yOffset, 0));
-            if (event.getRightClicked() instanceof Mob mob && !SettingsManager.getConfig().getBoolean("Pets-Are-Silent")) {
+            if (event.getRightClicked() instanceof Mob mob &&
+                    !SettingsManager.getConfig().getBoolean("Pets-Are-Silent")) {
                 Sound sound = mob.getAmbientSound();
                 if (sound != null) {
                     float pitch = ThreadLocalRandom.current().nextFloat(0.8f, 1.2f);
@@ -138,7 +134,8 @@ public class MainListener implements Listener {
 
     @EventHandler
     public void onDrowned(EntityTransformEvent event) {
-        if (event.getTransformReason() == EntityTransformEvent.TransformReason.DROWNED && event.getEntity().hasMetadata("Pet")) {
+        if (event.getTransformReason() == EntityTransformEvent.TransformReason.DROWNED &&
+                event.getEntity().hasMetadata("Pet")) {
             event.setCancelled(true);
             ((Zombie) event.getEntity()).setConversionTime(Integer.MAX_VALUE);
         }
@@ -147,7 +144,9 @@ public class MainListener implements Listener {
     @EventHandler
     public void stopDragonDamage(EntityExplodeEvent event) {
         Entity e = event.getEntity();
-        if (e instanceof EnderDragonPart) e = ((EnderDragonPart) e).getParent();
+        if (e instanceof EnderDragonPart) {
+            e = ((EnderDragonPart) e).getParent();
+        }
         if (isPet(e) || isMount(e)) {
             event.setCancelled(true);
         }
@@ -172,12 +171,16 @@ public class MainListener implements Listener {
     }
 
     private boolean isPet(Entity entity) {
-        if (entity == null) return false;
+        if (entity == null) {
+            return false;
+        }
         return entity.hasMetadata("Pet");
     }
 
     private boolean isMount(Entity entity) {
-        if (entity == null) return false;
+        if (entity == null) {
+            return false;
+        }
         return entity.hasMetadata("Mount");
     }
 }

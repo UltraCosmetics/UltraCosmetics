@@ -6,12 +6,7 @@ import be.isach.ultracosmetics.config.MessageManager;
 import be.isach.ultracosmetics.config.SettingsManager;
 import be.isach.ultracosmetics.cosmetics.Category;
 import be.isach.ultracosmetics.cosmetics.type.CosmeticType;
-import be.isach.ultracosmetics.menu.buttons.ClearCosmeticButton;
-import be.isach.ultracosmetics.menu.buttons.CosmeticButton;
-import be.isach.ultracosmetics.menu.buttons.FilterCosmeticsButton;
-import be.isach.ultracosmetics.menu.buttons.MainMenuButton;
-import be.isach.ultracosmetics.menu.buttons.NextPageButton;
-import be.isach.ultracosmetics.menu.buttons.PreviousPageButton;
+import be.isach.ultracosmetics.menu.buttons.*;
 import be.isach.ultracosmetics.permissions.PermissionManager;
 import be.isach.ultracosmetics.player.UltraPlayer;
 import net.kyori.adventure.text.Component;
@@ -19,19 +14,9 @@ import net.kyori.adventure.text.format.NamedTextColor;
 import net.kyori.adventure.text.format.TextDecoration;
 import org.bukkit.inventory.Inventory;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
-import java.util.UUID;
 
-/**
- * A cosmetic menu.
- *
- * @author iSach
- * @since 08-09-2016
- */
 public abstract class CosmeticMenu<T extends CosmeticType<?>> extends Menu {
 
     public static final int[] COSMETICS_SLOTS = {
@@ -40,13 +25,12 @@ public abstract class CosmeticMenu<T extends CosmeticType<?>> extends Menu {
             28, 29, 30, 31, 32, 33, 34
     };
 
-    /**
-     * Accuracy not guaranteed, specifically for suits.
-     */
+    // Accuracy not guaranteed, specifically for suits.
     protected final Category category;
     protected final PermissionManager pm = ultraCosmetics.getPermissionManager();
     private final Map<UUID, Integer> lastUsedPages = new HashMap<>();
-    protected final boolean hideNoPermissionItems = SettingsManager.getConfig().getBoolean("No-Permission.Dont-Show-Item");
+    protected final boolean hideNoPermissionItems =
+            SettingsManager.getConfig().getBoolean("No-Permission.Dont-Show-Item");
 
     public CosmeticMenu(UltraCosmetics ultraCosmetics, Category category) {
         super(category.getConfigPath(), ultraCosmetics);
@@ -84,7 +68,9 @@ public abstract class CosmeticMenu<T extends CosmeticType<?>> extends Menu {
             int slot = entry.getKey();
             T cosmeticType = entry.getValue();
 
-            if (shouldHideItem(player, cosmeticType)) continue;
+            if (shouldHideItem(player, cosmeticType)) {
+                continue;
+            }
             CosmeticButton button = CosmeticButton.fromType(cosmeticType, player, ultraCosmetics);
             putItem(inventory, slot, button, player);
         }
@@ -124,11 +110,6 @@ public abstract class CosmeticMenu<T extends CosmeticType<?>> extends Menu {
         return lastUsedPages.getOrDefault(ultraPlayer.getUUID(), 1);
     }
 
-    /**
-     * Gets the max amount of pages.
-     *
-     * @return the maximum amount of pages.
-     */
     protected int getMaxPages(UltraPlayer player) {
         int i = 0;
         for (CosmeticType<?> type : CosmeticType.enabledOf(category)) {
@@ -149,7 +130,8 @@ public abstract class CosmeticMenu<T extends CosmeticType<?>> extends Menu {
      */
     protected Component getName(int page, UltraPlayer ultraPlayer) {
         return Component.empty().append(getName()).appendSpace()
-                .append(Component.text("(" + page + "/" + getMaxPages(ultraPlayer) + ")", NamedTextColor.GRAY, TextDecoration.ITALIC));
+                .append(Component.text("(" + page + "/" + getMaxPages(ultraPlayer) + ")", NamedTextColor.GRAY,
+                        TextDecoration.ITALIC));
     }
 
     @Override
@@ -206,7 +188,9 @@ public abstract class CosmeticMenu<T extends CosmeticType<?>> extends Menu {
     }
 
     protected boolean hasUnlockable(UltraPlayer player) {
-        if (ultraCosmetics.getWorldGuardManager().isInShowroom(player.getBukkitPlayer())) return false;
+        if (ultraCosmetics.getWorldGuardManager().isInShowroom(player.getBukkitPlayer())) {
+            return false;
+        }
         for (CosmeticType<?> type : CosmeticType.enabledOf(category)) {
             if (!player.canEquip(type)) {
                 return true;

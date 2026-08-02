@@ -9,12 +9,6 @@ import be.isach.ultracosmetics.menu.buttons.RenamePetButton;
 import be.isach.ultracosmetics.player.UltraPlayer;
 import org.bukkit.inventory.Inventory;
 
-/**
- * Pet {@link be.isach.ultracosmetics.menu.Menu Menu}.
- *
- * @author iSach
- * @since 08-23-2016
- */
 public class MenuPets extends CosmeticMenu<PetType> {
 
     public MenuPets(UltraCosmetics ultraCosmetics) {
@@ -27,7 +21,9 @@ public class MenuPets extends CosmeticMenu<PetType> {
     }
 
     private void addPetRenameItem(Inventory inventory, UltraPlayer player) {
-        if (!SettingsManager.getConfig().getBoolean("Pets-Rename.Enabled")) return;
+        if (!SettingsManager.getConfig().getBoolean("Pets-Rename.Enabled")) {
+            return;
+        }
         if (SettingsManager.getConfig().getBoolean("Pets-Rename.Permission-Required")
                 && !player.getBukkitPlayer().hasPermission("ultracosmetics.pets.rename")) {
             return;

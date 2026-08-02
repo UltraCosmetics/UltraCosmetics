@@ -26,10 +26,6 @@ import org.bukkit.util.Vector;
 import java.util.*;
 import java.util.function.Predicate;
 
-/**
- * @author RadBuilder
- * @author iSach
- */
 public class EntityUtil implements IEntityUtil {
 
     private final Random r = new Random();

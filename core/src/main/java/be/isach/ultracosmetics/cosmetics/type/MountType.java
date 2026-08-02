@@ -19,12 +19,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/**
- * A cosmetic type.
- *
- * @author iSach
- * @since 12-18-2015
- */
 public class MountType extends CosmeticEntType<Mount> {
 
     private final int repeatDelay;

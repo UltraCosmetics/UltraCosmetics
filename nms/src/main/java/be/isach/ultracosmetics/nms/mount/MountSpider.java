@@ -7,9 +7,6 @@ import be.isach.ultracosmetics.player.UltraPlayer;
 import net.minecraft.world.entity.LivingEntity;
 import org.bukkit.craftbukkit.CraftWorld;
 
-/**
- * @author RadBuilder
- */
 public class MountSpider extends MountCustomEntity {
     public MountSpider(UltraPlayer owner, MountType type, UltraCosmetics ultraCosmetics) {
         super(owner, type, ultraCosmetics);

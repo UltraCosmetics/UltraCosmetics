@@ -22,12 +22,6 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
 
-/**
- * Pet types.
- *
- * @author iSach
- * @since 12-20-2015
- */
 public class PetType extends CosmeticEntType<Pet> {
 
     private static final Map<XEntityType, Class<? extends Pet>> PET_MAP = new HashMap<>();

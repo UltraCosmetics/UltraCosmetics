@@ -17,13 +17,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
 
-/**
- * Clear {@link be.isach.ultracosmetics.command.SubCommand SubCommand}.
- *
- * @author iSach
- * @author RadBuilder
- * @since 12-21-2015
- */
 public class SubCommandToggle extends SubCommand {
     private static final String ERROR_PREFIX = " " + ChatColor.RED + ChatColor.BOLD;
 
@@ -114,7 +107,8 @@ public class SubCommandToggle extends SubCommand {
             return;
         }
 
-        Optional<Category> categories = Arrays.stream(Category.values()).filter(category -> category.isEnabled() && category.toString().toLowerCase(Locale.ROOT).startsWith(type)).findFirst();
+        Optional<Category> categories = Arrays.stream(Category.values()).filter(category -> category.isEnabled() &&
+                category.toString().toLowerCase(Locale.ROOT).startsWith(type)).findFirst();
         if (categories.isEmpty()) {
             MessageManager.send(sender, "Invalid-Category");
             return;
@@ -153,7 +147,9 @@ public class SubCommandToggle extends SubCommand {
         } else if (args.length == 3) {
             Category cat = Category.fromString(args[1]);
 
-            if (cat == null || !cat.isEnabled()) return;
+            if (cat == null || !cat.isEnabled()) {
+                return;
+            }
 
             for (CosmeticType<?> cosm : cat.getEnabled()) {
                 options.add(cosm.toString());

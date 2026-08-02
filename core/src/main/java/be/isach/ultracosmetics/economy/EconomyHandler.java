@@ -11,12 +11,6 @@ import org.bukkit.entity.Player;
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
-/**
- * Handles the current economy being used.
- *
- * @author RadBuilder
- * @since 2.5
- */
 @SuppressWarnings("Convert2MethodRef")
 public class EconomyHandler {
     private static final Map<String, EconomyHookLoader> economies = new HashMap<>();

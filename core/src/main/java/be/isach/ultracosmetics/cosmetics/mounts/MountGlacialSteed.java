@@ -10,12 +10,6 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Horse;
 import org.bukkit.inventory.ItemStack;
 
-/**
- * Represents an instance of a glacial steed mount.
- *
- * @author iSach
- * @since 08-10-2015
- */
 public class MountGlacialSteed extends MountAbstractHorse {
     private static final ItemStack BOOTS = XMaterial.LEATHER_BOOTS.parseItem();
 

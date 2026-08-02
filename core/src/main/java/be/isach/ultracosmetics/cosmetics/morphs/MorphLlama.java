@@ -8,12 +8,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 
-/**
- * Represents an instance of a llama morph summoned by a player.
- *
- * @author RadBuilder
- * @since 07-03-2017
- */
 public class MorphLlama extends MorphLeftClickCooldown {
     public MorphLlama(UltraPlayer owner, MorphType type, UltraCosmetics ultraCosmetics) {
         super(owner, type, ultraCosmetics, 1.5);

@@ -8,17 +8,12 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Monster;
 import org.bukkit.entity.Slime;
 
-/**
- * Represents a Cosmetic Type with an entity type.
- *
- * @author iSach
- * @since 08-04-2016
- */
 public abstract class CosmeticEntType<T extends Cosmetic<?>> extends CosmeticType<T> {
 
     private final EntityType entityType;
 
-    public CosmeticEntType(Category category, String configName, XMaterial material, XEntityType entityType, Class<? extends T> clazz) {
+    public CosmeticEntType(Category category, String configName, XMaterial material, XEntityType entityType,
+                           Class<? extends T> clazz) {
         super(category, configName, material, clazz);
         this.entityType = entityType.get();
     }

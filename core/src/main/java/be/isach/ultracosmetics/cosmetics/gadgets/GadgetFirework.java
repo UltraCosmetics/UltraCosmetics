@@ -11,12 +11,6 @@ import org.bukkit.entity.Firework;
 import org.bukkit.inventory.meta.FireworkMeta;
 import org.bukkit.metadata.FixedMetadataValue;
 
-/**
- * Represents an instance of a firework gadget summoned by a player.
- *
- * @author iSach
- * @since 11-11-2015
- */
 public class GadgetFirework extends Gadget {
     private static final EntityType FIREWORK_ENTITY = XEntityType.FIREWORK_ROCKET.get();
 

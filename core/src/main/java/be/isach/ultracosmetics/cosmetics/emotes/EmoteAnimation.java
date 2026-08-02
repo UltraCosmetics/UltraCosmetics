@@ -2,12 +2,6 @@ package be.isach.ultracosmetics.cosmetics.emotes;
 
 import com.tcoded.folialib.wrapper.task.WrappedTask;
 
-/**
- * Settings manager.
- *
- * @author iSach
- * @since 06-17-2016
- */
 class EmoteAnimation {
 
     private static final int INTERVAL_BETWEEN_REPLAY = 20;
@@ -39,7 +33,8 @@ class EmoteAnimation {
 
     void start() {
         this.running = true;
-        task = emote.getUltraCosmetics().getScheduler().runAtEntityTimer(emote.getPlayer(), this::run, 1, ticksPerFrame);
+        task = emote.getUltraCosmetics().getScheduler()
+                .runAtEntityTimer(emote.getPlayer(), this::run, 1, ticksPerFrame);
     }
 
     void stop() {
@@ -50,14 +45,18 @@ class EmoteAnimation {
         this.running = false;
 
         try {
-            if (task != null) task.cancel();
+            if (task != null) {
+                task.cancel();
+            }
         } catch (IllegalStateException ignored) {
             // not scheduled yet
         }
     }
 
     private void updateTexture() {
-        if (!running) return;
+        if (!running) {
+            return;
+        }
 
         emote.setItemStack(emote.getType().getFrames().get(currentFrame));
 

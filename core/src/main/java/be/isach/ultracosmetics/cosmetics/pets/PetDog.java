@@ -8,12 +8,6 @@ import org.bukkit.entity.Wolf;
 
 import java.util.Locale;
 
-/**
- * Represents an instance of a dog pet summoned by a player.
- *
- * @author iSach
- * @since 08-12-2015
- */
 public class PetDog extends Pet {
     private boolean fixedColor = false;
 

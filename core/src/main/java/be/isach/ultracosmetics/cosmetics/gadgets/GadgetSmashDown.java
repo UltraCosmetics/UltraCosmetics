@@ -28,18 +28,13 @@ import org.bukkit.util.Vector;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Represents an instance of a smashdown gadget summoned by a player.
- *
- * @author iSach
- * @since 08-08-2015
- */
 public class GadgetSmashDown extends Gadget implements PlayerAffectingCosmetic, Updatable {
     private static final Particle BLOCK_PARTICLE = XParticle.BLOCK.get();
     private final XSound.SoundPlayer useSound;
     private final XSound.SoundPlayer smashSound;
     private final XSound.SoundPlayer landSound;
-    private final ParticleDisplay cloud = ParticleDisplay.of(XParticle.CLOUD).withLocationCaller(() -> getPlayer().getLocation());
+    private final ParticleDisplay cloud =
+            ParticleDisplay.of(XParticle.CLOUD).withLocationCaller(() -> getPlayer().getLocation());
     private final List<FallingBlock> fallingBlocks = new ArrayList<>();
     private boolean active = false;
     private int i = 1;
@@ -49,9 +44,12 @@ public class GadgetSmashDown extends Gadget implements PlayerAffectingCosmetic, 
 
     public GadgetSmashDown(UltraPlayer owner, GadgetType type, UltraCosmetics ultraCosmetics) {
         super(owner, type, ultraCosmetics);
-        useSound = XSound.ENTITY_FIREWORK_ROCKET_LAUNCH.record().withVolume(2.0f).publicSound(true).soundPlayer().forPlayers(getPlayer());
-        smashSound = XSound.ENTITY_GENERIC_EXPLODE.record().withVolume(2.0f).publicSound(true).soundPlayer().forPlayers(getPlayer());
-        landSound = XSound.BLOCK_ANVIL_BREAK.record().withVolume(0.05f).publicSound(true).soundPlayer().forPlayers(getPlayer());
+        useSound = XSound.ENTITY_FIREWORK_ROCKET_LAUNCH.record().withVolume(2.0f).publicSound(true).soundPlayer()
+                .forPlayers(getPlayer());
+        smashSound = XSound.ENTITY_GENERIC_EXPLODE.record().withVolume(2.0f).publicSound(true).soundPlayer()
+                .forPlayers(getPlayer());
+        landSound = XSound.BLOCK_ANVIL_BREAK.record().withVolume(0.05f).publicSound(true).soundPlayer()
+                .forPlayers(getPlayer());
     }
 
     @Override

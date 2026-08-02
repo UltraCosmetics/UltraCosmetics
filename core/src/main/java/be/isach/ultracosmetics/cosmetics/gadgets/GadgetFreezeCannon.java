@@ -14,19 +14,12 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.EntityPickupItemEvent;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
-/**
- * @author iSach
- * @since 12-15-2015
- */
 public class GadgetFreezeCannon extends Gadget implements Updatable {
     private static final ItemStack ICE = XMaterial.ICE.parseItem();
-    private static final ParticleDisplay FIREWORK = ParticleDisplay.of(XParticle.FIREWORK).offset(4, 3, 4).withCount(80);
+    private static final ParticleDisplay FIREWORK =
+            ParticleDisplay.of(XParticle.FIREWORK).offset(4, 3, 4).withCount(80);
     private final Set<Item> items = new HashSet<>();
 
     public GadgetFreezeCannon(UltraPlayer owner, GadgetType type, UltraCosmetics ultraCosmetics) {

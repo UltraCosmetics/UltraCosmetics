@@ -4,12 +4,6 @@ import be.isach.ultracosmetics.UltraCosmetics;
 import be.isach.ultracosmetics.cosmetics.type.ParticleEffectType;
 import be.isach.ultracosmetics.player.UltraPlayer;
 
-/**
- * Represents an instance of in love particles summoned by a player.
- *
- * @author iSach
- * @since 08-13-2015
- */
 public class ParticleEffectInLove extends ParticleEffect {
 
     public ParticleEffectInLove(UltraPlayer owner, ParticleEffectType type, UltraCosmetics ultraCosmetics) {

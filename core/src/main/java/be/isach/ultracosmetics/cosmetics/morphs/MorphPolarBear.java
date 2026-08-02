@@ -12,14 +12,9 @@ import org.bukkit.Location;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.util.Vector;
 
-/**
- * Represents an instance of a polar bear morph summoned by a player.
- *
- * @author RadBuilder
- * @since 07-03-2017
- */
 public class MorphPolarBear extends MorphLeftClickCooldown implements Updatable {
-    private final ParticleDisplay display = ParticleDisplay.of(XParticle.CLOUD).withCount(6).offset(0.3, 0.1, 0.3).withExtra(0.4);
+    private final ParticleDisplay display =
+            ParticleDisplay.of(XParticle.CLOUD).withCount(6).offset(0.3, 0.1, 0.3).withExtra(0.4);
     private boolean active;
     private Location location;
     private Vector vector;
@@ -39,7 +34,9 @@ public class MorphPolarBear extends MorphLeftClickCooldown implements Updatable 
 
     @Override
     public void onUpdate() {
-        if (!canUseSkill) return;
+        if (!canUseSkill) {
+            return;
+        }
         if (!active) {
             location = null;
             vector = null;
@@ -50,11 +47,14 @@ public class MorphPolarBear extends MorphLeftClickCooldown implements Updatable 
         }
 
         if (BlockUtils.isAir(location.clone().subtract(0, 1, 0).getBlock().getType())) {
-            if (!location.clone().getBlock().getType().toString().contains("SLAB")) location.add(0, -1, 0);
+            if (!location.clone().getBlock().getType().toString().contains("SLAB")) {
+                location.add(0, -1, 0);
+            }
         }
 
         for (int i = 0; i < 3; i++) {
-            UltraCosmeticsData.get().getVersionManager().getEntityUtil().sendBlizzard(getPlayer(), location, ent -> false, vector);
+            UltraCosmeticsData.get().getVersionManager().getEntityUtil()
+                    .sendBlizzard(getPlayer(), location, ent -> false, vector);
         }
         display.spawn(location.clone().subtract(0, 0.5, 0));
 
@@ -63,7 +63,9 @@ public class MorphPolarBear extends MorphLeftClickCooldown implements Updatable 
 
     @Override
     protected void onClear() {
-        if (!canUseSkill) return;
+        if (!canUseSkill) {
+            return;
+        }
         active = false;
         if (getOwner() != null && getPlayer() != null) {
             UltraCosmeticsData.get().getVersionManager().getEntityUtil().clearBlizzard(getPlayer());
