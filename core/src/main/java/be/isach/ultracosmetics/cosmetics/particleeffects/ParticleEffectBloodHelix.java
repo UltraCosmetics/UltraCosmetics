@@ -8,12 +8,6 @@ import org.bukkit.util.Vector;
 
 import java.awt.Color;
 
-/**
- * Represents an instance of blood helix particles summoned by a player.
- *
- * @author iSach
- * @since 08-12-2015
- */
 public class ParticleEffectBloodHelix extends ParticleEffect {
     private double i = 0;
 

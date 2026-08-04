@@ -23,33 +23,23 @@ import org.bukkit.event.hanging.HangingBreakByEntityEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
-/**
- * Represents an instance of a paintball gun gadget summoned by a player.
- *
- * @author iSach
- * @since 08-03-2015
- */
 public class GadgetPaintballGun extends Gadget {
 
     private static final List<XMaterial> PAINT_BLOCKS = new ArrayList<>();
 
     static {
-        String ending = SettingsManager.getConfig().getString("Gadgets.PaintballGun.Block-Type", "_TERRACOTTA").toUpperCase(Locale.ROOT);
+        String ending = SettingsManager.getConfig().getString("Gadgets.PaintballGun.Block-Type", "_TERRACOTTA")
+                .toUpperCase(Locale.ROOT);
         for (XMaterial mat : XMaterial.VALUES) {
             if (mat.isSupported() && mat.name().endsWith(ending)) {
                 PAINT_BLOCKS.add(mat);
             }
         }
         if (PAINT_BLOCKS.isEmpty()) {
-            UltraCosmeticsData.get().getPlugin().getSmartLogger().write(LogLevel.ERROR, "Paintball Gun setting 'Block-Type' does not match any known blocks.");
+            UltraCosmeticsData.get().getPlugin().getSmartLogger()
+                    .write(LogLevel.ERROR, "Paintball Gun setting 'Block-Type' does not match any known blocks.");
             PAINT_BLOCKS.add(XMaterial.BEDROCK);
         }
     }
@@ -61,7 +51,8 @@ public class GadgetPaintballGun extends Gadget {
 
     public GadgetPaintballGun(UltraPlayer owner, GadgetType type, UltraCosmetics ultraCosmetics) {
         super(owner, type, ultraCosmetics);
-        sound = XSound.ENTITY_CHICKEN_EGG.record().withVolume(1.5f).withPitch(1.2f).soundPlayer().forPlayers(getPlayer());
+        sound = XSound.ENTITY_CHICKEN_EGG.record().withVolume(1.5f).withPitch(1.2f).soundPlayer()
+                .forPlayers(getPlayer());
         radius = SettingsManager.getConfig().getInt(getOptionPath("Radius"), 2);
         displayCooldownMessage = false;
         if (!SettingsManager.getConfig().getBoolean(getOptionPath("Particle.Enabled"))) {
@@ -82,7 +73,8 @@ public class GadgetPaintballGun extends Gadget {
 
     @Override
     protected void onRightClick() {
-        Projectile projectile = getPlayer().launchProjectile(EnderPearl.class, getPlayer().getLocation().getDirection().multiply(2));
+        Projectile projectile =
+                getPlayer().launchProjectile(EnderPearl.class, getPlayer().getLocation().getDirection().multiply(2));
         projectiles.add(projectile);
         sound.play();
     }
@@ -100,7 +92,9 @@ public class GadgetPaintballGun extends Gadget {
 
     @EventHandler
     public void onProjectileHit(ProjectileHitEvent event) {
-        if (!projectiles.remove(event.getEntity())) return;
+        if (!projectiles.remove(event.getEntity())) {
+            return;
+        }
 
         Location center = event.getEntity().getLocation().add(event.getEntity().getVelocity());
         Map<Block, XMaterial> updates = new HashMap<>();
@@ -121,7 +115,9 @@ public class GadgetPaintballGun extends Gadget {
 
     @EventHandler
     public void onEntityDamageByEntity(EntityDamageByEntityEvent event) {
-        if (event.getDamager().getType() != EntityType.ENDER_PEARL) return;
+        if (event.getDamager().getType() != EntityType.ENDER_PEARL) {
+            return;
+        }
         if (projectiles.contains(event.getDamager())) {
             event.setCancelled(true);
         }

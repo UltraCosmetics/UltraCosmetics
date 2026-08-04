@@ -22,12 +22,6 @@ import org.bukkit.event.Listener;
 import java.util.Random;
 import java.util.UUID;
 
-/**
- * A cosmetic instance summoned by a player.
- *
- * @author iSach
- * @since 07-21-2016
- */
 public abstract class Cosmetic<T extends CosmeticType<?>> implements Listener {
     protected static final Random RANDOM = new Random();
     private final UltraPlayer owner;
@@ -64,7 +58,8 @@ public abstract class Cosmetic<T extends CosmeticType<?>> implements Listener {
             return;
         }
 
-        if (PlayerAffectingCosmetic.isVanished(player) && SettingsManager.getConfig().getBoolean("Prevent-Cosmetics-In-Vanish")) {
+        if (PlayerAffectingCosmetic.isVanished(player) &&
+                SettingsManager.getConfig().getBoolean("Prevent-Cosmetics-In-Vanish")) {
             owner.clear();
             MessageManager.send(player, "Not-Allowed-In-Vanish");
             return;
@@ -74,7 +69,8 @@ public abstract class Cosmetic<T extends CosmeticType<?>> implements Listener {
             MessageManager.send(player, "Region-Disabled");
             return;
         } else if (state == CosmeticRegionState.BLOCKED_CATEGORY) {
-            TagResolver.Single placeholder = Placeholder.component("category", TextUtil.stripColor(MessageManager.getMessage("Menu." + category.getConfigPath() + ".Title")));
+            TagResolver.Single placeholder = Placeholder.component("category",
+                    TextUtil.stripColor(MessageManager.getMessage("Menu." + category.getConfigPath() + ".Title")));
             MessageManager.send(player, "Region-Disabled-Category", placeholder);
             return;
         }
@@ -96,8 +92,10 @@ public abstract class Cosmetic<T extends CosmeticType<?>> implements Listener {
         this.equipped = true;
 
         if (!owner.isPreserveEquipped()) {
-            TagResolver.Single typeNamePlaceholder = Placeholder.component(getCategory().getChatPlaceholder(), TextUtil.filterPlaceholderColors(typeName));
-            Component activateMessage = MessageManager.getMessage(category.getConfigPath() + ".Equip", typeNamePlaceholder);
+            TagResolver.Single typeNamePlaceholder = Placeholder.component(getCategory().getChatPlaceholder(),
+                    TextUtil.filterPlaceholderColors(typeName));
+            Component activateMessage =
+                    MessageManager.getMessage(category.getConfigPath() + ".Equip", typeNamePlaceholder);
             owner.sendMessage(appendActivateMessage(activateMessage));
         }
 
@@ -115,15 +113,19 @@ public abstract class Cosmetic<T extends CosmeticType<?>> implements Listener {
         Bukkit.getPluginManager().callEvent(event);
 
         if (!owner.isPreserveEquipped()) {
-            TagResolver.Single typeNamePlaceholder = Placeholder.component(getCategory().getChatPlaceholder(), TextUtil.filterPlaceholderColors(typeName));
-            Component deactivateMessage = MessageManager.getMessage(category.getConfigPath() + ".Unequip", typeNamePlaceholder);
+            TagResolver.Single typeNamePlaceholder = Placeholder.component(getCategory().getChatPlaceholder(),
+                    TextUtil.filterPlaceholderColors(typeName));
+            Component deactivateMessage =
+                    MessageManager.getMessage(category.getConfigPath() + ".Unequip", typeNamePlaceholder);
             owner.sendMessage(deactivateMessage);
         }
 
         HandlerList.unregisterAll(this);
 
         try {
-            if (task != null) task.cancel();
+            if (task != null) {
+                task.cancel();
+            }
         } catch (IllegalStateException ignored) {
         } // not scheduled yet
 

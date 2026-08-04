@@ -20,12 +20,6 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.util.Vector;
 
-/**
- * Represents an instance of a trampoline gadget summoned by a player.
- *
- * @author iSach
- * @since 12-19-2015
- */
 public class GadgetTrampoline extends Gadget implements Updatable {
     private final StructureRollback rollback = new StructureRollback();
     private Area cuboid;
@@ -145,7 +139,9 @@ public class GadgetTrampoline extends Gadget implements Updatable {
 
     @EventHandler
     public void onBlockPlace(BlockPlaceEvent event) {
-        if (cuboid == null || !running) return;
+        if (cuboid == null || !running) {
+            return;
+        }
         if (cuboid.contains(event.getBlock())) {
             event.setCancelled(true);
         }

@@ -15,12 +15,6 @@ import org.bukkit.inventory.ItemStack;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Emote types.
- *
- * @author iSach
- * @since 07-17-2016
- */
 public class EmoteType extends CosmeticType<Emote> {
 
     public static void register() {
@@ -222,11 +216,13 @@ public class EmoteType extends CosmeticType<Emote> {
         if (emotes != null) {
             for (String key : emotes.getKeys(false)) {
                 if (!emotes.isList(key + ".urls") || !emotes.isInt(key + ".ticksPerFrame")) {
-                    UltraCosmeticsData.get().getPlugin().getSmartLogger().write(LogLevel.WARNING, "Incomplete custom emote '" + key + "'");
+                    UltraCosmeticsData.get().getPlugin().getSmartLogger()
+                            .write(LogLevel.WARNING, "Incomplete custom emote '" + key + "'");
                     continue;
                 }
                 MessageManager.addMessage(Category.EMOTES.getConfigPath() + "." + key + ".Name", key);
-                MessageManager.addMessage(Category.EMOTES.getConfigPath() + "." + key + ".Description", "A custom emote!");
+                MessageManager.addMessage(Category.EMOTES.getConfigPath() + "." + key + ".Description",
+                        "A custom emote!");
                 EmoteType custom = new EmoteType(key, emotes.getInt(key + ".ticksPerFrame"));
                 for (String url : emotes.getStringList(key + ".urls")) {
                     custom.appendTexture(url);

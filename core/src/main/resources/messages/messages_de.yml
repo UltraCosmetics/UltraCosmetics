@@ -560,8 +560,8 @@ Particle-Effects:
   SuperVillain:
     name: <bold><dark_purple>Super Villain
     Description: |-
-      Become Batman... or whoever is
-      more evil than Superman!
+      Werde Batman... oder wer
+      ist mehr Böse als Superman!
   Notes:
     name: <bold><gold>Noten
     Description: Noten über deinem Kopf.
@@ -587,8 +587,8 @@ Particle-Effects:
       Hinterlässt eine Spur
       aus Schnee.
   CherryFairy:
-    name: '<bold><#DE3163>Cherry Fairy'
-    Description: Protector of the cherry grove.
+    name: '<bold><#DE3163>Kirschfee'
+    Description: Beschützer des Kirschhains.
 Pets:
   Piggy:
     menu-name: <bold><light_purple>Schwein

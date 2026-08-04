@@ -9,12 +9,6 @@ import be.isach.ultracosmetics.menu.buttons.ToggleGadgetsButton;
 import be.isach.ultracosmetics.player.UltraPlayer;
 import org.bukkit.inventory.Inventory;
 
-/**
- * Gadget {@link be.isach.ultracosmetics.menu.Menu Menu}.
- *
- * @author iSach
- * @since 07-23-2016
- */
 public class MenuGadgets extends CosmeticMenu<GadgetType> {
 
     public MenuGadgets(UltraCosmetics ultraCosmetics) {

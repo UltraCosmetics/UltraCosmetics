@@ -13,12 +13,6 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.logging.Level;
 
-/**
- * Hat types.
- *
- * @author iSach
- * @since 10-15-2015
- */
 public class HatType extends CosmeticType<Hat> {
     private static final String HAT_NAME = ChatColor.DARK_GRAY.toString() + ChatColor.ITALIC + "Hat";
     /**
@@ -228,7 +222,9 @@ public class HatType extends CosmeticType<Hat> {
         new HatType("b9295734195d2c7fa389b98757e9686ce6437c16c58bdf2b4cd538389b5912", "Z");
 
         ConfigurationSection hats = getCustomConfig(Category.HATS);
-        if (hats == null) return;
+        if (hats == null) {
+            return;
+        }
         for (String key : hats.getKeys(false)) {
             ConfigurationSection hat = hats.getConfigurationSection(key);
             if (hat == null) {
@@ -241,7 +237,8 @@ public class HatType extends CosmeticType<Hat> {
             try {
                 item = ItemFactory.getItemDeserializer().fromConfig(hat).deserialize();
             } catch (RuntimeException e) {
-                UltraCosmeticsData.get().getPlugin().getLogger().log(Level.WARNING, "Failed to parse custom hat '" + key + "'", e);
+                UltraCosmeticsData.get().getPlugin().getLogger()
+                        .log(Level.WARNING, "Failed to parse custom hat '" + key + "'", e);
                 continue;
             }
             addCustomStrings(key);

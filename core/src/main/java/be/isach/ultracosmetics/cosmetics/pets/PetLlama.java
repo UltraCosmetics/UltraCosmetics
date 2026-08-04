@@ -11,12 +11,6 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.Locale;
 
-/**
- * Represents an instance of a llama pet summoned by a player.
- *
- * @author RadBuilder
- * @since 07-02-2017
- */
 public class PetLlama extends Pet {
     public PetLlama(UltraPlayer owner, PetType type, UltraCosmetics ultraCosmetics) {
         super(owner, type, ultraCosmetics, XMaterial.WHITE_WOOL);
@@ -31,7 +25,9 @@ public class PetLlama extends Pet {
             color = Color.valueOf(parts[0].toUpperCase(Locale.ROOT));
             if (parts.length > 1) {
                 carpet = Material.matchMaterial(parts[1]);
-                if (carpet == null || !carpet.isItem()) return false;
+                if (carpet == null || !carpet.isItem()) {
+                    return false;
+                }
             }
         } catch (IllegalArgumentException e) {
             return false;

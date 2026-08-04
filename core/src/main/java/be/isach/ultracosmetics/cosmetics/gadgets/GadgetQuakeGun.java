@@ -20,12 +20,6 @@ import org.bukkit.util.Vector;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Represents an instance of a quake gun gadget summoned by a player.
- *
- * @author iSach
- * @since 10-12-2015
- */
 public class GadgetQuakeGun extends Gadget implements PlayerAffectingCosmetic {
     private static final FireworkEffect FIREWORK_EFFECT = FireworkEffect.builder().flicker(false).trail(false)
             .with(FireworkEffect.Type.BALL_LARGE).withColor(Color.RED).withFade(Color.ORANGE).build();
@@ -37,7 +31,8 @@ public class GadgetQuakeGun extends Gadget implements PlayerAffectingCosmetic {
 
     public GadgetQuakeGun(UltraPlayer owner, GadgetType type, UltraCosmetics ultraCosmetics) {
         super(owner, type, ultraCosmetics);
-        sound = XSound.ENTITY_BLAZE_DEATH.record().withVolume(1.4f).withPitch(1.5f).soundPlayer().forPlayers(getPlayer());
+        sound = XSound.ENTITY_BLAZE_DEATH.record().withVolume(1.4f).withPitch(1.5f).soundPlayer()
+                .forPlayers(getPlayer());
     }
 
     @Override

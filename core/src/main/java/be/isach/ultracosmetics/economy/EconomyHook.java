@@ -2,12 +2,6 @@ package be.isach.ultracosmetics.economy;
 
 import org.bukkit.entity.Player;
 
-/**
- * Economy hook interface.
- *
- * @author RadBuilder
- * @since 2.5
- */
 public interface EconomyHook {
     /**
      * Withdraws the specified amount of money from the specified player.

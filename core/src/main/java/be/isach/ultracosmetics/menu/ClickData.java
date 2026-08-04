@@ -4,12 +4,6 @@ import be.isach.ultracosmetics.player.UltraPlayer;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.inventory.ItemStack;
 
-/**
- * Inventory click data.
- *
- * @author iSach
- * @since 08-09-2016
- */
 public class ClickData {
 
     private final Menu menu;

@@ -8,12 +8,6 @@ import com.cryptomorin.xseries.particles.ParticleDisplay;
 import org.bukkit.Location;
 import org.bukkit.util.Vector;
 
-/**
- * Represents an instance of frost lord particles summoned by a player.
- *
- * @author iSach
- * @since 08-12-2015
- */
 public class ParticleEffectFrostLord extends ParticleEffect {
     private final XSound.SoundPlayer sound;
     private final ParticleDisplay secondaryDisplay;

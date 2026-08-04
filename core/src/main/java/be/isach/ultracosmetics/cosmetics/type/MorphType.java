@@ -12,17 +12,12 @@ import com.cryptomorin.xseries.XMaterial;
 import net.kyori.adventure.text.Component;
 import org.bukkit.entity.EntityType;
 
-/**
- * Morph types.
- *
- * @author iSach
- * @since 12-19-2015
- */
 public class MorphType extends CosmeticEntType<Morph> {
 
     private final boolean doesSkillExist;
 
-    private MorphType(String configName, XMaterial material, XEntityType disguiseType, Class<? extends Morph> clazz, boolean doesSkillExist) {
+    private MorphType(String configName, XMaterial material, XEntityType disguiseType, Class<? extends Morph> clazz,
+                      boolean doesSkillExist) {
         super(Category.MORPHS, configName, material, disguiseType, clazz);
         this.doesSkillExist = doesSkillExist;
         if (GENERATE_MISSING_MESSAGES) {
@@ -72,12 +67,16 @@ public class MorphType extends CosmeticEntType<Morph> {
         registerMorph(configName, material, disguiseType, MorphBasic.class, false);
     }
 
-    public static void registerMorph(String configName, XMaterial material, XEntityType disguiseType, Class<? extends Morph> clazz) {
+    public static void registerMorph(String configName, XMaterial material, XEntityType disguiseType,
+                                     Class<? extends Morph> clazz) {
         registerMorph(configName, material, disguiseType, clazz, true);
     }
 
-    public static void registerMorph(String configName, XMaterial material, XEntityType disguiseType, Class<? extends Morph> clazz, boolean skillEnabled) {
-        if (!disguiseType.isSupported()) return;
+    public static void registerMorph(String configName, XMaterial material, XEntityType disguiseType,
+                                     Class<? extends Morph> clazz, boolean skillEnabled) {
+        if (!disguiseType.isSupported()) {
+            return;
+        }
         new MorphType(configName, material, disguiseType, clazz, skillEnabled);
     }
 
@@ -163,15 +162,17 @@ public class MorphType extends CosmeticEntType<Morph> {
         registerMorph("Illusioner", XMaterial.COMMAND_BLOCK, XEntityType.ILLUSIONER);
         registerMorph("Llama", XMaterial.RED_WOOL, XEntityType.LLAMA, MorphLlama.class);
         registerMorph("Evoker", XMaterial.TOTEM_OF_UNDYING, XEntityType.EVOKER, MorphEvoker.class, false);
-        registerMorph("WitherSkeleton", XMaterial.WITHER_SKELETON_SKULL, XEntityType.WITHER_SKELETON, MorphWitherSkeleton.class);
+        registerMorph("WitherSkeleton", XMaterial.WITHER_SKELETON_SKULL, XEntityType.WITHER_SKELETON,
+                MorphWitherSkeleton.class);
         registerMorph("Donkey", XMaterial.CHEST, XEntityType.DONKEY, MorphDonkey.class, false);
         registerMorph("Vex", XMaterial.IRON_SWORD, XEntityType.VEX);
         registerMorph("Vindicator", XMaterial.IRON_AXE, XEntityType.VINDICATOR);
         registerMorph("Mule", XMaterial.SADDLE, XEntityType.MULE);
         registerMorph("SkeletonHorse", XMaterial.BONE_BLOCK, XEntityType.SKELETON_HORSE);
         registerMorph("ZombieHorse", XMaterial.ZOMBIE_HORSE_SPAWN_EGG, XEntityType.ZOMBIE_HORSE);
-        if (vm.isUsingNMS()) {
-            registerMorph("ElderGuardian", XMaterial.PRISMARINE_CRYSTALS, XEntityType.ELDER_GUARDIAN, UltraCosmeticsData.get().getVersionManager().getModule().getElderGuardianClass());
+        if (vm.getModule().getElderGuardianClass() != null) {
+            registerMorph("ElderGuardian", XMaterial.PRISMARINE_CRYSTALS, XEntityType.ELDER_GUARDIAN,
+                    vm.getModule().getElderGuardianClass());
         }
         registerMorph("PolarBear", XMaterial.SNOW_BLOCK, XEntityType.POLAR_BEAR, MorphPolarBear.class, vm.isUsingNMS());
         registerMorph("Shulker", XMaterial.SHULKER_BOX, XEntityType.SHULKER);

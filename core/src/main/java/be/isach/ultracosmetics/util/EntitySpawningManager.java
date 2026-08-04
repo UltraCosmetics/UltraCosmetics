@@ -7,9 +7,6 @@ import org.bukkit.event.entity.CreatureSpawnEvent;
 
 import java.util.function.Supplier;
 
-/**
- * Created by Sacha on 23/12/15.
- */
 public class EntitySpawningManager implements Listener {
 
     private static boolean bypass = false;
@@ -23,7 +20,9 @@ public class EntitySpawningManager implements Listener {
 
     public static <T> T withBypass(Supplier<T> supplier) {
         // No effect if we're already bypassing
-        if (bypass) return supplier.get();
+        if (bypass) {
+            return supplier.get();
+        }
         bypass = true;
         try {
             return supplier.get();

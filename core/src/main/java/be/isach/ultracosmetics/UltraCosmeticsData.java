@@ -9,12 +9,6 @@ import be.isach.ultracosmetics.version.VersionManager;
 import com.cryptomorin.xseries.reflection.XReflection;
 import me.gamercoder215.mobchip.abstraction.ChipUtilFactory;
 
-/**
- * This class is only for cleaning main class a bit.
- *
- * @author iSach
- * @since 08-05-2016
- */
 public class UltraCosmeticsData {
 
     private static UltraCosmeticsData instance;

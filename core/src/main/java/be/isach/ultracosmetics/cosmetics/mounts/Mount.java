@@ -20,12 +20,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Difficulty;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
-import org.bukkit.entity.AbstractHorse;
-import org.bukkit.entity.Ageable;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.Slime;
+import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.inventory.InventoryOpenEvent;
@@ -38,12 +33,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Represents an instance of a mount summoned by a player.
- *
- * @author iSach
- * @since 08-03-2015
- */
 public abstract class Mount extends EntityCosmetic<MountType, Entity> implements Updatable {
     private UltraTask mountRegionTask = null;
 
@@ -74,17 +63,24 @@ public abstract class Mount extends EntityCosmetic<MountType, Entity> implements
         entity.setMetadata("Mount", new FixedMetadataValue(UltraCosmeticsData.get().getPlugin(), "UltraCosmetics"));
         setupEntity();
 
-        if (!getUltraCosmetics().getWorldGuardManager().isHooked()) return;
+        if (!getUltraCosmetics().getWorldGuardManager().isHooked()) {
+            return;
+        }
         // Horses trigger PlayerMoveEvent so the standard WG move handler will be sufficient
-        if (isHorse(entity.getType())) return;
+        if (isHorse(entity.getType())) {
+            return;
+        }
         mountRegionTask = new MountRegionChecker(getOwner(), getUltraCosmetics());
         mountRegionTask.schedule();
     }
 
     @Override
     protected void scheduleTask() {
-        if (getType().getRepeatDelay() == 0) return;
-        task = getUltraCosmetics().getScheduler().runAtEntityTimer(getPlayer(), this::run, 1, getType().getRepeatDelay());
+        if (getType().getRepeatDelay() == 0) {
+            return;
+        }
+        task = getUltraCosmetics().getScheduler()
+                .runAtEntityTimer(getPlayer(), this::run, 1, getType().getRepeatDelay());
     }
 
     @Override
@@ -165,13 +161,17 @@ public abstract class Mount extends EntityCosmetic<MountType, Entity> implements
     @Override
     protected void onPortal() {
         entity.remove();
-        if (mountRegionTask != null) mountRegionTask.cancel();
+        if (mountRegionTask != null) {
+            mountRegionTask.cancel();
+        }
         getUltraCosmetics().getScheduler().runAtEntityLater(getEntity(), this::onEquip, 1);
     }
 
     @EventHandler
     public void openInv(InventoryOpenEvent event) {
-        if (!isHorse(getType().getEntityType())) return;
+        if (!isHorse(getType().getEntityType())) {
+            return;
+        }
         if (getOwner() != null
                 && getPlayer() != null
                 && event.getPlayer() == getPlayer()
@@ -190,7 +190,8 @@ public abstract class Mount extends EntityCosmetic<MountType, Entity> implements
                 && event.getPlayer() == getPlayer()
                 && getOwner().getCurrentMount() == this
                 && SettingsManager.getConfig().getBoolean("Mounts-Block-Trails")) {
-            List<XMaterial> mats = ItemFactory.getXMaterialListFromConfig("Mounts." + getType().getConfigName() + ".Blocks-To-Place");
+            List<XMaterial> mats =
+                    ItemFactory.getXMaterialListFromConfig("Mounts." + getType().getConfigName() + ".Blocks-To-Place");
             if (mats.size() == 0) {
                 return;
             }

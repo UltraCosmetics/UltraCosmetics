@@ -21,19 +21,12 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.permissions.Permission;
 import org.bukkit.permissions.PermissionDefault;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.Map.Entry;
-import java.util.Set;
 
 /**
  * Represents a Menu. A menu can have multiple pages in case of cosmetics.
  * Each item in the menu will, when clicked by a player, execute a ClickRunnable.
- *
- * @author iSach
- * @since 07-05-2016
  */
 public abstract class Menu implements Listener {
     public static final Permission ALL_MENUS_PERMISSION = registerAllPermission();
@@ -53,17 +46,8 @@ public abstract class Menu implements Listener {
         return new ArrayList<>(REGISTERED_PERMISSIONS.values());
     }
 
-    /**
-     * UltraCosmetics Instance.
-     */
     protected final UltraCosmetics ultraCosmetics;
 
-    /**
-     * Click Runnables maps.
-     * <p>
-     * Key: Item
-     * Value: ClickRunnable to call when item is clicked.
-     */
     protected final Map<Inventory, Map<ItemStack, Button>> clickRunnableMap = new HashMap<>();
     private final boolean fillEmpty = SettingsManager.getConfig().getBoolean("Fill-Blank-Slots-With-Item.Enabled");
 
@@ -103,7 +87,8 @@ public abstract class Menu implements Listener {
     }
 
     protected Inventory createInventory(Component name) {
-        Inventory inventory = Bukkit.createInventory(new CosmeticsInventoryHolder(), getSize(), MessageManager.toLegacy(name));
+        Inventory inventory =
+                Bukkit.createInventory(new CosmeticsInventoryHolder(), getSize(), MessageManager.toLegacy(name));
         ((CosmeticsInventoryHolder) inventory.getHolder()).setInventory(inventory);
         return inventory;
     }
@@ -143,7 +128,9 @@ public abstract class Menu implements Listener {
     }
 
     protected void fillInventory(Inventory inventory) {
-        if (!fillEmpty) return;
+        if (!fillEmpty) {
+            return;
+        }
         for (int i = 0; i < inventory.getSize(); i++) {
             if (inventory.getItem(i) == null || inventory.getItem(i).getType() == Material.AIR) {
                 inventory.setItem(i, fillerItem);
@@ -176,7 +163,8 @@ public abstract class Menu implements Listener {
 
         // Check that the filler item isn't being clicked
         if (event.getCurrentItem() == null || !event.getCurrentItem().hasItemMeta()
-                || !event.getCurrentItem().getItemMeta().hasDisplayName() || event.getCurrentItem().equals(fillerItem)) {
+                || !event.getCurrentItem().getItemMeta().hasDisplayName() ||
+                event.getCurrentItem().equals(fillerItem)) {
             return;
         }
 

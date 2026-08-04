@@ -25,9 +25,6 @@ import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
-/**
- * Created by Sacha on 11/11/15.
- */
 public class TreasureChestManager implements Listener {
 
     private static final Random random = new Random();
@@ -39,25 +36,30 @@ public class TreasureChestManager implements Listener {
         if (!SettingsManager.getConfig().getBoolean("TreasureChests.Locations.Enabled")) {
             return;
         }
-        Set<String> locationNames = SettingsManager.getConfig().getConfigurationSection("TreasureChests.Locations").getKeys(false);
+        Set<String> locationNames =
+                SettingsManager.getConfig().getConfigurationSection("TreasureChests.Locations").getKeys(false);
         for (String locationName : locationNames) {
             if (!SettingsManager.getConfig().isConfigurationSection("TreasureChests.Locations." + locationName)) {
                 continue;
             }
-            ConfigurationSection location = SettingsManager.getConfig().getConfigurationSection("TreasureChests.Locations." + locationName);
+            ConfigurationSection location =
+                    SettingsManager.getConfig().getConfigurationSection("TreasureChests.Locations." + locationName);
             String worldName = location.getString("World", "none");
             World world = null;
             if (!worldName.equals("none")) {
                 world = Bukkit.getWorld(worldName);
                 if (world == null) {
-                    ultraCosmetics.getSmartLogger().write(SmartLogger.LogLevel.ERROR, "Invalid world set for location " + locationName + ", using player world");
+                    ultraCosmetics.getSmartLogger().write(SmartLogger.LogLevel.ERROR,
+                            "Invalid world set for location " + locationName + ", using player world");
                 }
             }
-            TreasureLocation tloc = new TreasureLocation(world, location.getInt("X", 0), location.getInt("Y", 63), location.getInt("Z", 0));
+            TreasureLocation tloc = new TreasureLocation(world, location.getInt("X", 0), location.getInt("Y", 63),
+                    location.getInt("Z", 0));
             TREASURE_LOCATIONS.add(tloc);
         }
         if (TREASURE_LOCATIONS.isEmpty()) {
-            ultraCosmetics.getSmartLogger().write(SmartLogger.LogLevel.WARNING, "No treasure chest locations are defined, the setting will be ignored");
+            ultraCosmetics.getSmartLogger().write(SmartLogger.LogLevel.WARNING,
+                    "No treasure chest locations are defined, the setting will be ignored");
         }
     }
 
@@ -167,10 +169,18 @@ public class TreasureChestManager implements Listener {
     }
 
     public static boolean shouldPush(UltraPlayer chestOwner, Entity entity) {
-        if (chestOwner.getBukkitPlayer() == entity || !(entity instanceof LivingEntity)) return false;
-        if (entity instanceof ArmorStand && !((ArmorStand) entity).isVisible()) return false;
-        if (entity.hasMetadata("NPC") || entity.hasMetadata("fake-player")) return false;
-        if (chestOwner.getCurrentPet() != null && entity == chestOwner.getCurrentPet().getEntity()) return false;
+        if (chestOwner.getBukkitPlayer() == entity || !(entity instanceof LivingEntity)) {
+            return false;
+        }
+        if (entity instanceof ArmorStand && !((ArmorStand) entity).isVisible()) {
+            return false;
+        }
+        if (entity.hasMetadata("NPC") || entity.hasMetadata("fake-player")) {
+            return false;
+        }
+        if (chestOwner.getCurrentPet() != null && entity == chestOwner.getCurrentPet().getEntity()) {
+            return false;
+        }
         return true;
     }
 }

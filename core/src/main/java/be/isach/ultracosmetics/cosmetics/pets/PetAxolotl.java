@@ -7,12 +7,6 @@ import be.isach.ultracosmetics.player.UltraPlayer;
 import org.bukkit.entity.Axolotl;
 import org.bukkit.entity.Axolotl.Variant;
 
-/**
- * Represents an instance of an axolotl pet summoned by a player.
- *
- * @author Chris6ix
- * @since 14-01-2022
- */
 public class PetAxolotl extends Pet {
     public PetAxolotl(UltraPlayer owner, PetType type, UltraCosmetics ultraCosmetics) {
         super(owner, type, ultraCosmetics);

@@ -6,12 +6,6 @@ import be.isach.ultracosmetics.player.UltraPlayer;
 import be.isach.ultracosmetics.util.MathUtils;
 import org.bukkit.util.Vector;
 
-/**
- * Represents an instance of flame ring particles summoned by a player.
- *
- * @author iSach
- * @since 08-12-2015
- */
 public class ParticleEffectFlameRings extends ParticleEffect {
 
     private float step = 0;

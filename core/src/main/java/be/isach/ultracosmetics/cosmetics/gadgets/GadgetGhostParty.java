@@ -25,12 +25,6 @@ import org.bukkit.potion.PotionEffectType;
 import java.util.HashSet;
 import java.util.Set;
 
-/**
- * Represents an instance of a ghost party gadget summoned by a player.
- *
- * @author iSach
- * @since 10-18-2015
- */
 public class GadgetGhostParty extends Gadget implements Updatable {
 
     private static final ItemStack GHOST_HEAD =

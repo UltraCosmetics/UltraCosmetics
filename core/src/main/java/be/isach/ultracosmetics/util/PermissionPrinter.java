@@ -18,9 +18,6 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.util.Locale;
 
-/**
- * Created by Sacha on 24/12/15.
- */
 public class PermissionPrinter {
 
     /**
@@ -78,7 +75,9 @@ public class PermissionPrinter {
         writer.println("  - ultracosmetics.updatenotify");
 
         for (Category cat : Category.values()) {
-            if (cat.isSuits()) continue;
+            if (cat.isSuits()) {
+                continue;
+            }
             writer.println();
             writer.println("### " + cat.getConfigPath().replace("-", " ") + ":");
             writer.println("  - " + cat.getPermission() + ".*");

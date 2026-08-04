@@ -15,12 +15,6 @@ import org.bukkit.event.entity.ProjectileHitEvent;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Represents an instance of a fungun gadget summoned by a player.
- *
- * @author iSach
- * @since 10-12-2015
- */
 public class GadgetFunGun extends Gadget {
     private static final ParticleDisplay LAVA = ParticleDisplay.of(XParticle.LAVA).withCount(16).offset(1.3, 1, 1.3);
     private static final ParticleDisplay HEART = ParticleDisplay.of(XParticle.HEART).withCount(20).offset(0.8);
@@ -29,7 +23,8 @@ public class GadgetFunGun extends Gadget {
 
     public GadgetFunGun(UltraPlayer owner, GadgetType type, UltraCosmetics ultraCosmetics) {
         super(owner, type, ultraCosmetics);
-        this.sound = XSound.ENTITY_CAT_PURREOW.record().withVolume(1.4f).withPitch(1.5f).soundPlayer().forPlayers(getPlayer());
+        this.sound = XSound.ENTITY_CAT_PURREOW.record().withVolume(1.4f).withPitch(1.5f).soundPlayer()
+                .forPlayers(getPlayer());
     }
 
     @Override
@@ -43,7 +38,9 @@ public class GadgetFunGun extends Gadget {
     public void onProjectileHit(ProjectileHitEvent event) {
         Projectile projectile = event.getEntity();
 
-        if (!projectiles.contains(projectile)) return;
+        if (!projectiles.contains(projectile)) {
+            return;
+        }
 
         Location location = projectile.getLocation();
 

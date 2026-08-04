@@ -42,10 +42,8 @@ import java.util.Map;
 import java.util.UUID;
 
 /**
- * Represents a player on the server.
- *
- * @author iSach
- * @since 08-03-2015
+ * Represents a player on the server and contains their associated UC data, including which cosmetics are unlocked and
+ * currently equipped, any settings the player has selected, etc.
  */
 public class UltraPlayer {
 
@@ -64,7 +62,8 @@ public class UltraPlayer {
      */
     private final CosmeticsProfile cosmeticsProfile;
 
-    private final boolean allowDisableGadgets = SettingsManager.getConfig().getBoolean("Categories.Gadgets.Allow-Disable-Gadgets", true);
+    private final boolean allowDisableGadgets =
+            SettingsManager.getConfig().getBoolean("Categories.Gadgets.Allow-Disable-Gadgets", true);
     private final boolean menuItemEnabled = SettingsManager.getConfig().getBoolean("Menu-Item.Enabled");
 
     /**
@@ -135,7 +134,9 @@ public class UltraPlayer {
     public double getCooldown(CosmeticType<?> type) {
         Long count = cooldowns.get(type);
 
-        if (count == null || System.currentTimeMillis() > count) return 0;
+        if (count == null || System.currentTimeMillis() > count) {
+            return 0;
+        }
 
         double valueMillis = count - System.currentTimeMillis();
         return valueMillis / 1000d;
@@ -169,7 +170,8 @@ public class UltraPlayer {
      * @return true if the cosmetic can be purchased
      */
     public boolean canPurchase(CosmeticType<?> type) {
-        return ultraCosmetics.getPermissionManager().hasRawPermission(getBukkitPlayer(), type.getPurchasePermission().getName());
+        return ultraCosmetics.getPermissionManager()
+                .hasRawPermission(getBukkitPlayer(), type.getPurchasePermission().getName());
     }
 
     /**
@@ -181,7 +183,9 @@ public class UltraPlayer {
      */
     public void setCooldown(CosmeticType<?> type, double cooldown, double runTime) {
         double time = isBypassingCooldown() ? runTime : cooldown;
-        if (time == 0) return;
+        if (time == 0) {
+            return;
+        }
         cooldowns.put(type, (long) (time * 1000 + System.currentTimeMillis()));
     }
 
@@ -226,7 +230,8 @@ public class UltraPlayer {
         final DecimalFormat decimalFormat = new DecimalFormat("0.0", otherSymbols);
         String timeLeft = decimalFormat.format(currentCooldown) + "s";
         String name = BukkitComponentSerializer.legacy().serialize(type.getName());
-        ActionBar.sendActionBar(getBukkitPlayer(), name + ChatColor.WHITE + " " + stringBuilder + ChatColor.WHITE + " " + timeLeft);
+        ActionBar.sendActionBar(getBukkitPlayer(),
+                name + ChatColor.WHITE + " " + stringBuilder + ChatColor.WHITE + " " + timeLeft);
     }
 
     /**
@@ -285,7 +290,9 @@ public class UltraPlayer {
      * @return {@code true} if a cosmetic was actually unequipped
      */
     public boolean removeCosmetic(Category category) {
-        if (!equipped.containsKey(category)) return false;
+        if (!equipped.containsKey(category)) {
+            return false;
+        }
 
         unsetCosmetic(category).clear();
 
@@ -426,7 +433,9 @@ public class UltraPlayer {
      */
     public Component getPetName(PetType petType) {
         String rawName = cosmeticsProfile.getPetName(petType);
-        if (rawName == null) return null;
+        if (rawName == null) {
+            return null;
+        }
         return MessageManager.getMiniMessage().deserialize(cosmeticsProfile.getPetName(petType));
     }
 
@@ -437,7 +446,9 @@ public class UltraPlayer {
      * @param amount The ammo amount to give.
      */
     public void addAmmo(GadgetType type, int amount) {
-        if (!UltraCosmeticsData.get().isAmmoEnabled()) return;
+        if (!UltraCosmeticsData.get().isAmmoEnabled()) {
+            return;
+        }
         cosmeticsProfile.addAmmo(type, amount);
         Gadget gadget = getCurrentGadget();
         if (gadget != null) {
@@ -503,7 +514,9 @@ public class UltraPlayer {
      * @return The ammo of the given gadget.
      */
     public int getAmmo(GadgetType type) {
-        if (!UltraCosmeticsData.get().isAmmoEnabled()) return 0;
+        if (!UltraCosmeticsData.get().isAmmoEnabled()) {
+            return 0;
+        }
         return cosmeticsProfile.getAmmo(type);
     }
 
@@ -511,7 +524,9 @@ public class UltraPlayer {
      * Clears current Treasure Chest.
      */
     public void removeTreasureChest() {
-        if (currentTreasureChest == null) return;
+        if (currentTreasureChest == null) {
+            return;
+        }
         this.currentTreasureChest.clear();
         this.currentTreasureChest = null;
     }
@@ -545,7 +560,9 @@ public class UltraPlayer {
      * Removes the menu Item.
      */
     public void removeMenuItem() {
-        if (!menuItemEnabled) return;
+        if (!menuItemEnabled) {
+            return;
+        }
         Player player = getBukkitPlayer();
         if (player != null) {
             PlayerUtils.removeItems(player, MenuItemHandler::isMenuItem);
@@ -553,12 +570,16 @@ public class UltraPlayer {
     }
 
     public void sendMessage(String message) {
-        if (message.isEmpty()) return;
+        if (message.isEmpty()) {
+            return;
+        }
         getBukkitPlayer().sendMessage(message);
     }
 
     public void sendMessage(Component message) {
-        if (message == null || message.equals(Component.empty())) return;
+        if (message == null || message.equals(Component.empty())) {
+            return;
+        }
         MessageManager.getAudiences().player(getBukkitPlayer()).sendMessage(message);
     }
 

@@ -9,9 +9,6 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import org.bukkit.craftbukkit.entity.CraftEntity;
 
-/**
- * @author RadBuilder
- */
 public abstract class MountCustomEntity extends Mount {
 
     public MountCustomEntity(UltraPlayer owner, MountType type, UltraCosmetics ultraCosmetics) {

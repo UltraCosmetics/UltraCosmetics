@@ -25,23 +25,19 @@ import org.bukkit.util.Vector;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Represents an instance of a chicken morph summoned by a player.
- *
- * @author iSach
- * @since 08-27-2015
- */
 public class MorphChicken extends Morph implements Updatable {
     private static final Particle BLOCK_PARTICLE = XParticle.BLOCK.get();
     private final List<Item> items = new ArrayList<>();
     private final List<Chicken> chickens = new ArrayList<>();
     private final XSound.SoundPlayer eggSound;
-    private final XSound.SoundPlayer spawnSound = XSound.ENTITY_ZOMBIE_ATTACK_WOODEN_DOOR.record().withVolume(0.05f).withPitch(1f).soundPlayer();
+    private final XSound.SoundPlayer spawnSound =
+            XSound.ENTITY_ZOMBIE_ATTACK_WOODEN_DOOR.record().withVolume(0.05f).withPitch(1f).soundPlayer();
     private final ParticleDisplay flameDisplay = ParticleDisplay.of(XParticle.FLAME).withCount(10);
 
     public MorphChicken(UltraPlayer owner, MorphType type, UltraCosmetics ultraCosmetics) {
         super(owner, type, ultraCosmetics);
-        eggSound = XSound.ENTITY_CHICKEN_EGG.record().withVolume(0.5f).withPitch(1.5f).soundPlayer().forPlayers(getPlayer());
+        eggSound = XSound.ENTITY_CHICKEN_EGG.record().withVolume(0.5f).withPitch(1.5f).soundPlayer()
+                .forPlayers(getPlayer());
     }
 
     @EventHandler
@@ -58,7 +54,8 @@ public class MorphChicken extends Morph implements Updatable {
         getUltraCosmetics().getScheduler().runAtEntityLater(getPlayer(), () -> {
             chickens.clear();
             for (Item i : items) {
-                i.getWorld().spawnParticle(BLOCK_PARTICLE, i.getLocation(), 0, 0, 0, 0, 0, XMaterial.WHITE_TERRACOTTA.get().createBlockData());
+                i.getWorld().spawnParticle(BLOCK_PARTICLE, i.getLocation(), 0, 0, 0, 0, 0,
+                        XMaterial.WHITE_TERRACOTTA.get().createBlockData());
                 spawnSound.atLocation(i.getLocation()).play();
                 final Chicken chicken = (Chicken) i.getWorld().spawnEntity(i.getLocation(), EntityType.CHICKEN);
                 chicken.setAgeLock(true);
@@ -97,11 +94,15 @@ public class MorphChicken extends Morph implements Updatable {
 
     @Override
     public void onUpdate() {
-        if (!canUseSkill) return;
+        if (!canUseSkill) {
+            return;
+        }
         Player player = getPlayer();
         @SuppressWarnings("deprecation")
         boolean onGround = player.isOnGround();
-        if (onGround || player.getVelocity().getY() >= 0) return;
+        if (onGround || player.getVelocity().getY() >= 0) {
+            return;
+        }
         Vector velocity = player.getVelocity();
         velocity.setY(velocity.getY() * 0.85);
         player.setVelocity(velocity);

@@ -3,7 +3,6 @@ package be.isach.ultracosmetics.cosmetics.gadgets;
 import be.isach.ultracosmetics.UltraCosmetics;
 import be.isach.ultracosmetics.cosmetics.type.GadgetType;
 import be.isach.ultracosmetics.player.UltraPlayer;
-
 import org.bukkit.entity.Snowball;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
@@ -12,12 +11,6 @@ import org.bukkit.metadata.FixedMetadataValue;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Represents an instance of a snowball gadget summoned by a player.
- *
- * @author iSach
- * @since 12-15-2015
- */
 public class GadgetSnowball extends Gadget {
 
     private List<Snowball> snowballs = new ArrayList<>();

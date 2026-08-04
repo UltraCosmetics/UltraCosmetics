@@ -19,12 +19,6 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
-/**
- * Represents an instance of a fleshhook gadget summoned by a player.
- *
- * @author iSach
- * @since 08-03-2015
- */
 public class GadgetFleshHook extends Gadget implements PlayerAffectingCosmetic, Updatable {
 
     private final Set<Item> active = new HashSet<>();
@@ -36,17 +30,25 @@ public class GadgetFleshHook extends Gadget implements PlayerAffectingCosmetic, 
 
     @EventHandler
     public void onItemPickup(EntityPickupItemEvent event) {
-        if (event.getEntityType() != EntityType.PLAYER) return;
-        if (!active.contains(event.getItem()) && !forRemoval.contains(event.getItem())) return;
+        if (event.getEntityType() != EntityType.PLAYER) {
+            return;
+        }
+        if (!active.contains(event.getItem()) && !forRemoval.contains(event.getItem())) {
+            return;
+        }
         event.setCancelled(true);
 
         Player hit = (Player) event.getEntity();
         UltraPlayer ultraPlayer = getUltraCosmetics().getPlayerManager().getUltraPlayer(hit);
 
-        if (ultraPlayer == null) return;
+        if (ultraPlayer == null) {
+            return;
+        }
 
         Player hitter = getPlayer();
-        if (hit == hitter || !canAffect(hit, hitter)) return;
+        if (hit == hitter || !canAffect(hit, hitter)) {
+            return;
+        }
 
         event.getItem().remove();
         active.remove(event.getItem());

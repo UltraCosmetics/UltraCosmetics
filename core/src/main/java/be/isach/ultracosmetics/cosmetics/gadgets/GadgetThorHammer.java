@@ -15,12 +15,6 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityPickupItemEvent;
 import org.bukkit.util.Vector;
 
-/**
- * Represents an instance of a thor hammer gadget summoned by a player.
- *
- * @author iSach
- * @since 08-08-2015
- */
 public class GadgetThorHammer extends Gadget implements PlayerAffectingCosmetic {
     private Item hammer = null;
     private Vector v;
@@ -36,15 +30,22 @@ public class GadgetThorHammer extends Gadget implements PlayerAffectingCosmetic 
             hammer.remove();
         }
         Vector velocity = getPlayer().getEyeLocation().getDirection().multiply(1.4);
-        hammer = ItemFactory.spawnUnpickableItem(ItemFactory.create(XMaterial.IRON_AXE, getTypeName()), getPlayer().getEyeLocation(), velocity);
+        hammer = ItemFactory.spawnUnpickableItem(ItemFactory.create(XMaterial.IRON_AXE, getTypeName()),
+                getPlayer().getEyeLocation(), velocity);
         getPlayer().getInventory().setItem(slot, null);
         v = getPlayer().getEyeLocation().getDirection().multiply(1.4).add(new Vector(0, 1, 0));
         getUltraCosmetics().getScheduler().runAtEntityLater(getPlayer(), () -> {
-            if (hammer == null) return;
-            hammer.setVelocity(getPlayer().getEyeLocation().toVector().subtract(hammer.getLocation().toVector()).multiply(0.2).add(new Vector(0, 0, 0)));
+            if (hammer == null) {
+                return;
+            }
+            hammer.setVelocity(
+                    getPlayer().getEyeLocation().toVector().subtract(hammer.getLocation().toVector()).multiply(0.2)
+                            .add(new Vector(0, 0, 0)));
             v = null;
             getUltraCosmetics().getScheduler().runAtEntityLater(getPlayer(), () -> {
-                if (hammer == null) return;
+                if (hammer == null) {
+                    return;
+                }
                 pickupItem();
             }, 40);
         }, 20);
@@ -52,7 +53,9 @@ public class GadgetThorHammer extends Gadget implements PlayerAffectingCosmetic 
 
     @EventHandler
     public void onHammerPickup(EntityPickupItemEvent event) {
-        if (hammer != event.getItem()) return;
+        if (hammer != event.getItem()) {
+            return;
+        }
         event.setCancelled(true);
         if (event.getEntityType() != EntityType.PLAYER) {
             return;
@@ -65,7 +68,9 @@ public class GadgetThorHammer extends Gadget implements PlayerAffectingCosmetic 
             return;
         }
 
-        if (hammer.getTicksLived() <= 5) return;
+        if (hammer.getTicksLived() <= 5) {
+            return;
+        }
 
         pickupItem();
     }

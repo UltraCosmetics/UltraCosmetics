@@ -7,12 +7,6 @@ import be.isach.ultracosmetics.cosmetics.type.EmoteType;
 import be.isach.ultracosmetics.player.UltraPlayer;
 import org.bukkit.inventory.ItemStack;
 
-/**
- * Represents an instance of an emote summoned by a player.
- *
- * @author iSach
- * @since 06-17-2016
- */
 public class Emote extends ArmorCosmetic<EmoteType> {
 
     private final EmoteAnimation animation;

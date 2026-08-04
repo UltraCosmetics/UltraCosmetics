@@ -11,12 +11,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.EntityChangeBlockEvent;
 import org.bukkit.event.entity.ProjectileLaunchEvent;
 
-/**
- * Represents an instance of a wither pet summoned by a player.
- *
- * @author iSach
- * @since 08-12-2015
- */
 public class PetWither extends Pet {
 
     public PetWither(UltraPlayer owner, PetType type, UltraCosmetics ultraCosmetics) {
@@ -35,7 +29,9 @@ public class PetWither extends Pet {
             bar.getPlayers().forEach(bar::removePlayer);
         }
 
-        if (!SettingsManager.getConfig().getBoolean("Pets-Are-Babies")) return;
+        if (!SettingsManager.getConfig().getBoolean("Pets-Are-Babies")) {
+            return;
+        }
         UltraCosmeticsData.get().getVersionManager().getEntityUtil().resetWitherSize((Wither) entity);
     }
 

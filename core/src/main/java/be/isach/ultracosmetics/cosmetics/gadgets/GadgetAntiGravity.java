@@ -16,12 +16,6 @@ import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
-/**
- * Represents an instance of an antigravity gadget summoned by a player.
- *
- * @author iSach
- * @since 08-10-2015
- */
 public class GadgetAntiGravity extends Gadget implements PlayerAffectingCosmetic, Updatable {
     private static final ItemStack SEA_LANTERN = XMaterial.SEA_LANTERN.parseItem();
     private ArmorStand as;
@@ -44,15 +38,19 @@ public class GadgetAntiGravity extends Gadget implements PlayerAffectingCosmetic
         as.setVisible(false);
         as.getEquipment().setHelmet(SEA_LANTERN);
 
-        portalParticles = ParticleDisplay.of(XParticle.PORTAL).offset(3, 3, 3).withCount(150).withLocation(as.getLocation());
-        witchParticles = ParticleDisplay.of(XParticle.WITCH).offset(0.3, 0.3, 0.3).withCount(5).withLocation(as.getEyeLocation());
+        portalParticles =
+                ParticleDisplay.of(XParticle.PORTAL).offset(3, 3, 3).withCount(150).withLocation(as.getLocation());
+        witchParticles = ParticleDisplay.of(XParticle.WITCH).offset(0.3, 0.3, 0.3).withCount(5)
+                .withLocation(as.getEyeLocation());
 
         getUltraCosmetics().getScheduler().runLaterAsync(() -> running = false, 240);
     }
 
     @Override
     public void onUpdate() {
-        if (as == null || !as.isValid()) return;
+        if (as == null || !as.isValid()) {
+            return;
+        }
         if (!running) {
             as.remove();
             as = null;

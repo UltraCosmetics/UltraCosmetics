@@ -22,19 +22,14 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
 
-/**
- * Pet types.
- *
- * @author iSach
- * @since 12-20-2015
- */
 public class PetType extends CosmeticEntType<Pet> {
 
     private static final Map<XEntityType, Class<? extends Pet>> PET_MAP = new HashMap<>();
 
     private final String customization;
 
-    private PetType(String configName, XMaterial material, XEntityType entityType, Class<? extends Pet> clazz, String customization) {
+    private PetType(String configName, XMaterial material, XEntityType entityType, Class<? extends Pet> clazz,
+                    String customization) {
         super(Category.PETS, configName, material, entityType, clazz);
         this.customization = customization;
 
@@ -66,15 +61,19 @@ public class PetType extends CosmeticEntType<Pet> {
         Pet pet = super.equip(player, ultraCosmetics);
         if (pet != null && customization != null) {
             if (!pet.setCustomization(customization)) {
-                UltraCosmeticsData.get().getPlugin().getSmartLogger().write(LogLevel.WARNING, "Invalid customization string for pet " + getConfigName());
+                UltraCosmeticsData.get().getPlugin().getSmartLogger()
+                        .write(LogLevel.WARNING, "Invalid customization string for pet " + getConfigName());
                 player.sendMessage(ChatColor.RED + "Invalid customization string, please contact an admin.");
             }
         }
         return pet;
     }
 
-    public static void registerPet(String configName, XMaterial material, XEntityType entityType, Class<? extends Pet> clazz) {
-        if (!entityType.isSupported()) return;
+    public static void registerPet(String configName, XMaterial material, XEntityType entityType,
+                                   Class<? extends Pet> clazz) {
+        if (!entityType.isSupported()) {
+            return;
+        }
         new PetType(configName, material, entityType, clazz);
     }
 
@@ -162,7 +161,8 @@ public class PetType extends CosmeticEntType<Pet> {
         registerPet("Fox", XMaterial.SWEET_BERRIES, XEntityType.FOX, PetFox.class);
         registerPet("Kitty", XMaterial.TROPICAL_FISH, XEntityType.CAT, PetKitty.class);
         registerPet("Ocelot", XMaterial.COD, XEntityType.OCELOT, Pet.class);
-        registerPet("WanderingTrader", XMaterial.WANDERING_TRADER_SPAWN_EGG, XEntityType.WANDERING_TRADER, PetWanderingTrader.class);
+        registerPet("WanderingTrader", XMaterial.WANDERING_TRADER_SPAWN_EGG, XEntityType.WANDERING_TRADER,
+                PetWanderingTrader.class);
         registerPet("Pillager", XMaterial.CROSSBOW, XEntityType.PILLAGER, Pet.class);
         registerPet("Ravager", XMaterial.RAVAGER_SPAWN_EGG, XEntityType.RAVAGER, Pet.class);
         registerPet("Cod", XMaterial.COD_BUCKET, XEntityType.COD, Pet.class);
@@ -191,7 +191,8 @@ public class PetType extends CosmeticEntType<Pet> {
         registerPet("Mule", XMaterial.SADDLE, XEntityType.MULE, PetMule.class);
         registerPet("SkeletonHorse", XMaterial.BONE_BLOCK, XEntityType.SKELETON_HORSE, Pet.class);
         registerPet("ZombieHorse", XMaterial.ZOMBIE_HORSE_SPAWN_EGG, XEntityType.ZOMBIE_HORSE, Pet.class);
-        new PetType("ElderGuardian", XMaterial.PRISMARINE_CRYSTALS, XEntityType.ELDER_GUARDIAN, PetElderGuardian.class) {
+        new PetType("ElderGuardian", XMaterial.PRISMARINE_CRYSTALS, XEntityType.ELDER_GUARDIAN,
+                PetElderGuardian.class) {
             @Override
             public void setupConfig(CustomConfiguration config, String path) {
                 super.setupConfig(config, path);
@@ -207,13 +208,12 @@ public class PetType extends CosmeticEntType<Pet> {
         registerPet("Stray", XMaterial.ARROW, XEntityType.STRAY, PetStray.class);
         registerPet("PolarBear", XMaterial.SNOW_BLOCK, XEntityType.POLAR_BEAR, Pet.class);
         registerPet("Shulker", XMaterial.SHULKER_BOX, XEntityType.SHULKER, PetShulker.class);
-
-        if (UltraCosmeticsData.get().getVersionManager().isUsingNMS()) {
-            registerPet("Pumpling", XMaterial.PUMPKIN, XEntityType.ZOMBIE, UltraCosmeticsData.get().getVersionManager().getModule().getPumplingClass());
-        }
+        registerPet("Pumpling", XMaterial.PUMPKIN, XEntityType.ZOMBIE, PetPumpling.class);
 
         ConfigurationSection pets = getCustomConfig(Category.PETS);
-        if (pets == null) return;
+        if (pets == null) {
+            return;
+        }
 
         Optional<XMaterial> mat;
         SmartLogger log = UltraCosmeticsData.get().getPlugin().getSmartLogger();
@@ -230,7 +230,8 @@ public class PetType extends CosmeticEntType<Pet> {
             }
             XEntityType type = optionalType.get();
             if (!PET_MAP.containsKey(type)) {
-                log.write(LogLevel.WARNING, "Entity type '" + type + "' for pet '" + key + "' does not exist as a pet.");
+                log.write(LogLevel.WARNING,
+                        "Entity type '" + type + "' for pet '" + key + "' does not exist as a pet.");
                 continue;
             }
             mat = XMaterial.matchXMaterial(pet.getString("item"));
@@ -239,7 +240,8 @@ public class PetType extends CosmeticEntType<Pet> {
                 continue;
             }
             MessageManager.addMessage(Category.PETS.getConfigPath() + "." + key + ".menu-name", key);
-            MessageManager.addMessage(Category.PETS.getConfigPath() + "." + key + ".entity-displayname", "<bold><playername>'s " + key);
+            MessageManager.addMessage(Category.PETS.getConfigPath() + "." + key + ".entity-displayname",
+                    "<bold><playername>'s " + key);
             MessageManager.addMessage(Category.PETS.getConfigPath() + "." + key + ".Description", "A custom pet!");
             new PetType(key, mat.get(), type, PET_MAP.get(type), pet.getString("customization"));
         }

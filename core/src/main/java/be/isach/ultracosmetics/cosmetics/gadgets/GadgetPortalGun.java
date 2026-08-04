@@ -25,12 +25,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
-/**
- * Represents an instance of a portal gun gadget summoned by a player.
- *
- * @author iSach
- * @since 08-07-2015
- */
 public class GadgetPortalGun extends Gadget implements PlayerAffectingCosmetic, Updatable {
     private static final double CIRCLE_STEP = (2 * Math.PI) / 20;
     private final Set<UUID> playersOnCooldown = new HashSet<>();
@@ -44,7 +38,8 @@ public class GadgetPortalGun extends Gadget implements PlayerAffectingCosmetic, 
         super(owner, type, ultraCosmetics);
         displayCooldownMessage = false;
         affectsOthers = SettingsManager.getConfig().getBoolean(getOptionPath("Affects-Others"));
-        useSound = XSound.ENTITY_ENDERMAN_TELEPORT.record().withVolume(0.2f).withPitch(1.5f).soundPlayer().forPlayers(getPlayer());
+        useSound = XSound.ENTITY_ENDERMAN_TELEPORT.record().withVolume(0.2f).withPitch(1.5f).soundPlayer()
+                .forPlayers(getPlayer());
         teleportSound = XSound.ENTITY_ENDERMAN_TELEPORT.record();
     }
 
@@ -62,7 +57,8 @@ public class GadgetPortalGun extends Gadget implements PlayerAffectingCosmetic, 
         useSound.play();
         List<Block> sight = getPlayer().getLastTwoTargetBlocks(null, 20);
         Block target = sight.get(1);
-        Location playerFaceLoc = getPlayer().getEyeLocation().add(getPlayer().getEyeLocation().getDirection().multiply(0.6));
+        Location playerFaceLoc =
+                getPlayer().getEyeLocation().add(getPlayer().getEyeLocation().getDirection().multiply(0.6));
 
         Particles.line(playerFaceLoc, target.getLocation(), 0.25, portalLoc.getParticle());
 
@@ -117,7 +113,8 @@ public class GadgetPortalGun extends Gadget implements PlayerAffectingCosmetic, 
         }
 
         // 'distanceSquared' is faster than 'distance', and sqrt(1) == 1 anyway
-        if (playerLoc.getWorld() != portalLoc.getLocation().getWorld() || playerLoc.distanceSquared(portalLoc.getLocation()) > 1) {
+        if (playerLoc.getWorld() != portalLoc.getLocation().getWorld() ||
+                playerLoc.distanceSquared(portalLoc.getLocation()) > 1) {
             return false;
         }
         playersOnCooldown.add(player.getUniqueId());
@@ -127,12 +124,15 @@ public class GadgetPortalGun extends Gadget implements PlayerAffectingCosmetic, 
         loc.setPitch(getPitch(destFace));
         teleport(player, loc, destFace.getDirection().multiply(0.3));
 
-        getUltraCosmetics().getScheduler().runAtEntityLater(getPlayer(), () -> playersOnCooldown.remove(player.getUniqueId()), 20);
+        getUltraCosmetics().getScheduler()
+                .runAtEntityLater(getPlayer(), () -> playersOnCooldown.remove(player.getUniqueId()), 20);
         return true;
     }
 
     private void checkPortals() {
-        if (!red.isValid() || !blue.isValid()) return;
+        if (!red.isValid() || !blue.isValid()) {
+            return;
+        }
         if (red.getLocation().getWorld() != blue.getLocation().getWorld()) {
             red.clear();
             blue.clear();
@@ -154,7 +154,9 @@ public class GadgetPortalGun extends Gadget implements PlayerAffectingCosmetic, 
     }
 
     private void showParticles(PortalLoc portalLoc) {
-        if (!portalLoc.isValid()) return;
+        if (!portalLoc.isValid()) {
+            return;
+        }
         Location loc = portalLoc.getLocation().clone();
         BlockFace face = portalLoc.getFace();
         ParticleDisplay particle = portalLoc.getParticle();

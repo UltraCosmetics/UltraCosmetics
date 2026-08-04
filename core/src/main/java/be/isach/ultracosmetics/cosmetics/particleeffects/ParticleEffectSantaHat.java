@@ -6,14 +6,8 @@ import be.isach.ultracosmetics.player.UltraPlayer;
 import be.isach.ultracosmetics.util.MathUtils;
 import org.bukkit.Location;
 
-import java.awt.Color;
+import java.awt.*;
 
-/**
- * Represents an instance of  particles summoned by a player.
- *
- * @author iSach
- * @since 11-28-2015
- */
 public class ParticleEffectSantaHat extends ParticleEffect {
 
     public ParticleEffectSantaHat(UltraPlayer owner, ParticleEffectType type, UltraCosmetics ultraCosmetics) {

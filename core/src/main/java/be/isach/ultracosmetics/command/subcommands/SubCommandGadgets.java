@@ -10,12 +10,6 @@ import org.bukkit.entity.Player;
 
 import java.util.List;
 
-/**
- * Gadgets {@link be.isach.ultracosmetics.command.SubCommand SubCommand}.
- *
- * @author iSach
- * @since 12-20-2015
- */
 public class SubCommandGadgets extends SubCommand {
 
     public SubCommandGadgets(UltraCosmetics ultraCosmetics) {
@@ -39,7 +33,8 @@ public class SubCommandGadgets extends SubCommand {
         if (args.length > 1) {
             if (args[1].equalsIgnoreCase("true") || args[1].equalsIgnoreCase("on") || args[1].equalsIgnoreCase("yes")) {
                 enabled = true;
-            } else if (args[1].equalsIgnoreCase("false") || args[1].equalsIgnoreCase("off") || args[1].equalsIgnoreCase("no")) {
+            } else if (args[1].equalsIgnoreCase("false") || args[1].equalsIgnoreCase("off") ||
+                    args[1].equalsIgnoreCase("no")) {
                 enabled = false;
             }
         }

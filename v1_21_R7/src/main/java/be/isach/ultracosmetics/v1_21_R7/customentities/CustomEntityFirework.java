@@ -8,9 +8,6 @@ import net.minecraft.world.level.Level;
 import org.bukkit.craftbukkit.v1_21_R7.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
-/**
- * @author RadBuilder
- */
 public class CustomEntityFirework extends FireworkRocketEntity {
     private Player[] players = null;
     private boolean gone = false;
@@ -32,7 +29,8 @@ public class CustomEntityFirework extends FireworkRocketEntity {
             if (players != null) {
                 if (players.length > 0) {
                     for (Player player : players) {
-                        (((CraftPlayer) player).getHandle()).connection.send(new ClientboundEntityEventPacket(this, (byte) 17));
+                        (((CraftPlayer) player).getHandle()).connection.send(
+                                new ClientboundEntityEventPacket(this, (byte) 17));
                     }
                 } else {
                     level().broadcastEntityEvent(this, (byte) 17);

@@ -31,27 +31,28 @@ public class SubCommandHelp extends SubCommand {
 
     public void showHelp(CommandSender sender, int page) {
         List<SubCommand> available = new ArrayList<>();
-        commandManager.getCommands().stream().filter(c -> sender.hasPermission(c.getPermission())).forEach(available::add);
+        commandManager.getCommands().stream().filter(c -> sender.hasPermission(c.getPermission()))
+                .forEach(available::add);
         if (available.isEmpty()) {
             CommandManager.sendNoPermissionMessage(sender);
             return;
         }
         sender.sendMessage("");
-        sender.sendMessage(ChatColor.WHITE + "" + ChatColor.BOLD + "UltraCosmetics Help (/uc <page>) " + ChatColor.DARK_GRAY + "" + ChatColor.BOLD + "(" + page + "/" + getMaxPages(available.size()) + ")");
+        sender.sendMessage(
+                ChatColor.WHITE + "" + ChatColor.BOLD + "UltraCosmetics Help (/uc <page>) " + ChatColor.DARK_GRAY + "" +
+                        ChatColor.BOLD + "(" + page + "/" + getMaxPages(available.size()) + ")");
         int from = 8 * (page - 1);
         int to = 8 * page;
         for (int i = from; i < to; i++) {
-            if (i >= available.size()) break;
+            if (i >= available.size()) {
+                break;
+            }
             SubCommand sub = available.get(i);
-            sender.sendMessage(ChatColor.DARK_GRAY + "|  " + ChatColor.GRAY + sub.getUsage() + ChatColor.WHITE + " " + ChatColor.ITALIC + sub.getDescription());
+            sender.sendMessage(ChatColor.DARK_GRAY + "|  " + ChatColor.GRAY + sub.getUsage() + ChatColor.WHITE + " " +
+                    ChatColor.ITALIC + sub.getDescription());
         }
     }
 
-    /**
-     * Gets the max amount of pages.
-     *
-     * @return the maximum amount of pages.
-     */
     private int getMaxPages(int commands) {
         int max = 8;
         // test cases:

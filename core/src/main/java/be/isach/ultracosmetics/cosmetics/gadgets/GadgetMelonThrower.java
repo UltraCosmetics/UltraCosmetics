@@ -23,17 +23,13 @@ import org.bukkit.potion.PotionEffectType;
 import java.util.HashSet;
 import java.util.Set;
 
-/**
- * Represents an instance of a melon thrower gadget summoned by a player.
- *
- * @author iSach
- * @since 08-03-2015
- */
 public class GadgetMelonThrower extends Gadget implements PlayerAffectingCosmetic, Updatable {
     private Item melon = null;
     private final Set<Item> melonSlices = new HashSet<>();
-    private final XSound.SoundPlayer eatSound = XSound.ENTITY_PLAYER_BURP.record().withVolume(1.4f).withPitch(1.5f).soundPlayer();
-    private final XSound.SoundPlayer useSound = XSound.ENTITY_GENERIC_EXPLODE.record().withVolume(1.4f).withPitch(1.5f).soundPlayer();
+    private final XSound.SoundPlayer eatSound =
+            XSound.ENTITY_PLAYER_BURP.record().withVolume(1.4f).withPitch(1.5f).soundPlayer();
+    private final XSound.SoundPlayer useSound =
+            XSound.ENTITY_GENERIC_EXPLODE.record().withVolume(1.4f).withPitch(1.5f).soundPlayer();
 
     public GadgetMelonThrower(UltraPlayer owner, GadgetType type, UltraCosmetics ultraCosmetics) {
         super(owner, type, ultraCosmetics);
@@ -41,7 +37,9 @@ public class GadgetMelonThrower extends Gadget implements PlayerAffectingCosmeti
 
     @EventHandler
     public void onTakeUpMelon(EntityPickupItemEvent event) {
-        if (!melonSlices.contains(event.getItem())) return;
+        if (!melonSlices.contains(event.getItem())) {
+            return;
+        }
         // Should be done anyway by PlayerListener, but just to be safe
         event.setCancelled(true);
         if (event.getEntityType() == EntityType.PLAYER
@@ -89,7 +87,9 @@ public class GadgetMelonThrower extends Gadget implements PlayerAffectingCosmeti
         if (melon.isOnGround()) {
             melon.getWorld().playEffect(melon.getLocation(), Effect.STEP_SOUND, 103);
             for (int i = 0; i < 8; i++) {
-                melonSlices.add(ItemFactory.createUnpickableItemVariance(XMaterial.MELON_SLICE, melon.getLocation(), RANDOM, 0.75));
+                melonSlices.add(
+                        ItemFactory.createUnpickableItemVariance(XMaterial.MELON_SLICE, melon.getLocation(), RANDOM,
+                                0.75));
             }
 
             getUltraCosmetics().getScheduler().runAtEntityLater(getPlayer(), () -> {

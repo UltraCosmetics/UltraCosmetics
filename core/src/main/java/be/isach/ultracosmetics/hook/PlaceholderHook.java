@@ -11,12 +11,6 @@ import me.clip.placeholderapi.PlaceholderAPI;
 import me.clip.placeholderapi.expansion.PlaceholderExpansion;
 import org.bukkit.entity.Player;
 
-/**
- * PlaceholderAPI hook.
- *
- * @author RadBuilder
- * @since 2.5
- */
 public class PlaceholderHook extends PlaceholderExpansion {
 
     private final UltraCosmetics ultraCosmetics;
@@ -31,7 +25,9 @@ public class PlaceholderHook extends PlaceholderExpansion {
         if (identifier.startsWith("ammo_")) {
             String gadget = identifier.substring(5);
             GadgetType type = CosmeticType.valueOf(Category.GADGETS, gadget);
-            if (type == null) return null;
+            if (type == null) {
+                return null;
+            }
             return String.valueOf(ultraPlayer.getAmmo(type));
         }
         if (identifier.startsWith("current_")) {
@@ -41,9 +37,13 @@ public class PlaceholderHook extends PlaceholderExpansion {
             }
             identifier = identifier.replace("particleeffect", "effect");
             Category category = Category.fromString(identifier);
-            if (category == null) return null;
+            if (category == null) {
+                return null;
+            }
             Cosmetic<?> cosmetic = ultraPlayer.getCosmetic(category);
-            if (cosmetic == null) return "None";
+            if (cosmetic == null) {
+                return "None";
+            }
             return MessageManager.toLegacy(cosmetic.getTypeName());
         }
         switch (identifier) {
@@ -62,7 +62,9 @@ public class PlaceholderHook extends PlaceholderExpansion {
 
     private String currentName(UltraPlayer ultraPlayer, Category category) {
         Cosmetic<?> cosmetic = ultraPlayer.getCosmetic(category);
-        if (cosmetic == null) return "None";
+        if (cosmetic == null) {
+            return "None";
+        }
         return MessageManager.toLegacy(cosmetic.getTypeName());
     }
 

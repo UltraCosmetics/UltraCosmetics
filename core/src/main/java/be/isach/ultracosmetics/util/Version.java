@@ -4,12 +4,6 @@ import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
- * Version.
- *
- * @author iSach
- * @since 08-16-2015
- */
 public class Version implements Comparable<Version> {
 
     // only numbers (ex. 2.6.1)
@@ -39,7 +33,9 @@ public class Version implements Comparable<Version> {
     }
 
     private static String findClassifier(String version) {
-        if (!version.contains("-")) return "RELEASE";
+        if (!version.contains("-")) {
+            return "RELEASE";
+        }
         return version.split("-", 2)[1];
     }
 
@@ -89,7 +85,8 @@ public class Version implements Comparable<Version> {
 
     @Override
     public boolean equals(Object that) {
-        return this == that || that != null && this.getClass() == that.getClass() && this.compareTo((Version) that) == 0;
+        return this == that ||
+                that != null && this.getClass() == that.getClass() && this.compareTo((Version) that) == 0;
     }
 
     @Override

@@ -9,12 +9,6 @@ import org.bukkit.entity.Villager.Type;
 
 import java.util.Locale;
 
-/**
- * Represents an instance of a villager pet summoned by a player.
- *
- * @author RadBuilder
- * @since 07-02-2017
- */
 public class PetVillager extends Pet {
     public PetVillager(UltraPlayer owner, PetType type, UltraCosmetics ultraCosmetics) {
         super(owner, type, ultraCosmetics);

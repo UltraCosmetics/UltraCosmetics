@@ -10,12 +10,6 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
-/**
- * Manager for UltraPlayers.
- *
- * @author iSach
- * @since 12-16-2015
- */
 public class UltraPlayerManager {
 
     private final Map<UUID, UltraPlayer> playerCache;
@@ -43,7 +37,9 @@ public class UltraPlayerManager {
     }
 
     public UltraPlayer getUltraPlayer(Player player) {
-        if (player == null) return null;
+        if (player == null) {
+            return null;
+        }
         return getUltraPlayer(player.getUniqueId());
     }
 

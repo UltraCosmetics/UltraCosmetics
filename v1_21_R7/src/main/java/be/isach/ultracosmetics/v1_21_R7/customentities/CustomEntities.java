@@ -15,9 +15,6 @@ import org.bukkit.craftbukkit.v1_21_R7.CraftWorld;
 import java.util.HashSet;
 import java.util.Set;
 
-/**
- * @author RadBuilder
- */
 public class CustomEntities {
     private static final Set<Entity> customEntities = new HashSet<>();
 
@@ -96,7 +93,9 @@ public class CustomEntities {
 
         float f4 = Mth.sqrt((float) (dx * dx + dz * dz)) * 4;
 
-        if (f4 > 1) f4 = 1;
+        if (f4 > 1) {
+            f4 = 1;
+        }
 
         wEntity.setLimbSwingAmount(wEntity.getLimbSwingAmount() + (f4 - wEntity.getLimbSwingAmount()) * 0.4f);
         wEntity.setLimbSwing(wEntity.getLimbSwing() + wEntity.getLimbSwingAmount());

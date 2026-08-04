@@ -11,12 +11,6 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.function.Consumer;
 
-/**
- * Represents an instance of a suit summoned by a player.
- *
- * @author iSach
- * @since 12-20-2015
- */
 public class Suit extends ArmorCosmetic<SuitType> {
     protected boolean fullSuitEquipped = false;
 
@@ -53,7 +47,8 @@ public class Suit extends ArmorCosmetic<SuitType> {
     }
 
     protected void setupItemStack() {
-        setItemStack(ItemFactory.rename(getType().getItemStack(), getTypeName(), "", MessageManager.getLegacyMessage("Suits.Suit-Part-Lore")));
+        setItemStack(ItemFactory.rename(getType().getItemStack(), getTypeName(), "",
+                MessageManager.getLegacyMessage("Suits.Suit-Part-Lore")));
     }
 
     @Override

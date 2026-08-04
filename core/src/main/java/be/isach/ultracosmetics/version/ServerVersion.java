@@ -2,9 +2,6 @@ package be.isach.ultracosmetics.version;
 
 import com.cryptomorin.xseries.reflection.XReflection;
 
-/**
- * Created by Sacha on 6/03/16.
- */
 public enum ServerVersion {
 
     // Do not supply a NMS revision when there is no NMS module.

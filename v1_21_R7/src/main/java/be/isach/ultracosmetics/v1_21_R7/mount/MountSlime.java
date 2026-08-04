@@ -8,9 +8,6 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import org.bukkit.craftbukkit.v1_21_R7.entity.CraftPlayer;
 
-/**
- * @author RadBuilder
- */
 public class MountSlime extends MountCustomEntity {
 
     public MountSlime(UltraPlayer owner, MountType type, UltraCosmetics ultraCosmetics) {

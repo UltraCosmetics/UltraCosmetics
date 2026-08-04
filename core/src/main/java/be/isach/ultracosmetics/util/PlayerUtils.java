@@ -8,9 +8,6 @@ import org.bukkit.util.Vector;
 import java.util.ListIterator;
 import java.util.function.Predicate;
 
-/**
- * Created by Sacha on 17/10/15.
- */
 public class PlayerUtils {
 
     public static Vector getHorizontalDirection(Player player, double mult) {
@@ -32,7 +29,9 @@ public class PlayerUtils {
         ListIterator<ItemStack> iter = inv.iterator();
         while (iter.hasNext()) {
             ItemStack stack = iter.next();
-            if (stack == null) continue;
+            if (stack == null) {
+                continue;
+            }
             if (matchFunc.test(stack)) {
                 // iter.remove() will not work here
                 inv.clear(iter.previousIndex());

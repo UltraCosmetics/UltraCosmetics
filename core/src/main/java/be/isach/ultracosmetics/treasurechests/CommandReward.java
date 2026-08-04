@@ -12,12 +12,6 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.List;
 
-/**
- * A command reward.
- *
- * @author RadBuilder
- * @since 10-21-2017
- */
 public class CommandReward {
     private final String name;
     private final ItemStack stack;
@@ -71,7 +65,9 @@ public class CommandReward {
      * @return the message to be sent, or null if none should be sent.
      */
     public Component getMessage(Player player) {
-        if (rawMessage == null) return null;
+        if (rawMessage == null) {
+            return null;
+        }
         return MessageManager.getMiniMessage().deserialize(rawMessage,
                 Placeholder.unparsed("name", player.getName())
         );
