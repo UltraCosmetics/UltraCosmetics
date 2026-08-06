@@ -129,7 +129,7 @@ public abstract class CosmeticMenu<T extends CosmeticType<?>> extends Menu {
      *
      * @return the maximum amount of pages.
      */
-    protected int getMaxPages(UltraPlayer player) {
+    public int getMaxPages(UltraPlayer player) {
         int i = 0;
         for (CosmeticType<?> type : CosmeticType.enabledOf(category)) {
             if (!shouldHideItem(player, type)) {
@@ -139,7 +139,7 @@ public abstract class CosmeticMenu<T extends CosmeticType<?>> extends Menu {
         return Math.max(1, ((i - 1) / 21) + 1);
     }
 
-    protected int getItemsPerPage() {
+    public int getItemsPerPage() {
         return 21;
     }
 
@@ -186,7 +186,7 @@ public abstract class CosmeticMenu<T extends CosmeticType<?>> extends Menu {
     }
 
     @SuppressWarnings("unchecked")
-    protected Map<Integer, T> getSlots(int page, UltraPlayer player) {
+    public Map<Integer, T> getSlots(int page, UltraPlayer player) {
         int start = 21 * (page - 1);
         int limit = 21;
         int current = 0;
@@ -201,11 +201,11 @@ public abstract class CosmeticMenu<T extends CosmeticType<?>> extends Menu {
     }
 
 
-    protected boolean shouldHideItem(UltraPlayer player, CosmeticType<?> cosmeticType) {
+    public boolean shouldHideItem(UltraPlayer player, CosmeticType<?> cosmeticType) {
         return (hideNoPermissionItems || player.isFilteringByOwned()) && !player.canEquip(cosmeticType);
     }
 
-    protected boolean hasUnlockable(UltraPlayer player) {
+    public boolean hasUnlockable(UltraPlayer player) {
         if (ultraCosmetics.getWorldGuardManager().isInShowroom(player.getBukkitPlayer())) return false;
         for (CosmeticType<?> type : CosmeticType.enabledOf(category)) {
             if (!player.canEquip(type)) {

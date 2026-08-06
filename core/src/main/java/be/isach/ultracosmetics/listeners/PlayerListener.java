@@ -170,6 +170,7 @@ public class PlayerListener implements Listener {
         // memory
         pm.getUltraPlayer(event.getPlayer()).dispose();
         UUID uuid = event.getPlayer().getUniqueId();
+        ultraCosmetics.getMenus().getUnifiedMenu().cleanupPlayer(uuid);
         // workaround plugins calling events after player quit
         ultraCosmetics.getScheduler().runLater(() -> pm.remove(uuid), 1);
     }
