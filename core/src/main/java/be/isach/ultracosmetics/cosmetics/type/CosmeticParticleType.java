@@ -7,6 +7,10 @@ import com.cryptomorin.xseries.XMaterial;
 import com.cryptomorin.xseries.particles.XParticle;
 
 public class CosmeticParticleType<T extends Cosmetic<?>> extends CosmeticType<T> {
+    // The Repeat-Delay comment is only attached to the first entry auto-added to
+    // config, so users see the explanation once instead of on every particle effect.
+    private static boolean repeatDelayCommentWritten = false;
+
     private final XParticle effect;
     private final int repeatDelay;
     private final double particleMultiplier;
@@ -25,10 +29,14 @@ public class CosmeticParticleType<T extends Cosmetic<?>> extends CosmeticType<T>
             String path = getCategory().getConfigPath() + "." + configName + ".Repeat-Delay";
             if (!SettingsManager.getConfig().isInt(path)) {
                 this.repeatDelay = repeatDelay;
-                SettingsManager.getConfig().set(path, repeatDelay,
-                        "Ticks between particle spawns (1 tick = 1/20 s).",
-                        "Higher = fewer particles per second (less visual noise, lighter render).",
-                        "Minimum is 1. Applies on next server restart.");
+                if (!repeatDelayCommentWritten) {
+                    SettingsManager.getConfig().set(path, repeatDelay,
+                            "Ticks between particle spawns (1 tick = 1/20 s). Higher = fewer particles per",
+                            "second. Minimum is 1. Applies to all particle effects. Requires server restart.");
+                    repeatDelayCommentWritten = true;
+                } else {
+                    SettingsManager.getConfig().set(path, repeatDelay);
+                }
             } else {
                 this.repeatDelay = Math.max(1, SettingsManager.getConfig().getInt(path));
             }
