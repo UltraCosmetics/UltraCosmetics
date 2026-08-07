@@ -68,6 +68,11 @@ dependencies {
     compileOnly 'com.olziedev:playerauctions-api:1.34.0-pre1'
 
     compileOnly files('libs/ChestSortAPI-13.0.0-SNAPSHOT.jar')
+    // Lightly (HatorMC internal survival core, not published to Maven). We ship a
+    // compile-only stub with just the api.event.* classes at Java 21, matching the
+    // exact signatures of the real plugin — pulling the full Lightly jar in would
+    // drag its shaded XSeries (colliding with UC's) and its Java 25 bytecode.
+    compileOnly files('libs/Lightly-api-stub.jar')
     // Shaded by root project
     compileOnly(project(':legacy-events'))
 }

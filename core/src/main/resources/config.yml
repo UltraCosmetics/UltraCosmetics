@@ -593,14 +593,11 @@ Always-Update-Cosmetics-On-World-Change: false
 # Set to "" to disable.
 Thousands-Separator: ","
 
-# Integration with Lightly's combat-log module. When a player is combat-tagged,
-# suspends selected cosmetics (pets, particle effects, etc.) and re-equips them
-# from the profile when the tag clears. Requires the Lightly plugin to be loaded;
-# otherwise this section has no effect.
+# Integrations with the Lightly plugin (combat-log + staff vanish). Master toggle:
+# Lightly-Hook (default true). Requires Lightly to be loaded; otherwise these
+# sections have no effect. UC listens to Lightly's Bukkit events — no polling.
 Combat-Log-Integration:
   Enabled: true
-  # How often (in ticks) to poll combat state. 20 = once per second. Minimum 5.
-  Poll-Interval-Ticks: 20
   # Whether to suspend all cosmetics in each category during combat. Individual
   # cosmetics can be exempted or forced via 'Overrides' below.
   Suspend-Categories:
@@ -627,3 +624,9 @@ Combat-Log-Integration:
       MagicalRods: true
       Music: true
       Notes: true
+
+# When a staff player enters vanish (via /vanish, staffmode toggle, or reconnect
+# while already vanished), UC unequips ALL their cosmetics and restores them on
+# unvanish. No per-category config: a vanished staff should be fully invisible.
+Vanish-Integration:
+  Enabled: true
