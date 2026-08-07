@@ -10,12 +10,6 @@ import com.cryptomorin.xseries.XMaterial;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
 
-/**
- * Represents an instance of an iron golem pet summoned by a player.
- *
- * @author RadBuilder
- * @since 07-02-2017
- */
 public class PetIronGolem extends Pet {
     private static final Attribute SCALE = XAttribute.SCALE.get();
 
@@ -26,7 +20,8 @@ public class PetIronGolem extends Pet {
     @Override
     public void setupEntity() {
         if (SettingsManager.getConfig().getBoolean("Pets-Are-Babies") && SCALE != null) {
-            AttributeModifier mod = ItemFactory.createAttributeModifier("scale", -0.5, AttributeModifier.Operation.ADD_NUMBER, null);
+            AttributeModifier mod =
+                    ItemFactory.createAttributeModifier("scale", -0.5, AttributeModifier.Operation.ADD_NUMBER, null);
             entity.getAttribute(SCALE).addModifier(mod);
         }
     }

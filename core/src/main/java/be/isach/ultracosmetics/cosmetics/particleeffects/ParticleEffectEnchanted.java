@@ -7,12 +7,6 @@ import be.isach.ultracosmetics.util.MathUtils;
 import com.cryptomorin.xseries.particles.ParticleDisplay;
 import com.cryptomorin.xseries.particles.XParticle;
 
-/**
- * Represents an instance of enchanted particles summoned by a player.
- *
- * @author iSach
- * @since 10-12-2015
- */
 public class ParticleEffectEnchanted extends ParticleEffect {
     private final ParticleDisplay display = ParticleDisplay.of(XParticle.ENCHANT)
             .withLocationCaller(() -> getPlayer().getLocation().add(0, MathUtils.randomDouble(0.1, 2), 0))

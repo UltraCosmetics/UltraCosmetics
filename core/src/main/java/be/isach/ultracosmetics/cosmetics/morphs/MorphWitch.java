@@ -11,12 +11,6 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.PotionMeta;
 
-/**
- * Represents an instance of a witch morph summoned by a player.
- *
- * @author RadBuilder
- * @since 07-03-2017
- */
 public class MorphWitch extends MorphLeftClickCooldown {
     public MorphWitch(UltraPlayer owner, MorphType type, UltraCosmetics ultraCosmetics) {
         super(owner, type, ultraCosmetics, 2);

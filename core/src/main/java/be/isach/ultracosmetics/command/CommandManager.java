@@ -20,12 +20,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-/**
- * Command manager.
- *
- * @author iSach
- * @since 12-20-2015
- */
 public class CommandManager implements CommandExecutor {
     private final UltraCosmetics ultraCosmetics;
     /**
@@ -70,7 +64,7 @@ public class CommandManager implements CommandExecutor {
 
         if (args.length == 0) {
             if (sender instanceof Player && SettingsManager.getConfig().getBoolean("Open-Menu-On-Base-Command")) {
-                menu.onExePlayer((Player) sender, new String[] {});
+                menu.onExePlayer((Player) sender, new String[]{});
             } else {
                 help.showHelp(sender, 1);
             }
@@ -126,6 +120,7 @@ public class CommandManager implements CommandExecutor {
     public static void sendNoPermissionMessage(CommandSender sender) {
         Component prefix = MessageManager.getMessage("Prefix");
         Component noPermission = MessageManager.getMessage("No-Permission");
-        MessageManager.getAudiences().sender(sender).sendMessage(Component.empty().append(prefix).appendSpace().append(noPermission));
+        MessageManager.getAudiences().sender(sender)
+                .sendMessage(Component.empty().append(prefix).appendSpace().append(noPermission));
     }
 }

@@ -10,12 +10,6 @@ import org.bukkit.util.Vector;
 
 import java.awt.*;
 
-/**
- * Represents an instance of super villain particles summoned by a player.
- *
- * @author iSach
- * @since 11-11-2015
- */
 public class ParticleEffectSuperVillain extends ParticleEffect {
 
     private final ParticleDisplay secondary;
@@ -28,14 +22,14 @@ public class ParticleEffectSuperVillain extends ParticleEffect {
     }
 
     private final boolean[][] shape = {
-            {false, true,  true,  true,  false,},
-            {false, true,  true,  true,  false,},
-            {true,  true,  true,  true,  true,},
-            {true,  true,  true,  true,  true,},
-            {true,  true,  true,  true,  true,},
-            {true,  true,  true,  true,  true,},
-            {true,  true,  false, true,  true,},
-            {true,  false, false, false, true,},
+            {false, true, true, true, false,},
+            {false, true, true, true, false,},
+            {true, true, true, true, true,},
+            {true, true, true, true, true,},
+            {true, true, true, true, true,},
+            {true, true, true, true, true,},
+            {true, true, false, true, true,},
+            {true, false, false, false, true,},
     };
 
     @Override

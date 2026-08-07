@@ -10,12 +10,6 @@ import org.bukkit.event.player.PlayerInteractEvent;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
-/**
- * Represents an instance of a sheep morph summoned by a player.
- *
- * @author RadBuilder
- * @since 07-03-2017
- */
 public class MorphSheep extends MorphLeftClickCooldown {
     private final XSound.SoundPlayer sound;
 

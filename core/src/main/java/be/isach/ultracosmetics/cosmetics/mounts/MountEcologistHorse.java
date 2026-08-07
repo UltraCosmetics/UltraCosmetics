@@ -7,12 +7,6 @@ import com.cryptomorin.xseries.particles.ParticleDisplay;
 import com.cryptomorin.xseries.particles.XParticle;
 import org.bukkit.entity.Horse;
 
-/**
- * Represents an instance of an ecologist mount.
- *
- * @author iSach
- * @since 08-10-2015
- */
 public class MountEcologistHorse extends MountAbstractHorse {
     private final ParticleDisplay display;
 

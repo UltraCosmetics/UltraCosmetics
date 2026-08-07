@@ -10,12 +10,6 @@ import com.cryptomorin.xseries.particles.XParticle;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerKickEvent;
 
-/**
- * Represents an instance of a blaze morph summoned by a player.
- *
- * @author iSach
- * @since 08-26-2015
- */
 public class MorphBlaze extends MorphNoFall implements Updatable {
     private final XSound.SoundPlayer sound;
     private final ParticleDisplay flameDisplay;
@@ -23,7 +17,8 @@ public class MorphBlaze extends MorphNoFall implements Updatable {
 
     public MorphBlaze(UltraPlayer owner, MorphType type, UltraCosmetics ultraCosmetics) {
         super(owner, type, ultraCosmetics);
-        sound = XSound.BLOCK_FIRE_EXTINGUISH.record().withVolume(0.1f).withPitch(1.5f).soundPlayer().forPlayers(getPlayer());
+        sound = XSound.BLOCK_FIRE_EXTINGUISH.record().withVolume(0.1f).withPitch(1.5f).soundPlayer()
+                .forPlayers(getPlayer());
         flameDisplay = ParticleDisplay.of(XParticle.FLAME).withEntity(getPlayer());
         lavaDisplay = ParticleDisplay.of(XParticle.LAVA).withEntity(getPlayer());
     }
@@ -40,7 +35,8 @@ public class MorphBlaze extends MorphNoFall implements Updatable {
 
     @EventHandler
     public void onKick(PlayerKickEvent event) {
-        if (canUseSkill && event.getPlayer() == getPlayer() && getOwner().getCurrentMorph() == this && event.getReason().contains("Flying")) {
+        if (canUseSkill && event.getPlayer() == getPlayer() && getOwner().getCurrentMorph() == this &&
+                event.getReason().contains("Flying")) {
             event.setCancelled(true);
         }
     }

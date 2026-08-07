@@ -8,14 +8,8 @@ import com.cryptomorin.xseries.particles.XParticle;
 import org.bukkit.Location;
 import org.bukkit.util.Vector;
 
-import java.awt.Color;
+import java.awt.*;
 
-/**
- * Represents an instance of super hero particles summoned by a player.
- *
- * @author iSach
- * @since 11-11-2015
- */
 public class ParticleEffectSuperHero extends ParticleEffect {
 
     private final boolean x = true;

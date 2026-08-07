@@ -24,24 +24,20 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.util.Vector;
 
-import java.awt.Color;
+import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
 
-/**
- * Represents an instance of a discoball gadget summoned by a player.
- *
- * @author iSach
- * @since 08-03-2015
- */
 public class GadgetDiscoBall extends Gadget implements PlayerAffectingCosmetic, Updatable {
 
     private double i = 0;
     private ArmorStand armorStand;
     private boolean running = false;
-    private final ParticleDisplay effect = ParticleDisplay.of(XParticle.EFFECT).withLocationCaller(() -> armorStand.getEyeLocation());
-    private final ParticleDisplay instantEffect = ParticleDisplay.of(XParticle.INSTANT_EFFECT).withLocationCaller(() -> armorStand.getEyeLocation());
+    private final ParticleDisplay effect =
+            ParticleDisplay.of(XParticle.EFFECT).withLocationCaller(() -> armorStand.getEyeLocation());
+    private final ParticleDisplay instantEffect =
+            ParticleDisplay.of(XParticle.INSTANT_EFFECT).withLocationCaller(() -> armorStand.getEyeLocation());
     private final ParticleDisplay note = ParticleDisplay.of(XParticle.NOTE).withCount(0);
     private final ParticleDisplay dust = ParticleDisplay.of(XParticle.DUST);
 
@@ -51,7 +47,8 @@ public class GadgetDiscoBall extends Gadget implements PlayerAffectingCosmetic, 
 
     @Override
     protected void onRightClick() {
-        armorStand = (ArmorStand) getPlayer().getWorld().spawnEntity(getPlayer().getLocation().add(0, 3, 0), EntityType.ARMOR_STAND);
+        armorStand = (ArmorStand) getPlayer().getWorld()
+                .spawnEntity(getPlayer().getLocation().add(0, 3, 0), EntityType.ARMOR_STAND);
         armorStand.setMetadata("NO_INTER", new FixedMetadataValue(getUltraCosmetics(), ""));
         armorStand.setVisible(false);
         armorStand.setGravity(false);
@@ -88,7 +85,8 @@ public class GadgetDiscoBall extends Gadget implements PlayerAffectingCosmetic, 
 
         effect.spawn();
         instantEffect.spawn();
-        Location loc = armorStand.getEyeLocation().add(MathUtils.randomDouble(-4, 4), MathUtils.randomDouble(-3, 3), MathUtils.randomDouble(-4, 4));
+        Location loc = armorStand.getEyeLocation()
+                .add(MathUtils.randomDouble(-4, 4), MathUtils.randomDouble(-3, 3), MathUtils.randomDouble(-4, 4));
         note.withNoteColor(ThreadLocalRandom.current().nextInt(25)).spawn(loc);
         double angle, x, z;
 
@@ -117,7 +115,8 @@ public class GadgetDiscoBall extends Gadget implements PlayerAffectingCosmetic, 
         BlockUtils.setToRestore(updates, 4);
 
         Player player = getPlayer();
-        for (Entity ent : loc.getWorld().getNearbyEntities(armorStand.getEyeLocation().add(-.5d, -.5d, -.5d), 7.5, 7.5, 7.5)) {
+        for (Entity ent : loc.getWorld()
+                .getNearbyEntities(armorStand.getEyeLocation().add(-.5d, -.5d, -.5d), 7.5, 7.5, 7.5)) {
             if (ent.isOnGround() && canAffect(ent, player)) {
                 MathUtils.applyVelocity(ent, new Vector(0, 0.3, 0));
             }

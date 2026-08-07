@@ -7,13 +7,6 @@ import be.isach.ultracosmetics.player.UltraPlayer;
 import be.isach.ultracosmetics.task.UltraTask;
 import org.bukkit.entity.Player;
 
-/**
- * Project: UltraCosmetics
- * Package: be.isach.ultracosmetics.tick
- * Created by: Sacha
- * Created on: 21th June, 2016
- * at 14:03
- */
 public class InvalidWorldChecker extends UltraTask {
 
     private UltraCosmetics ultraCosmetics;
@@ -28,7 +21,9 @@ public class InvalidWorldChecker extends UltraTask {
             Player p = ultraPlayer.getBukkitPlayer();
             // not sure what causes p to be null, but it happens in some circumstances apparently
             // https://mcpaste.io/1bbcbf856c5e503b
-            if (p == null) return;
+            if (p == null) {
+                return;
+            }
             if (!SettingsManager.isAllowedWorld(p.getWorld())) {
                 ultraPlayer.removeMenuItem();
                 ultraPlayer.withPreserveEquipped(() -> {

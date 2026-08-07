@@ -21,7 +21,7 @@ jobs:
     steps:
       # https://github.com/actions/checkout
       - name: Checkout Git repository
-        uses: actions/checkout@v7.0.0
+        uses: actions/checkout@v7.0.1
 
       # https://github.com/actions/cache
       # Note that we use actions/cache/restore instead of plain actions/cache to skip the cache writing at end of build
@@ -45,7 +45,7 @@ jobs:
 
       # https://github.com/actions/setup-java
       - name: Setup JDK 21
-        uses: actions/setup-java@v5.5.0
+        uses: actions/setup-java@v5.7.0
         with:
           distribution: temurin
           java-version: 21
@@ -54,7 +54,7 @@ jobs:
 
       # https://github.com/github/codeql-action
       - name: Initialize CodeQL
-        uses: github/codeql-action/init@v4.37.0
+        uses: github/codeql-action/init@v4.37.4
         with:
           languages: java
 
@@ -63,4 +63,4 @@ jobs:
 
       # https://github.com/github/codeql-action
       - name: Perform CodeQL Analysis
-        uses: github/codeql-action/analyze@v4.37.0
+        uses: github/codeql-action/analyze@v4.37.4

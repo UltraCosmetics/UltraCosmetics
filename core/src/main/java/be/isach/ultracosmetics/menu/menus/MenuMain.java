@@ -14,12 +14,6 @@ import net.kyori.adventure.text.Component;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 
-/**
- * Main {@link be.isach.ultracosmetics.menu.Menu Menu}.
- *
- * @author iSach
- * @since 08-23-2016
- */
 public class MenuMain extends Menu {
     private final Component title = MessageManager.getMessage("Menu.Main.Title");
 
@@ -45,10 +39,14 @@ public class MenuMain extends Menu {
         int i = 0;
         boolean foundSuits = false;
         for (Category category : Category.enabled()) {
-            if (!canSee(bukkitPlayer, category)) continue;
+            if (!canSee(bukkitPlayer, category)) {
+                continue;
+            }
             // Avoid counting suits categories as different menu items
             if (category.isSuits()) {
-                if (foundSuits) continue;
+                if (foundSuits) {
+                    continue;
+                }
                 foundSuits = true;
             }
             putItem(inventory, layout[i++], new OpenCosmeticMenuButton(getUltraCosmetics(), category), player);
@@ -69,7 +67,9 @@ public class MenuMain extends Menu {
         boolean suits = false;
         for (Category category : Category.enabled()) {
             if (category.isSuits()) {
-                if (suits) continue;
+                if (suits) {
+                    continue;
+                }
                 suits = true;
             }
             if (canSee(player, category)) {
@@ -83,37 +83,37 @@ public class MenuMain extends Menu {
         int[] layout = null;
         switch (visible) {
             case 10:
-                layout = new int[] {9, 11, 13, 15, 17, 27, 29, 31, 33, 35};
+                layout = new int[]{9, 11, 13, 15, 17, 27, 29, 31, 33, 35};
                 break;
             case 9:
-                layout = new int[] {9, 11, 13, 15, 17, 28, 30, 32, 34};
+                layout = new int[]{9, 11, 13, 15, 17, 28, 30, 32, 34};
                 break;
             case 8:
-                layout = new int[] {10, 12, 14, 16, 28, 30, 32, 34};
+                layout = new int[]{10, 12, 14, 16, 28, 30, 32, 34};
                 break;
             case 7:
-                layout = new int[] {10, 13, 16, 28, 30, 32, 34};
+                layout = new int[]{10, 13, 16, 28, 30, 32, 34};
                 break;
             case 6:
-                layout = new int[] {10, 13, 16, 28, 31, 34};
+                layout = new int[]{10, 13, 16, 28, 31, 34};
                 break;
             case 5:
-                layout = new int[] {10, 16, 22, 29, 33};
+                layout = new int[]{10, 16, 22, 29, 33};
                 break;
             case 4:
-                layout = new int[] {19, 21, 23, 25};
+                layout = new int[]{19, 21, 23, 25};
                 break;
             case 3:
-                layout = new int[] {20, 22, 24};
+                layout = new int[]{20, 22, 24};
                 break;
             case 2:
-                layout = new int[] {21, 23};
+                layout = new int[]{21, 23};
                 break;
             case 1:
-                layout = new int[] {22};
+                layout = new int[]{22};
                 break;
             case 0:
-                layout = new int[] {};
+                layout = new int[]{};
                 break;
         }
 

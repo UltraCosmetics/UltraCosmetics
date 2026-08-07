@@ -6,12 +6,6 @@ import be.isach.ultracosmetics.cosmetics.suits.ArmorSlot;
 import be.isach.ultracosmetics.cosmetics.type.HatType;
 import be.isach.ultracosmetics.player.UltraPlayer;
 
-/**
- * Represents an instance of a hat summoned by a player.
- *
- * @author iSach
- * @since 08-23-2016
- */
 public class Hat extends ArmorCosmetic<HatType> {
 
     public Hat(UltraPlayer owner, HatType type, UltraCosmetics ultraCosmetics) {

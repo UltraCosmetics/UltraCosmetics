@@ -16,12 +16,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerToggleFlightEvent;
 import org.bukkit.util.Vector;
 
-/**
- * Represents an instance of an enderman morph summoned by a player.
- *
- * @author iSach
- * @since 08-26-2015
- */
 public class MorphEnderman extends MorphNoFall {
     private static final double COOLDOWN = 3.5;
     private final String mode = SettingsManager.getConfig().getString(getOptionPath("Mode"), "Ray trace");
@@ -41,7 +35,8 @@ public class MorphEnderman extends MorphNoFall {
     @EventHandler
     public void onPlayerToggleFlight(PlayerToggleFlightEvent event) {
         Player player = event.getPlayer();
-        if (!canUseSkill || player != getPlayer() || player.getGameMode() == GameMode.CREATIVE || event.getPlayer().isFlying()) {
+        if (!canUseSkill || player != getPlayer() || player.getGameMode() == GameMode.CREATIVE ||
+                event.getPlayer().isFlying()) {
             return;
         }
         player.setFlying(false);
@@ -50,7 +45,9 @@ public class MorphEnderman extends MorphNoFall {
             return;
         }
         if (mode.equalsIgnoreCase("Fast")) {
-            if (!fast(player)) return;
+            if (!fast(player)) {
+                return;
+            }
         } else if (mode.equalsIgnoreCase("Enderpearl")) {
             player.launchProjectile(EnderPearl.class, player.getLocation().getDirection());
         } else { // Ray trace

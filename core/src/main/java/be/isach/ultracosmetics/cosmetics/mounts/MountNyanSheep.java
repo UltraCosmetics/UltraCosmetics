@@ -12,16 +12,10 @@ import org.bukkit.Location;
 import org.bukkit.entity.Sheep;
 import org.bukkit.util.Vector;
 
-import java.awt.Color;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Represents an instance of a nyansheep mount.
- *
- * @author iSach
- * @since 08-17-2015
- */
 public class MountNyanSheep extends Mount {
     private static final List<Color> COLORS = new ArrayList<>();
     private EntityBrain brain;
@@ -56,7 +50,8 @@ public class MountNyanSheep extends Mount {
 
         ((Sheep) entity).setColor(DyeColor.values()[RANDOM.nextInt(16)]);
 
-        Location particleLoc = entity.getLocation().add(entity.getLocation().getDirection().normalize().multiply(-2)).add(0, 1.2, 0);
+        Location particleLoc =
+                entity.getLocation().add(entity.getLocation().getDirection().normalize().multiply(-2)).add(0, 1.2, 0);
         for (Color rgbColor : COLORS) {
             display.withColor(rgbColor).spawn(particleLoc);
             particleLoc.subtract(0, 0.2, 0);

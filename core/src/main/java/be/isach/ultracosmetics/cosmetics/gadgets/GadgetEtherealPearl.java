@@ -20,12 +20,6 @@ import org.bukkit.event.entity.EntityPortalEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
 import org.bukkit.event.hanging.HangingBreakByEntityEvent;
 
-/**
- * Represents an instance of a ethereal pearl gadget summoned by a player.
- *
- * @author iSach
- * @since 08-03-2015
- */
 public class GadgetEtherealPearl extends Gadget implements Updatable {
     private static final Color PRIMARY_EFFECT = Color.fromRGB(100, 0, 100);
     private static final Color SECONDARY_EFFECT = Color.fromRGB(30, 0, 30);
@@ -68,7 +62,9 @@ public class GadgetEtherealPearl extends Gadget implements Updatable {
         pearl.setVelocity(getPlayer().getEyeLocation().getDirection().multiply(1.53d));
         //getUltraCosmetics().getScheduler().teleportAsync(getPlayer(), getPlayer().getLocation().add(0, 5, 0));
         // Teleportation can cause the pearl to hit the player in the same tick
-        if (pearl == null) return;
+        if (pearl == null) {
+            return;
+        }
         if (!EntityMountManager.withBypass(() -> pearl.addPassenger(getPlayer()))) {
             pearl.remove();
             return;

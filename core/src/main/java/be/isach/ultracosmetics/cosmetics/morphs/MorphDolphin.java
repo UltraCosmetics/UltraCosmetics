@@ -5,12 +5,6 @@ import be.isach.ultracosmetics.cosmetics.type.MorphType;
 import be.isach.ultracosmetics.player.UltraPlayer;
 import com.cryptomorin.xseries.XSound;
 
-/**
- * Represents an instance of a dolphin morph summoned by a player.
- *
- * @author Chris6ix
- * @since 26-10-2022
- */
 public class MorphDolphin extends MorphPlaySound {
     public MorphDolphin(UltraPlayer owner, MorphType type, UltraCosmetics ultraCosmetics) {
         super(owner, type, ultraCosmetics, XSound.ENTITY_DOLPHIN_PLAY);

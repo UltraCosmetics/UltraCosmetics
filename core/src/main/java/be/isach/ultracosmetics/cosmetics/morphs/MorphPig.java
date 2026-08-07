@@ -11,26 +11,25 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 
-/**
- * Represents an instance of a pig morph summoned by a player.
- *
- * @author iSach
- * @since 08-27-2015
- */
 public class MorphPig extends Morph implements PlayerAffectingCosmetic, Updatable {
     private final XSound.SoundPlayer sound;
 
     public MorphPig(UltraPlayer owner, MorphType type, UltraCosmetics ultraCosmetics) {
         super(owner, type, ultraCosmetics);
-        sound = XSound.ENTITY_PIG_AMBIENT.record().withVolume(0.2f).withPitch(1.5f).soundPlayer().forPlayers(getPlayer());
+        sound = XSound.ENTITY_PIG_AMBIENT.record().withVolume(0.2f).withPitch(1.5f).soundPlayer()
+                .forPlayers(getPlayer());
     }
 
     @Override
     public void onUpdate() {
-        if (!canUseSkill || getOwner().canUse(cosmeticType) || !isAffectingPlayersEnabled()) return;
+        if (!canUseSkill || getOwner().canUse(cosmeticType) || !isAffectingPlayersEnabled()) {
+            return;
+        }
         Player player = getPlayer();
         for (Entity ent : player.getNearbyEntities(0.2, 0.2, 0.2)) {
-            if (!canAffect(ent, player)) continue;
+            if (!canAffect(ent, player)) {
+                continue;
+            }
             getOwner().setCooldown(cosmeticType, 1, 0);
             sound.play();
             Vector v = new Vector(0, 0.6, 0);

@@ -14,12 +14,6 @@ import org.bukkit.permissions.PermissionDefault;
 
 import java.util.List;
 
-/**
- * A subcommand.
- *
- * @author iSach
- * @since 12-20-2015
- */
 public abstract class SubCommand {
 
     private final String name;
@@ -33,7 +27,8 @@ public abstract class SubCommand {
         this(name, description, usage, ultraCosmetics, false);
     }
 
-    public SubCommand(String name, String description, String usage, UltraCosmetics ultraCosmetics, boolean defaultPerm) {
+    public SubCommand(String name, String description, String usage, UltraCosmetics ultraCosmetics,
+                      boolean defaultPerm) {
         this.name = name;
         this.description = description;
         this.permission = registerPermission("ultracosmetics.command." + name, defaultPerm);
@@ -162,7 +157,8 @@ public abstract class SubCommand {
 
     protected void error(CommandSender sender, String error) {
         MessageManager.getAudiences().sender(sender).sendMessage(
-                Component.empty().append(MessageManager.getMessage("Prefix")).appendSpace().append(Component.text(error, NamedTextColor.RED, TextDecoration.BOLD))
+                Component.empty().append(MessageManager.getMessage("Prefix")).appendSpace()
+                        .append(Component.text(error, NamedTextColor.RED, TextDecoration.BOLD))
         );
     }
 }

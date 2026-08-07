@@ -8,14 +8,7 @@ import be.isach.ultracosmetics.config.SettingsManager;
 import be.isach.ultracosmetics.cosmetics.Category;
 import be.isach.ultracosmetics.cosmetics.type.GadgetType;
 import be.isach.ultracosmetics.player.UltraPlayer;
-import be.isach.ultracosmetics.treasurechests.loot.AmmoLoot;
-import be.isach.ultracosmetics.treasurechests.loot.CommandLoot;
-import be.isach.ultracosmetics.treasurechests.loot.CommandLootContainer;
-import be.isach.ultracosmetics.treasurechests.loot.CosmeticLoot;
-import be.isach.ultracosmetics.treasurechests.loot.Loot;
-import be.isach.ultracosmetics.treasurechests.loot.LootReward;
-import be.isach.ultracosmetics.treasurechests.loot.MoneyLoot;
-import be.isach.ultracosmetics.treasurechests.loot.NothingLoot;
+import be.isach.ultracosmetics.treasurechests.loot.*;
 import be.isach.ultracosmetics.util.EntitySpawner;
 import be.isach.ultracosmetics.util.WeightedSet;
 import com.cryptomorin.xseries.XSound;
@@ -31,9 +24,6 @@ import org.bukkit.entity.Player;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
-/**
- * Created by sacha on 19/08/15.
- */
 public class TreasureRandomizer {
     private final int moneyChance = SettingsManager.getConfig().getInt("TreasureChests.Loots.Money.Chance");
     private final int ammoChance = SettingsManager.getConfig().getInt("TreasureChests.Loots.Gadgets-Ammo.Chance");
@@ -45,7 +35,8 @@ public class TreasureRandomizer {
     private final NothingLoot nothing = new NothingLoot();
     private final AmmoLoot ammo;
     private final boolean canAddAmmo;
-    private final XSound.SoundPlayer sound = XSound.BLOCK_CHEST_OPEN.record().withVolume(1.4f).withPitch(1.5f).soundPlayer();
+    private final XSound.SoundPlayer sound =
+            XSound.BLOCK_CHEST_OPEN.record().withVolume(1.4f).withPitch(1.5f).soundPlayer();
 
     public TreasureRandomizer(final Player player, Location location, boolean forceMessageToOwner) {
         this.loc = location.add(0.5, 0, 0.5);
@@ -102,10 +93,16 @@ public class TreasureRandomizer {
 
     private void setupChance(Category category) {
         String configPath = "TreasureChests.Loots." + category.getConfigPath();
-        if (!SettingsManager.getConfig().getBoolean(configPath + ".Enabled")) return;
-        if (!category.isEnabled()) return;
+        if (!SettingsManager.getConfig().getBoolean(configPath + ".Enabled")) {
+            return;
+        }
+        if (!category.isEnabled()) {
+            return;
+        }
         int chance = SettingsManager.getConfig().getInt(configPath + ".Chance");
-        if (chance <= 0) return;
+        if (chance <= 0) {
+            return;
+        }
         CosmeticLoot loot = new CosmeticLoot(category, player);
         if (!loot.isEmpty()) {
             lootTypes.add(loot, chance);
@@ -150,11 +147,14 @@ public class TreasureRandomizer {
     }
 
     public void spawnFirework() {
-        EntitySpawner.spawnFireworks(loc.clone().add(0.5, 0, 0.5), randomColor(), randomColor(), FireworkEffect.Type.BALL);
+        EntitySpawner.spawnFireworks(loc.clone().add(0.5, 0, 0.5), randomColor(), randomColor(),
+                FireworkEffect.Type.BALL);
     }
 
     private void broadcast(Component message, boolean toOthers) {
-        if (message == null) return;
+        if (message == null) {
+            return;
+        }
         UltraCosmetics ultraCosmetics = UltraCosmeticsData.get().getPlugin();
         if (ultraCosmetics.getDiscordHook() != null) {
             ultraCosmetics.getDiscordHook().sendLootMessage(player, MessageManager.toLegacy(message));

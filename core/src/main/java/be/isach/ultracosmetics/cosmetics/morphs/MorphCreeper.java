@@ -18,10 +18,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 import org.jetbrains.annotations.NotNull;
 
-/**
- * @author iSach
- * @since 08-26-2015
- */
 public class MorphCreeper extends Morph implements PlayerAffectingCosmetic, Updatable {
     private int charge = 0;
     private final XSound.SoundPlayer chargeSound;
@@ -30,18 +26,24 @@ public class MorphCreeper extends Morph implements PlayerAffectingCosmetic, Upda
 
     public MorphCreeper(UltraPlayer owner, MorphType type, UltraCosmetics ultraCosmetics) {
         super(owner, type, ultraCosmetics);
-        chargeSound = XSound.ENTITY_CREEPER_PRIMED.record().withVolume(1.4f).withPitch(1.5f).soundPlayer().forPlayers(getPlayer());
-        explodeSound = XSound.ENTITY_GENERIC_EXPLODE.record().withVolume(1.4f).withPitch(1.5f).soundPlayer().forPlayers(getPlayer());
+        chargeSound = XSound.ENTITY_CREEPER_PRIMED.record().withVolume(1.4f).withPitch(1.5f).soundPlayer()
+                .forPlayers(getPlayer());
+        explodeSound = XSound.ENTITY_GENERIC_EXPLODE.record().withVolume(1.4f).withPitch(1.5f).soundPlayer()
+                .forPlayers(getPlayer());
         display = ParticleDisplay.of(XParticle.EXPLOSION_EMITTER).withEntity(getPlayer());
     }
 
     @Override
     public void onUpdate() {
-        if (!canUseSkill) return;
+        if (!canUseSkill) {
+            return;
+        }
         CreeperWatcher creeperWatcher = (CreeperWatcher) disguise.getWatcher();
         if (getPlayer().isSneaking()) {
             creeperWatcher.setIgnited(true);
-            if (charge + 4 <= 100) charge += 4;
+            if (charge + 4 <= 100) {
+                charge += 4;
+            }
             chargeSound.play();
         } else {
             if (creeperWatcher.isIgnited()) {
@@ -54,7 +56,9 @@ public class MorphCreeper extends Morph implements PlayerAffectingCosmetic, Upda
 
                 Player player = getPlayer();
                 for (Entity ent : player.getNearbyEntities(3, 3, 3)) {
-                    if (!canAffect(ent, player)) continue;
+                    if (!canAffect(ent, player)) {
+                        continue;
+                    }
                     Vector vector = getVector(ent);
                     MathUtils.applyVelocity(ent, vector.multiply(1.3D).add(new Vector(0, 1.4D, 0)));
                 }
@@ -62,7 +66,9 @@ public class MorphCreeper extends Morph implements PlayerAffectingCosmetic, Upda
                 charge = 0;
                 return;
             }
-            if (charge > 0) charge -= 4;
+            if (charge > 0) {
+                charge -= 4;
+            }
         }
         if (charge > 0 && charge < 100) {
             if (charge < 5) {

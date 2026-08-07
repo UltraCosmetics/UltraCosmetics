@@ -13,9 +13,6 @@ import net.minecraft.world.level.Level;
 import org.bukkit.craftbukkit.entity.CraftArmorStand;
 import org.bukkit.entity.ArmorStand;
 
-/**
- * @author RadBuilder
- */
 public class CustomGuardian extends Guardian {
 
     public CustomGuardian(EntityType<? extends Guardian> entitytypes, Level world) {
@@ -27,7 +24,8 @@ public class CustomGuardian extends Guardian {
     }
 
     public void target(ArmorStand armorStand) {
-        ((Entity) this).getEntityData().set(EntityDataSerializers.INT.createAccessor(17), armorStand == null ? 0 : ((CraftArmorStand) armorStand).getHandle().getId());
+        ((Entity) this).getEntityData().set(EntityDataSerializers.INT.createAccessor(17),
+                armorStand == null ? 0 : ((CraftArmorStand) armorStand).getHandle().getId());
     }
 
     @Override

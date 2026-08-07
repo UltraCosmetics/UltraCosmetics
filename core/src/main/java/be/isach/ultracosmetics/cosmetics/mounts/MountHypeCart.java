@@ -11,12 +11,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.vehicle.VehicleDestroyEvent;
 import org.bukkit.util.Vector;
 
-/**
- * Represents an instance of a hype cart mount.
- *
- * @author iSach
- * @since 08-03-2015
- */
 public class MountHypeCart extends Mount {
 
     public MountHypeCart(UltraPlayer owner, MountType type, UltraCosmetics ultraCosmetics) {
@@ -39,7 +33,8 @@ public class MountHypeCart extends Mount {
 
     @Override
     protected Entity spawnEntity() {
-        entity = EntitySpawningManager.withBypass(() -> UltraCosmeticsData.get().getVersionManager().getModule().spawnCustomMinecart(getPlayer().getLocation()));
+        entity = EntitySpawningManager.withBypass(() -> UltraCosmeticsData.get().getVersionManager().getModule()
+                .spawnCustomMinecart(getPlayer().getLocation()));
         return entity;
     }
 

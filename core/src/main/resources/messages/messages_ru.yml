@@ -557,8 +557,7 @@ Particle-Effects:
   SuperVillain:
     name: <bold><dark_purple>Super Villain
     Description: |-
-      Become Batman... or whoever is
-      more evil than Superman!
+      Станьте Бэтменом... Или кем угодно сильнее Супермена!
   Notes:
     name: <bold><gold>Ноты
     Description: Ноты над твоей головой.

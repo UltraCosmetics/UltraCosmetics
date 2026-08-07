@@ -5,12 +5,6 @@ import be.isach.ultracosmetics.cosmetics.type.ParticleEffectType;
 import be.isach.ultracosmetics.player.UltraPlayer;
 import org.bukkit.util.Vector;
 
-/**
- * Represents an instance of inferno particles summoned by a player.
- *
- * @author iSach
- * @since 10-18-2015
- */
 public class ParticleEffectInferno extends ParticleEffect {
 
     private final float[] height = {0, 0, 2, 2};

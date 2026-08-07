@@ -18,12 +18,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-/**
- * Menu {@link be.isach.ultracosmetics.command.SubCommand SubCommand}.
- *
- * @author iSach
- * @since 12-21-2015
- */
 public class SubCommandMenu extends SubCommand {
 
     public SubCommandMenu(UltraCosmetics ultraCosmetics) {
@@ -70,7 +64,8 @@ public class SubCommandMenu extends SubCommand {
             menus.openMainMenu(ultraPlayer);
             return;
         } else if (s.startsWith("r") && SettingsManager.getConfig().getBoolean("Pets-Rename.Enabled")) {
-            if (SettingsManager.getConfig().getBoolean("Pets-Rename.Permission-Required") && !sender.hasPermission("ultracosmetics.pets.rename")) {
+            if (SettingsManager.getConfig().getBoolean("Pets-Rename.Permission-Required") &&
+                    !sender.hasPermission("ultracosmetics.pets.rename")) {
                 MessageManager.send(sender, "No-Permission");
                 return;
             }
@@ -117,7 +112,9 @@ public class SubCommandMenu extends SubCommand {
         boolean suits = false;
         for (Category category : Category.enabled()) {
             if (category.isSuits()) {
-                if (suits) continue;
+                if (suits) {
+                    continue;
+                }
                 suits = true;
                 menuList.add("suits");
                 continue;

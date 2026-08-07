@@ -9,9 +9,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
 
-/**
- * @author iSach
- */
 public class RideableSpider extends Spider implements EntityBase {
 
     public RideableSpider(EntityType<? extends Spider> entitytypes, Level world) {

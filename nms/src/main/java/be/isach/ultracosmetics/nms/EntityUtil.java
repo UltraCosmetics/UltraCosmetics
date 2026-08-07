@@ -8,7 +8,7 @@ import net.minecraft.core.Rotations;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.*;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityTypes;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.PositionMoveRotation;
 import net.minecraft.world.entity.decoration.ArmorStand;
@@ -26,10 +26,6 @@ import org.bukkit.util.Vector;
 import java.util.*;
 import java.util.function.Predicate;
 
-/**
- * @author RadBuilder
- * @author iSach
- */
 public class EntityUtil implements IEntityUtil {
 
     private final Random r = new Random();
@@ -43,7 +39,8 @@ public class EntityUtil implements IEntityUtil {
         final Set<org.bukkit.entity.Entity> cooldownJump =
                 cooldownJumpMap.computeIfAbsent(player, k -> new HashSet<>());
 
-        final ArmorStand as = new ArmorStand(EntityTypes.ARMOR_STAND, ((CraftWorld) player.getWorld()).getHandle());
+        EntityType<? extends ArmorStand> armorStandType = VersionModule.getEntityType("armor_stand");
+        final ArmorStand as = new ArmorStand(armorStandType, ((CraftWorld) player.getWorld()).getHandle());
         as.setInvisible(true);
         as.setSharedFlag(5, true);
         as.setSmall(true);
@@ -55,7 +52,7 @@ public class EntityUtil implements IEntityUtil {
         fakeArmorStands.add(as);
         ClientboundAddEntityPacket addPacket =
                 new ClientboundAddEntityPacket(as.getId(), as.getUUID(), as.getX(), as.getY(), as.getZ(),
-                        as.getXRot(), as.getYRot(), EntityTypes.ARMOR_STAND, 0, as.getDeltaMovement(),
+                        as.getXRot(), as.getYRot(), armorStandType, 0, as.getDeltaMovement(),
                         as.getYHeadRot());
         ClientboundSetEntityDataPacket dataPacket =
                 new ClientboundSetEntityDataPacket(as.getId(), as.getEntityData().packDirty());

@@ -13,15 +13,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Suit {@link be.isach.ultracosmetics.menu.Menu Menu}.
- *
- * @author iSach
- * @since 08-23-2016
- */
 public final class MenuSuits extends CosmeticMenu<SuitType> {
 
-    private static final int[] SLOTS = new int[] {10, 11, 12, 13, 14, 15, 16};
+    private static final int[] SLOTS = new int[]{10, 11, 12, 13, 14, 15, 16};
 
     public MenuSuits(UltraCosmetics ultraCosmetics) {
         super(ultraCosmetics, Category.SUITS_HELMET);
@@ -40,7 +34,8 @@ public final class MenuSuits extends CosmeticMenu<SuitType> {
         for (int i = from; i < to && i < enabled.size(); i++) {
             SuitCategory cat = enabled.get(i);
             if (!hideNoPermissionItems || cat.getPieces().stream().anyMatch(player::canEquip)) {
-                putItem(inventory, SLOTS[i % getItemsPerPage()] - 9, new EquipWholeSuitButton(cat, ultraCosmetics), player);
+                putItem(inventory, SLOTS[i % getItemsPerPage()] - 9, new EquipWholeSuitButton(cat, ultraCosmetics),
+                        player);
             }
         }
     }

@@ -8,12 +8,6 @@ import be.isach.ultracosmetics.player.UltraPlayer;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-/**
- * Selfview {@link be.isach.ultracosmetics.command.SubCommand SubCommand}.
- *
- * @author iSach
- * @since 12-20-2015
- */
 public class SubCommandSelfView extends SubCommand {
 
     public SubCommandSelfView(UltraCosmetics ultraCosmetics) {

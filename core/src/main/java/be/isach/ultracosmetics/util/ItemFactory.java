@@ -13,12 +13,7 @@ import com.cryptomorin.xseries.profiles.objects.ProfileInputType;
 import com.cryptomorin.xseries.profiles.objects.Profileable;
 import com.cryptomorin.xseries.reflection.XReflection;
 import net.kyori.adventure.text.Component;
-import org.bukkit.Bukkit;
-import org.bukkit.Color;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.NamespacedKey;
-import org.bukkit.Tag;
+import org.bukkit.*;
 import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.enchantments.Enchantment;
@@ -47,15 +42,13 @@ import java.util.UUID;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.function.Function;
 
-/**
- * Created by sacha on 03/08/15.
- */
 public class ItemFactory {
     private static final NamespacedKey MARKER = new NamespacedKey(UltraCosmeticsData.get().getPlugin(), "marker");
     // for some reason I don't understand, there's no Tag or XTag for dyes
     private static final List<XMaterial> DYES = new ArrayList<>(16);
     private static final List<XMaterial> STAINED_GLASS = new ArrayList<>(16);
-    private static final FixedMetadataValue UNPICKABLE_META = new FixedMetadataValue(UltraCosmeticsData.get().getPlugin(), true);
+    private static final FixedMetadataValue UNPICKABLE_META =
+            new FixedMetadataValue(UltraCosmeticsData.get().getPlugin(), true);
     private static final XItemStack.Deserializer deserializer;
 
     static {
@@ -67,7 +60,8 @@ public class ItemFactory {
             }
         }
 
-        Function<String, String> translator = s -> MessageManager.toLegacy(MessageManager.getMiniMessage().deserialize(s));
+        Function<String, String> translator =
+                s -> MessageManager.toLegacy(MessageManager.getMiniMessage().deserialize(s));
         deserializer = XItemStack.deserializer().withTranslator(translator);
     }
 
@@ -94,7 +88,9 @@ public class ItemFactory {
         if (lore != null && lore.length > 0) {
             List<String> finalLore = meta.hasLore() ? meta.getLore() : new ArrayList<>();
             for (String s : lore) {
-                if (s == null) continue;
+                if (s == null) {
+                    continue;
+                }
                 for (String line : s.split("\n")) {
                     finalLore.add(line);
                 }
@@ -119,11 +115,14 @@ public class ItemFactory {
     }
 
     public static Item createUnpickableItemDirectional(XMaterial material, Player player, double scale) {
-        return spawnUnpickableItem(material.parseItem(), player.getEyeLocation(), player.getLocation().getDirection().multiply(scale));
+        return spawnUnpickableItem(material.parseItem(), player.getEyeLocation(),
+                player.getLocation().getDirection().multiply(scale));
     }
 
     public static Item createUnpickableItemVariance(XMaterial material, Location loc, Random random, double variance) {
-        return spawnUnpickableItem(material.parseItem(), loc, new Vector(random.nextDouble() - 0.5, random.nextDouble() / 2.0, random.nextDouble() - 0.5).multiply(variance));
+        return spawnUnpickableItem(material.parseItem(), loc,
+                new Vector(random.nextDouble() - 0.5, random.nextDouble() / 2.0, random.nextDouble() - 0.5).multiply(
+                        variance));
     }
 
     /**
@@ -184,13 +183,17 @@ public class ItemFactory {
 
     private static XMaterial getFromConfigInternal(String path) {
         String fromConfig = UltraCosmeticsData.get().getPlugin().getConfig().getString(path);
-        if (fromConfig == null) return null;
+        if (fromConfig == null) {
+            return null;
+        }
         if (MathUtils.isInteger(fromConfig) || fromConfig.contains(":")) {
             if (!noticePrinted) {
-                UltraCosmeticsData.get().getPlugin().getSmartLogger().write(LogLevel.ERROR, "UltraCosmetics no longer supports numeric IDs, please replace it with a material name.");
+                UltraCosmeticsData.get().getPlugin().getSmartLogger().write(LogLevel.ERROR,
+                        "UltraCosmetics no longer supports numeric IDs, please replace it with a material name.");
                 noticePrinted = true;
             }
-            UltraCosmeticsData.get().getPlugin().getSmartLogger().write(LogLevel.ERROR, "Offending config path: " + path);
+            UltraCosmeticsData.get().getPlugin().getSmartLogger()
+                    .write(LogLevel.ERROR, "Offending config path: " + path);
             return null;
         }
         // null if not found
@@ -249,7 +252,8 @@ public class ItemFactory {
         if (!meta.hasAttributeModifiers()) {
             // Add a dummy attribute modifier. If the only attribute modifiers present are the default ones, it won't
             // actually hide them when we ask using ItemFlags.
-            AttributeModifier modifier = createAttributeModifier("itemflags", 0, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+            AttributeModifier modifier =
+                    createAttributeModifier("itemflags", 0, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
             meta.addAttributeModifier(XAttribute.KNOCKBACK_RESISTANCE.get(), modifier);
         }
         item.setItemMeta(meta);
@@ -257,7 +261,9 @@ public class ItemFactory {
 
     public static void setCustomModelData(ItemStack item, int customModelData) {
         ItemMeta meta = item.getItemMeta();
-        if (meta == null) return;
+        if (meta == null) {
+            return;
+        }
         setCustomModelData(meta, customModelData);
         item.setItemMeta(meta);
     }
@@ -268,10 +274,12 @@ public class ItemFactory {
     }
 
     @SuppressWarnings({"UnstableApiUsage", "removal"})
-    public static AttributeModifier createAttributeModifier(String modName, double amount, AttributeModifier.Operation operation, EquipmentSlot slot) {
+    public static AttributeModifier createAttributeModifier(String modName, double amount,
+                                                            AttributeModifier.Operation operation, EquipmentSlot slot) {
         NamespacedKey key = new NamespacedKey(UltraCosmeticsData.get().getPlugin(), modName);
         try {
-            return new AttributeModifier(key, amount, operation, slot == null ? EquipmentSlotGroup.ANY : slot.getGroup());
+            return new AttributeModifier(key, amount, operation,
+                    slot == null ? EquipmentSlotGroup.ANY : slot.getGroup());
         } catch (NoSuchMethodError error) {
             return new AttributeModifier(UUID.randomUUID(), key.toString(), amount, operation, slot);
         }

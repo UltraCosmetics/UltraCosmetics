@@ -22,12 +22,6 @@ import org.bukkit.entity.Player;
 
 import java.util.List;
 
-/**
- * Treasure {@link be.isach.ultracosmetics.command.SubCommand SubCommand}.
- *
- * @author iSach
- * @since 12-22-2015
- */
 public class SubCommandTreasure extends SubCommand {
 
     public SubCommandTreasure(UltraCosmetics ultraCosmetics) {
@@ -67,10 +61,13 @@ public class SubCommandTreasure extends SubCommand {
             return;
         }
 
-        boolean structureEnabled = !SettingsManager.getConfig().getString("TreasureChests.Mode", "").equalsIgnoreCase("simple");
+        boolean structureEnabled =
+                !SettingsManager.getConfig().getString("TreasureChests.Mode", "").equalsIgnoreCase("simple");
         // form: /uc treasure (player)
         if (args.length < 3) {
-            if (!checkWorld(sender, opener.getWorld())) return;
+            if (!checkWorld(sender, opener.getWorld())) {
+                return;
+            }
             if (structureEnabled && ultraCosmetics.getTreasureChestManager().tryOpenChest(opener)) {
                 return;
             }
@@ -146,7 +143,9 @@ public class SubCommandTreasure extends SubCommand {
     }
 
     private boolean checkWorld(CommandSender sender, World world) {
-        if (SettingsManager.isAllowedWorld(world)) return true;
+        if (SettingsManager.isAllowedWorld(world)) {
+            return true;
+        }
         MessageManager.send(sender, "World-Disabled");
         return false;
     }

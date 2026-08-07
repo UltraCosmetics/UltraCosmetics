@@ -18,19 +18,14 @@ import java.util.function.BooleanSupplier;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
-/**
- * Cosmetic category enum.
- *
- * @author iSach
- * @since 06-20-2016
- */
 public enum Category {
 
     PETS("Pets", "petname", "pets", "pe", true, () -> UltraCosmeticsData.get().isMobChipAvailable()),
     GADGETS("Gadgets", "gadgetname", "gadgets", "g", true),
     EFFECTS("Particle-Effects", "effectname", "particleeffects", "ef", true),
     MOUNTS("Mounts", "mountname", "mounts", "mou", true),
-    MORPHS("Morphs", "morphname", "morphs", "mor", true, () -> Bukkit.getPluginManager().isPluginEnabled("LibsDisguises")),
+    MORPHS("Morphs", "morphname", "morphs", "mor", true,
+            () -> Bukkit.getPluginManager().isPluginEnabled("LibsDisguises")),
     HATS("Hats", "hatname", "hats", "h", true),
     SUITS_HELMET(ArmorSlot.HELMET),
     SUITS_CHESTPLATE(ArmorSlot.CHESTPLATE),
@@ -45,7 +40,9 @@ public enum Category {
     public static int enabledSize() {
         int size = SUITS_HELMET.isEnabled() ? 1 : 0;
         for (Category cat : enabled()) {
-            if (cat.isSuits()) continue;
+            if (cat.isSuits()) {
+                continue;
+            }
             size += 1;
         }
         return size;
@@ -88,7 +85,8 @@ public enum Category {
     private final boolean clearOnDeath;
     private final BooleanSupplier enableCondition;
 
-    private Category(String configPath, String chatPlaceholder, String permission, String prefix, boolean clearOnDeath, BooleanSupplier enableCondition) {
+    private Category(String configPath, String chatPlaceholder, String permission, String prefix, boolean clearOnDeath,
+                     BooleanSupplier enableCondition) {
         this.configPath = configPath;
         this.chatPlaceholder = chatPlaceholder;
         this.permission = permission;
@@ -97,7 +95,8 @@ public enum Category {
         this.clearOnDeath = clearOnDeath;
     }
 
-    private Category(String configPath, String chatPlaceholder, String permission, String prefix, boolean clearOnDeath) {
+    private Category(String configPath, String chatPlaceholder, String permission, String prefix,
+                     boolean clearOnDeath) {
         this(configPath, chatPlaceholder, permission, prefix, clearOnDeath, () -> true);
     }
 
@@ -129,7 +128,8 @@ public enum Category {
      * @return {@code true} if enabled, otherwise {@code false}.
      */
     public boolean isEnabled() {
-        return enableCondition.getAsBoolean() && SettingsManager.getConfig().getBoolean("Categories-Enabled." + configPath);
+        return enableCondition.getAsBoolean() &&
+                SettingsManager.getConfig().getBoolean("Categories-Enabled." + configPath);
     }
 
     /**
@@ -178,7 +178,9 @@ public enum Category {
     }
 
     public CosmeticType<?> valueOfType(String name) {
-        if (name == null) return null;
+        if (name == null) {
+            return null;
+        }
         return CosmeticType.valueOf(this, name);
     }
 

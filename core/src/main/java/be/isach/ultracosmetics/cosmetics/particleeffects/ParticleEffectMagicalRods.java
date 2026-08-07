@@ -6,16 +6,10 @@ import be.isach.ultracosmetics.player.UltraPlayer;
 import org.bukkit.Location;
 import org.bukkit.util.Vector;
 
-import java.awt.Color;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Represents an instance of green spark particles summoned by a player.
- *
- * @author iSach
- * @since 08-13-2015
- */
 public class ParticleEffectMagicalRods extends ParticleEffect {
 
     private static final List<Color> COLORS = new ArrayList<>();
@@ -38,10 +32,12 @@ public class ParticleEffectMagicalRods extends ParticleEffect {
     private static final double HEIGHT_DIFF_STEP = 0.04; // Height diff step...
 
     private boolean heightDirectionUp; // Indicates whether the "overall" height is going up or down
-    private boolean hoveringDirectionUp; // Indicates whether the height diff between columns is going up or down (gives dynamism)
+    private boolean hoveringDirectionUp;
+            // Indicates whether the height diff between columns is going up or down (gives dynamism)
     private double height = 0; // Current height
     private double angle = 0; // Current angle
-    private double heightDiffFactor = MAX_HEIGHT_DIFF; // Height diff between columns. Variates over time with hoveringDirectionUp.
+    private double heightDiffFactor = MAX_HEIGHT_DIFF;
+            // Height diff between columns. Variates over time with hoveringDirectionUp.
 
     public ParticleEffectMagicalRods(UltraPlayer owner, ParticleEffectType type, UltraCosmetics ultraCosmetics) {
         super(owner, type, ultraCosmetics);
@@ -88,7 +84,8 @@ public class ParticleEffectMagicalRods extends ParticleEffect {
         Vector left = getPlayer().getLocation().getDirection().setY(0).crossProduct(new Vector(0, 1, 0));
         double multiplier = 0.3;
         for (Color color : COLORS) {
-            display.withColor(color).spawn(getPlayer().getLocation().add(left.clone().multiply(multiplier)).add(0, 0.1, 0));
+            display.withColor(color)
+                    .spawn(getPlayer().getLocation().add(left.clone().multiply(multiplier)).add(0, 0.1, 0));
             multiplier -= 0.2;
         }
     }
@@ -112,7 +109,8 @@ public class ParticleEffectMagicalRods extends ParticleEffect {
             for (int j = 0; j < COLORS.size(); j++) {
                 v.setX(Math.cos(angleStep + suppAngle) * RADIUS);
                 v.setZ(Math.sin(angleStep + suppAngle) * RADIUS);
-                v.setY(BASE_HEIGHT + Math.sin(angleStep * 3) * heightDiffFactor); // The height of the columns is a sine wave.
+                v.setY(BASE_HEIGHT +
+                        Math.sin(angleStep * 3) * heightDiffFactor); // The height of the columns is a sine wave.
                 loc = getPlayer().getLocation().add(v);
 
                 drawParticleLine(loc, loc.clone().add(0, ROD_HEIGHT, 0), amount, COLORS.get(j));
@@ -136,7 +134,9 @@ public class ParticleEffectMagicalRods extends ParticleEffect {
         Location loc = location.clone().subtract(v);
         int step = 0;
         for (int i = 0; i < particles; i++) {
-            if (step >= (double) particles) step = 0;
+            if (step >= (double) particles) {
+                step = 0;
+            }
             step++;
             loc.add(v);
             display.withColor(color).spawn(loc);

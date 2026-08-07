@@ -16,12 +16,6 @@ import org.bukkit.util.Vector;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Represents an instance of a moltonsnake mount.
- *
- * @author iSach
- * @since 11-28-2015
- */
 public abstract class MountFlyingSnake extends Mount {
     private final ItemStack tailItem;
     private final List<ArmorStand> tail = new ArrayList<>();
@@ -42,7 +36,9 @@ public abstract class MountFlyingSnake extends Mount {
     @Override
     public void onUpdate() {
         Player player = getPlayer();
-        if (player == null) return;
+        if (player == null) {
+            return;
+        }
         Vector playerVector = player.getLocation().getDirection().multiply(1.75 * getType().getMovementSpeed());
         entity.setVelocity(playerVector);
         Location loc;

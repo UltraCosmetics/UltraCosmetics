@@ -17,11 +17,8 @@ import org.bukkit.metadata.FixedMetadataValue;
 import org.bukkit.util.EulerAngle;
 import org.bukkit.util.Vector;
 
-import java.awt.Color;
+import java.awt.*;
 
-/**
- * Created by sacha on 1/03/17.
- */
 public class MountRudolph extends MountAbstractHorse {
     private static final ItemStack DEAD_BUSH = XMaterial.DEAD_BUSH.parseItem();
     private final ParticleDisplay nose = ParticleDisplay.of(XParticle.DUST).withColor(Color.RED);
@@ -52,13 +49,16 @@ public class MountRudolph extends MountAbstractHorse {
         }
         armorStand.getEquipment().setItemInMainHand(DEAD_BUSH);
         armorStand.setPersistent(false);
-        armorStand.setMetadata("C_AD_ArmorStand", new FixedMetadataValue(getUltraCosmetics(), getPlayer().getUniqueId().toString()));
+        armorStand.setMetadata("C_AD_ArmorStand",
+                new FixedMetadataValue(getUltraCosmetics(), getPlayer().getUniqueId().toString()));
         return armorStand;
     }
 
     @Override
     public void onUpdate() {
-        if (left != null && right != null) moveAntlers();
+        if (left != null && right != null) {
+            moveAntlers();
+        }
     }
 
     private void moveAntlers() {
@@ -80,10 +80,14 @@ public class MountRudolph extends MountAbstractHorse {
         noseLocation.setY(y + 0.127);
         nose.spawn(noseLocation);
         // Improves update time for antlers, but not a critical feature
-        if (!UltraCosmeticsData.get().getVersionManager().isUsingNMS()) return;
+        if (!UltraCosmeticsData.get().getVersionManager().isUsingNMS()) {
+            return;
+        }
         new Thread(() -> {
             for (Player player : getPlayer().getWorld().getPlayers()) {
-                if (noseLocation.distanceSquared(player.getLocation()) > 32 * 32) continue;
+                if (noseLocation.distanceSquared(player.getLocation()) > 32 * 32) {
+                    continue;
+                }
                 UltraCosmeticsData.get().getVersionManager().getEntityUtil().sendTeleportPacket(player, right);
                 UltraCosmeticsData.get().getVersionManager().getEntityUtil().sendTeleportPacket(player, left);
             }
@@ -94,8 +98,12 @@ public class MountRudolph extends MountAbstractHorse {
     public void onClear() {
         super.onClear();
 
-        if (left != null) left.remove();
-        if (right != null) right.remove();
+        if (left != null) {
+            left.remove();
+        }
+        if (right != null) {
+            right.remove();
+        }
     }
 
     private Location getEyeLocation() {

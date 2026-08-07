@@ -5,12 +5,6 @@ import be.isach.ultracosmetics.cosmetics.type.ParticleEffectType;
 import be.isach.ultracosmetics.player.UltraPlayer;
 import org.bukkit.util.Vector;
 
-/**
- * Represents an instance of green spark particles summoned by a player.
- *
- * @author iSach
- * @since 08-13-2015
- */
 public class ParticleEffectGreenSparks extends ParticleEffect {
 
     private boolean up;

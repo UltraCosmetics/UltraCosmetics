@@ -11,12 +11,6 @@ import org.bukkit.event.player.PlayerKickEvent;
 import org.bukkit.event.player.PlayerToggleSneakEvent;
 import org.bukkit.util.Vector;
 
-/**
- * Represents an instance of a slime morph summoned by a player.
- *
- * @author iSach
- * @since 08-26-2015
- */
 public class MorphSlime extends MorphNoFall {
     private final double jumpSpeed = SettingsManager.getConfig().getDouble(getOptionPath("Jump-Speed"), 2.3);
 

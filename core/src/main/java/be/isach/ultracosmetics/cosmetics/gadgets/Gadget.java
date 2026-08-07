@@ -32,12 +32,6 @@ import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.Locale;
 
-/**
- * Represents an instance of a Gadget summoned by a player.
- *
- * @author iSach
- * @since 08-03-2015
- */
 public abstract class Gadget extends Cosmetic<GadgetType> implements UnmovableItemProvider {
 
     private static final DecimalFormatSymbols OTHER_SYMBOLS = new DecimalFormatSymbols(Locale.US);
@@ -83,7 +77,8 @@ public abstract class Gadget extends Cosmetic<GadgetType> implements UnmovableIt
 
     public Gadget(UltraPlayer owner, GadgetType type, UltraCosmetics ultraCosmetics, boolean asynchronous) {
         super(owner, type, ultraCosmetics);
-        readySound = XSound.BLOCK_NOTE_BLOCK_HAT.record().withVolume(1.4f).withPitch(1.5f).soundPlayer().forPlayers(getPlayer());
+        readySound = XSound.BLOCK_NOTE_BLOCK_HAT.record().withVolume(1.4f).withPitch(1.5f).soundPlayer()
+                .forPlayers(getPlayer());
     }
 
     @Override
@@ -119,7 +114,9 @@ public abstract class Gadget extends Cosmetic<GadgetType> implements UnmovableIt
         // For some reason, the client sends two `use` packets for snowballs and
         // ender pearls, so we have to figure out how to ignore one of them.
         handledThisTick = false;
-        if (getOwner() == null || getPlayer() == null) return;
+        if (getOwner() == null || getPlayer() == null) {
+            return;
+        }
 
         UltraPlayer owner = getOwner();
         if (owner.getCurrentGadget() == null || owner.getCurrentGadget().getType() != getType()) {
@@ -186,7 +183,8 @@ public abstract class Gadget extends Cosmetic<GadgetType> implements UnmovableIt
     }
 
     public void updateItemStack() {
-        itemStack = ItemFactory.rename(getType().getItemStack(), getItemDisplayName(), MessageManager.getLegacyMessage("Gadgets.Lore"));
+        itemStack = ItemFactory.rename(getType().getItemStack(), getItemDisplayName(),
+                MessageManager.getLegacyMessage("Gadgets.Lore"));
         ItemFactory.applyCosmeticMarker(itemStack);
         ItemFactory.removeCooldown(itemStack);
     }
@@ -201,25 +199,32 @@ public abstract class Gadget extends Cosmetic<GadgetType> implements UnmovableIt
     }
 
     public boolean itemMatches(ItemStack stack) {
-        if (stack == null || stack.getType() != getItemStack().getType() || !stack.hasItemMeta() || !stack.getItemMeta().hasDisplayName()) {
+        if (stack == null || stack.getType() != getItemStack().getType() || !stack.hasItemMeta() ||
+                !stack.getItemMeta().hasDisplayName()) {
             return false;
         }
 
         // Case sensitivity causes issues with hex color codes for some reason, even with MiniMessage
-        return stack.getItemMeta().getDisplayName().toLowerCase(Locale.ROOT).equals(MessageManager.toLegacy(getItemDisplayName()).toLowerCase(Locale.ROOT));
+        return stack.getItemMeta().getDisplayName().toLowerCase(Locale.ROOT)
+                .equals(MessageManager.toLegacy(getItemDisplayName()).toLowerCase(Locale.ROOT));
     }
 
     @Override
     public void handleInteract(PlayerInteractEvent event) {
         Player player = event.getPlayer();
         event.setCancelled(true);
-        if (handledThisTick) return;
+        if (handledThisTick) {
+            return;
+        }
         handledThisTick = true;
         UltraPlayer ultraPlayer = getUltraCosmetics().getPlayerManager().getUltraPlayer(player);
 
-        if (ultraPlayer.getCurrentTreasureChest() != null) return;
+        if (ultraPlayer.getCurrentTreasureChest() != null) {
+            return;
+        }
 
-        if (PlayerAffectingCosmetic.isHidden(event.getPlayer(), getPlayer()) && SettingsManager.getConfig().getBoolean("Prevent-Cosmetics-In-Vanish")) {
+        if (PlayerAffectingCosmetic.isHidden(event.getPlayer(), getPlayer()) &&
+                SettingsManager.getConfig().getBoolean("Prevent-Cosmetics-In-Vanish")) {
             getOwner().clear();
             MessageManager.send(getPlayer(), "Not-Allowed-In-Vanish");
             return;
@@ -232,7 +237,8 @@ public abstract class Gadget extends Cosmetic<GadgetType> implements UnmovableIt
 
         boolean inShowroom = getUltraCosmetics().getWorldGuardManager().isInShowroom(player);
         if (requiresAmmo && ultraPlayer.getAmmo(getType()) < 1 && !inShowroom) {
-            if (UltraCosmeticsData.get().isAmmoPurchaseEnabled() && getUltraCosmetics().getEconomyHandler().isUsingEconomy()) {
+            if (UltraCosmeticsData.get().isAmmoPurchaseEnabled() &&
+                    getUltraCosmetics().getEconomyHandler().isUsingEconomy()) {
                 getUltraCosmetics().getMenus().openAmmoPurchaseMenu(getType(), getOwner(), () -> {
                 });
             } else {
@@ -241,7 +247,9 @@ public abstract class Gadget extends Cosmetic<GadgetType> implements UnmovableIt
             return;
         }
 
-        if (!checkRequirements(event)) return;
+        if (!checkRequirements(event)) {
+            return;
+        }
 
         double coolDown = ultraPlayer.getCooldown(getType());
         if (coolDown > 0) {

@@ -2,7 +2,6 @@ package be.isach.ultracosmetics.version.dummy;
 
 import be.isach.ultracosmetics.cosmetics.morphs.Morph;
 import be.isach.ultracosmetics.cosmetics.mounts.Mount;
-import be.isach.ultracosmetics.cosmetics.pets.Pet;
 import be.isach.ultracosmetics.version.IModule;
 import org.bukkit.FireworkEffect;
 import org.bukkit.Location;
@@ -18,11 +17,6 @@ public class DummyModule implements IModule {
 
     @Override
     public Class<? extends Mount> getSlimeClass() {
-        return null;
-    }
-
-    @Override
-    public Class<? extends Pet> getPumplingClass() {
         return null;
     }
 

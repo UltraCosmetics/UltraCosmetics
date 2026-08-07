@@ -5,11 +5,7 @@ import be.isach.ultracosmetics.config.MessageManager;
 import be.isach.ultracosmetics.cosmetics.Updatable;
 import be.isach.ultracosmetics.cosmetics.type.GadgetType;
 import be.isach.ultracosmetics.player.UltraPlayer;
-import be.isach.ultracosmetics.util.Area;
-import be.isach.ultracosmetics.util.BlockUtils;
-import be.isach.ultracosmetics.util.CancelLeashDrop;
-import be.isach.ultracosmetics.util.EntitySpawner;
-import be.isach.ultracosmetics.util.MathUtils;
+import be.isach.ultracosmetics.util.*;
 import org.bukkit.Location;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Chicken;
@@ -21,12 +17,6 @@ import org.bukkit.event.entity.EntityUnleashEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.util.Vector;
 
-/**
- * Represents an instance of a parachute gadget summoned by a player.
- *
- * @author iSach
- * @since 10-12-2015
- */
 public class GadgetParachute extends Gadget implements Updatable {
 
     private EntitySpawner<Chicken> chickens;
@@ -46,7 +36,9 @@ public class GadgetParachute extends Gadget implements Updatable {
 
         getOwner().setCanBeHitByOtherGadgets(false);
 
-        chickens = new EntitySpawner<>(EntityType.CHICKEN, loc.add(0, 3, 0), 20, true, c -> c.setLeashHolder(getPlayer()), getUltraCosmetics());
+        chickens =
+                new EntitySpawner<>(EntityType.CHICKEN, loc.add(0, 3, 0), 20, true, c -> c.setLeashHolder(getPlayer()),
+                        getUltraCosmetics());
         getUltraCosmetics().getScheduler().runAtEntityLater(getPlayer(), () -> active = true, 5);
     }
 
@@ -64,7 +56,9 @@ public class GadgetParachute extends Gadget implements Updatable {
 
     @EventHandler
     public void onChickenDeath(EntityDeathEvent event) {
-        if (chickens == null) return;
+        if (chickens == null) {
+            return;
+        }
         // can't just cancel the event for some reason, so just eliminate the effects
         if (chickens.contains(event.getEntity())) {
             event.setDroppedExp(0);
@@ -76,7 +70,9 @@ public class GadgetParachute extends Gadget implements Updatable {
 
     @EventHandler
     public void onChickenUnleash(EntityUnleashEvent event) {
-        if (chickens == null) return;
+        if (chickens == null) {
+            return;
+        }
         if (chickens.contains(event.getEntity())) {
             CancelLeashDrop.apply(event);
             chickens.removeEntity(event.getEntity());

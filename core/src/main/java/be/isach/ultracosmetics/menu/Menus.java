@@ -20,12 +20,6 @@ import org.bukkit.inventory.ItemStack;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Stores menus.
- *
- * @author iSach
- * @since 08-23-2016
- */
 public class Menus {
 
     private final UltraCosmetics ultraCosmetics;
@@ -105,9 +99,6 @@ public class Menus {
         categoryMenus.put(category, menu);
     }
 
-    /**
-     * Opens Ammo Purchase Menu.
-     */
     public void openAmmoPurchaseMenu(GadgetType type, UltraPlayer player, Runnable menuReturnFunc) {
         int price = ultraCosmetics.getEconomyHandler()
                 .calculateDiscountPrice(player.getBukkitPlayer(), type.getAmmoPrice());
@@ -139,9 +130,6 @@ public class Menus {
         this.menuPurchaseFactory = factory;
     }
 
-    /**
-     * Opens the Key Purchase Menu.
-     */
     public void openKeyPurchaseMenu(UltraPlayer ultraPlayer) {
         if (!ultraCosmetics.getEconomyHandler().isUsingEconomy()) {
             return;

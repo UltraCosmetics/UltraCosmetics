@@ -8,12 +8,6 @@ import com.cryptomorin.xseries.particles.XParticle;
 import org.bukkit.Location;
 import org.bukkit.Particle;
 
-/**
- * Represents an instance of crushed candy cane particles summoned by a player.
- *
- * @author iSach
- * @since 12-18-2015
- */
 public class ParticleEffectCrushedCandyCane extends ParticleEffect {
     private static final Particle ITEM_PARTICLE = XParticle.ITEM.get();
     private int step;
@@ -41,7 +35,8 @@ public class ParticleEffectCrushedCandyCane extends ParticleEffect {
 
     private void showParticlesAt(Location loc) {
         for (int i = 0; i < getModifiedAmount(15); i++) {
-            getPlayer().getLocation().getWorld().spawnParticle(ITEM_PARTICLE, loc, 1, 0.2, 0.2, 0.2, 0, ItemFactory.getRandomDye());
+            getPlayer().getLocation().getWorld()
+                    .spawnParticle(ITEM_PARTICLE, loc, 1, 0.2, 0.2, 0.2, 0, ItemFactory.getRandomDye());
         }
     }
 

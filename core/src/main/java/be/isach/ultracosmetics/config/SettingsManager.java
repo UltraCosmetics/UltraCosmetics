@@ -1,7 +1,6 @@
 package be.isach.ultracosmetics.config;
 
 import be.isach.ultracosmetics.UltraCosmeticsData;
-
 import org.bukkit.World;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.InvalidConfigurationException;
@@ -15,12 +14,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
-/**
- * Settings manager.
- *
- * @author iSach
- * @since 07-21-2015
- */
 public class SettingsManager {
 
     // Config file.
@@ -31,7 +24,6 @@ public class SettingsManager {
 
     /**
      * Creates a new file and defines fileConfiguration and file.
-     *
      */
     protected SettingsManager(String fileName) {
         File folder = new File(UltraCosmeticsData.get().getPlugin().getDataFolder(), "/data");
@@ -106,11 +98,12 @@ public class SettingsManager {
 
     /**
      * Sets the value of a given path.
-     *
      */
     public void set(String path, Object value, boolean autosave) {
         fileConfiguration.set(path, value);
-        if (autosave) save();
+        if (autosave) {
+            save();
+        }
     }
 
     public void set(String path, Object value) {
@@ -194,17 +187,18 @@ public class SettingsManager {
         return fileConfiguration.get(path);
     }
 
-    /**
-     * @return {@code true} if the fileConfiguration contains the path, {@code false} otherwise.
-     */
     public boolean contains(String path) {
         return fileConfiguration.contains(path);
     }
 
     public static boolean isAllowedWorld(World world) {
         List<String> worlds = getConfig().getStringList("Enabled-Worlds");
-        if (worlds.contains("*")) return true;
-        if (worlds.contains(world.getName())) return true;
+        if (worlds.contains("*")) {
+            return true;
+        }
+        if (worlds.contains(world.getName())) {
+            return true;
+        }
         return false;
     }
 

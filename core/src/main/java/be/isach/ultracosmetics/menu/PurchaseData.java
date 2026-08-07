@@ -4,9 +4,6 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.function.BooleanSupplier;
 
-/**
- * Created by sacha on 04/04/2017.
- */
 public class PurchaseData {
 
     private int price;
@@ -24,7 +21,9 @@ public class PurchaseData {
     }
 
     public boolean canPurchase() {
-        if (canPurchase != null) return canPurchase.getAsBoolean();
+        if (canPurchase != null) {
+            return canPurchase.getAsBoolean();
+        }
         return true;
     }
 
@@ -33,7 +32,9 @@ public class PurchaseData {
     }
 
     public void runOnCancel() {
-        if (onCancel != null) onCancel.run();
+        if (onCancel != null) {
+            onCancel.run();
+        }
     }
 
     public void setBasePrice(int price) {
