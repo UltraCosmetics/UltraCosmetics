@@ -5,6 +5,7 @@ import be.isach.ultracosmetics.UltraCosmeticsData;
 import be.isach.ultracosmetics.command.SubCommand;
 import be.isach.ultracosmetics.config.MessageManager;
 import be.isach.ultracosmetics.util.Problem;
+import be.isach.ultracosmetics.util.UpdateManager;
 import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.event.ClickEvent;
@@ -40,7 +41,12 @@ public class SubCommandTroubleshoot extends SubCommand {
     }
 
     public static void sendSupportMessage(CommandSender sender) {
-        String version = UltraCosmeticsData.get().getPlugin().getUpdateChecker().getCurrentVersion().versionClassifierCommit();
+        // Update checker isn't initialized if config.yml failed to load, so fall back
+        // to a placeholder version string instead of crashing the command.
+        UpdateManager updateChecker = UltraCosmeticsData.get().getPlugin().getUpdateChecker();
+        String version = updateChecker != null
+                ? updateChecker.getCurrentVersion().versionClassifierCommit()
+                : "unknown (plugin not fully initialized)";
         sender.sendMessage("You are running UC " + version + " on " + Bukkit.getName() + " " + Bukkit.getVersion());
         Component discordMessage = Component.text("If you need help, click here to join the support Discord", NamedTextColor.GREEN, TextDecoration.UNDERLINED)
                 .clickEvent(ClickEvent.openUrl("https://discord.gg/mDSbzGPykk"));
