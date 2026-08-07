@@ -592,3 +592,38 @@ Always-Update-Cosmetics-On-World-Change: false
 # The thousands separator to use when displaying money amounts.
 # Set to "" to disable.
 Thousands-Separator: ","
+
+# Integration with Lightly's combat-log module. When a player is combat-tagged,
+# suspends selected cosmetics (pets, particle effects, etc.) and re-equips them
+# from the profile when the tag clears. Requires the Lightly plugin to be loaded;
+# otherwise this section has no effect.
+Combat-Log-Integration:
+  Enabled: true
+  # How often (in ticks) to poll combat state. 20 = once per second. Minimum 5.
+  Poll-Interval-Ticks: 20
+  # Whether to suspend all cosmetics in each category during combat. Individual
+  # cosmetics can be exempted or forced via 'Overrides' below.
+  Suspend-Categories:
+    Pets: true
+    Mounts: true
+    Morphs: true
+    Emotes: true
+    Suits: false
+    Hats: false
+    Gadgets: false
+    Particle-Effects: false
+    Projectile-Effects: false
+    Death-Effects: false
+  # Per-cosmetic overrides. Absence = follow the category default above.
+  # Key format: <CategoryConfigPath>.<CosmeticConfigName>
+  # Example: suspend Hearts even though Particle-Effects category defaults to false.
+  Overrides:
+    Particle-Effects:
+      Hearts: true
+      InLove: true
+      Enchanted: true
+      FireWaves: true
+      AngelWings: true
+      MagicalRods: true
+      Music: true
+      Notes: true

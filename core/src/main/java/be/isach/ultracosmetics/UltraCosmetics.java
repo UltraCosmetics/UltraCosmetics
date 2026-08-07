@@ -92,6 +92,7 @@ public class UltraCosmetics extends JavaPlugin {
     private DiscordSRVHook discordHook;
     private ChestSortHook chestSortHook;
     private PlayerAuctionsHook playerAuctionsHook;
+    private CombatLogSuspender combatLogSuspender;
     private UnmovableItemListener unmovableItemListener;
     private TreasureChestManager treasureChestManager;
     private EntityDismountListener entityDismountListener;
@@ -364,6 +365,18 @@ public class UltraCosmetics extends JavaPlugin {
         chestSortHook = hookIfEnabled("ChestSort", () -> new ChestSortHook(this));
         hookIfEnabled("Towny", TownyHook::new);
         playerAuctionsHook = hookIfEnabled("PlayerAuctions", () -> new PlayerAuctionsHook(this), 1.24f);
+
+        if (CombatLogHook.isPluginPresent() && SettingsManager.getConfig().getBoolean("Combat-Log-Integration.Enabled")) {
+            try {
+                combatLogSuspender = new CombatLogSuspender(this, new CombatLogHook());
+                combatLogSuspender.start();
+                getSmartLogger().write();
+                getSmartLogger().write("Hooked into Lightly combat-log");
+            } catch (ReflectiveOperationException ex) {
+                getSmartLogger().write(LogLevel.WARNING,
+                        "Lightly is loaded but its combat-log API shape changed; combat-log integration disabled. Cause: " + ex);
+            }
+        }
 
         // Start up bStats
         setupMetrics();
@@ -822,6 +835,10 @@ public class UltraCosmetics extends JavaPlugin {
 
     public ChestSortHook getChestSortHook() {
         return chestSortHook;
+    }
+
+    public CombatLogSuspender getCombatLogSuspender() {
+        return combatLogSuspender;
     }
 
     public UnmovableItemListener getUnmovableItemListener() {
