@@ -32,7 +32,6 @@ public class UnifiedPageButton implements Button {
 
     @Override
     public void onClick(ClickData clickData) {
-        UltraPlayer player = clickData.getClicker();
-        menu.open(player, menu.getActiveCategory(player), menu.getActivePage(player) + modifier);
+        menu.changePage(clickData.getClicker(), modifier);
     }
 }

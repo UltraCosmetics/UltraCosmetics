@@ -94,7 +94,18 @@ public class SubCommandMenu extends SubCommand {
             return;
         }
         if (menus.isUnifiedMenuEnabled()) {
-            menus.getUnifiedMenu().open(ultraPlayer, cat, page);
+            be.isach.ultracosmetics.menu.VirtualCategory match = null;
+            for (be.isach.ultracosmetics.menu.VirtualCategory v : menus.getUnifiedMenu().getVirtualCategories()) {
+                if (v.getCoveredCategories().contains(cat)) {
+                    match = v;
+                    break;
+                }
+            }
+            if (match != null) {
+                menus.getUnifiedMenu().openVirtual(ultraPlayer, match, page);
+            } else {
+                menus.getUnifiedMenu().open(ultraPlayer, cat, page);
+            }
         } else {
             menus.getCategoryMenu(cat).open(ultraPlayer, page);
         }
