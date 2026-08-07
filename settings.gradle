@@ -8,5 +8,6 @@ pluginManagement {
     }
 }
 rootProject.name = 'UltraCosmetics'
-// 'nms' excluded: requires spigot:26.1.2-R0.1-SNAPSHOT (future MC version, not yet available)
-include 'v1_21_R7', 'core', 'java-21', 'legacy-events', 'paper-support'
+// 'nms' provides support for MC 1.26+ (spigot:26.2-R0.1-SNAPSHOT); include it when
+// building for a server on that version.
+include 'nms', 'v1_21_R7', 'core', 'java-21', 'legacy-events', 'paper-support'
