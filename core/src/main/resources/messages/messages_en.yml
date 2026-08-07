@@ -134,10 +134,17 @@ Menu:
       Tooltip-Unequip: <bold><red>Unequip
   Buy-Ammo:
     Title: <bold>Buy Ammo
+  Unified:
+    Title: <bold>Cosmetics
+    Description: |-
+      <gray>Click a category on the left
+      <gray>to see its cosmetics here.
   Misc:
     Button:
       Previous-Page: <bold><red>Previous Page
       Next-Page: <bold><green>Next Page
+      Scroll-Up-Categories: <bold><green>Previous Categories
+      Scroll-Down-Categories: <bold><green>More Categories
   Disabled-Button: <red>DISABLED
 Chest-Location:
   Not-Enough-Space: <prefix> <bold><red>There isn't enough space for a treasure chest!

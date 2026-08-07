@@ -25,6 +25,7 @@ public class Menus {
     private final UltraCosmetics ultraCosmetics;
     private final Map<Category, CosmeticMenu<?>> categoryMenus = new HashMap<>();
     private Menu mainMenu;
+    private final MenuUnified unifiedMenu;
     private MenuPurchaseFactory menuPurchaseFactory = StandardMenuPurchase::new;
 
     public Menus(UltraCosmetics ultraCosmetics) {
@@ -44,6 +45,7 @@ public class Menus {
         categoryMenus.put(Category.SUITS_LEGGINGS, ms);
         categoryMenus.put(Category.SUITS_BOOTS, ms);
         this.mainMenu = new MenuMain(ultraCosmetics);
+        this.unifiedMenu = new MenuUnified(ultraCosmetics);
         // Load the class so it's available on disable, when we can't load more classes.
         // Otherwise sometimes errors occur when hotswapping the jar
         new CosmeticsInventoryHolder();
@@ -57,6 +59,18 @@ public class Menus {
         this.mainMenu = menu;
     }
 
+    public MenuUnified getUnifiedMenu() {
+        return unifiedMenu;
+    }
+
+    /**
+     * @return {@code true} if the single-window unified menu should be used instead of the
+     * classic main-menu-and-submenus layout.
+     */
+    public boolean isUnifiedMenuEnabled() {
+        return ultraCosmetics.getConfig().getBoolean("Categories.Unified-Menu.Enabled");
+    }
+
     /**
      * Opens UC's main menu OR runs the custom main menu command specified in config.yml
      *
@@ -68,6 +82,10 @@ public class Menus {
                     .replace("/", "").replace("{player}", ultraPlayer.getBukkitPlayer().getName())
                     .replace("{playeruuid}", ultraPlayer.getUUID().toString());
             Bukkit.dispatchCommand(ultraCosmetics.getServer().getConsoleSender(), command);
+            return;
+        }
+        if (isUnifiedMenuEnabled()) {
+            unifiedMenu.open(ultraPlayer);
             return;
         }
         mainMenu.open(ultraPlayer);
