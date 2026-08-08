@@ -136,11 +136,8 @@ public class VirtualCategory {
             List<CosmeticType<?>> resolved = new ArrayList<>();
             Set<Category> covered = EnumSet.noneOf(Category.class);
             for (String name : names) {
-                CosmeticType<?> type = resolveByName(name);
-                if (type == null) {
-                    warn("Virtual category '" + key + "': unknown cosmetic '" + name + "', ignoring.");
-                    continue;
-                }
+                CosmeticType<?> type = resolveByName(name, key);
+                if (type == null) continue;
                 resolved.add(type);
                 covered.add(type.getCategory());
             }
@@ -179,10 +176,53 @@ public class VirtualCategory {
         return extras;
     }
 
-    private static CosmeticType<?> resolveByName(String name) {
-        for (Category cat : Category.values()) {
+    /**
+     * Resolves a cosmetic entry from the {@code Cosmetics:} list. Two forms are accepted:
+     * <ul>
+     *   <li>{@code name} — searches every category in enum order and returns the first
+     *       match. Ambiguous names like {@code Witch} or {@code Love} will resolve to
+     *       whichever category comes first, which may not be what the user wanted.</li>
+     *   <li>{@code prefix:name} — restricts the search to the given category. The prefix
+     *       can be the short alias ({@code p}, {@code mor}, {@code pe}, {@code g},
+     *       {@code ef}, {@code h}, {@code e}, {@code mou}, {@code d}), the enum name
+     *       ({@code PROJECTILE_EFFECTS}), or the config path ({@code Projectile-Effects}).
+     *       Case- and dash/underscore-insensitive.</li>
+     * </ul>
+     * Emits a warning and returns {@code null} for unknown prefix or unknown cosmetic.
+     */
+    private static CosmeticType<?> resolveByName(String entry, String key) {
+        int colon = entry.indexOf(':');
+        if (colon > 0 && colon < entry.length() - 1) {
+            String prefixRaw = entry.substring(0, colon);
+            String name = entry.substring(colon + 1);
+            Category cat = resolveCategoryPrefix(prefixRaw);
+            if (cat == null) {
+                warn("Virtual category '" + key + "': unknown category prefix '" + prefixRaw + "' in '" + entry
+                        + "'. Use the short alias (p, mor, pe, g, ef, h, e, mou, d), the enum name"
+                        + " (PROJECTILE_EFFECTS), or the config path (Projectile-Effects).");
+                return null;
+            }
             CosmeticType<?> type = CosmeticType.valueOf(cat, name);
+            if (type == null) {
+                warn("Virtual category '" + key + "': unknown cosmetic '" + name + "' in category "
+                        + cat.name() + ", ignoring.");
+            }
+            return type;
+        }
+        for (Category cat : Category.values()) {
+            CosmeticType<?> type = CosmeticType.valueOf(cat, entry);
             if (type != null) return type;
+        }
+        warn("Virtual category '" + key + "': unknown cosmetic '" + entry + "', ignoring.");
+        return null;
+    }
+
+    private static Category resolveCategoryPrefix(String raw) {
+        String norm = raw.toLowerCase(Locale.ROOT).replace("-", "").replace("_", "");
+        for (Category cat : Category.values()) {
+            if (norm.equals(cat.getPrefix())) return cat;
+            if (norm.equals(cat.name().toLowerCase(Locale.ROOT).replace("_", ""))) return cat;
+            if (norm.equals(cat.getConfigPath().toLowerCase(Locale.ROOT).replace("-", ""))) return cat;
         }
         return null;
     }

@@ -127,6 +127,14 @@ Categories:
     #     Cosmetics:
     #       - cursedfootprints
     #       - firework
+    #       # If a cosmetic name exists in more than one category (e.g. "Witch"
+    #       # is a Pet, a Hat, a Morph AND a Projectile Effect), prefix it with
+    #       # the category to disambiguate. Accepted forms:
+    #       #   short alias:   p:Witch  (p, mor, pe, g, ef, h, e, mou, d)
+    #       #   enum name:     PROJECTILE_EFFECTS:Witch
+    #       #   config path:   Projectile-Effects:Witch
+    #       - p:Witch
+    #       - p:Love
     #   Gadgetos:
     #     Slot: 27
     #     Name: '&fGadgets'
