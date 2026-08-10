@@ -1,11 +1,7 @@
 dependencies {
     // https://hub.spigotmc.org/stash/projects/SPIGOT/repos/spigot
-    implementation "org.spigotmc:spigot:26.2-R0.1-SNAPSHOT"
+    // Spigot 26.x publishes a Mojang-mapped jar directly (no remapper needed).
+    implementation "org.spigotmc:spigot:$remapMcVersion"
 
     implementation project(':core')
-}
-
-java {
-    sourceCompatibility = JavaVersion.VERSION_21
-    targetCompatibility = JavaVersion.VERSION_21
 }
