@@ -125,6 +125,10 @@ public class MenuUnified extends Menu {
         page = clampPage(page, maxPages);
         activePage.put(player.getUUID(), page);
 
+        // Reuse the currently-open inventory instead of opening a fresh one when the
+        // player is already looking at this menu (switching category / turning page).
+        // Otherwise Bukkit closes and reopens the window, producing a visible flicker.
+        // Safe because the title is constant for MenuUnified.
         Inventory inventory = getReusableInventory(bukkitPlayer);
         boolean reuse = inventory != null;
         if (reuse) {
@@ -133,6 +137,7 @@ public class MenuUnified extends Menu {
         } else {
             inventory = createInventory(title);
         }
+
         putDescription(inventory);
         putCategorySelectors(inventory, player, visible);
         if (category != null) {
