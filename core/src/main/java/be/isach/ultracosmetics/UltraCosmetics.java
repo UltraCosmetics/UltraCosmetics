@@ -364,6 +364,7 @@ public class UltraCosmetics extends JavaPlugin {
         chestSortHook = hookIfEnabled("ChestSort", () -> new ChestSortHook(this));
         hookIfEnabled("Towny", TownyHook::new);
         playerAuctionsHook = hookIfEnabled("PlayerAuctions", () -> new PlayerAuctionsHook(this), 1.24f);
+        hookIfEnabled("Lightly", () -> new LightlyIntegrationListener(this));
 
         // Start up bStats
         setupMetrics();

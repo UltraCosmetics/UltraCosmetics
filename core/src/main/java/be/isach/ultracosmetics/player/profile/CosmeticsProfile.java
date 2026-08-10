@@ -73,6 +73,10 @@ public abstract class CosmeticsProfile {
         data.getEnabledCosmetics().put(cat, type);
     }
 
+    public CosmeticType<?> getEnabledCosmetic(Category cat) {
+        return data.getEnabledCosmetics().get(cat);
+    }
+
     public void clearAllEquipped() {
         data.getEnabledCosmetics().clear();
     }
