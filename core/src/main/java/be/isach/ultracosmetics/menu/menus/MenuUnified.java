@@ -93,7 +93,19 @@ public class MenuUnified extends Menu {
         if (page < 1) page = 1;
         activePage.put(player.getUUID(), page);
 
-        Inventory inventory = createInventory(title);
+        // Reuse the currently-open inventory instead of opening a fresh one when the
+        // player is already looking at this menu (switching category / turning page).
+        // Otherwise Bukkit closes and reopens the window, producing a visible flicker.
+        // Safe because the title is constant for MenuUnified.
+        Inventory inventory = getReusableInventory(bukkitPlayer);
+        boolean reuse = inventory != null;
+        if (reuse) {
+            clickRunnableMap.remove(inventory);
+            inventory.clear();
+        } else {
+            inventory = createInventory(title);
+        }
+
         putDescription(inventory);
         putCategorySelectors(inventory, player, visible);
         if (category != null) {
@@ -101,7 +113,17 @@ public class MenuUnified extends Menu {
         }
         putFooter(inventory, player, category, page, maxPages);
         fillInventory(inventory);
-        bukkitPlayer.openInventory(inventory);
+
+        if (reuse) {
+            bukkitPlayer.updateInventory();
+        } else {
+            bukkitPlayer.openInventory(inventory);
+        }
+    }
+
+    private Inventory getReusableInventory(Player player) {
+        Inventory top = player.getOpenInventory().getTopInventory();
+        return clickRunnableMap.containsKey(top) ? top : null;
     }
 
     @Override
