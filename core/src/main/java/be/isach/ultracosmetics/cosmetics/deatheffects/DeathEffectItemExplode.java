@@ -8,7 +8,6 @@ import com.cryptomorin.xseries.XMaterial;
 import com.cryptomorin.xseries.XSound;
 import org.bukkit.Location;
 import org.bukkit.entity.Item;
-import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,13 +50,12 @@ public class DeathEffectItemExplode extends DeathEffect {
 
     @Override
     public void displayParticles() {
-        Player player = getPlayer();
         explode.play();
         hurt.play();
 
         for (int i = 0; i < 30; i++) {
             XMaterial randMaterial = materials.get(RANDOM.nextInt(materials.size()));
-            items.add(ItemFactory.createUnpickableItemVariance(randMaterial, player.getLocation(), RANDOM, 1));
+            items.add(ItemFactory.createUnpickableItemVariance(randMaterial, targetLocation, RANDOM, 1));
         }
         Location loc = items.get(0).getLocation();
         getUltraCosmetics().getScheduler().runAtLocationLater(loc, () -> items.forEach(Item::remove), 50);

@@ -4,7 +4,6 @@ import be.isach.ultracosmetics.UltraCosmetics;
 import be.isach.ultracosmetics.config.SettingsManager;
 import be.isach.ultracosmetics.cosmetics.type.DeathEffectType;
 import be.isach.ultracosmetics.player.UltraPlayer;
-import org.bukkit.entity.Player;
 
 public class DeathEffectLightning extends DeathEffect {
 
@@ -17,7 +16,6 @@ public class DeathEffectLightning extends DeathEffect {
     @SuppressWarnings("deprecation")
     @Override
     public void displayParticles() {
-        Player player = getPlayer();
-        player.getWorld().spigot().strikeLightningEffect(player.getLocation(), silent);
+        targetLocation.getWorld().spigot().strikeLightningEffect(targetLocation, silent);
     }
 }

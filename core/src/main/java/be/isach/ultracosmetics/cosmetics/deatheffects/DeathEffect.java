@@ -5,15 +5,18 @@ import be.isach.ultracosmetics.cosmetics.Cosmetic;
 import be.isach.ultracosmetics.cosmetics.type.DeathEffectType;
 import be.isach.ultracosmetics.player.UltraPlayer;
 import com.cryptomorin.xseries.particles.ParticleDisplay;
+import org.bukkit.Location;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.PlayerDeathEvent;
 
 public class DeathEffect extends Cosmetic<DeathEffectType> {
     protected ParticleDisplay display;
+    // Location of the victim killed by the owner; refreshed on each kill event.
+    protected Location targetLocation;
 
     public DeathEffect(UltraPlayer owner, DeathEffectType type, UltraCosmetics ultraCosmetics) {
         super(owner, type, ultraCosmetics);
-        display = ParticleDisplay.of(getType().getEffect()).withEntity(getPlayer());
+        display = ParticleDisplay.of(getType().getEffect()).withLocationCaller(() -> targetLocation);
     }
 
     @Override
@@ -23,7 +26,8 @@ public class DeathEffect extends Cosmetic<DeathEffectType> {
 
     @EventHandler
     public void onDeath(PlayerDeathEvent event) {
-        if (event.getEntity() == getPlayer()) {
+        if (event.getEntity().getKiller() == getPlayer()) {
+            targetLocation = event.getEntity().getLocation();
             displayParticles();
         }
     }
