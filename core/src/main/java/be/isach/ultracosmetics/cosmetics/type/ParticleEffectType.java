@@ -10,7 +10,7 @@ public class ParticleEffectType extends CosmeticParticleType<ParticleEffect> {
 
     private ParticleEffectType(String configName, int repeatDelay, XParticle effect, XMaterial material,
                                Class<? extends ParticleEffect> clazz, boolean supportsParticleMultiplier) {
-        super(Category.EFFECTS, configName, repeatDelay, effect, material, clazz, supportsParticleMultiplier);
+        super(Category.EFFECTS, configName, repeatDelay, effect, material, clazz, supportsParticleMultiplier, true);
         if (GENERATE_MISSING_MESSAGES) {
             MessageManager.addMessage(getConfigPath() + ".name", configName);
         }
