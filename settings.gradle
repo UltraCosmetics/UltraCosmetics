@@ -8,4 +8,6 @@ pluginManagement {
     }
 }
 rootProject.name = 'UltraCosmetics'
+// 'nms' provides support for MC 1.26+ (spigot:26.2-R0.1-SNAPSHOT); include it when
+// building for a server on that version.
 include 'v1_21_R7', 'nms', 'core', 'java-21', 'legacy-events', 'paper-support'

@@ -88,9 +88,54 @@ Categories:
     # Item used for the explanation placeholder at the top of the menu.
     Description-Item: PAPER
     # Items used for the category list scroll arrows, shown only when there
-    # are more categories than fit in the visible column at once.
+    # are more categories than fit in the visible column at once. Set
+    # Show-Scroll-Up to false to hide the up arrow entirely (down arrow
+    # still shows when needed).
+    Show-Scroll-Up: true
     Scroll-Up-Item: SPECTRAL_ARROW
     Scroll-Down-Item: ARROW
+    # Virtual categories: if defined, replace the default category buttons
+    # in the unified menu. Each entry lets you pick a slot, a display name,
+    # the button item and the exact cosmetics that show up when clicked. This
+    # lets you split a single built-in category (e.g. Particle-Effects) into
+    # several visual groups, or group cosmetics from different built-in
+    # categories together. Cosmetics not listed anywhere won't show up.
+    # Leave this key with no value (as below) to keep the classic behavior
+    # (one button per built-in category). To enable virtual categories, add
+    # your entries indented below "Virtual-Categories:" — DO NOT write
+    # "Virtual-Categories: {}" and then add entries under it, that's an
+    # invalid YAML (the {} closes the section inline).
+    Virtual-Categories:
+    # Example (supports & legacy codes and MiniMessage tags like <gray>foo):
+    # Virtual-Categories:
+    #   Mascotas:
+    #     Slot: 9
+    #     Name: '<dark_gray>» <gray>Mascotas'
+    #     Item: LIME_STAINED_GLASS_PANE
+    #     Cosmetics:
+    #       - frog
+    #       - cat
+    #     # Extras: extra buttons placed at the given slot for this virtual
+    #     # category only. Supported values: renamepet, togglegadgets,
+    #     # togglemorphselfview, clear.
+    #     Extras:
+    #       45: renamepet
+    #       47: clear
+    #   Rastros:
+    #     Slot: 18
+    #     Name: '&fRastros'
+    #     Cosmetics:
+    #       - cursedfootprints
+    #       - firework
+    #   Gadgetos:
+    #     Slot: 27
+    #     Name: '&fGadgets'
+    #     Cosmetics:
+    #       - discoball
+    #       - paintballgun
+    #     Extras:
+    #       47: togglegadgets
+    #       - hearts
 
 # The economy that should be used. Supports 'Vault', 'PlayerPoints', 'Treasury', 'PEconomy', or 'ExcellentEconomy'.
 Economy: 'Vault'
