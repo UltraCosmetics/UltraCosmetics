@@ -4,11 +4,11 @@ import be.isach.ultracosmetics.config.MessageManager;
 import be.isach.ultracosmetics.cosmetics.Category;
 import be.isach.ultracosmetics.menu.Button;
 import be.isach.ultracosmetics.menu.ClickData;
+import be.isach.ultracosmetics.menu.CosmeticActions;
 import be.isach.ultracosmetics.player.UltraPlayer;
 import be.isach.ultracosmetics.util.ItemFactory;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.Collections;
 import java.util.EnumSet;
 import java.util.Set;
 
@@ -46,27 +46,11 @@ public class ClearCosmeticButton implements Button {
     @Override
     public void onClick(ClickData clickData) {
         UltraPlayer clicker = clickData.getClicker();
-        if (categories == null) {
-            clicker.clear();
-            return;
+        CosmeticActions.clearCategories(clicker, categories);
+        // Clearing everything closes out of the menu flow, so only redraw for the
+        // targeted variant, matching the previous behavior.
+        if (categories != null) {
+            clickData.getMenu().refresh(clicker);
         }
-        for (Category cat : categories) {
-            if (cat.isSuits()) {
-                for (Category suitCat : Category.values()) {
-                    if (suitCat.isSuits()) {
-                        clicker.removeCosmetic(suitCat);
-                    }
-                }
-            } else {
-                clicker.removeCosmetic(cat);
-            }
-        }
-        clickData.getMenu().refresh(clicker);
-    }
-
-    // Kept for clarity, not currently used externally.
-    @SuppressWarnings("unused")
-    private static Set<Category> immutableOrNull(Set<Category> s) {
-        return s == null ? null : Collections.unmodifiableSet(s);
     }
 }

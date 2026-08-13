@@ -9,6 +9,7 @@ import be.isach.ultracosmetics.cosmetics.Category;
 import be.isach.ultracosmetics.cosmetics.type.CosmeticType;
 import be.isach.ultracosmetics.cosmetics.type.SuitCategory;
 import be.isach.ultracosmetics.cosmetics.type.SuitType;
+import be.isach.ultracosmetics.menu.CosmeticActions;
 import be.isach.ultracosmetics.menu.CosmeticMenu;
 import be.isach.ultracosmetics.menu.Menu;
 import be.isach.ultracosmetics.menu.Menus;
@@ -359,8 +360,7 @@ public class MenuUnified extends Menu {
     }
 
     private boolean isHidden(UltraPlayer player, CosmeticType<?> type) {
-        CosmeticMenu<?> menu = ultraCosmetics.getMenus().getCategoryMenu(type.getCategory());
-        return menu != null && menu.shouldHideItem(player, type);
+        return CosmeticActions.shouldHide(ultraCosmetics, player, type);
     }
 
     private void putContent(Inventory inventory, UltraPlayer player, Category category, int page) {

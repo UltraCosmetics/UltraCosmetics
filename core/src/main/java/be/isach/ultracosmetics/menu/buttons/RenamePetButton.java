@@ -6,11 +6,11 @@ import be.isach.ultracosmetics.config.MessageManager;
 import be.isach.ultracosmetics.config.SettingsManager;
 import be.isach.ultracosmetics.menu.Button;
 import be.isach.ultracosmetics.menu.ClickData;
+import be.isach.ultracosmetics.menu.CosmeticActions;
 import be.isach.ultracosmetics.menu.Menu;
 import be.isach.ultracosmetics.menu.MenuPurchase;
 import be.isach.ultracosmetics.menu.MenuPurchaseFactory;
 import be.isach.ultracosmetics.menu.PurchaseData;
-import be.isach.ultracosmetics.mysql.MySqlConnectionManager;
 import be.isach.ultracosmetics.player.UltraPlayer;
 import be.isach.ultracosmetics.util.ItemFactory;
 import be.isach.ultracosmetics.util.TextUtil;
@@ -67,9 +67,7 @@ public class RenamePetButton implements Button {
                     .onClick((slot, state) -> {
                         if (slot != AnvilGUI.Slot.OUTPUT) return Collections.emptyList();
                         String text = state.getText();
-                        String stripped = MessageManager.getMiniMessage().stripTags(text);
-                        int maxLength = SettingsManager.getConfig().getInt("Max-Pet-Name-Length", -1);
-                        if ((maxLength != -1 && stripped.length() > maxLength) || text.length() > MySqlConnectionManager.MAX_NAME_SIZE) {
+                        if (CosmeticActions.isPetNameTooLong(text)) {
                             return Collections.singletonList(AnvilGUI.ResponseAction.replaceInputText(MessageManager.getLegacyMessage("Too-Long")));
                         }
                         if (!text.isEmpty() && ultraCosmetics.getEconomyHandler().isUsingEconomy()
