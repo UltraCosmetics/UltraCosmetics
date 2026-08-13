@@ -9,3 +9,48 @@ Emotes: {}
 Pets: {}
 
 Suits: {}
+
+# Custom Particle Effects (HatorMC extension).
+# Each entry defines a "shape" + a list of particles to layer on it.
+# Available shapes: halo, orbit, above-head, aura
+#
+# Example:
+# Particle-Effects:
+#   MyHalo:
+#     shape: halo
+#     material: GOLD_INGOT
+#     particles:
+#       - { type: DUST, color: "#FFD700" }
+#     radius: 0.4
+#     points: 20
+#     yOffset: 0.7
+#
+#   MyOrbit:
+#     shape: orbit
+#     material: EMERALD
+#     particles:
+#       - { type: HAPPY_VILLAGER }
+#       - { type: DUST, color: "#00FF00" }
+#     radius: 1.0
+#     points: 8
+#     speed: 0.15
+#     yOffset: 1.0
+#
+#   MyAura:
+#     shape: aura
+#     material: ENDER_EYE
+#     particles:
+#       - { type: PORTAL, count: 5, extra: 0.1 }
+#     radius: 0.35
+#     topY: 1.2
+#     bottomY: 0.2
+#     bands: 2
+#
+#   MyAboveHead:
+#     shape: above-head
+#     material: NOTE_BLOCK
+#     particles:
+#       - { type: NOTE, count: 1, extra: 1.0 }
+#     yOffset: 0.8
+
+Particle-Effects: {}
