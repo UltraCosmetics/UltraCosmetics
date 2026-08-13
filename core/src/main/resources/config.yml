@@ -141,9 +141,15 @@ Categories:
     #     Cosmetics:
     #       - discoball
     #       - paintballgun
+    #       - hearts
     #     Extras:
     #       47: togglegadgets
-    #       - hearts
+    Bedrock-Forms:
+      # Sends a native Bedrock Form instead of the inventory GUI to Bedrock
+      # players on mobile (Android/iOS/Fire), when the unified menu is in use.
+      # Requires Floodgate. Ignored (the inventory GUI is used instead) for Java
+      # players, Bedrock players on desktop/console, or if Floodgate isn't installed.
+      Enabled: true
 
 # The economy that should be used. Supports 'Vault', 'PlayerPoints', 'Treasury', 'PEconomy', or 'ExcellentEconomy'.
 Economy: 'Vault'
