@@ -1,15 +1,26 @@
 package be.isach.ultracosmetics.cosmetics.type;
 
+import be.isach.ultracosmetics.UltraCosmeticsData;
 import be.isach.ultracosmetics.config.MessageManager;
 import be.isach.ultracosmetics.cosmetics.Category;
 import be.isach.ultracosmetics.cosmetics.particleeffects.*;
+import be.isach.ultracosmetics.cosmetics.particleeffects.custom.ParticleSpec;
+import be.isach.ultracosmetics.cosmetics.particleeffects.custom.Shape;
+import be.isach.ultracosmetics.cosmetics.particleeffects.custom.ShapeParams;
+import be.isach.ultracosmetics.cosmetics.particleeffects.custom.Shapes;
 import com.cryptomorin.xseries.XMaterial;
 import com.cryptomorin.xseries.particles.XParticle;
+import org.bukkit.configuration.ConfigurationSection;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.logging.Level;
 
 public class ParticleEffectType extends CosmeticParticleType<ParticleEffect> {
 
-    private ParticleEffectType(String configName, int repeatDelay, XParticle effect, XMaterial material,
-                               Class<? extends ParticleEffect> clazz, boolean supportsParticleMultiplier) {
+    protected ParticleEffectType(String configName, int repeatDelay, XParticle effect, XMaterial material,
+                                 Class<? extends ParticleEffect> clazz, boolean supportsParticleMultiplier) {
         super(Category.EFFECTS, configName, repeatDelay, effect, material, clazz, supportsParticleMultiplier, true);
         if (GENERATE_MISSING_MESSAGES) {
             MessageManager.addMessage(getConfigPath() + ".name", configName);
@@ -78,5 +89,53 @@ public class ParticleEffectType extends CosmeticParticleType<ParticleEffect> {
             new ParticleEffectType("CherryFairy", 2, XParticle.WITCH, XMaterial.PINK_PETALS,
                     ParticleEffectCherryFairy.class, false);
         }
+
+        registerCustom();
+    }
+
+    private static void registerCustom() {
+        ConfigurationSection customs = getCustomConfig(Category.EFFECTS);
+        if (customs == null) {
+            return;
+        }
+        for (String key : customs.getKeys(false)) {
+            ConfigurationSection section = customs.getConfigurationSection(key);
+            if (section == null) {
+                continue;
+            }
+            try {
+                String shapeName = section.getString("shape");
+                Shape shape = Shapes.byName(shapeName);
+                if (shape == null) {
+                    throw new IllegalArgumentException("Unknown shape '" + shapeName
+                            + "'. Available: halo, orbit, above-head, aura");
+                }
+                String materialName = section.getString("material", "REDSTONE");
+                XMaterial material = XMaterial.matchXMaterial(materialName).orElse(XMaterial.REDSTONE);
+
+                List<Map<?, ?>> particleMaps = section.getMapList("particles");
+                if (particleMaps.isEmpty()) {
+                    throw new IllegalArgumentException("'particles' list is empty");
+                }
+                List<ParticleSpec> specs = new ArrayList<>(particleMaps.size());
+                for (Map<?, ?> m : particleMaps) {
+                    specs.add(ParticleSpec.fromMap(m));
+                }
+
+                XParticle preview = specs.get(0).getParticle();
+                ShapeParams params = new ShapeParams(section);
+                addCustomStrings(key);
+                new CustomParticleEffectType(key, preview, material, shape, specs, params);
+            } catch (RuntimeException e) {
+                UltraCosmeticsData.get().getPlugin().getLogger().log(Level.WARNING,
+                        "Failed to parse custom particle effect '" + key + "': " + e.getMessage(), e);
+            }
+        }
+    }
+
+    private static void addCustomStrings(String key) {
+        MessageManager.addMessage(Category.EFFECTS.getConfigPath() + "." + key + ".name", key);
+        MessageManager.addMessage(Category.EFFECTS.getConfigPath() + "." + key + ".Description",
+                "A custom particle effect!");
     }
 }
