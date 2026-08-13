@@ -62,6 +62,10 @@ public enum Category {
         return null;
     }
 
+    public String getPrefix() {
+        return prefix;
+    }
+
     public static void forEachCosmetic(Consumer<CosmeticType<?>> func) {
         for (Category cat : values()) {
             for (CosmeticType<?> type : cat.getValues()) {
