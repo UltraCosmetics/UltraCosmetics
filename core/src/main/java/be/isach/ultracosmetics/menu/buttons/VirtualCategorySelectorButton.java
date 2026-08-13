@@ -51,7 +51,7 @@ public class VirtualCategorySelectorButton implements Button {
      * ({@code &7foo}). Detects MiniMessage by the presence of a {@code <...>} tag; falls
      * back to legacy otherwise.
      */
-    private static String renderName(String raw) {
+    public static String renderName(String raw) {
         if (raw == null || raw.isEmpty()) return "";
         if (raw.indexOf('<') >= 0 && raw.indexOf('>') > raw.indexOf('<')) {
             Component component = MessageManager.getMiniMessage().deserialize(raw);

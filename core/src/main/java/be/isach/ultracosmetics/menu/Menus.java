@@ -1,6 +1,7 @@
 package be.isach.ultracosmetics.menu;
 
 import be.isach.ultracosmetics.UltraCosmetics;
+import be.isach.ultracosmetics.bedrock.BedrockMenu;
 import be.isach.ultracosmetics.config.MessageManager;
 import be.isach.ultracosmetics.config.SettingsManager;
 import be.isach.ultracosmetics.cosmetics.Category;
@@ -26,6 +27,7 @@ public class Menus {
     private final Map<Category, CosmeticMenu<?>> categoryMenus = new HashMap<>();
     private Menu mainMenu;
     private final MenuUnified unifiedMenu;
+    private final BedrockMenu bedrockMenu;
     private MenuPurchaseFactory menuPurchaseFactory = StandardMenuPurchase::new;
 
     public Menus(UltraCosmetics ultraCosmetics) {
@@ -46,6 +48,7 @@ public class Menus {
         categoryMenus.put(Category.SUITS_BOOTS, ms);
         this.mainMenu = new MenuMain(ultraCosmetics);
         this.unifiedMenu = new MenuUnified(ultraCosmetics);
+        this.bedrockMenu = new BedrockMenu(ultraCosmetics);
         // Load the class so it's available on disable, when we can't load more classes.
         // Otherwise sometimes errors occur when hotswapping the jar
         new CosmeticsInventoryHolder();
@@ -61,6 +64,24 @@ public class Menus {
 
     public MenuUnified getUnifiedMenu() {
         return unifiedMenu;
+    }
+
+    public BedrockMenu getBedrockMenu() {
+        return bedrockMenu;
+    }
+
+    /**
+     * @return {@code true} if this player should get native Bedrock forms instead of the
+     * inventory GUI. Requires the unified menu with virtual categories, the config toggle,
+     * Floodgate, and a touchscreen Bedrock device.
+     */
+    private boolean shouldUseBedrockForms(UltraPlayer ultraPlayer) {
+        return isUnifiedMenuEnabled()
+                && !unifiedMenu.getVirtualCategories().isEmpty()
+                && ultraCosmetics.getConfig()
+                .getBoolean("Categories.Unified-Menu.Bedrock-Forms.Enabled", true)
+                && ultraCosmetics.getBedrockFormProvider()
+                .isMobileBedrockPlayer(ultraPlayer.getBukkitPlayer());
     }
 
     /**
@@ -82,6 +103,10 @@ public class Menus {
                     .replace("/", "").replace("{player}", ultraPlayer.getBukkitPlayer().getName())
                     .replace("{playeruuid}", ultraPlayer.getUUID().toString());
             Bukkit.dispatchCommand(ultraCosmetics.getServer().getConsoleSender(), command);
+            return;
+        }
+        if (shouldUseBedrockForms(ultraPlayer)) {
+            bedrockMenu.open(ultraPlayer);
             return;
         }
         if (isUnifiedMenuEnabled()) {
