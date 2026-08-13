@@ -22,6 +22,9 @@ import be.isach.ultracosmetics.treasurechests.TreasureChestManager;
 import be.isach.ultracosmetics.util.*;
 import be.isach.ultracosmetics.util.SmartLogger.LogLevel;
 import be.isach.ultracosmetics.version.ServerVersion;
+import be.isach.ultracosmetics.bedrock.BedrockFormProvider;
+import be.isach.ultracosmetics.bedrock.FloodgateFormProvider;
+import be.isach.ultracosmetics.bedrock.NoopFormProvider;
 import be.isach.ultracosmetics.worldguard.WorldGuardManager;
 import com.cryptomorin.xseries.XMaterial;
 import com.cryptomorin.xseries.reflection.XReflection;
@@ -89,6 +92,7 @@ public class UltraCosmetics extends JavaPlugin {
     private EconomyHandler economyHandler;
     private PermissionManager permissionManager;
     private PlaceholderHook placeholderHook;
+    private BedrockFormProvider bedrockFormProvider = new NoopFormProvider();
     private DiscordSRVHook discordHook;
     private ChestSortHook chestSortHook;
     private PlayerAuctionsHook playerAuctionsHook;
@@ -309,6 +313,21 @@ public class UltraCosmetics extends JavaPlugin {
             placeholderHook = new PlaceholderHook(this);
             placeholderHook.register();
             getSmartLogger().write("Hooked into PlaceholderAPI");
+        }
+
+        // Bedrock forms. Can't use hookIfEnabled() here: that helper requires the hook to
+        // be a Listener, and the form provider isn't one.
+        bedrockFormProvider = new NoopFormProvider();
+        if (Bukkit.getPluginManager().isPluginEnabled("floodgate")) {
+            try {
+                bedrockFormProvider = new FloodgateFormProvider();
+                getSmartLogger().write();
+                getSmartLogger().write("Hooked into Floodgate");
+            } catch (NoClassDefFoundError | ExceptionInInitializerError e) {
+                getSmartLogger().write();
+                getSmartLogger().write(LogLevel.WARNING,
+                        "Floodgate is installed but its API failed to load, Bedrock forms will be disabled.");
+            }
         }
 
         // Set up WorldGuard if needed.
@@ -811,6 +830,14 @@ public class UltraCosmetics extends JavaPlugin {
 
     public WorldGuardManager getWorldGuardManager() {
         return worldGuardManager;
+    }
+
+    /**
+     * @return the Bedrock form provider. Never null: falls back to a no-op implementation
+     *         when Floodgate isn't installed.
+     */
+    public BedrockFormProvider getBedrockFormProvider() {
+        return bedrockFormProvider;
     }
 
     public PlaceholderHook getPlaceholderHook() {
