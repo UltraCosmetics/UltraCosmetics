@@ -22,6 +22,7 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.entity.EntityPickupItemEvent;
+import org.bukkit.event.entity.EntityTargetEvent;
 import org.bukkit.event.entity.EntityTransformEvent;
 import org.bukkit.event.entity.EntityUnleashEvent;
 import org.bukkit.event.entity.ItemMergeEvent;
@@ -88,6 +89,14 @@ public class MainListener implements Listener {
     @EventHandler
     public void onDamageByEntity(EntityDamageByEntityEvent event) {
         if (isPet(event.getDamager()) || isMount(event.getDamager())) {
+            event.setCancelled(true);
+        }
+    }
+
+    @EventHandler(ignoreCancelled = true)
+    public void onTargetCosmetic(EntityTargetEvent event) {
+        Entity target = event.getTarget();
+        if (isPet(target) || isMount(target)) {
             event.setCancelled(true);
         }
     }
