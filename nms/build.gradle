@@ -1,6 +1,6 @@
 dependencies {
     // https://hub.spigotmc.org/stash/projects/SPIGOT/repos/spigot
-    implementation "org.spigotmc:spigot:26.3-R0.1-SNAPSHOT"
+    implementation "org.spigotmc:spigot:${requiresMinecraft}-R0.1-SNAPSHOT"
 
     implementation project(':core')
 }
