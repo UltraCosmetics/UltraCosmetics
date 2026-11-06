@@ -558,7 +558,7 @@ Particle-Effects:
       Hinterlässt eine Spur
       aus Rauch.
   SuperVillain:
-    name: <bold><dark_purple>Super Villain
+    name: <bold><dark_purple>Superschurke
     Description: |-
       Werde Batman... oder wer
       ist mehr Böse als Superman!
@@ -1852,17 +1852,17 @@ Death-Effects:
     name: <bold><white>Blitz
     Description: '⚡ KRAWUMM!'
   PuffOfSmoke:
-    Description: Disappear in a puff of smoke!
-    name: <bold><gray>Puff of Smoke
+    Description: Verschwinde in einer Rauchwolke!
+    name: <bold><gray>Rauchwolke
   DragonBreath:
-    name: <bold><gray>Dragon Breath
-    Description: Disintegrate into the dragon mist.
+    name: <bold><gray>Drachenatem
+    Description: Zerfalle in Drachennebel.
   Flames:
-    name: <bold><gold>Flames
-    Description: Explode into bursts of fire and sparks!
+    name: <bold><gold>Flammen
+    Description: Explodiere in Feuerstößen und Funken!
   ItemExplode:
-    name: <bold><light_purple>Candy Explode
-    Description: ALL OUR (SWEET) FOOD KEEPS BLOWING UP
+    name: <bold><light_purple>Süßigkeiten explosion
+    Description: ALL UNSER (SÜßES) ESSEN GEHT STÄNDIG IN DIE LUFT
 Enabled-SelfMorphView: <prefix> <blue>Du hast die Selbstansicht für Verwandlungen aktiviert!
 Disabled-SelfMorphView: <prefix> <blue>Du hast die Selbstansicht für Verwandlungen deaktiviert!
 Enabled-Gadgets: <prefix> <blue>Du hast Gadgets aktiviert!
@@ -1889,12 +1889,12 @@ Use-Rename-Pet-Command: <prefix> <red>Benutze <yellow>/uc rename</yellow> um den
 Commands-Disabled-During-Chest: <prefix> <bold><red>Du kannst beim Öffnen einer Truhe keine Befehle verwenden!
 No-Buy-Key-Permission: <prefix> <red><bold>Du hast keine Berechtigung Schatzschlüssel zu kaufen!
 Particles-Minimal-In-Client: <yellow>Du hast Partikel auf "minimal" in deinen Client-Einstellungen gesetzt und wirst daher keine Partikel sehen können.
-Cosmetics-Toggled-Off: <prefix> <blue>Cosmetics toggled off
-Cosmetics-Toggled-On: <prefix> <blue>Cosmetics toggled on
-Invalid-Category: <prefix> <bold><red>Invalid Category!
-Invalid-Cosmetic: <prefix> <bold><red>Invalid Cosmetic!
-Invalid-Player: '<prefix> <bold><red>Invalid Player!'
-Must-Specify-Player: <prefix> <bold><red>You must specify a player!
-Invalid-Number: '<prefix> <bold><red>Invalid number: <value>'
-Treasure-Keys-Given: <green><keys> keys given to <playername>
-Ammo-Given: <green><ammo> <gadgetname> ammo given to <playername>
+Cosmetics-Toggled-Off: <prefix> <blue>Kosmetika ausgeschaltet
+Cosmetics-Toggled-On: <prefix> <blue>Kosmetika eingeschaltet
+Invalid-Category: <prefix> <bold><red>Ungültige Kategorie!
+Invalid-Cosmetic: <prefix> <bold><red>Ungültiges Kosmetik!
+Invalid-Player: '<prefix> <bold><red>Ungültiger Spieler!'
+Must-Specify-Player: <prefix> <bold><red>Du musst einen Spieler angeben!
+Invalid-Number: '<prefix> <bold><red>Ungültige Nummer: <value>'
+Treasure-Keys-Given: <green><keys> Schlüssel an <playername> gegeben
+Ammo-Given: <green><ammo> <gadgetname> Munition an <playername> gegeben
