@@ -72,8 +72,8 @@ jobs:
       - name: Prepare dependencies
         uses: nick-fields/retry@v4.0.0
         with:
-          max-attempts: 2
-          timeout-minutes: 6
+          max_attempts: 2
+          timeout_minutes: 6
           command: ./gradlew validateLibraryLoaderDeps prepareDependencies --no-daemon
 
       - name: Build project
