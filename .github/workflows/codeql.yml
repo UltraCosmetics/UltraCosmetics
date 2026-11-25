@@ -58,8 +58,13 @@ jobs:
         with:
           languages: java
 
+      # https://github.com/nick-fields/retry
       - name: Build project for test
-        run: ./gradlew --no-daemon -S core:testClasses
+        uses: nick-fields/retry@v4.0.0
+        with:
+          max_attempts: 2
+          timeout_minutes: 3
+          command: ./gradlew --no-daemon -S core:testClasses
 
       # https://github.com/github/codeql-action
       - name: Perform CodeQL Analysis
