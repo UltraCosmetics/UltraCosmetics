@@ -68,11 +68,20 @@ jobs:
       - name: Configure Git
         run: git config --global user.name "Github Actions" && git config --global user.email "actions@github.com"
 
+      # https://github.com/nick-fields/retry
       - name: Prepare dependencies
-        run: ./gradlew validateLibraryLoaderDeps prepareDependencies --no-daemon
+        uses: nick-fields/retry@v4.0.0
+        with:
+          max-attempts: 2
+          timeout-minutes: 6
+          command: ./gradlew validateLibraryLoaderDeps prepareDependencies --no-daemon
 
       - name: Build project
-        run: ./gradlew build --no-daemon
+        uses: nick-fields/retry@v4.0.0
+        with:
+          max_attempts: 2
+          timeout_minutes: 1
+          command: ./gradlew build --no-daemon
 
       # https://github.com/actions/upload-artifact
       - name: Upload build artifact
